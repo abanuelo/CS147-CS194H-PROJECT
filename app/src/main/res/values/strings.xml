@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Pife 1.1</string>
+    <string name="facebook_app_id">564610727323713</string>
+    <string name="fb_login_protocol_scheme">fb564610727323713</string>
+</resources>
