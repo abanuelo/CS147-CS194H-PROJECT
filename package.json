@@ -1,0 +1,25 @@
+{
+  "name": "pife11",
+  "version": "1.0.0",
+  "description": "userdatabase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abanuelo/CS147-PROJECT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abanuelo/CS147-PROJECT/issues"
+  },
+  "homepage": "https://github.com/abanuelo/CS147-PROJECT#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.12",
+    "node-restful": "^0.2.6"
+  }
+}
