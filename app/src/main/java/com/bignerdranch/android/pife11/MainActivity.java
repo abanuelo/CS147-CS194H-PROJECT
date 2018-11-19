@@ -75,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CreateAccount.class);
         startActivity(intent);
     }
+
+    public void practice() {
+        Intent intent = new Intent(this, PracticeTask.class);
+        startActivity(intent);
+    }
+
 }
     //ATTEMPTING TO IMPLEMENT A GOOGLE ACCOUNT LOG-IN FOR USERS OF THE APP
 //    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
