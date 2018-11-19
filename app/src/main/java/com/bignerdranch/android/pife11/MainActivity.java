@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editTextPassword.setText(FetchedData.getPassword());
 
             Toast.makeText(this, "Fetched from MongoDB!!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, FetchedData.getEmail(), Toast.LENGTH_SHORT).show();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     DBObject userObj = (DBObject) obj;
 
                     UserInfo temp = new UserInfo();
-                    temp.setUsername(userObj.get("username").toString());
+                    temp.setEmail(userObj.get("email").toString());
                     temp.setPassword(userObj.get("password").toString());
                     mycontacts.add(temp);
                 }
