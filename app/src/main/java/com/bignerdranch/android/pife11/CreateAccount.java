@@ -1,5 +1,6 @@
 package com.bignerdranch.android.pife11;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +13,11 @@ import java.io.OutputStreamWriter;
 import android.util.Log;
 import java.net.HttpURLConnection;
 
-public class CreateAccount extends AppCompatActivity{
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 
+public class CreateAccount extends AppCompatActivity{
     private EditText name;
     private EditText username;
     private EditText email;
@@ -39,6 +43,8 @@ public class CreateAccount extends AppCompatActivity{
         register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 save(v);
+                Intent intent = new Intent(CreateAccount.this, Dashboard.class);
+                startActivity(intent);
             }
         });
     }

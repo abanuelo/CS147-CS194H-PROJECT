@@ -50,6 +50,7 @@ import com.mongodb.DBObject;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button bFetch;
+    private Button normLogin;
     private LoginButton loginButton;
     private TextView textView;
     private EditText editTextEmail;
@@ -79,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCreateAccount();
+                Intent intent = new Intent(MainActivity.this, CreateAccount.class);
+                startActivity(intent);
             }
         });
 
@@ -117,6 +119,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        /*
+            Method #4: Choosing to Login and Proceed to the user dashboarD
+         */
+        normLogin = findViewById(R.id.norm_login);
+        normLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent login_dash = new Intent(MainActivity.this, Dashboard.class);
+                startActivity(login_dash);
+            }
+        });
     }
 
     @Override
@@ -124,10 +137,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void openCreateAccount() {
-        Intent intent = new Intent(this, CreateAccount.class);
-        startActivity(intent);
-    }
 
     @Override
     public void onClick(View v) {
@@ -149,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         try {
             returnValues = task.execute().get();
+
             UserInfo FetchedData = (UserInfo) returnValues.toArray()[0];
 
             editTextEmail.setText(FetchedData.getEmail());

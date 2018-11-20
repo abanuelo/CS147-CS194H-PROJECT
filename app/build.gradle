@@ -26,6 +26,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
-    compile 'com.android.volley:volley:1.1.0'
-    compile 'org.mongodb:mongodb-driver:3.4.2'
+    implementation 'com.android.volley:volley:1.1.0'
+    implementation 'org.mongodb:mongodb-driver:3.4.2'
 }
