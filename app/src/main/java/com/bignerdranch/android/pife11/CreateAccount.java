@@ -1,35 +1,52 @@
 package com.bignerdranch.android.pife11;
 
 import android.content.Intent;
+import android.os.health.UidHealthStats;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.os.AsyncTask;
 import android.widget.Toast;
-import java.net.URL;
-import java.io.OutputStreamWriter;
-import android.util.Log;
-import java.net.HttpURLConnection;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class CreateAccount extends AppCompatActivity{
+public class CreateAccount extends AppCompatActivity {
     private EditText name;
     private EditText username;
     private EditText email;
     private EditText password;
     private EditText reenterPassword;
     private Button register;
-
+    private FirebaseAuth auth;
+    private FirebaseAuth.AuthStateListener auth_listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+
+        auth = FirebaseAuth.getInstance();
+        auth_listener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null){
+                    Intent createAccountIntent = new Intent(CreateAccount.this, Dashboard.class);
+                    startActivity(createAccountIntent);
+                    finish();
+                    return;
+                }
+            }
+        };
 
         name = (EditText) findViewById(R.id.name);
         username = (EditText) findViewById(R.id.username);
@@ -39,73 +56,45 @@ public class CreateAccount extends AppCompatActivity{
         register = (Button) findViewById(R.id.register);
 
 
-        //Clicking on Register Button Officially Registers Your Profile on MongoDB
         register.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                save(v);
-                Intent intent = new Intent(CreateAccount.this, Dashboard.class);
-                startActivity(intent);
+            @Override
+            public void onClick(View view) {
+                final String f_email = email.getText().toString();
+                final String f_password = password.getText().toString();
+                auth.createUserWithEmailAndPassword(f_email, f_password).addOnCompleteListener(CreateAccount.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(!task.isSuccessful()) {
+                            Toast.makeText(CreateAccount.this, "Sign Up Error", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+//                        } else {
+//                            String userId = auth.getCurrentUser().getUid();
+//                            DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("name");
+//                            currentUserDb.setValue(name);
+////                            DatabaseReference currentUserDb2 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("username");
+////                            currentUserDb2.setValue(username);
+//
+//                        }
+                    }
+                });
             }
         });
     }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        auth.addAuthStateListener(auth_listener);
+        return;
 
-    /*
-        Method 0: Create account by uploading it to Collections on MongoDB
-     */
-    public void save(View v) {
-        UserInfo contact = new UserInfo();
-
-        contact.setName(name.getText().toString());
-        contact.setUsername(username.getText().toString());
-        contact.setEmail(email.getText().toString());
-        contact.setPassword(password.getText().toString());
-
-        MongoLabSaveContact tsk = new MongoLabSaveContact();
-        tsk.execute(contact);
-
-        Toast.makeText(this, "Saved to MongoDB!!", Toast.LENGTH_SHORT).show();
     }
 
-    /*
-        Saves Contact To the Collections Section of the MongoDB Database
-     */
-    final class MongoLabSaveContact extends AsyncTask<Object, Void, Boolean> {
-        @Override
-        protected Boolean doInBackground(Object... params) {
-            UserInfo contact = (UserInfo) params[0];
-            Log.d("contact", ""+contact);
-
-            try {
-                SupportData sd = new SupportData();
-                URL url = new URL(sd.buildContactsSaveURL());
-
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("PUT");
-                connection.setDoOutput(true);
-                connection.setRequestProperty("Content-Type", "application/json");
-                connection.setRequestProperty("Accept", "application/json");
-
-                OutputStreamWriter osw = new OutputStreamWriter(connection.getOutputStream());
-
-                osw.write(sd.createContact(contact));
-                osw.flush();
-                osw.close();
-
-                if(connection.getResponseCode() <205)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-
-            } catch (Exception e) {
-                e.getMessage();
-                Log.d("Got error", e.getMessage());
-                return false;
-            }
-        }
+    @Override
+    protected void onStop(){
+        super.onStop();
+        auth.removeAuthStateListener(auth_listener);
+        return;
     }
-
 }
+
+
