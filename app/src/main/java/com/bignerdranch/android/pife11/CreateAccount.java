@@ -66,16 +66,12 @@ public class CreateAccount extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()) {
                             Toast.makeText(CreateAccount.this, "Sign Up Error", Toast.LENGTH_SHORT).show();
-                            return;
+                        } else {
+                            String userId = auth.getCurrentUser().getUid();
+                            User user = new User(name.getText().toString(), username.getText().toString());
+                            DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+                            currentUserDb.setValue(user);
                         }
-//                        } else {
-//                            String userId = auth.getCurrentUser().getUid();
-//                            DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("name");
-//                            currentUserDb.setValue(name);
-////                            DatabaseReference currentUserDb2 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("username");
-////                            currentUserDb2.setValue(username);
-//
-//                        }
                     }
                 });
             }
@@ -85,15 +81,12 @@ public class CreateAccount extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         auth.addAuthStateListener(auth_listener);
-        return;
-
     }
 
     @Override
     protected void onStop(){
         super.onStop();
         auth.removeAuthStateListener(auth_listener);
-        return;
     }
 }
 
