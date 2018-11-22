@@ -15,7 +15,7 @@
         android:layout_height="0dp">
 
         <TextView
-            android:id="@+id/textGrid"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -38,25 +38,27 @@
         <!--Row 1 -->
         <!--Column 1-->
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView0"
             android:layout_width="0dp"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/bass_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bass"
@@ -71,25 +73,27 @@
 
         <!--Column 2-->
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView1"
             android:layout_width="0dp"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/drums_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Drums / Precussion"
@@ -105,25 +109,27 @@
         <!--Row 2 -->
         <!--Column 1-->
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/flute_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Flute"
@@ -138,25 +144,27 @@
 
         <!--Column 2-->
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/guitar_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Guitar"
@@ -172,25 +180,27 @@
         <!--Row 3 -->
         <!--Column 1-->
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView4"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/piano_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Piano"
@@ -205,25 +215,27 @@
 
         <!--Column 2-->
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView5"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/sing_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sing"
@@ -239,25 +251,27 @@
         <!--Row 4 -->
         <!--Column 1-->
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView6"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/viola_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Viola"
@@ -272,25 +286,27 @@
 
         <!--Column 2-->
         <android.support.v7.widget.CardView
+            android:id="@+id/cardView7"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_columnWeight="1"
+            app:cardBackgroundColor="@android:color/white"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            >
+            app:cardElevation="8dp">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/violin_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Violin"
@@ -311,6 +327,7 @@
         android:layout_weight="1">
 
         <Button
+            android:id="@+id/proceed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="280dp"

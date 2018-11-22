@@ -35,15 +35,15 @@ public class CreateAccount extends AppCompatActivity {
         setContentView(R.layout.activity_create_account);
 
         auth = FirebaseAuth.getInstance();
+
         auth_listener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null){
-                    Intent createAccountIntent = new Intent(CreateAccount.this, Dashboard.class);
+                    Intent createAccountIntent = new Intent(CreateAccount.this, Instruments.class);
                     startActivity(createAccountIntent);
                     finish();
-                    return;
                 }
             }
         };
