@@ -27,7 +27,8 @@
         <activity android:name=".SearchCollab" />
         <activity android:name=".Profile" />
         <activity android:name=".Instruments" />
-        <activity android:name=".Genres"></activity>
+        <activity android:name=".Genres" />
+        <activity android:name=".YearsExp"></activity>
     </application>
 
 </manifest>
