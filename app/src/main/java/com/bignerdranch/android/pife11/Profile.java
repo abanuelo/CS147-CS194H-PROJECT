@@ -27,6 +27,7 @@ public class Profile extends AppCompatActivity {
                 auth.signOut();
                 Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
                 startActivity(sign_out_intent);
+                finish();
             }
         });
 
