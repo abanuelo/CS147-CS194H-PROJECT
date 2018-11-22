@@ -12,7 +12,7 @@ public class Dashboard extends AppCompatActivity {
     private Button bPerform;
     private Button bCollab;
     private ImageView rewardShop;
-    private ImageView userShop;
+    private ImageView userProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class Dashboard extends AppCompatActivity {
 
         bPractice = findViewById(R.id.practice);
         bCollab = findViewById(R.id.collab);
+        userProfile = findViewById(R.id.user_profile);
 
         bPractice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +36,14 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(View view) {
                 Intent collab_intent = new Intent(Dashboard.this, CollabMain.class);
                 startActivity(collab_intent);
+            }
+        });
+
+        userProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent user_profile_intent = new Intent(Dashboard.this, Profile.class);
+                startActivity(user_profile_intent);
             }
         });
     }
