@@ -4,6 +4,125 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".PracticePlaying">
+
+    <EditText
+        android:id="@+id/PracticeGoalMet"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Goal Not Met!"
+        android:visibility="invisible"
+        />
+
+    <EditText
+        android:id="@+id/PracticeTodaysGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today's Goal:   "
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/PracticeTodaysGoalMinutes"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+
+
+        android:layout_marginEnd="16dp"
+        android:minWidth="200dp"
+
+        android:prompt="@string/app_name"
+
+        app:layout_constrainedHeight="@+id/PracticeTodaysGoal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/PracticeTodaysGoal"
+        app:layout_constraintWidth_default="spread" />
+
+
+    <Chronometer
+        android:id="@+id/PracticeStopwatch"
+        android:layout_width="168dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/PracticeHeartLevel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PracticeTodaysGoal"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="@tools:sample/date/hhmmss" />
+
+    <ImageView
+        android:id="@+id/PracticeHeart"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/heart"
+        app:layout_constraintEnd_toStartOf="@+id/PracticeHeartLevel"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PracticeStopwatch" />
+
+    <ProgressBar
+        android:id="@+id/PracticeHeartLevel"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:progress="25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/PracticeHeart"
+        app:layout_constraintStart_toEndOf="@+id/PracticeHeart"
+        app:layout_constraintTop_toBottomOf="@id/PracticeStopwatch" />
+
+    <Button
+        android:id="@+id/PracticePlayPause"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/pause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PracticeHeart"
+        android:onClick="onClick"
+        />
+
+    <ImageView
+        android:id="@+id/PracticeAvatar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/baby"
+        app:layout_constraintBottom_toTopOf="@+id/PracticeDone"
+        app:layout_constraintTop_toBottomOf="@id/PracticePlayPause"
+        app:layout_constraintVertical_bias="0.49"></ImageView>
+
+    <Button
+        android:id="@+id/PracticeDone"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="9dp"
+        android:text="Done!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PracticeAvatar"
+        app:layout_constraintVertical_bias="0.59000003" />
+
 
 </android.support.constraint.ConstraintLayout>
