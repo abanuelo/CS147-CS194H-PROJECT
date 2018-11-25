@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,13 +32,16 @@ import java.util.regex.Pattern;
 
 
 public class SearchCollab extends AppCompatActivity {
-    private ArrayList<String> names_of_users = new ArrayList<String>();
+    private Cards card_data[];
 
-    private ArrayList<String> al;
-    private ArrayAdapter<String> arrayAdapter;
+    private arrayAdapter arrayAdapter;
     private int i;
     private FirebaseAuth auth;
-    private ArrayList<String> filteredUsersByInstrument;
+    private String currentUId;
+    private DatabaseReference usersDb;
+
+    ListView listView;
+    List<Cards> rowItems;
 
 
     @Override
@@ -45,21 +49,23 @@ public class SearchCollab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_collab);
 
+        //declaration of the private variables introduced above
+        usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
+        auth = FirebaseAuth.getInstance();
+        currentUId = auth.getCurrentUser().getUid();
+
+        //row items defined
+        rowItems = new ArrayList<Cards>();
+
         //Importing the Filters from Filter feature
         ArrayList<String> filter_genres = getIntent().getExtras().getStringArrayList("GENRES");
         ArrayList<String> filter_instruments = getIntent().getExtras().getStringArrayList("INSTRUMENTS");
-        al = new ArrayList<String>();
 
         //new commands that will include the names of people
         getFilteredUsers(filter_genres, filter_instruments);
-        Log.d("NAMES OF THE USERS", names_of_users.toString());
 
-        al.add("php");
-        al.add("c");
-
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, al);
+        arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems);
         SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
-
 
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -67,30 +73,35 @@ public class SearchCollab extends AppCompatActivity {
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
-                al.remove(0);
+                rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                //Do something on the left!
-                //You also have access to the original object.
-                //If you want to use it just cast it (String) dataObject
+                Cards obj = (Cards) dataObject;
+                String userId = obj.getUserId();
+                usersDb.child(userId).child("Collaborations").child("No").child(currentUId).setValue(true);
                 makeToast(SearchCollab.this, "Left!");
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
+                Cards obj = (Cards) dataObject;
+                String userId = obj.getUserId();
+                usersDb.child(userId).child("Collaborations").child("Yes").child(currentUId).setValue(true);
+                isConnectionMatch(userId);
                 makeToast(SearchCollab.this, "Right!");
             }
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                al.add("XML ".concat(String.valueOf(i)));
-                arrayAdapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
-                i++;
+//                Cards a = new Cards("XML", "XML");
+//                rowItems.add(a);
+//                arrayAdapter.notifyDataSetChanged();
+//                Log.d("LIST", "notified");
+//                i++;
             }
 
             @Override
@@ -110,10 +121,27 @@ public class SearchCollab extends AppCompatActivity {
 
     }
 
+    private void isConnectionMatch(String userId) {
+        DatabaseReference currentUserConnectionsDB = usersDb.child(currentUId).child("Collaborations").child("Yes").child(userId);
+        currentUserConnectionsDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    Toast.makeText(SearchCollab.this, "New collaboration has been made!", Toast.LENGTH_LONG).show();
+                    usersDb.child(dataSnapshot.getKey()).child("Collaborations").child("Matches").child(currentUId).setValue(true);
+                    usersDb.child(currentUId).child("Collaborations").child("Matches").child(dataSnapshot.getKey()).setValue(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
     public void getFilteredUsers(final ArrayList<String> filter_genres, final ArrayList<String> filter_instruments){
         final ArrayList<String> similar_genre_users = new ArrayList<String>();
         final ArrayList<String> filter_users = new ArrayList<String>();
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference instrumentDB = FirebaseDatabase.getInstance().getReference().child("Users");
 
         instrumentDB.addValueEventListener(new ValueEventListener() {
@@ -134,7 +162,6 @@ public class SearchCollab extends AppCompatActivity {
                         }
                     }
                 }
-                Log.d("SIMILAR GENRE USERS", similar_genre_users.toString());
 
                 //The second part will fiter on users who have a musical instrument the intended part wants to collab with
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -152,20 +179,23 @@ public class SearchCollab extends AppCompatActivity {
                         }
                     }
                 }
-                Log.d("SIMILAR GENRE AND INSTRUMENT USERS", filter_users.toString());
 
-
-                //Adding the Users Name to the Cards using regex
+                //Adding the Users Name to the Cards using regex compilations
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     for (String filter_user : filter_users){
-                        if (snapshot.getKey().trim().equals(filter_user.trim())){
-                            String value = snapshot.getValue().toString().trim();
-                            Pattern p = Pattern.compile("\\bname=[a-zA-Z]* [a-zA-Z]*");
-                            Matcher m = p.matcher(value);
-                            if (m.find()){
-                                String name = m.group(0);
-                                String[] name_delim = name.split("=");
-                                al.add(name_delim[1]);
+                        if (snapshot.getKey().trim().equals(filter_user.trim()) && !snapshot.getKey().trim().equals(currentUId.trim())){ //adding the component where you cannot collaborate with yourself
+                            //Additional if statement needs to be added to not re-add or see people on firebase database
+                            if (!snapshot.child("Collaborations").child("No").hasChild(currentUId) && !snapshot.child("Collaborations").child("Yes").hasChild(currentUId)){
+                                String value = snapshot.getValue().toString().trim();
+                                Pattern p = Pattern.compile("\\bname=[a-zA-Z]* [a-zA-Z]*");
+                                Matcher m = p.matcher(value);
+                                if (m.find()) {
+                                    String name = m.group(0);
+                                    String[] name_delim = name.split("=");
+                                    Cards Item = new Cards(snapshot.getKey().trim(), name_delim[1]);
+                                    rowItems.add(Item);
+                                    arrayAdapter.notifyDataSetChanged();
+                                }
                             }
                         }
                     }
