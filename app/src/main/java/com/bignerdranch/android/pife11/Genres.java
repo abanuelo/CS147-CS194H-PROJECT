@@ -192,7 +192,7 @@ public class Genres extends AppCompatActivity {
                     String userId = auth.getCurrentUser().getUid();
                     DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Genres");
                     currentUserDb.setValue(genres);
-                    Intent proceed_intent = new Intent(Genres.this, YearsExp.class);
+                    Intent proceed_intent = new Intent(Genres.this, Dashboard.class);
                     startActivity(proceed_intent);
                 }
             }

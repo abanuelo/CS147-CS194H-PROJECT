@@ -1,13 +1,19 @@
 package com.bignerdranch.android.pife11;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,14 +55,14 @@ public class Instruments extends AppCompatActivity {
         violaCard = findViewById(R.id.cardView6);
         violinCard = findViewById(R.id.cardView7);
 
-        bass = "False";
-        drum = "False";
-        flute = "False";
-        guitar = "False";
-        piano = "False";
-        sing = "False";
-        viola = "False";
-        violin = "False";
+        bass = "False; 0";
+        drum = "False; 0";
+        flute = "False; 0";
+        guitar = "False; 0";
+        piano = "False; 0";
+        sing = "False; 0";
+        viola = "False; 0";
+        violin = "False; 0";
 
         auth = FirebaseAuth.getInstance();
 
@@ -71,9 +77,23 @@ public class Instruments extends AppCompatActivity {
                     bass = "True";
                 } else {
                     bassCard.setCardBackgroundColor(Color.WHITE);
-                    bass = "False";
+                    bass = "False; 0";
                 }
 
+                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+                alertBuilder.setView(pop);
+                final EditText userinput = pop.findViewById(R.id.userinput);
+                alertBuilder.setCancelable(true)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String years_played = userinput.getText().toString();
+                        bass = "True; " + years_played;
+                    }
+                });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
             }
         });
 
@@ -87,8 +107,23 @@ public class Instruments extends AppCompatActivity {
                     drum = "True";
                 } else {
                     drumCard.setCardBackgroundColor(Color.WHITE);
-                    drum = "False";
+                    drum = "False; 0";
                 }
+
+                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+                alertBuilder.setView(pop);
+                final EditText userinput = pop.findViewById(R.id.userinput);
+                alertBuilder.setCancelable(true)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String years_played = userinput.getText().toString();
+                                bass = "True; " + years_played;
+                            }
+                        });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
             }
         });
 
@@ -102,8 +137,23 @@ public class Instruments extends AppCompatActivity {
                     flute = "True";
                 } else {
                     fluteCard.setCardBackgroundColor(Color.WHITE);
-                    flute = "False";
+                    flute = "False; 0";
                 }
+
+                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+                alertBuilder.setView(pop);
+                final EditText userinput = pop.findViewById(R.id.userinput);
+                alertBuilder.setCancelable(true)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String years_played = userinput.getText().toString();
+                                bass = "True; " + years_played;
+                            }
+                        });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
             }
         });
 
@@ -117,8 +167,23 @@ public class Instruments extends AppCompatActivity {
                     guitar = "True";
                 } else {
                     guitarCard.setCardBackgroundColor(Color.WHITE);
-                    guitar = "False";
+                    guitar = "False; 0";
                 }
+
+                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+                alertBuilder.setView(pop);
+                final EditText userinput = pop.findViewById(R.id.userinput);
+                alertBuilder.setCancelable(true)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String years_played = userinput.getText().toString();
+                                bass = "True; " + years_played;
+                            }
+                        });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
             }
         });
 
@@ -132,8 +197,23 @@ public class Instruments extends AppCompatActivity {
                     piano = "True";
                 } else {
                     pianoCard.setCardBackgroundColor(Color.WHITE);
-                    piano = "False";
+                    piano = "False; 0";
                 }
+
+                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+                alertBuilder.setView(pop);
+                final EditText userinput = pop.findViewById(R.id.userinput);
+                alertBuilder.setCancelable(true)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String years_played = userinput.getText().toString();
+                                bass = "True; " + years_played;
+                            }
+                        });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
             }
         });
 
@@ -147,8 +227,23 @@ public class Instruments extends AppCompatActivity {
                     sing = "True";
                 } else {
                     singCard.setCardBackgroundColor(Color.WHITE);
-                    sing = "False";
+                    sing = "False; 0";
                 }
+
+                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+                alertBuilder.setView(pop);
+                final EditText userinput = pop.findViewById(R.id.userinput);
+                alertBuilder.setCancelable(true)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String years_played = userinput.getText().toString();
+                                bass = "True; " + years_played;
+                            }
+                        });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
             }
         });
 
@@ -162,8 +257,23 @@ public class Instruments extends AppCompatActivity {
                     viola = "True";
                 } else {
                     violaCard.setCardBackgroundColor(Color.WHITE);
-                    viola = "False";
+                    viola = "False; 0";
                 }
+
+                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+                alertBuilder.setView(pop);
+                final EditText userinput = pop.findViewById(R.id.userinput);
+                alertBuilder.setCancelable(true)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String years_played = userinput.getText().toString();
+                                bass = "True; " + years_played;
+                            }
+                        });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
             }
         });
 
@@ -177,8 +287,23 @@ public class Instruments extends AppCompatActivity {
                     violin = "True";
                 } else {
                     violinCard.setCardBackgroundColor(Color.WHITE);
-                    violin = "False";
+                    violin = "False; 0";
                 }
+
+                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+                alertBuilder.setView(pop);
+                final EditText userinput = pop.findViewById(R.id.userinput);
+                alertBuilder.setCancelable(true)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String years_played = userinput.getText().toString();
+                                bass = "True; " + years_played;
+                            }
+                        });
+                Dialog dialog = alertBuilder.create();
+                dialog.show();
             }
         });
 
