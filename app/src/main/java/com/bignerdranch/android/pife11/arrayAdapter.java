@@ -2,12 +2,19 @@ package com.bignerdranch.android.pife11;
 
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+
 
 import org.w3c.dom.Text;
 
@@ -30,7 +37,9 @@ public class arrayAdapter extends ArrayAdapter<Cards> {
         ImageView image = (ImageView) convertView.findViewById(R.id.image);
 
         name.setText(card_item.getName());
-        image.setImageResource(R.mipmap.ic_launcher);
+
+        //Setting the Image for Reference
+        Glide.with(getContext()).load(card_item.getProfileImageURL()).into(image);
 
         return convertView;
     }

@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -126,7 +127,7 @@ public class CreateAccount extends AppCompatActivity {
 
         //Storing the Image into the Firebase Storage Component
         if(resultUri != null){
-            StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
+            final StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
             Bitmap bitmap = null;
 
             try {
@@ -138,7 +139,7 @@ public class CreateAccount extends AppCompatActivity {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
             byte[] data = baos.toByteArray();
-            UploadTask uploadTask = filepath.putBytes(data);
+            final UploadTask uploadTask = filepath.putBytes(data);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
@@ -148,12 +149,16 @@ public class CreateAccount extends AppCompatActivity {
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri downloadUrl = resultUri;
-
-                    Map userInfo = new HashMap();
-                    userInfo.put("profileImageURL", downloadUrl.toString());
-                    userDatabase.updateChildren(userInfo);
-                    finish();
+                    Task<Uri> downloadURL = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                    downloadURL.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            resultUri = uri;
+                            Map userInfo2 = new HashMap();
+                            userInfo2.put("profileImageURL", resultUri.toString());
+                            userDatabase.updateChildren(userInfo2);
+                        }
+                    });
                 }
             });
         }else{

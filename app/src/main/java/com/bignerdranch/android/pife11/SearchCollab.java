@@ -160,7 +160,8 @@ public class SearchCollab extends AppCompatActivity {
             String curr_profile = user.getKey().trim();
             if (all_filtered_users.contains(curr_profile) && !currentUId.equals(curr_profile)){
                 String name = user.child("name").getValue().toString().trim();
-                Cards profile_card = new Cards(curr_profile, name);
+                String profile_image_url = user.child("profileImageURL").getValue().toString().trim();
+                Cards profile_card = new Cards(curr_profile, name, profile_image_url);
                 rowItems.add(profile_card);
                 arrayAdapter.notifyDataSetChanged();
             }
