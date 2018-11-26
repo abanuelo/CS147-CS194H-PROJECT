@@ -11,13 +11,16 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Approximately how many years have you been playing this instrument?"
         android:textAlignment="center" />
 
     <EditText
         android:id="@+id/userinput"
-        android:layout_width="fill_parent"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:inputType="number"
         android:text="0"
         android:textAlignment="center" />
 

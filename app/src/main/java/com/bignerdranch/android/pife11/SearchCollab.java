@@ -32,15 +32,15 @@ import java.util.regex.Pattern;
 
 
 public class SearchCollab extends AppCompatActivity {
-    private Cards card_data[];
+    //private Cards card_data[];
 
     private arrayAdapter arrayAdapter;
-    private int i;
+    //private int i;
     private FirebaseAuth auth;
     private String currentUId;
     private DatabaseReference usersDb;
 
-    ListView listView;
+    //ListView listView;
     List<Cards> rowItems;
 
 
@@ -96,12 +96,7 @@ public class SearchCollab extends AppCompatActivity {
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
-                // Ask for more data here
-//                Cards a = new Cards("XML", "XML");
-//                rowItems.add(a);
-//                arrayAdapter.notifyDataSetChanged();
-//                Log.d("LIST", "notified");
-//                i++;
+
             }
 
             @Override
@@ -142,70 +137,62 @@ public class SearchCollab extends AppCompatActivity {
     public void getFilteredUsers(final ArrayList<String> filter_genres, final ArrayList<String> filter_instruments){
         final ArrayList<String> similar_genre_users = new ArrayList<String>();
         final ArrayList<String> filter_users = new ArrayList<String>();
-        DatabaseReference instrumentDB = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        instrumentDB.addValueEventListener(new ValueEventListener() {
+        usersDb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //First part will Filter on users who have a similar genre to collaborate
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    String current_profile = snapshot.getKey();
-                    for (DataSnapshot genre_type : snapshot.child("Genres").getChildren()){
-                        for (String filter_genre : filter_genres){
-                            if (genre_type.getKey().trim().equals(filter_genre.trim())){
-                                if (genre_type.getValue().toString().trim().equals("True")){
-                                    if (!similar_genre_users.contains(current_profile.trim())){
-                                        similar_genre_users.add(current_profile.trim());
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //The second part will fiter on users who have a musical instrument the intended part wants to collab with
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    if (similar_genre_users.contains(snapshot.getKey())){
-                        for (DataSnapshot instrument_type : snapshot.child("Instruments").getChildren()){
-                            for (String instrument : filter_instruments){
-                                String instrument_type_value = instrument_type.getValue().toString().trim();
-                                String[] tokens = instrument_type_value.split(";");
-                                if (instrument_type.getKey().trim().equals(instrument.trim()) && tokens[0].equals("True")){
-                                    if (!filter_users.contains(snapshot.getKey().trim())) {
-                                        filter_users.add(snapshot.getKey().trim());
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //Adding the Users Name to the Cards using regex compilations
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    for (String filter_user : filter_users){
-                        if (snapshot.getKey().trim().equals(filter_user.trim()) && !snapshot.getKey().trim().equals(currentUId.trim())){ //adding the component where you cannot collaborate with yourself
-                            //Additional if statement needs to be added to not re-add or see people on firebase database
-                            if (!snapshot.child("Collaborations").child("No").hasChild(currentUId) && !snapshot.child("Collaborations").child("Yes").hasChild(currentUId)){
-                                String value = snapshot.getValue().toString().trim();
-                                Pattern p = Pattern.compile("\\bname=[a-zA-Z]* [a-zA-Z]*");
-                                Matcher m = p.matcher(value);
-                                if (m.find()) {
-                                    String name = m.group(0);
-                                    String[] name_delim = name.split("=");
-                                    Cards Item = new Cards(snapshot.getKey().trim(), name_delim[1]);
-                                    rowItems.add(Item);
-                                    arrayAdapter.notifyDataSetChanged();
-                                }
-                            }
-                        }
-                    }
-                }
+                ArrayList<String> filtered_instrument_users = filterByInstruments(dataSnapshot, filter_instruments);
+                ArrayList<String> filtered_genres_users = filterByGenres(dataSnapshot, filtered_instrument_users);
+                ArrayList<String> all_filtered_users = filtered_genres_users;
+                createCardView(dataSnapshot, all_filtered_users);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    //All filtered users have been accounted for and the remainder of the operations is
+    //to make sure that we are push those names to the Card Views
+    public void createCardView(DataSnapshot dataSnapshot, ArrayList<String> all_filtered_users){
+        for (DataSnapshot user : dataSnapshot.getChildren()) {
+            String curr_profile = user.getKey().trim();
+            if (all_filtered_users.contains(curr_profile) && !currentUId.equals(curr_profile)){
+                String name = user.child("name").getValue().toString().trim();
+                Cards profile_card = new Cards(curr_profile, name);
+                rowItems.add(profile_card);
+                arrayAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    //After the filter has initiated a filter for instruments, the next step is to filter by genres
+    public ArrayList<String> filterByGenres(DataSnapshot dataSnapshot, ArrayList<String> filtered_instrument_users){
+        ArrayList<String> result = new ArrayList<String>();
+        for (DataSnapshot user: dataSnapshot.getChildren()){
+            String curr_profile = user.getKey().trim();
+            if (filtered_instrument_users.contains(curr_profile)){
+                for (DataSnapshot genre: user.child("Genres").getChildren()){
+                    if ((boolean)genre.getValue() == true) result.add(curr_profile);
+                }
+            }
+        }
+        return result;
+    }
+
+    //Method will look for only those customers that have an instrument capability desired by the user
+    public ArrayList<String> filterByInstruments(DataSnapshot dataSnapshot, ArrayList<String> filter_instruments){
+        ArrayList<String> result = new ArrayList<String>();
+        for (DataSnapshot user: dataSnapshot.getChildren()){
+            String curr_profile = user.getKey().trim();
+            for (DataSnapshot instrument : user.child("Years").getChildren()){
+                if (filter_instruments.contains(instrument.getKey().trim())){
+                    result.add(curr_profile);
+                }
+            }
+        }
+        return result;
     }
 
 

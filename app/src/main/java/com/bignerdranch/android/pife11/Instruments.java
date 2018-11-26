@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Instruments extends AppCompatActivity {
     private Button proceed;
     private CardView bassCard;
@@ -30,299 +33,251 @@ public class Instruments extends AppCompatActivity {
     private CardView singCard;
     private CardView violaCard;
     private CardView violinCard;
-    private String bass;
-    private String drum;
-    private String flute;
-    private String guitar;
-    private String piano;
-    private String sing;
-    private String viola;
-    private String violin;
     private FirebaseAuth auth;
+    private Map userInstrumentInfo;
+    private Map userYearsInstrumentPlayedInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instruments);
 
-        proceed = findViewById(R.id.proceed);
-        bassCard = findViewById(R.id.cardView0);
-        drumCard = findViewById(R.id.cardView1);
-        fluteCard = findViewById(R.id.cardView2);
-        guitarCard = findViewById(R.id.cardView3);
-        pianoCard = findViewById(R.id.cardView4);
-        singCard = findViewById(R.id.cardView5);
-        violaCard = findViewById(R.id.cardView6);
-        violinCard = findViewById(R.id.cardView7);
+        //Extracts all the Card Views from the Instruments XML file
+        proceed = (Button) findViewById(R.id.proceed);
+        bassCard = (CardView) findViewById(R.id.cardView0);
+        drumCard = (CardView) findViewById(R.id.cardView1);
+        fluteCard = (CardView) findViewById(R.id.cardView2);
+        guitarCard = (CardView) findViewById(R.id.cardView3);
+        pianoCard = (CardView) findViewById(R.id.cardView4);
+        singCard = (CardView) findViewById(R.id.cardView5);
+        violaCard = (CardView) findViewById(R.id.cardView6);
+        violinCard = (CardView) findViewById(R.id.cardView7);
 
-        bass = "False; 0";
-        drum = "False; 0";
-        flute = "False; 0";
-        guitar = "False; 0";
-        piano = "False; 0";
-        sing = "False; 0";
-        viola = "False; 0";
-        violin = "False; 0";
-
+        //Create the Firebase Authentification object
         auth = FirebaseAuth.getInstance();
 
+        //Declares the Maps that are going to hold Information regarding Instrument use
+        userInstrumentInfo = new HashMap();
+        userYearsInstrumentPlayedInfo = new HashMap();
+
+        //Initializes the Maps for Future Calls
+        initUserInstrumentInfo();
+
+        //Functionality when the bassCard is selected
         bassCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //If the color is white, then we have not selected the cardView, otherwise we have\
+                //If the color is white, then we have not selected the cardView, otherwise we have
+                String instrument = "bass";
                 ColorStateList stateList = bassCard.getCardBackgroundColor();
+                boolean result = false;
 
                 if (stateList.getDefaultColor() == Color.WHITE){
-                    bassCard.setCardBackgroundColor(Color.BLUE);
-                    bass = "True";
+                    bassCard.setCardBackgroundColor(Color.LTGRAY);
+                    result = true;
+                    yearsPlayedInstrument(instrument);
                 } else {
                     bassCard.setCardBackgroundColor(Color.WHITE);
-                    bass = "False; 0";
+                    result = false;
                 }
-
-                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
-                alertBuilder.setView(pop);
-                final EditText userinput = pop.findViewById(R.id.userinput);
-                alertBuilder.setCancelable(true)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        String years_played = userinput.getText().toString();
-                        bass = "True; " + years_played;
-                    }
-                });
-                Dialog dialog = alertBuilder.create();
-                dialog.show();
+                updateIntrumentInfo(instrument, result);
             }
         });
 
         drumCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String instrument = "drum";
                 ColorStateList stateList = drumCard.getCardBackgroundColor();
+                boolean result = false;
 
                 if (stateList.getDefaultColor() == Color.WHITE){
-                    drumCard.setCardBackgroundColor(Color.BLUE);
-                    drum = "True";
+                    drumCard.setCardBackgroundColor(Color.LTGRAY);
+                    result = true;
+                    yearsPlayedInstrument(instrument);
                 } else {
                     drumCard.setCardBackgroundColor(Color.WHITE);
-                    drum = "False; 0";
+                    result = false;
                 }
-
-                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
-                alertBuilder.setView(pop);
-                final EditText userinput = pop.findViewById(R.id.userinput);
-                alertBuilder.setCancelable(true)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String years_played = userinput.getText().toString();
-                                bass = "True; " + years_played;
-                            }
-                        });
-                Dialog dialog = alertBuilder.create();
-                dialog.show();
+                updateIntrumentInfo(instrument, result);
             }
         });
 
         fluteCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String instrument = "flute";
                 ColorStateList stateList = fluteCard.getCardBackgroundColor();
+                boolean result = false;
 
                 if (stateList.getDefaultColor() == Color.WHITE){
-                    fluteCard.setCardBackgroundColor(Color.BLUE);
-                    flute = "True";
+                    fluteCard.setCardBackgroundColor(Color.LTGRAY);
+                    result = true;
+                    yearsPlayedInstrument(instrument);
                 } else {
                     fluteCard.setCardBackgroundColor(Color.WHITE);
-                    flute = "False; 0";
+                    result = false;
                 }
-
-                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
-                alertBuilder.setView(pop);
-                final EditText userinput = pop.findViewById(R.id.userinput);
-                alertBuilder.setCancelable(true)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String years_played = userinput.getText().toString();
-                                bass = "True; " + years_played;
-                            }
-                        });
-                Dialog dialog = alertBuilder.create();
-                dialog.show();
+                updateIntrumentInfo(instrument, result);
             }
         });
 
         guitarCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String instrument = "guitar";
                 ColorStateList stateList = guitarCard.getCardBackgroundColor();
+                boolean result = false;
 
                 if (stateList.getDefaultColor() == Color.WHITE){
-                    guitarCard.setCardBackgroundColor(Color.BLUE);
-                    guitar = "True";
+                    guitarCard.setCardBackgroundColor(Color.LTGRAY);
+                    result = true;
+                    yearsPlayedInstrument(instrument);
                 } else {
                     guitarCard.setCardBackgroundColor(Color.WHITE);
-                    guitar = "False; 0";
+                    result = false;
                 }
-
-                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
-                alertBuilder.setView(pop);
-                final EditText userinput = pop.findViewById(R.id.userinput);
-                alertBuilder.setCancelable(true)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String years_played = userinput.getText().toString();
-                                bass = "True; " + years_played;
-                            }
-                        });
-                Dialog dialog = alertBuilder.create();
-                dialog.show();
+                updateIntrumentInfo(instrument, result);
             }
         });
 
         pianoCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String instrument = "piano";
                 ColorStateList stateList = pianoCard.getCardBackgroundColor();
+                boolean result = false;
 
                 if (stateList.getDefaultColor() == Color.WHITE){
-                    pianoCard.setCardBackgroundColor(Color.BLUE);
-                    piano = "True";
+                    pianoCard.setCardBackgroundColor(Color.LTGRAY);
+                    result = true;
+                    yearsPlayedInstrument(instrument);
                 } else {
                     pianoCard.setCardBackgroundColor(Color.WHITE);
-                    piano = "False; 0";
+                    result = false;
                 }
-
-                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
-                alertBuilder.setView(pop);
-                final EditText userinput = pop.findViewById(R.id.userinput);
-                alertBuilder.setCancelable(true)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String years_played = userinput.getText().toString();
-                                bass = "True; " + years_played;
-                            }
-                        });
-                Dialog dialog = alertBuilder.create();
-                dialog.show();
+                updateIntrumentInfo(instrument, result);
             }
         });
 
         singCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String instrument = "sing";
                 ColorStateList stateList = singCard.getCardBackgroundColor();
+                boolean result = false;
 
                 if (stateList.getDefaultColor() == Color.WHITE){
-                    singCard.setCardBackgroundColor(Color.BLUE);
-                    sing = "True";
+                    singCard.setCardBackgroundColor(Color.LTGRAY);
+                    result = true;
+                    yearsPlayedInstrument(instrument);
                 } else {
                     singCard.setCardBackgroundColor(Color.WHITE);
-                    sing = "False; 0";
+                    result = false;
                 }
-
-                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
-                alertBuilder.setView(pop);
-                final EditText userinput = pop.findViewById(R.id.userinput);
-                alertBuilder.setCancelable(true)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String years_played = userinput.getText().toString();
-                                bass = "True; " + years_played;
-                            }
-                        });
-                Dialog dialog = alertBuilder.create();
-                dialog.show();
+                updateIntrumentInfo(instrument, result);
             }
         });
 
         violaCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String instrument = "viola";
                 ColorStateList stateList = violaCard.getCardBackgroundColor();
+                boolean result = false;
 
                 if (stateList.getDefaultColor() == Color.WHITE){
-                    violaCard.setCardBackgroundColor(Color.BLUE);
-                    viola = "True";
+                    violaCard.setCardBackgroundColor(Color.LTGRAY);
+                    result = true;
+                    yearsPlayedInstrument(instrument);
                 } else {
                     violaCard.setCardBackgroundColor(Color.WHITE);
-                    viola = "False; 0";
+                    result = false;
                 }
-
-                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
-                alertBuilder.setView(pop);
-                final EditText userinput = pop.findViewById(R.id.userinput);
-                alertBuilder.setCancelable(true)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String years_played = userinput.getText().toString();
-                                bass = "True; " + years_played;
-                            }
-                        });
-                Dialog dialog = alertBuilder.create();
-                dialog.show();
+                updateIntrumentInfo(instrument, result);
             }
         });
 
         violinCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String instrument = "violin";
                 ColorStateList stateList = violinCard.getCardBackgroundColor();
+                boolean result = false;
 
                 if (stateList.getDefaultColor() == Color.WHITE){
-                    violinCard.setCardBackgroundColor(Color.BLUE);
-                    violin = "True";
+                    violinCard.setCardBackgroundColor(Color.LTGRAY);
+                    result = true;
+                    yearsPlayedInstrument(instrument);
                 } else {
                     violinCard.setCardBackgroundColor(Color.WHITE);
-                    violin = "False; 0";
+                    result = false;
                 }
-
-                View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
-                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
-                alertBuilder.setView(pop);
-                final EditText userinput = pop.findViewById(R.id.userinput);
-                alertBuilder.setCancelable(true)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String years_played = userinput.getText().toString();
-                                bass = "True; " + years_played;
-                            }
-                        });
-                Dialog dialog = alertBuilder.create();
-                dialog.show();
+                updateIntrumentInfo(instrument, result);
             }
         });
 
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (bass == "False" && drum == "False" && flute == "False" && guitar == "False" && piano == "False" && sing == "False" && viola == "False" && violin == "False"){
+                //In the case the user has not selected any instruments
+                if ((boolean) userInstrumentInfo.get("bass") && (boolean) userInstrumentInfo.get("drum") && (boolean) userInstrumentInfo.get("flute") && (boolean) userInstrumentInfo.get("guitar") && (boolean) userInstrumentInfo.get("piano") && (boolean) userInstrumentInfo.get("sing") && (boolean) userInstrumentInfo.get("viola") && (boolean) userInstrumentInfo.get("violin")){
                     Toast.makeText(Instruments.this, "Please select at least one instrument", Toast.LENGTH_SHORT).show();
                 } else {
-                    UserInstrument instruments = new UserInstrument(bass, drum, flute, guitar, piano, sing, viola, violin);
-                    String userId = auth.getCurrentUser().getUid();
-                    DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Instruments");
-                    currentUserDb.setValue(instruments);
+                    registerInstruments();
                     Intent proceed_intent = new Intent(Instruments.this, Genres.class);
                     startActivity(proceed_intent);
                 }
             }
         });
 
+    }
 
+    //Responsible for selecting each of the CardViews in order to gain access to an aspect of Instruments
+    private void yearsPlayedInstrument(final String instrument){
+        View pop = (LayoutInflater.from(Instruments.this)).inflate(R.layout.activity_pop, null);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Instruments.this);
+        alertBuilder.setView(pop);
+        final EditText userInput = pop.findViewById(R.id.userinput);
+
+        alertBuilder.setCancelable(true)
+                .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int years_played = Integer.parseInt(userInput.getText().toString().trim());
+                        //Checks to see if we the entry already exists in the hashmap
+                        userYearsInstrumentPlayedInfo.put(instrument, years_played);
+                    }
+                });
+        Dialog dialog = alertBuilder.create();
+        dialog.show();
+    }
+
+    //Updating the instrument map which state whether a user plays an instrument or not
+    private void updateIntrumentInfo(String instrument, boolean result){
+        userInstrumentInfo.replace(instrument, result);
+        if(userYearsInstrumentPlayedInfo.get(instrument)!=null && result == false){
+            userYearsInstrumentPlayedInfo.remove(instrument);
+        }
+    }
+
+    //initalizes the database for future calls
+    private void initUserInstrumentInfo(){
+        userInstrumentInfo.put("bass", false);
+        userInstrumentInfo.put("drum", false);
+        userInstrumentInfo.put("flute", false);
+        userInstrumentInfo.put("guitar", false);
+        userInstrumentInfo.put("piano", false);
+        userInstrumentInfo.put("sing", false);
+        userInstrumentInfo.put("viola", false);
+        userInstrumentInfo.put("violin", false);
+    }
+
+    private void registerInstruments(){
+        String userId = auth.getCurrentUser().getUid();
+        DatabaseReference currentUserDbInstruments = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Instruments");
+        currentUserDbInstruments.updateChildren(userInstrumentInfo);
+        DatabaseReference currentUserDbYearsInstruments = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Years");
+        currentUserDbYearsInstruments.updateChildren(userYearsInstrumentPlayedInfo);
     }
 }
