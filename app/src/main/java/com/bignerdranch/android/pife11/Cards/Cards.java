@@ -1,4 +1,4 @@
-package com.bignerdranch.android.pife11;
+package com.bignerdranch.android.pife11.Cards;
 
 public class Cards {
     private String userId;

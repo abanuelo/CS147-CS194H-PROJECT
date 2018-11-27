@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bignerdranch.android.pife11.Matches.Matches;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -139,6 +140,16 @@ public class Profile extends AppCompatActivity {
                 Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
                 startActivity(sign_out_intent);
                 finish();
+            }
+        });
+
+
+        //This is going to be the click listener associated for all matches
+        matches.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent see_matches = new Intent(Profile.this, Matches.class);
+                startActivity(see_matches);
             }
         });
 
