@@ -30,7 +30,8 @@
         <activity android:name=".Profile" />
         <activity android:name=".Instruments" />
         <activity android:name=".Genres" />
-        <activity android:name=".Matches.Matches"></activity>
+        <activity android:name=".Matches.Matches" />
+        <activity android:name=".Chat.Chat"></activity>
     </application>
 
 </manifest>

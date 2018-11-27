@@ -113,8 +113,11 @@ public class SearchCollab extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     Toast.makeText(SearchCollab.this, "New collaboration has been made!", Toast.LENGTH_LONG).show();
-                    usersDb.child(dataSnapshot.getKey()).child("Collaborations").child("Matches").child(currentUId).setValue(true);
-                    usersDb.child(currentUId).child("Collaborations").child("Matches").child(dataSnapshot.getKey()).setValue(true);
+                    String key = FirebaseDatabase.getInstance().getReference().child("Chats").push().getKey();
+
+                    usersDb.child(dataSnapshot.getKey()).child("Collaborations").child("Matches").child(currentUId).child("ChatID").setValue(key);
+                    usersDb.child(currentUId).child("Collaborations").child("Matches").child(dataSnapshot.getKey()).child("ChatID").setValue(key);
+
                 }
             }
 
