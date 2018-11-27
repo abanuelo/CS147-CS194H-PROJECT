@@ -3,18 +3,39 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@drawable/android_background"
     android:padding="20sp">
 
     <ImageView
-        android:layout_width="75sp"
-        android:layout_height="75sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:id="@+id/MatchImage"
         android:src="@mipmap/ic_launcher"/>
 
-    <TextView
+    <LinearLayout
+        android:paddingLeft="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mathces ID"
-        android:layout_gravity="center"
-        android:id="@+id/Matchid"/>
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:paddingBottom="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mathces Name"
+            android:layout_gravity="center"
+            android:id="@+id/MatchName"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mathces ID"
+            android:layout_gravity="center"
+            android:id="@+id/Matchid"/>
+
+
+    </LinearLayout>
+
 
 </LinearLayout>
