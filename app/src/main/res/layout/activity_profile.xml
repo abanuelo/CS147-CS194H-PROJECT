@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/android_background"
     tools:context=".Profile"
     android:padding="20sp">
 
@@ -18,7 +19,7 @@
         />
 
 
-    <EditText
+    <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
         android:background="@null"
         android:hint="Name" />
 
-    <EditText
+    <TextView
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +37,7 @@
         android:background="@null"
         android:hint="Username" />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/genre"
@@ -44,7 +45,7 @@
         android:hint="Genre"
         android:layout_marginBottom="20sp"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/instrument"
@@ -72,11 +73,11 @@
             android:text="History" />
 
         <Button
-            android:id="@+id/feedback"
+            android:id="@+id/matches"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Feedback" />
+            android:text="Matches" />
     </LinearLayout>
 
     <Button

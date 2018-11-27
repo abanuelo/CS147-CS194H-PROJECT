@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/android_background"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SearchCollab">
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/frame"
-        android:background="@android:color/white"
+        android:background="@drawable/android_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:rotation_degrees="15.5"
-        tools:context=".MyActivity" />
+        tools:context=".MyActivity">
+    </com.lorentzos.flingswipe.SwipeFlingAdapterView>
 
-</android.support.constraint.ConstraintLayout>
+
+
+
+</LinearLayout>

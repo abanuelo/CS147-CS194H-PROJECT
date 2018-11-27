@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,6 +30,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,12 +39,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Profile extends AppCompatActivity {
-    private String userId, name, username, profileImageURL, genres, instruments;
-    private EditText nameEditText, usernameEditText, genreEditText, instrumentEditText;
+    private String userId;
+    private TextView name, username, genre, instrument;
     private ImageView profileImage;
     private FirebaseAuth auth;
-    private DatabaseReference customerDatabase;
-    private Button sign_out, schedule, history, feedback;
+    private DatabaseReference userDatabase;
+    private Button sign_out, schedule, history, matches;
     private Uri resultUri;
 
     @Override
@@ -51,21 +54,70 @@ public class Profile extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
-        customerDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+        userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
-        sign_out = findViewById(R.id.sign_out);
-        feedback = findViewById(R.id.feedback);
-        history = findViewById(R.id.history);
-        schedule = findViewById(R.id.schedule);
+        //Initialize the Buttons for the User Profile
+        sign_out = (Button) findViewById(R.id.sign_out);
+        matches = (Button) findViewById(R.id.matches);
+        history = (Button) findViewById(R.id.history);
+        schedule = (Button) findViewById(R.id.schedule);
 
-        //The next step of this process is to autopopulate the edit texts based on the
-        //current profile that we have in place to build the platform
-        nameEditText = findViewById(R.id.name);
-        usernameEditText = findViewById(R.id.username);
-        genreEditText = findViewById(R.id.genre);
-        instrumentEditText = findViewById(R.id.instrument);
-        profileImage = findViewById(R.id.profile_image);
+        //Initalize the Text Views
+        name = (TextView) findViewById(R.id.name);
+        username = (TextView) findViewById(R.id.username);
+        genre = (TextView) findViewById(R.id.genre);
+        instrument = (TextView) findViewById(R.id.instrument);
 
+        //Sets the Profile picture Ready for the Jave Profile Class
+        profileImage = (ImageView) findViewById(R.id.profile_image);
+
+        //Now we are going to iterate over FirebaseDatabase to populate TextViews
+        userDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Gets the Name and Inserts it within TextView
+                String t_name = dataSnapshot.child("name").getValue().toString().trim();
+                name.setText(t_name);
+
+                //Gets the Username and inserts it within textView
+                String t_username = dataSnapshot.child("username").getValue().toString().trim();
+                username.setText(t_username);
+
+                //Gets the Instruments to Populate the Instruments
+                String t_instruments = null;
+                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
+                    if (t_instruments == null){
+                        t_instruments = instrument.getKey() + ": " + instrument.getValue().toString().trim();
+                    } else {
+                        t_instruments += ", " + instrument.getKey() + ": " + instrument.getValue().toString().trim();
+                    }
+                }
+                instrument.setText(t_instruments);
+
+                //Lastly we are going to populate the Genres Category
+                String t_genres = null;
+                for (DataSnapshot genre : dataSnapshot.child("Genres").getChildren()){
+                    if ((boolean) genre.getValue() == true){
+                        if (t_genres == null){
+                            t_genres = genre.getKey();
+                        } else {
+                            t_genres += ", " + genre.getKey();
+                        }
+                    }
+                }
+                genre.setText(t_genres);
+
+                //P.S. we also need the image in case they have it
+                if (!dataSnapshot.child("profileImageURL").getValue().toString().trim().equals("default")){
+                    Glide.with(getApplicationContext()).load(dataSnapshot.child("profileImageURL").getValue().toString().trim()).into(profileImage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         //Now whenever you click the profile image, you should in theory make sure that it takes them to
         //their art gallery
