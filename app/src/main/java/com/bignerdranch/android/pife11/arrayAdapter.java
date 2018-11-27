@@ -39,7 +39,12 @@ public class arrayAdapter extends ArrayAdapter<Cards> {
         name.setText(card_item.getName());
 
         //Setting the Image for Reference
-        Glide.with(getContext()).load(card_item.getProfileImageURL()).into(image);
+        if(card_item.getProfileImageURL().equals("default")){
+            Glide.with(convertView.getContext()).load(R.mipmap.ic_launcher).into(image);
+        } else {
+            Glide.with(convertView.getContext()).load(card_item.getProfileImageURL()).into(image);
+        }
+
 
         return convertView;
     }

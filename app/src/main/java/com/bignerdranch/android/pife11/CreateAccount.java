@@ -163,6 +163,9 @@ public class CreateAccount extends AppCompatActivity {
             });
         }else{
             //Toast.makeText(CreateAccount.this, "FAILED ATTEMPT", Toast.LENGTH_SHORT).show();
+            Map userInfo3 = new HashMap();
+            userInfo3.put("profileImageURL", "default");
+            userDatabase.updateChildren(userInfo3);
             finish();
         }
     }
