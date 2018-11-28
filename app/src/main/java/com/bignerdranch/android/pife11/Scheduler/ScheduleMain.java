@@ -2,13 +2,18 @@ package com.bignerdranch.android.pife11.Scheduler;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.bignerdranch.android.pife11.R;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ScheduleMain extends AppCompatActivity {
     //Declaration of all the variables for the time collab
@@ -38,7 +43,26 @@ public class ScheduleMain extends AppCompatActivity {
     private Spinner spinSat;
     private Spinner spinSun;
 
+    //String related to user input to the Edit Texts
+    private String mon_start;
+    private String tues_start;
+    private String wed_start;
+    private String thurs_start;
+    private String fri_start;
+    private String sat_start;
+    private String sun_start;
+
+    private String mon_end;
+    private String tues_end;
+    private String wed_end;
+    private String thurs_end;
+    private String fri_end;
+    private String sat_end;
+    private String sun_end;
+
     private String[] items;
+
+    private Boolean result = false;
 
     private Button schedule;
 
@@ -104,10 +128,184 @@ public class ScheduleMain extends AppCompatActivity {
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Once the button has been clicked we are going to make sure that it aligns with inputs
+                //Check which entries are ready to be inserted
+                //Here is going to be the Strings of each of the Collaborations
+                mon_start = startTimeMon.getText().toString();
+                tues_start = startTimeTues.getText().toString();
+                wed_start = startTimeWed.getText().toString();
+                thurs_start = startTimeThurs.getText().toString();
+                fri_start = startTimeFri.getText().toString();
+                sat_start = startTimeSat.getText().toString();
+                sun_start = startTimeSun.getText().toString();
+
+                mon_end = endTimeMon.getText().toString();
+                tues_end = endTimeTues.getText().toString();
+                wed_end = endTimeWed.getText().toString();
+                thurs_end = endTimeThurs.getText().toString();
+                fri_end = endTimeFri.getText().toString();
+                sat_end = endTimeSat.getText().toString();
+                sun_end = endTimeSun.getText().toString();
+
+                //Check if the entries being inserted comply with regex
+                Boolean areTimes = entriesComplyTimeRegex();
+                if (!areTimes){
+                    Toast.makeText(ScheduleMain.this, "Please fix time format to HH:MM", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
 
 
+    }
+
+    private Boolean entriesComplyTimeRegex() {
+        Pattern time_pattern =  Pattern.compile("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$");
+        result = false;
+        //Strings that will hold the checks for the remainder of the collaboration schedule
+        String time_check = "";
+
+        //CHECKS FOR MONDAY
+        Matcher matcher = time_pattern.matcher(mon_start);
+        while (matcher.find()){
+            time_check = matcher.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher2 = time_pattern.matcher(mon_end);
+        while (matcher2.find()){
+            time_check = matcher2.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+
+        time_check = "";
+
+        Matcher matcher3 = time_pattern.matcher(tues_start);
+        while (matcher3.find()){
+            time_check = matcher3.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher4 = time_pattern.matcher(tues_end);
+        while (matcher4.find()){
+            time_check = matcher4.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher5 = time_pattern.matcher(wed_start);
+        while (matcher5.find()){
+            time_check = matcher5.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher6 = time_pattern.matcher(wed_end);
+        while (matcher6.find()){
+            time_check = matcher6.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher7 = time_pattern.matcher(thurs_start);
+        while (matcher7.find()){
+            time_check = matcher7.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher8 = time_pattern.matcher(thurs_end);
+        while (matcher8.find()){
+            time_check = matcher8.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher9 = time_pattern.matcher(fri_start);
+        while (matcher9.find()){
+            time_check = matcher9.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher10 = time_pattern.matcher(fri_end);
+        while (matcher10.find()){
+            time_check = matcher10.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher11 = time_pattern.matcher(sat_start);
+        while (matcher11.find()){
+            time_check = matcher11.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher12 = time_pattern.matcher(sat_end);
+        while (matcher12.find()){
+            time_check = matcher12.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher13 = time_pattern.matcher(sun_start);
+        while (matcher13.find()){
+            time_check = matcher13.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        time_check = "";
+
+        Matcher matcher14 = time_pattern.matcher(sun_end);
+        while (matcher14.find()){
+            time_check = matcher14.group(1);
+        }
+        if (time_check.isEmpty()){
+            return result;
+        }
+
+        result = true;
+        return result;
     }
 }
