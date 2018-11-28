@@ -68,13 +68,10 @@ public class Matches extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    String userId = "";
+                    String userId = dataSnapshot.getKey();
                     String name = "";
                     String profileImageURL = "";
 
-                    if (dataSnapshot.child("username").getValue()!=null){
-                        userId = dataSnapshot.child("username").getValue().toString().trim();
-                    }
 
                     if (dataSnapshot.child("name").getValue() != null){
                         name = dataSnapshot.child("name").getValue().toString().trim();

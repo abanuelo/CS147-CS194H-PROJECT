@@ -2,10 +2,12 @@ package com.bignerdranch.android.pife11.Chat;
 
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import com.bignerdranch.android.pife11.Matches.Matches;
 import com.bignerdranch.android.pife11.Matches.MatchesAdapter;
 import com.bignerdranch.android.pife11.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +36,7 @@ public class Chat extends AppCompatActivity {
     private String currentUserId, matchId, chatId;
     private EditText mSendEditText;
     private Button mSend;
-    private DatabaseReference mDatabaseUser, mDatabaseChat;
+    DatabaseReference mDatabaseUser, mDatabaseChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,8 @@ public class Chat extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         matchId = getIntent().getExtras().getString("matchId");
+
+        Log.d("MATCH ID ARMANDO", matchId);
 
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -89,6 +94,7 @@ public class Chat extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     chatId = dataSnapshot.getValue().toString().trim();
                     mDatabaseChat = mDatabaseChat.child(chatId);
+                    getChatMessages();
                 }
             }
 
@@ -99,7 +105,58 @@ public class Chat extends AppCompatActivity {
         });
     }
 
-    private ArrayList<ChatObject> resultsChat = new ArrayList<>();
+    private void getChatMessages(){
+        mDatabaseChat.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if(dataSnapshot.exists()){
+                    String message = null;
+                    String createdByUser = null;
+
+                    Log.d("IN THE BEGINNING OF CHAT MESSAGES", "here");
+
+                    //Extracts actual user
+                    if (dataSnapshot.child("text").getValue()!=null){
+                        message = dataSnapshot.child("text").getValue().toString().trim();
+                    }
+
+                    if (dataSnapshot.child("createdByUser").getValue()!=null){
+                        createdByUser = dataSnapshot.child("createdByUser").getValue().toString().trim();
+                    }
+
+                    if (message != null && createdByUser != null){
+                        Boolean currentUserBoolean = false;
+                        if (createdByUser.equals(currentUserId)){
+                            currentUserBoolean = true;
+                        }
+
+                        Log.d("MESSAGE ARMANDO", message);
+                        ChatObject newMessage = new ChatObject(message, currentUserBoolean);
+                        resultsChat.add(newMessage);
+                        myChatAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    private ArrayList<ChatObject> resultsChat = new ArrayList<ChatObject>();
     private List<ChatObject> getDataSetChat(){
         return resultsChat;
     }

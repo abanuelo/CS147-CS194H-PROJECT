@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@drawable/android_background"
     android:padding="20sp">
 
     <ImageView
@@ -13,7 +12,6 @@
         android:src="@mipmap/ic_launcher"/>
 
     <LinearLayout
-        android:id="@+id/individual_match"
         android:paddingLeft="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,17 +22,16 @@
             android:paddingBottom="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mathces Name"
+            android:text="Matches Name"
             android:layout_gravity="center"
             android:id="@+id/MatchName"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mathces ID"
+            android:text="Match ID"
             android:layout_gravity="center"
             android:id="@+id/Matchid"/>
-
 
     </LinearLayout>
 
