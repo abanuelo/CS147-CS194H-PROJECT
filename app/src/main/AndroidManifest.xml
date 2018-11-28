@@ -31,7 +31,9 @@
         <activity android:name=".Instruments" />
         <activity android:name=".Genres" />
         <activity android:name=".Matches.Matches" />
-        <activity android:name=".Chat.Chat"></activity>
+        <activity android:name=".Chat.Chat" />
+        <activity android:name=".MatchesChoice" />
+        <activity android:name=".Scheduler.ScheduleMain"></activity>
     </application>
 
 </manifest>

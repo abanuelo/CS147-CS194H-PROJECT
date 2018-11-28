@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.Chat.Chat;
+import com.bignerdranch.android.pife11.MatchesChoice;
 import com.bignerdranch.android.pife11.R;
 
 public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -23,7 +24,8 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
     }
     @Override
     public void onClick(View view){
-        Intent intent = new Intent (view.getContext(), Chat.class);
+        //redirect this to see my matches and decide whether or not a collaboration wants to be set
+        Intent intent = new Intent (view.getContext(), MatchesChoice.class);
         Bundle b = new Bundle();
         b.putString("matchId", myMatchId.getText().toString());
         intent.putExtras(b);

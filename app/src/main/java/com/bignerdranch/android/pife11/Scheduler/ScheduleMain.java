@@ -1,0 +1,15 @@
+package com.bignerdranch.android.pife11.Scheduler;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.bignerdranch.android.pife11.R;
+
+public class ScheduleMain extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_schedule_main);
+    }
+}
