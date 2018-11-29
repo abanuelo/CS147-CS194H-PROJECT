@@ -99,7 +99,6 @@ public class CreateAccount extends AppCompatActivity{
                 {
                     return false;
                 }
-
             } catch (Exception e) {
                 e.getMessage();
                 Log.d("Got error", e.getMessage());

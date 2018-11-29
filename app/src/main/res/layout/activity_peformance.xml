@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="false">
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="126dp"
+        android:layout_height="90dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/buttonshapecolor"
+        android:backgroundTint="@color/colorAccent"
+        android:text="perform" />
+
+    <ImageView
+        android:id="@+id/switch_camera1600.png"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="41dp"
+        android:layout_width="107dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="7dp"
+        android:src="@drawable/switch_camera1600" />
+
+</RelativeLayout>
