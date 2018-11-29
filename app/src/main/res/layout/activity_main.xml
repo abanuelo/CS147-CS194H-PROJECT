@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="@drawable/android_background"
-    >
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/email"
@@ -57,13 +56,13 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="158dp"
-        android:layout_height="124dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="234dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/pife_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +94,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <LinearLayout
         android:layout_width="291dp"
@@ -130,6 +128,7 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
 
 
 </android.support.constraint.ConstraintLayout>

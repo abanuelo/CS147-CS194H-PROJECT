@@ -42,7 +42,7 @@ public class Dashboard extends AppCompatActivity {
         bPractice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent practice_intent = new Intent(Dashboard.this, PracticeMain.class);
+                Intent practice_intent = new Intent(Dashboard.this, PracticePlaying.class);
                 startActivity(practice_intent);
             }
         });

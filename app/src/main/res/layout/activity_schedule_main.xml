@@ -85,8 +85,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:text="1:00"
                 android:ems="10"
-                android:inputType="number" />
+                 />
 
             <EditText
                 android:textAlignment="center"
@@ -94,8 +95,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:text="3:00"
                 android:ems="10"
-                android:inputType="number" />
+                />
 
             <Spinner
                 android:textAlignment="center"
@@ -124,7 +126,8 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="1:00"
+                 />
 
             <EditText
                 android:textAlignment="center"
@@ -133,7 +136,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="3:00" />
 
             <Spinner
                 android:textAlignment="center"
@@ -162,7 +165,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="1:00" />
 
             <EditText
                 android:textAlignment="center"
@@ -171,7 +174,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="3:00" />
 
             <Spinner
                 android:textAlignment="center"
@@ -200,7 +203,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="1:00" />
 
             <EditText
                 android:textAlignment="center"
@@ -209,7 +212,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="3:00" />
 
             <Spinner
                 android:textAlignment="center"
@@ -238,7 +241,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="1:00" />
 
             <EditText
                 android:textAlignment="center"
@@ -247,7 +250,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="3:00" />
 
             <Spinner
                 android:textAlignment="center"
@@ -276,7 +279,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="1:00" />
 
             <EditText
                 android:textAlignment="center"
@@ -285,7 +288,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="3:00" />
 
             <Spinner
                 android:textAlignment="center"
@@ -314,7 +317,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="1:00" />
 
             <EditText
                 android:textAlignment="center"
@@ -323,7 +326,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:text="3:00" />
 
             <Spinner
                 android:textAlignment="center"
