@@ -20,9 +20,6 @@ public class PracticePlaying extends AppCompatActivity {
     Spinner spinner;
     Boolean playing = false;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,18 +37,18 @@ public class PracticePlaying extends AppCompatActivity {
                 R.array.PracticeMinGoalArray, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
-
-
     }
-
-
 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.PracticeDone:
 //
 //                check if time = goal
+                        //if so, say congrats, show XP points gained, etc
 //                if else message
+                    //confirm hasn't hit target goal yet. Ask to stay
+                        //
+                        //transition to Home Screen
                 break;
             case R.id.PracticePlayPause:
 //                See if Goal has been Met
