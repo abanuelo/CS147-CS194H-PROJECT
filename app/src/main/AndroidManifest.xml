@@ -58,6 +58,8 @@
         <activity android:name=".Chat.Chat" />
         <activity android:name=".MatchesChoice" />
         <activity android:name=".Scheduler.ScheduleMain"></activity>
+        <activity android:name=".SelectAvatar" />
+        <activity android:name=".RewardsShop"></activity>
     </application>
 
 </manifest>
