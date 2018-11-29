@@ -22,6 +22,15 @@ public class Dashboard extends AppCompatActivity {
         bPractice = findViewById(R.id.practice);
         bCollab = findViewById(R.id.collab);
         userProfile = findViewById(R.id.user_profile);
+        rewardShop = findViewById(R.id.reward);
+
+        rewardShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reward = new Intent(Dashboard.this, RewardsShop.class);
+                startActivity(reward);
+            }
+        });
 
         bPractice.setOnClickListener(new View.OnClickListener() {
             @Override
