@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/android_background"
+    tools:context=".Dashboard">
+
+    <LinearLayout
+        android:layout_marginTop="20sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/reward"
+            android:layout_width="45dp"
+            android:layout_height="48dp"
+            android:src="@drawable/reward"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="261dp" />
+
+        <TextView
+            android:id="@+id/avatar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:text="AVATAR NAME"
+            android:textAlignment="center"
+            android:textSize="28sp" />
+
+        <ImageView
+            android:id="@+id/user_profile"
+            android:layout_width="45dp"
+            android:layout_height="48dp"
+            android:src="@drawable/user_profile"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="261dp" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="500dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/practice"
+            android:layout_width="125sp"
+            android:layout_height="wrap_content"
+            android:text="Practice"
+            />
+
+        <Button
+            android:id="@+id/perform"
+            android:layout_width="125sp"
+            android:layout_height="wrap_content"
+            android:text="Perform"
+            />
+
+        <Button
+            android:id="@+id/collab"
+            android:layout_width="125sp"
+            android:layout_height="wrap_content"
+            android:text="Collab"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
