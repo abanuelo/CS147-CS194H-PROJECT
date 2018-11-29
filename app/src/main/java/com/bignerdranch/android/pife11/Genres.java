@@ -212,7 +212,7 @@ public class Genres extends AppCompatActivity {
                     Toast.makeText(Genres.this, "Please select at least one genre!", Toast.LENGTH_SHORT).show();
                 } else {
                     registerGenres();
-                    Intent proceed_intent = new Intent(Genres.this, Dashboard.class);
+                    Intent proceed_intent = new Intent(Genres.this, SelectAvatar.class);
                     startActivity(proceed_intent);
                 }
             }
