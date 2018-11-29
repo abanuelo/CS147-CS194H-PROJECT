@@ -63,6 +63,7 @@ public class ScheduleMain extends AppCompatActivity {
     private String[] items;
 
     private Boolean result = false;
+    private Boolean resultForTimeCheck = false;
 
     private Button schedule;
 
@@ -151,11 +152,176 @@ public class ScheduleMain extends AppCompatActivity {
                 Boolean areTimes = entriesComplyTimeRegex();
                 if (!areTimes){
                     Toast.makeText(ScheduleMain.this, "Please fix time format to HH:MM", Toast.LENGTH_SHORT).show();
+                } else{
+                    Boolean areTimesInOrder = checkTimeOrders();
+                    if (!areTimesInOrder){
+                        Toast.makeText(ScheduleMain.this, "Correct times in the right order", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
         });
 
+
+    }
+
+    private Boolean checkTimeOrders() {
+        //MONDAY
+        //tokenize the entries in each of the results to get results
+        String[] token_mon_start = mon_start.split(":");
+        Integer hour_mon_start = Integer.parseInt(token_mon_start[0]);
+        Integer min_mon_start = Integer.parseInt(token_mon_start[1]);
+        String[] token_mon_end = mon_end.split(":");
+        Integer hour_mon_end = Integer.parseInt(token_mon_end[0]);
+        Integer min_mon_end = Integer.parseInt(token_mon_end[1]);
+
+        Log.d("HOUR MONDAY START", hour_mon_start.toString());
+        Log.d("HOUR MONDAY END", hour_mon_end.toString());
+        Log.d("MIN MONDAY START", min_mon_start.toString());
+        Log.d("MIN MONDAY END", min_mon_end.toString());
+
+        //Checks to see if the hours are similar to each other
+        if (hour_mon_end == hour_mon_start){
+            //now we are going to check the minutes to see if they are in the correct order
+            if (min_mon_start >= min_mon_end){
+                return resultForTimeCheck;
+            }
+        } else {
+            if(hour_mon_start >= hour_mon_end){
+                return resultForTimeCheck;
+            }
+        }
+
+//        //TUESDAY
+//        //tokenize the entries in each of the results to get results
+//        String[] token_tues_start = tues_start.split(":");
+//        Integer hour_tues_start = Integer.parseInt(token_tues_start[0]);
+//        Integer min_tues_start = Integer.parseInt(token_tues_start[1]);
+//        String[] token_tues_end = tues_end.split(":");
+//        Integer hour_tues_end = Integer.parseInt(token_tues_end[0]);
+//        Integer min_tues_end = Integer.parseInt(token_tues_end[1]);
+//
+//        //Checks to see if the hours are similar to each other
+//        if (hour_tues_end == hour_tues_start){
+//            //now we are going to check the minutes to see if they are in the correct order
+//            if (min_tues_start >= min_tues_end){
+//                return resultForTimeCheck;
+//            }
+//        } else {
+//            if(hour_tues_start >= hour_tues_end){
+//                return resultForTimeCheck;
+//            }
+//        }
+//
+//        //WEDNESDAY
+//        //tokenize the entries in each of the results to get results
+//        String[] token_wed_start = wed_start.split(":");
+//        Integer hour_wed_start = Integer.parseInt(token_wed_start[0]);
+//        Integer min_wed_start = Integer.parseInt(token_wed_start[1]);
+//        String[] token_wed_end = wed_end.split(":");
+//        Integer hour_wed_end = Integer.parseInt(token_wed_end[0]);
+//        Integer min_wed_end = Integer.parseInt(token_wed_end[1]);
+//
+//        //Checks to see if the hours are similar to each other
+//        if (hour_wed_end == hour_wed_start){
+//            //now we are going to check the minutes to see if they are in the correct order
+//            if (min_wed_start >= min_wed_end){
+//                return resultForTimeCheck;
+//            }
+//        } else {
+//            if(hour_wed_start >= hour_wed_end){
+//                return resultForTimeCheck;
+//            }
+//        }
+//
+//
+//        //THURSDAY
+//        //tokenize the entries in each of the results to get results
+//        String[] token_thurs_start = thurs_start.split(":");
+//        Integer hour_thurs_start = Integer.parseInt(token_thurs_start[0]);
+//        Integer min_thurs_start = Integer.parseInt(token_thurs_start[1]);
+//        String[] token_thurs_end = thurs_end.split(":");
+//        Integer hour_thurs_end = Integer.parseInt(token_thurs_end[0]);
+//        Integer min_thurs_end = Integer.parseInt(token_thurs_end[1]);
+//
+//        //Checks to see if the hours are similar to each other
+//        if (hour_thurs_end == hour_thurs_start){
+//            //now we are going to check the minutes to see if they are in the correct order
+//            if (min_thurs_start >= min_thurs_end){
+//                return resultForTimeCheck;
+//            }
+//        } else {
+//            if(hour_thurs_start >= hour_thurs_end){
+//                return resultForTimeCheck;
+//            }
+//        }
+//
+//
+//        //FRIDAY
+//        //tokenize the entries in each of the results to get results
+//        String[] token_fri_start = fri_start.split(":");
+//        Integer hour_fri_start = Integer.parseInt(token_fri_start[0]);
+//        Integer min_fri_start = Integer.parseInt(token_fri_start[1]);
+//        String[] token_fri_end = fri_end.split(":");
+//        Integer hour_fri_end = Integer.parseInt(token_fri_end[0]);
+//        Integer min_fri_end = Integer.parseInt(token_fri_end[1]);
+//
+//        //Checks to see if the hours are similar to each other
+//        if (hour_fri_end == hour_fri_start){
+//            //now we are going to check the minutes to see if they are in the correct order
+//            if (min_fri_start >= min_fri_end){
+//                return resultForTimeCheck;
+//            }
+//        } else {
+//            if(hour_fri_start >= hour_fri_end){
+//                return resultForTimeCheck;
+//            }
+//        }
+//
+//        //SATURDAY
+//        //tokenize the entries in each of the results to get results
+//        String[] token_sat_start = sat_start.split(":");
+//        Integer hour_sat_start = Integer.parseInt(token_sat_start[0]);
+//        Integer min_sat_start = Integer.parseInt(token_sat_start[1]);
+//        String[] token_sat_end = sat_end.split(":");
+//        Integer hour_sat_end = Integer.parseInt(token_sat_end[0]);
+//        Integer min_sat_end = Integer.parseInt(token_sat_end[1]);
+//
+//        //Checks to see if the hours are similar to each other
+//        if (hour_sat_end == hour_sat_start){
+//            //now we are going to check the minutes to see if they are in the correct order
+//            if (min_sat_start >= min_sat_end){
+//                return resultForTimeCheck;
+//            }
+//        } else {
+//            if(hour_sat_start >= hour_sat_end){
+//                return resultForTimeCheck;
+//            }
+//        }
+//
+//        //SUNDAY
+//        //tokenize the entries in each of the results to get results
+//        String[] token_sun_start = sun_start.split(":");
+//        Integer hour_sun_start = Integer.parseInt(token_sun_start[0]);
+//        Integer min_sun_start = Integer.parseInt(token_sun_start[1]);
+//        String[] token_sun_end = sun_end.split(":");
+//        Integer hour_sun_end = Integer.parseInt(token_sun_end[0]);
+//        Integer min_sun_end = Integer.parseInt(token_sun_end[1]);
+//
+//        //Checks to see if the hours are similar to each other
+//        if (hour_sun_end == hour_sun_start){
+//            //now we are going to check the minutes to see if they are in the correct order
+//            if (min_sun_start >= min_sun_end){
+//                return resultForTimeCheck;
+//            }
+//        } else {
+//            if(hour_sun_start >= hour_sun_end){
+//                return resultForTimeCheck;
+//            }
+//        }
+
+        resultForTimeCheck = true;
+        return resultForTimeCheck;
 
     }
 
