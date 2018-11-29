@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/android_background"
     tools:context=".MainActivity">
+    >
 
     <EditText
         android:id="@+id/email"
@@ -62,7 +63,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="234dp"
-        android:src="@drawable/pife_logo"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
