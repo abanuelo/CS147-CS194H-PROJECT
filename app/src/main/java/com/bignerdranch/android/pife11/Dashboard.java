@@ -38,6 +38,7 @@ public class Dashboard extends AppCompatActivity {
         bPractice = findViewById(R.id.practice);
         bCollab = findViewById(R.id.collab);
         userProfile = findViewById(R.id.user_profile);
+        rewardShop = findViewById(R.id.reward);
 
         bPractice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +63,15 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(user_profile_intent);
             }
         });
+
+        rewardShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent rewards_intent = new Intent(Dashboard.this, RewardsBoth.class);
+                startActivity(rewards_intent);
+            }
+        });
+
     }
 
     private void getUserAvatar() {

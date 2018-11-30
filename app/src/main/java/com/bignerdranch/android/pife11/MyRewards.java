@@ -16,17 +16,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class RewardsShop extends Fragment {
+public class MyRewards extends Fragment {
     private String myAvatar;
     private String currentUserId;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.rewards_shop, container, false);
+        View view = inflater.inflate(R.layout.my_rewards, container, false);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getUserAvatar(view);
         return view;
+
+
     }
 
     private void getUserAvatar(final View view) {
@@ -36,7 +38,7 @@ public class RewardsShop extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     myAvatar = dataSnapshot.getValue().toString().trim();
-                    ImageView avatarDisplay = (ImageView) view.findViewById(R.id.avatarRewardsShop);
+                    ImageView avatarDisplay = (ImageView) view.findViewById(R.id.avatarMyRewards);
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                     } else {
