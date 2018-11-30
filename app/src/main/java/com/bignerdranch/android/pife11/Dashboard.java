@@ -40,10 +40,11 @@ public class Dashboard extends AppCompatActivity {
         userProfile = findViewById(R.id.user_profile);
         rewardShop = findViewById(R.id.reward);
 
+
         bPractice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent practice_intent = new Intent(Dashboard.this, PracticeMain.class);
+                Intent practice_intent = new Intent(Dashboard.this, PracticePlaying.class);
                 startActivity(practice_intent);
             }
         });
