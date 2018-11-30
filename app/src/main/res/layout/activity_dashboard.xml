@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/android_background"
+    android:backgroundTint="#20FFFFFF"
+    android:backgroundTintMode="src_over"
     tools:context=".Dashboard">
 
     <LinearLayout
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20sp"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -28,8 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:fontFamily="@font/proxima_novona_bold"
             android:text="AVATAR NAME"
             android:textAlignment="center"
+            android:textColor="#000"
             android:textSize="28sp" />
 
         <ImageView
@@ -42,35 +48,44 @@
 
     </LinearLayout>
 
-
+    <ImageView
+        android:id="@+id/avatarDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
         <Button
             android:id="@+id/practice"
-            android:layout_width="125sp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20sp"
+            android:fontFamily="@font/proxima_novona_bold"
             android:text="Practice"
-            />
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/perform"
-            android:layout_width="125sp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20sp"
+            android:fontFamily="@font/proxima_novona_bold"
             android:text="Perform"
-            />
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/collab"
-            android:layout_width="125sp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/proxima_novona_bold"
             android:text="Collab"
-            />
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
