@@ -14,11 +14,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="720" />
-                            <entry key="outputName" value="ic_nerdy_monster_baby" />
+                            <entry key="height" value="58" />
+                            <entry key="outputName" value="ic_coins" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/nerdy_monster_baby.svg" />
-                            <entry key="width" value="960" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/coins.svg" />
+                            <entry key="width" value="58" />
                           </map>
                         </option>
                       </PersistentState>
