@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     tools:context=".SelectAvatar">
 
     <TextView
@@ -112,6 +112,7 @@
         android:layout_marginStart="230dp"
         android:layout_marginTop="38dp"
         android:text="Select"
+        android:background="@drawable/buttonoval"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     >
 
     <EditText
@@ -115,7 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Don't have an account?   "
+            android:hint="Don't have an account?   "
             android:textAlignment="textEnd"
             android:textSize="10sp" />
 
@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Register Here!"
+            android:hint="Register Here!"
             android:textAlignment="textStart"
             android:textSize="10sp"
             android:textStyle="bold" />

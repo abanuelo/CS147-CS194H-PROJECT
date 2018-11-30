@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     android:backgroundTint="#20FFFFFF"
     android:backgroundTintMode="src_over"
     tools:context=".Dashboard">
@@ -56,6 +56,7 @@
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:paddingBottom="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
@@ -67,6 +68,7 @@
             android:layout_marginRight="20sp"
             android:fontFamily="@font/proxima_novona_bold"
             android:text="Practice"
+            android:background="@drawable/buttonoval"
             android:textColor="#FFFFFF" />
 
         <Button
@@ -76,12 +78,14 @@
             android:layout_marginRight="20sp"
             android:fontFamily="@font/proxima_novona_bold"
             android:text="Perform"
+            android:background="@drawable/buttonoval"
             android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/collab"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/buttonoval"
             android:fontFamily="@font/proxima_novona_bold"
             android:text="Collab"
             android:textColor="#FFFFFF" />
