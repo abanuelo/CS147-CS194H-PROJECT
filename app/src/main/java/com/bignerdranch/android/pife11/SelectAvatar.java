@@ -13,6 +13,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,8 +47,6 @@ public class SelectAvatar extends AppCompatActivity {
                 }
                 public void onSwipeRight() {
                     //display derpy Jemi
-                    Toast.makeText(SelectAvatar.this, "right", Toast.LENGTH_SHORT).show();
-
                     nerdy_creature.setVisibility(View.INVISIBLE);
                     derpy_creature.setVisibility(View.VISIBLE);
                     name.setText("Jemi");
@@ -54,7 +55,6 @@ public class SelectAvatar extends AppCompatActivity {
                 }
                 public void onSwipeLeft() {
                     //display nerdy Ronald
-                    Toast.makeText(SelectAvatar.this, "left", Toast.LENGTH_SHORT).show();
 
                     derpy_creature.setVisibility(View.INVISIBLE);
                     nerdy_creature.setVisibility(View.VISIBLE);
@@ -104,6 +104,36 @@ public class SelectAvatar extends AppCompatActivity {
                     Map avatarName = new HashMap();
                     avatarName.put("avatar", name.getText().toString().trim());
                     currentUserDbAvatar.updateChildren(avatarName);
+
+                    DatabaseReference currentUserDbStats = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Stats");
+
+                    Map heartLevel = new HashMap();
+                    heartLevel.put("heartlevel", "50");
+                    currentUserDbStats.updateChildren(heartLevel);
+                    //Add Heart Level
+
+                    // Xp - 0
+                    Map XP = new HashMap();
+                    XP.put("xp", "0");
+                    currentUserDbStats.updateChildren((XP));
+
+                    Map Streak = new HashMap();
+                    XP.put("streak", "0");
+                    currentUserDbStats.updateChildren((Streak));
+                    // Days Streak
+
+                    Map lastPlayed = new HashMap();
+
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd,MMMM,YYYY");
+                    String strDate = sdf.format(c.getTime());
+
+                    lastPlayed.put("lastplayed",strDate );
+                    currentUserDbStats.updateChildren((lastPlayed));
+
+                    // Day Last Played
+
+
 
                     Intent goToHomepage = new Intent(SelectAvatar.this, Dashboard.class);
                     startActivity(goToHomepage);
