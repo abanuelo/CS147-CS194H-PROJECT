@@ -21,45 +21,108 @@
         android:layout_height="150dp" />
 
 
-    <TextView
-        android:id="@+id/name"
-        android:fontFamily="@font/proxima_novona_bold"
-        android:layout_width="150sp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5sp"
-        android:background="@null"
-        android:hint="Name" />
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/username"
-        android:fontFamily="@font/proxima_novona_bold"
-        android:layout_width="150sp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5sp"
-        android:background="@null"
-        android:hint="Username" />
+        <TextView
+            android:text="Name:"
+            android:fontFamily="@font/proxima_novona"
+            android:id="@+id/textforname"
+            android:layout_weight="1"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="150sp"
-        android:fontFamily="@font/proxima_novona_bold"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/genre"
-        android:background="@null"
-        android:hint="Genre"
-        android:layout_marginBottom="5sp"/>
+        <TextView
+            android:id="@+id/name"
+            android:fontFamily="@font/proxima_novona_bold"
+            android:layout_weight="1"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5sp"
+            android:background="@null"
+            android:hint="Name" />
 
-    <TextView
-        android:layout_width="150sp"
-        android:fontFamily="@font/proxima_novona_bold"
-        android:layout_height="wrap_content"
-        android:id="@+id/instrument"
-        android:layout_gravity="center_horizontal"
-        android:background="@null"
-        android:hint="Instrument"
-        android:layout_marginBottom="20sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textforusername"
+            android:text="Username:"
+            android:fontFamily="@font/proxima_novona"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/username"
+            android:fontFamily="@font/proxima_novona_bold"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5sp"
+            android:background="@null"
+            android:hint="Username" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textforinstruments"
+            android:text="Genres:"
+            android:fontFamily="@font/proxima_novona"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="75dp"
+            android:fontFamily="@font/proxima_novona_bold"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/genre"
+            android:background="@null"
+            android:hint="Genre"
+            android:layout_marginBottom="5sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textforinstruments"
+            android:text="Instruments:"
+            android:fontFamily="@font/proxima_novona"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="90sp"
+            android:fontFamily="@font/proxima_novona_bold"
+            android:layout_height="wrap_content"
+            android:id="@+id/instrument"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:hint="Instrument"
+            android:layout_marginBottom="20sp"/>
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
