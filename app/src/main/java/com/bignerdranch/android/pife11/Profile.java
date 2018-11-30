@@ -39,10 +39,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Profile extends AppCompatActivity {
     private String userId;
     private TextView name, username, genre, instrument;
-    private ImageView profileImage;
+    private CircleImageView profileImage;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
     private Button sign_out, schedule, history, matches;
@@ -70,7 +72,7 @@ public class Profile extends AppCompatActivity {
         instrument = (TextView) findViewById(R.id.instrument);
 
         //Sets the Profile picture Ready for the Jave Profile Class
-        profileImage = (ImageView) findViewById(R.id.profile_image);
+        profileImage = findViewById(R.id.profile_image);
 
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
         userDatabase.addValueEventListener(new ValueEventListener() {
