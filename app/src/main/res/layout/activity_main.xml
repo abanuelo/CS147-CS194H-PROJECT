@@ -96,7 +96,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="291dp"
+        android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="430dp"
@@ -115,7 +115,8 @@
             android:layout_weight="1"
             android:text="Don't have an account?   "
             android:textAlignment="textEnd"
-            android:textSize="10sp" />
+            android:textColor="@color/bodyTextColor"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/createAccount"
@@ -124,7 +125,8 @@
             android:layout_weight="1"
             android:text="Register Here!"
             android:textAlignment="textStart"
-            android:textSize="10sp"
+            android:textColor="@color/bodyTextColor"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>

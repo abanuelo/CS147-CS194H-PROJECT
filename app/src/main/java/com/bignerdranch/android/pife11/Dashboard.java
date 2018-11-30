@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextClock;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -83,8 +86,13 @@ public class Dashboard extends AppCompatActivity {
                     ImageView avatarDisplay = (ImageView) findViewById(R.id.avatarDisplay);
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                        TextView name = (TextView) findViewById(R.id.avatar_name);
+                        name.setText("Jemi");
                     } else {
                         avatarDisplay.setImageResource(R.drawable.ic_nerdy_monster_baby);
+                        TextView name = (TextView) findViewById(R.id.avatar_name);
+                        name.setText("Ronald");
+
                     }
 
                 }

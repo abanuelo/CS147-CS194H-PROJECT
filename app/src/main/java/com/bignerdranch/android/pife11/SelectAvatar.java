@@ -118,9 +118,10 @@ public class SelectAvatar extends AppCompatActivity {
                     currentUserDbStats.updateChildren((XP));
 
                     Map Streak = new HashMap();
-                    XP.put("streak", "0");
+                    Streak.put("streak", "0");
                     currentUserDbStats.updateChildren((Streak));
                     // Days Streak
+
 
                     Map lastPlayed = new HashMap();
 
