@@ -2,4 +2,12 @@
     <string name="app_name">Pife 1.1</string>
     <string name="facebook_app_id">564610727323713</string>
     <string name="fb_login_protocol_scheme">fb564610727323713</string>
+
+    <string-array name="PracticeMinGoalArray">
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>45 Minutes</item>
+        <item>60 Minutes</item>
+    </string-array>
+
 </resources>

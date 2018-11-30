@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "66710006858",
+    "firebase_url": "https://pife-1-1-1542348855452.firebaseio.com",
+    "project_id": "pife-1-1-1542348855452",
+    "storage_bucket": "pife-1-1-1542348855452.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66710006858:android:26c7931fbdbfc97f",
+        "android_client_info": {
+          "package_name": "com.bignerdranch.android.pife11"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66710006858-otmeb3bmnjb6675pkh52tn5du1vef5ep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBONATUXPGEWWahkPWw8M0zd7wwzuzrnnw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
