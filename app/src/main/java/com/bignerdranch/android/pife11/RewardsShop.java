@@ -29,7 +29,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class RewardsShop extends Fragment {
+public class RewardsShop extends AppCompatActivity {
     private String pifePoints;
     private String myAvatar;
     private String currentUserId;
@@ -55,31 +55,31 @@ public class RewardsShop extends Fragment {
     int button2X2;
     int button2Y2;
 
-
     private Handler handler;
 
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.rewards_shop, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.rewards_shop);
+        //View view = inflater.inflate(R.layout.rewards_shop, container, false);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        getUserAvatar(view);
-        getUserPifePoints(view);
+        getUserAvatar();
+        getUserPifePoints();
 
 
         handler = new Handler();
 
-        constraint = view.findViewById(R.id.constrained_view);
-        scrollViewHats = view.findViewById(R.id.horizontalscrollview);
-        button1 = view.findViewById(R.id.button1);
+        constraint = findViewById(R.id.constrained_view);
+        scrollViewHats = findViewById(R.id.horizontalscrollview);
+        button1 = findViewById(R.id.button1);
         //button1.setImageResource(R.drawable.ic_jemi_shirt);
-        button2 = view.findViewById(R.id.button2);
+        button2 = findViewById(R.id.button2);
 
-        constraint2 = view.findViewById(R.id.constrained_view2);
-        scrollViewHats2 = view.findViewById(R.id.horizontalscrollview2);
-        button12 = view.findViewById(R.id.button12);
-        button22 = view.findViewById(R.id.button22);
+        constraint2 = findViewById(R.id.constrained_view2);
+        scrollViewHats2 = findViewById(R.id.horizontalscrollview2);
+        button12 = findViewById(R.id.button12);
+        button22 = findViewById(R.id.button22);
 
         //Snapping Feature the Shop has been implemented
         scrollViewHats.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
@@ -153,17 +153,16 @@ public class RewardsShop extends Fragment {
             }
         });
 
-        return view;
     }
 
-    private void getUserAvatar(final View view) {
+    private void getUserAvatar() {
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     myAvatar = dataSnapshot.getValue().toString().trim();
-                    ImageView avatarDisplay = (ImageView) view.findViewById(R.id.avatarRewardsShop);
+                    ImageView avatarDisplay = (ImageView) findViewById(R.id.avatarRewardsShop);
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                     } else {
@@ -180,14 +179,14 @@ public class RewardsShop extends Fragment {
         });
     }
 
-    private void getUserPifePoints(final View view) {
+    private void getUserPifePoints() {
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     pifePoints = dataSnapshot.getValue().toString().trim();
-                    TextView pointsDisplay = (TextView) view.findViewById(R.id.pifepoints);
+                    TextView pointsDisplay = (TextView) findViewById(R.id.pifepoints);
                     pointsDisplay.setText(pifePoints);
 
                 }

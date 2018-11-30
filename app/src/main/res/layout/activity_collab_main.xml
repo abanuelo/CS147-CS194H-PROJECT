@@ -12,6 +12,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageView
+            android:layout_gravity="right"
+            android:src="@drawable/ic_house"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"

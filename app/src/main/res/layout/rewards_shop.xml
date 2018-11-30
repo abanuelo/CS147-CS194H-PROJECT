@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:background="@drawable/renew_background"
+    tools:context=".RewardsShop">
 
     <LinearLayout
+        android:id="@+id/stats_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_coins"
-            android:layout_gravity="center"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="20dp"/>
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/ic_coins"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="100dp"-->
+            <!--android:layout_marginTop="20dp"/>-->
+
         <TextView
             android:id="@+id/pifepoints"
             android:layout_width="match_parent"
             android:layout_height= "wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:gravity="center"
             android:textColor="#000"
             android:layout_gravity="center"/>
@@ -27,26 +32,28 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/content"
+        android:layout_below="@+id/stats_bar"
         android:layout_width="match_parent"
+        android:weightSum="2"
         android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_gravity="center"
             android:id="@+id/avatarRewardsShop"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_monster_baby"
             android:adjustViewBounds="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="-30dp"
-            android:maxWidth="350dp"
-            android:maxHeight="200dp"
             android:scaleType="fitCenter"
             />
 
         <LinearLayout
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-30dp"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
@@ -80,9 +87,9 @@
 
                         <Button
                             android:id="@+id/button2"
-                            android:text="Orange Hat"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="Orange Hat" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
@@ -132,8 +139,4 @@
 
     </LinearLayout>
 
-
-
-
-
-</LinearLayout>
+</RelativeLayout>
