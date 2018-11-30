@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     tools:context=".Instruments">
     
     <RelativeLayout
@@ -20,8 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Select Instruments Played"
+            android:fontFamily="@font/proxima_novona_bold"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="25sp" />
 
     </RelativeLayout>
 
@@ -61,11 +62,20 @@
                     android:id="@+id/bass_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Bass"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_bass"
+                    android:id="@+id/bass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -96,11 +106,20 @@
                     android:id="@+id/drums_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Drums / Precussion"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_drum"
+                    android:id="@+id/drums_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -132,11 +151,20 @@
                     android:id="@+id/flute_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Flute"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_flute"
+                    android:id="@+id/flute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -167,11 +195,20 @@
                     android:id="@+id/guitar_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Guitar"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_rock_pic"
+                    android:id="@+id/guitar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -203,11 +240,20 @@
                     android:id="@+id/piano_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Piano"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_piano"
+                    android:id="@+id/piano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -238,11 +284,20 @@
                     android:id="@+id/sing_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Sing"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_pop_pic"
+                    android:id="@+id/sing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -274,11 +329,20 @@
                     android:id="@+id/viola_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Viola"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_viola"
+                    android:id="@+id/viola"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -309,11 +373,20 @@
                     android:id="@+id/violin_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Violin"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_violin"
+                    android:id="@+id/violin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -335,6 +408,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Proceed"
+            android:background="@drawable/buttonoval"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
