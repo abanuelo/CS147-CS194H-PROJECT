@@ -1,76 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
+    android:backgroundTint="#20FFFFFF"
+    android:backgroundTintMode="src_over"
     tools:context=".Dashboard">
 
-    <LinearLayout
-        android:layout_marginTop="20sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/DashboardHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/reward"
             android:layout_width="45dp"
             android:layout_height="48dp"
             android:src="@drawable/reward"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="261dp" />
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
 
         <TextView
             android:id="@+id/avatar_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:text="AVATAR NAME"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/proxima_novona_bold"
+            android:gravity="center"
+            android:text="Jemi"
             android:textAlignment="center"
-            android:textSize="28sp" />
+            android:textColor="#000"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toStartOf="@+id/user_profile"
+            app:layout_constraintStart_toEndOf="@id/reward"
+            tools:layout_editor_absoluteY="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+        />
 
         <ImageView
             android:id="@+id/user_profile"
             android:layout_width="45dp"
             android:layout_height="48dp"
             android:src="@drawable/user_profile"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="261dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+        />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
-
+    <ImageView
+        android:id="@+id/avatarDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:minHeight="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DashboardHeader" />
 
     <LinearLayout
-        android:layout_marginTop="500dp"
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatarDisplay"
+        app:layout_constraintVertical_bias="0.85">
 
         <Button
             android:id="@+id/practice"
-            android:layout_width="125sp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="15sp"
+            android:background="@drawable/buttonoval"
+            android:fontFamily="@font/proxima_novona_bold"
+            android:layout_gravity="center_horizontal"
             android:text="Practice"
-            />
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/perform"
-            android:layout_width="125sp"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:text="Perform"
-            />
+            android:layout_marginRight="15sp"
+            android:background="@drawable/buttonoval"
+            android:fontFamily="@font/proxima_novona_bold"
+            android:text="Performances"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/collab"
-            android:layout_width="125sp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15sp"
+            android:background="@drawable/buttonoval"
+            android:fontFamily="@font/proxima_novona_bold"
             android:text="Collab"
-            />
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

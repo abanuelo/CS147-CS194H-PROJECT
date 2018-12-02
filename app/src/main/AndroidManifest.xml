@@ -48,7 +48,6 @@
         <activity android:name=".PracticePlaying"/>
         <activity android:name=".CreateAccount" />
         <activity android:name=".Dashboard" />
-        <activity android:name=".PracticeMain" />
         <activity android:name=".CollabMain" />
         <activity android:name=".SearchCollab" />
         <activity android:name=".Profile" />
