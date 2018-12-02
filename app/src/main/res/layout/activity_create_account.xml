@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     tools:context=".CreateAccount">
 
     <LinearLayout
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Name"
         android:layout_marginBottom="5sp"
         android:layout_gravity="center_horizontal"
         />
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="Email"
+        android:hint="Email"
         android:layout_marginBottom="5sp"
         android:layout_gravity="center_horizontal"
         />
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Username"
+        android:hint="Username"
         android:layout_marginBottom="5sp"
         android:layout_gravity="center_horizontal" />
 
@@ -74,7 +74,7 @@
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:inputType="textVisiblePassword"
-        android:text="Password"
+        android:hint="Password"
         android:layout_marginBottom="20sp"/>
 
     <Button
@@ -82,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
+        android:background="@drawable/buttonoval"
         android:layout_gravity="center_horizontal"
          />
 

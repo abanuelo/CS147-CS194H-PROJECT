@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="100dp"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     android:paddingTop="100dp"
     tools:context=".MatchesChoice">
+
+    <
 
 
     <Button
@@ -16,13 +18,18 @@
         android:layout_height="100sp"
         android:id="@+id/chats"
         android:text="Chat"
+        android:fontFamily="@font/proxima_novona_bold"
+        android:layout_marginBottom="100sp"
+        android:background="@drawable/buttonoval"
         android:layout_gravity="center" />
 
     <Button
         android:layout_width="300sp"
         android:layout_height="100sp"
         android:id="@+id/schedule"
+        android:fontFamily="@font/proxima_novona_bold"
         android:text="Schedule Collaboration"
+        android:background="@drawable/buttonoval"
         android:layout_gravity="center"/>
 
 </LinearLayout>

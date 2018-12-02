@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/renew_background"
+    tools:context=".RewardsShop">
+
+    <LinearLayout
+        android:id="@+id/stats_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/ic_coins"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="100dp"-->
+            <!--android:layout_marginTop="20dp"/>-->
+
+        <TextView
+            android:id="@+id/pifepoints"
+            android:layout_width="match_parent"
+            android:layout_height= "wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_below="@+id/stats_bar"
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/avatarRewardsShop"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_monster_baby"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            />
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/constrained_view"
+                android:layout_centerHorizontal="true"
+                android:layout_width="80dp"
+                android:layout_marginTop="100dp"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:id="@+id/horizontalscrollview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:scrollbars="none"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp">
+
+                    <LinearLayout
+                        android:id="@+id/shapeLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button1"
+                            android:text="Blue Hat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:id="@+id/button2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Orange Hat" />
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/constrained_view2"
+                android:layout_centerHorizontal="true"
+                android:layout_width="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:id="@+id/horizontalscrollview2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:scrollbars="none"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp">
+
+                    <LinearLayout
+                        android:id="@+id/shapeLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button12"
+                            android:text="White Shirt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:id="@+id/button22"
+                            android:text="Green Shirt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
+    android:backgroundTint="#20FFFFFF"
+    android:backgroundTintMode="src_over"
     tools:context=".Dashboard">
 
     <android.support.constraint.ConstraintLayout
@@ -77,7 +79,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:visibility="visible"
@@ -89,7 +90,7 @@
 
         <Button
             android:id="@+id/practice"
-            android:layout_width="100sp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
@@ -100,7 +101,7 @@
 
         <Button
             android:id="@+id/perform"
-            android:layout_width="100sp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="20sp"
             android:background="@drawable/buttonoval"
@@ -110,7 +111,7 @@
 
         <Button
             android:id="@+id/collab"
-            android:layout_width="100sp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="20sp"
             android:background="@drawable/buttonoval"

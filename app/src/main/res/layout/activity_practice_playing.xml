@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/renew_background"
     android:layout_height="match_parent"
-    android:background="@drawable/android_background"
     tools:context=".PracticePlaying">
 
     <EditText
@@ -120,7 +120,7 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:background="@drawable/buttonoval"
         android:layout_marginStart="32dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="25dp"
