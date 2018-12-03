@@ -1,15 +1,15 @@
 package com.bignerdranch.android.pife11.Scheduler;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TableLayout;
+import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import com.bignerdranch.android.pife11.Dashboard;
-import com.bignerdranch.android.pife11.OnSwipeTouchListener;
 import com.bignerdranch.android.pife11.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,8 +26,9 @@ public class TuesdaySchedule extends AppCompatActivity {
     private String currentUserId;
     private DatabaseReference userDb;
     private ArrayList<Integer> times;
-    private TableLayout table;
+    private ImageView sunday,tuesday;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,25 +42,22 @@ public class TuesdaySchedule extends AppCompatActivity {
             times.add(0);
         }
 
-        table = (TableLayout) findViewById(R.id.table);
-        table.setOnTouchListener(new OnSwipeTouchListener(TuesdaySchedule.this){
-            public void onSwipeTop() {
-            }
+        sunday = (ImageView) findViewById(R.id.sunday);
+        tuesday = (ImageView) findViewById(R.id.tuesday);
 
-            public void onSwipeRight(){
+        sunday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent goToSunday = new Intent(TuesdaySchedule.this, Dashboard.class);
-                storeData();
                 startActivity(goToSunday);
             }
+        });
 
-            public void onSwipeLeft(){
+        tuesday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent goToTuesday = new Intent(TuesdaySchedule.this, Dashboard.class);
-                storeData();
                 startActivity(goToTuesday);
-
-            }
-
-            public void onSwipeBottom() {
             }
         });
     }

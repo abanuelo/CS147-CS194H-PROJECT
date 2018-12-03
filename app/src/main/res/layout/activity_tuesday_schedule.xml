@@ -15,17 +15,37 @@
         android:layout_width="300dp"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="40dp"
-            android:textAlignment="center"
-            android:text="Tuesday"/>
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/sunday"
+                android:layout_gravity="center"
+                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:src="@drawable/ic_arrow_point_to_right"
+                android:scaleX="-1"/>
 
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="18dp"
+            android:textSize="35dp"
+            android:textAlignment="center"
+            android:text="Tuesday"/>
+
+            <ImageView
+                android:id="@+id/tuesday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_point_to_right"/>
+
+        </TableRow>
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dp"
             android:textAlignment="center"
             android:paddingBottom="10sp"
             android:text="Please select hour intervals you are free in"/>

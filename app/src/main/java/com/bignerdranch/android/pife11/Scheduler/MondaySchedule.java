@@ -1,11 +1,13 @@
 package com.bignerdranch.android.pife11.Scheduler;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.ToggleButton;
 
@@ -34,8 +37,9 @@ public class MondaySchedule extends AppCompatActivity {
     private String currentUserId;
     private DatabaseReference userDb;
     private ArrayList<Integer> times;
-    private TableLayout table;
+    private ImageView sunday,tuesday;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,25 +53,22 @@ public class MondaySchedule extends AppCompatActivity {
             times.add(0);
         }
 
-        table = (TableLayout) findViewById(R.id.table);
-        table.setOnTouchListener(new OnSwipeTouchListener(MondaySchedule.this){
-            public void onSwipeTop() {
-            }
+        sunday = (ImageView) findViewById(R.id.sunday);
+        tuesday = (ImageView) findViewById(R.id.tuesday);
 
-            public void onSwipeRight(){
+        sunday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent goToSunday = new Intent(MondaySchedule.this, Dashboard.class);
-                storeData();
                 startActivity(goToSunday);
             }
+        });
 
-            public void onSwipeLeft(){
+        tuesday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent goToTuesday = new Intent(MondaySchedule.this, TuesdaySchedule.class);
-                storeData();
                 startActivity(goToTuesday);
-
-            }
-
-            public void onSwipeBottom() {
             }
         });
     }
