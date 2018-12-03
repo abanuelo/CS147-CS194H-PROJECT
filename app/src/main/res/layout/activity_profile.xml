@@ -104,7 +104,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textforinstruments"
+            android:id="@+id/textforinstruments2"
             android:text="Instruments:"
             android:fontFamily="@font/proxima_novona"
             android:layout_width="90dp"

@@ -11,40 +11,49 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ToggleButton;
 
 import com.bignerdranch.android.pife11.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MondaySchedule extends AppCompatActivity {
 
+    private String currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monday_schedule);
+        //Set Schedule from Database
+        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        //GrabSchedule
     }
 
+    public void GetScheduleFromDatabase(){
+        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child("Schedule");
 
-    public void OnClick(View v){
+        //Idkwhatever you did
+
+    }
+
+    public void onClick(View v){
+        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child("Schedule");
         switch (v.getId()){
             case R.id.twelveambutton:
                 //Checks the color to yellow if grey and vice versa
-                Button twelveam = (Button) findViewById(R.id.twelveambutton);
-                Drawable buttonBackground = twelveam.getBackground();
-                Drawable greyButtonBackground = ContextCompat.getDrawable(this, R.drawable.grey_buttonoval);
-                Drawable yellowButtonBackground = ContextCompat.getDrawable(this, R.drawable.buttonoval);
+                ToggleButton twelveam = (ToggleButton) findViewById(R.id.twelveambutton);
 
-                Bitmap curr = ((BitmapDrawable)buttonBackground).getBitmap();
-                Bitmap yellow = ((BitmapDrawable)yellowButtonBackground).getBitmap();
-                Bitmap grey = ((BitmapDrawable)greyButtonBackground).getBitmap();
-
-                if (curr == grey){
-                    //change the background to yellow and register
-                    twelveam.setBackground(yellowButtonBackground);
-                    Log.d("CONVERT YELLOW", "TRUE");
-                } else {
-                    twelveam.setBackground(greyButtonBackground);
-                    Log.d("CONVERT GREY", "TRUE");
+                //this is what you do to Database
+                if (twelveam.isChecked()) {
+                    //manipulate map? of Times? ie (array of 0-23?) ->adv feature bitmap!
                 }
+                else {
+
+                }
+
 
 
                 break;

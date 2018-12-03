@@ -11,7 +11,7 @@
         android:id="@+id/table"
         android:stretchColumns="*"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_height="wrap_content"
@@ -28,159 +28,223 @@
             android:paddingBottom="20sp"
             android:text="Please select hour intervals you are free in"/>
 
-        <TableRow
-            android:layout_width="0dp"
-            android:padding="5sp"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/tableRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_height="match_parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <Button
-                android:textAlignment="center"
-                android:layout_weight="3"
+            <ToggleButton
                 android:id="@+id/twelveambutton"
                 android:layout_width="0dp"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
                 android:onClick="onClick"
-                android:text="12:00am" />
+                android:checked="true"
+                android:textOff="12:00am"
+                android:textOn="12:00am"
 
-            <Button
                 android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/oneambutton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ToggleButton
                 android:id="@+id/oneambutton"
                 android:layout_width="0dp"
-                android:background="@drawable/grey_buttonoval"
-                android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
                 android:onClick="onClick"
-                android:text="1:00am" />
+                android:checked="true"
+                android:textOff="1:00am"
+                android:textOn="1:00am"
 
-            <Button
                 android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/twoambutton"
+                app:layout_constraintStart_toEndOf="@+id/twelveambutton" />
+
+            <ToggleButton
                 android:id="@+id/twoambutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="3"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="2:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="2:00am"
+                android:textOn="2:00am"
+                android:checked="false"
+                android:textAlignment="center"
 
-        </TableRow>
+                app:layout_constraintBaseline_toBaselineOf="@+id/oneambutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/oneambutton" />
 
-        <TableRow
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
             android:padding="5sp"
             android:layout_width="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_height="match_parent">
 
             <Button
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:background="@drawable/grey_buttonoval"
                 android:id="@+id/threeambutton"
                 android:layout_width="0dp"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="3:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="3:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@+id/fourambutton"
+                app:layout_constraintStart_toStartOf="parent"
+                 />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/fourambutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="4:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="4:00am"
+
+                android:textAlignment="center"
+                app:layout_constraintBaseline_toBaselineOf="@+id/threeambutton"
+                app:layout_constraintEnd_toStartOf="@+id/fiveambutton"
+                app:layout_constraintStart_toEndOf="@id/threeambutton" />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/fiveambutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="5:00am" />
-        </TableRow>
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="5:00am"
+                android:textAlignment="center"
+                app:layout_constraintBaseline_toBaselineOf="@+id/threeambutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fourambutton" />
+        </android.support.constraint.ConstraintLayout>
 
 
-        <TableRow
+        <android.support.constraint.ConstraintLayout
             android:padding="5sp"
             android:layout_width="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_height="match_parent">
 
             <Button
-                android:textAlignment="center"
-                android:layout_weight="1"
                 android:id="@+id/sixambutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="6:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="6:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/sevenambutton"
+                app:layout_constraintStart_toStartOf="parent"
+                />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/sevenambutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="7:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="7:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@+id/eightambutton"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/sixambutton"
+                 />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/eightambutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="8:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="8:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sevenambutton"
+                 />
 
-        </TableRow>
+        </android.support.constraint.ConstraintLayout>
 
-        <TableRow
+        <android.support.constraint.ConstraintLayout
             android:padding="5sp"
             android:layout_width="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_height="match_parent">
 
             <Button
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:background="@drawable/grey_buttonoval"
                 android:id="@+id/nineambutton"
                 android:layout_width="0dp"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="9:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="9:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/tenambutton"
+                app:layout_constraintStart_toStartOf="parent"
+                 />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/tenambutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
+
                 android:layout_height="wrap_content"
-                android:text="10:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="10:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/elevenambutton"
+                app:layout_constraintStart_toEndOf="@id/nineambutton"
+                 />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/elevenambutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="11:00am" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="11:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tenambutton"
+                />
 
-        </TableRow>
+        </android.support.constraint.ConstraintLayout>
 
-        <TableRow
+        <android.support.constraint.ConstraintLayout
             android:padding="5sp"
             android:layout_width="0dp"
             android:layout_gravity="center_horizontal"
@@ -194,7 +258,11 @@
                 android:layout_width="0dp"
                 android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="12:00pm" />
+                android:text="12:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/onepmbutton"/>
 
             <Button
                 android:textAlignment="center"
@@ -204,7 +272,11 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="1:00pm" />
+                android:text="1:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/twelvepmbutton"
+                app:layout_constraintEnd_toStartOf="@id/twopmbutton"/>
 
             <Button
                 android:textAlignment="center"
@@ -214,11 +286,15 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="2:00pm" />
+                android:text="2:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/onepmbutton"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-        </TableRow>
+        </android.support.constraint.ConstraintLayout>
 
-        <TableRow
+        <android.support.constraint.ConstraintLayout
             android:padding="5sp"
             android:layout_width="0dp"
             android:layout_gravity="center_horizontal"
@@ -232,7 +308,11 @@
                 android:layout_width="0dp"
                 android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="3:00pm" />
+                android:text="3:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/fourpmbutton"/>
 
             <Button
                 android:textAlignment="center"
@@ -242,7 +322,11 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="4:00pm" />
+                android:text="4:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/threepmbutton"
+                app:layout_constraintEnd_toStartOf="@id/fivepmbutton"/>
 
             <Button
                 android:textAlignment="center"
@@ -252,85 +336,118 @@
                 android:layout_weight="1"
                 android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="5:00pm" />
+                android:text="5:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/fourpmbutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
-        </TableRow>
+        </android.support.constraint.ConstraintLayout>
 
-        <TableRow
+        <android.support.constraint.ConstraintLayout
             android:padding="5sp"
             android:layout_width="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_height="match_parent">
 
             <Button
-                android:textAlignment="center"
-                android:layout_weight="1"
                 android:id="@+id/sixpmbutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="6:00pm" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="6:00pm"
+                android:textAlignment="center"
+
+                app:layout_constraintEnd_toStartOf="@id/sevenpmbutton"
+                app:layout_constraintStart_toStartOf="parent"
+                 />
 
             <Button
                 android:textAlignment="center"
                 android:id="@+id/sevenpmbutton"
                 android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="7:00pm" />
+                android:text="7:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/sixpmbutton"
+                app:layout_constraintEnd_toStartOf="@id/eightpmbutton"
+                />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/eightpmbutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="8:00pm" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="8:00pm"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/sevenpmbutton"
+                />
 
-        </TableRow>
+        </android.support.constraint.ConstraintLayout>
 
-        <TableRow
+        <android.support.constraint.ConstraintLayout
             android:padding="5sp"
             android:layout_width="0dp"
             android:layout_gravity="center_horizontal"
             android:layout_height="match_parent">
 
             <Button
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:background="@drawable/grey_buttonoval"
                 android:id="@+id/ninepmbutton"
                 android:layout_width="0dp"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="9:00pm" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="9:00pm"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/tenpmbutton"
+                app:layout_constraintStart_toStartOf="parent"
+                 />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/tenpmbutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="10:00pm" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="10:00pm"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/elevenpmbutton"
+                app:layout_constraintStart_toEndOf="@id/ninepmbutton"
+                 />
 
             <Button
-                android:textAlignment="center"
                 android:id="@+id/elevenpmbutton"
-                android:background="@drawable/grey_buttonoval"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:onClick="onClick"
                 android:layout_height="wrap_content"
-                android:text="11:00pm" />
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:onClick="onClick"
+                android:text="11:00pm"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tenpmbutton"
+                 />
 
-        </TableRow>
+        </android.support.constraint.ConstraintLayout>
 
     </TableLayout>
 

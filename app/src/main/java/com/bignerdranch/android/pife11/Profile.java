@@ -73,7 +73,7 @@ public class Profile extends AppCompatActivity {
         instrument = (TextView) findViewById(R.id.instrument);
 
         //Sets the Profile picture Ready for the Jave Profile Class
-        profileImage = findViewById(R.id.profile_image);
+        profileImage = (CircleImageView) findViewById(R.id.profile_image);
 
         //Clicking into the Schedule
         schedule.setOnClickListener(new View.OnClickListener() {
