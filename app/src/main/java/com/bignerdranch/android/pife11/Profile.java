@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.Matches.Matches;
+import com.bignerdranch.android.pife11.Scheduler.MondaySchedule;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -73,6 +74,15 @@ public class Profile extends AppCompatActivity {
 
         //Sets the Profile picture Ready for the Jave Profile Class
         profileImage = findViewById(R.id.profile_image);
+
+        //Clicking into the Schedule
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent setSchedule = new Intent(Profile.this, MondaySchedule.class);
+                startActivity(setSchedule);
+            }
+        });
 
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
         userDatabase.addValueEventListener(new ValueEventListener() {

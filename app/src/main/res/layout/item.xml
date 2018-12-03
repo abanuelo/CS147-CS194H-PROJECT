@@ -24,13 +24,13 @@
 
         <LinearLayout
             android:layout_gravity="center"
-            android:layout_width="300dp"
-            android:layout_height="350dp"
+            android:layout_width="400dp"
+            android:layout_height="450dp"
             android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="350dp"
                 android:id="@+id/image"
                 android:scaleType="centerCrop"/>
 
