@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/renew_background"
+    tools:context=".Scheduler.MondaySchedule">
+
+    <TableLayout
+        android:id="@+id/table"
+        android:stretchColumns="*"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="40dp"
+            android:textAlignment="center"
+            android:text="Monday"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="18dp"
+            android:textAlignment="center"
+            android:paddingBottom="20sp"
+            android:text="Please select hour intervals you are free in"/>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:padding="5sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:textAlignment="center"
+                android:layout_weight="3"
+                android:id="@+id/twelveambutton"
+                android:layout_width="0dp"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="12:00am" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/oneambutton"
+                android:layout_width="0dp"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="1:00am" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/twoambutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="2:00am" />
+
+        </TableRow>
+
+        <TableRow
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:id="@+id/threeambutton"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="3:00am" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/fourambutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="4:00am" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/fiveambutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="5:00am" />
+        </TableRow>
+
+
+        <TableRow
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:id="@+id/sixambutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="6:00am" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/sevenambutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="7:00am" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/eightambutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="8:00am" />
+
+        </TableRow>
+
+        <TableRow
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:id="@+id/nineambutton"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="9:00am" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/tenambutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="10:00am" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/elevenambutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="11:00am" />
+
+        </TableRow>
+
+        <TableRow
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:id="@+id/twelvepmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="12:00pm" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/onepmbutton"
+                android:layout_width="0dp"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="1:00pm" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/twopmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="2:00pm" />
+
+        </TableRow>
+
+        <TableRow
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:id="@+id/threepmbutton"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="3:00pm" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/fourpmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="4:00pm" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/fivepmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="5:00pm" />
+
+        </TableRow>
+
+        <TableRow
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:id="@+id/sixpmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="6:00pm" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/sevenpmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="7:00pm" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/eightpmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="8:00pm" />
+
+        </TableRow>
+
+        <TableRow
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:background="@drawable/grey_buttonoval"
+                android:id="@+id/ninepmbutton"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="9:00pm" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/tenpmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="10:00pm" />
+
+            <Button
+                android:textAlignment="center"
+                android:id="@+id/elevenpmbutton"
+                android:background="@drawable/grey_buttonoval"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:text="11:00pm" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</ScrollView>
+
+
