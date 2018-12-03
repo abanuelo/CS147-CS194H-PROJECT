@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/renew_background"
-    tools:context=".Scheduler.MondaySchedule">
+    tools:context=".Scheduler.TuesdaySchedule">
 
 
     <TableLayout
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:textSize="40dp"
             android:textAlignment="center"
-            android:text="Monday"/>
+            android:text="Tuesday"/>
 
         <TextView
             android:layout_height="wrap_content"

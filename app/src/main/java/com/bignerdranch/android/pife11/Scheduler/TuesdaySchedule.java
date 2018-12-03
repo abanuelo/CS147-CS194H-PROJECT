@@ -1,18 +1,10 @@
 package com.bignerdranch.android.pife11.Scheduler;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.ToggleButton;
 
@@ -30,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MondaySchedule extends AppCompatActivity {
+public class TuesdaySchedule extends AppCompatActivity {
     private String currentUserId;
     private DatabaseReference userDb;
     private ArrayList<Integer> times;
@@ -39,7 +31,7 @@ public class MondaySchedule extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monday_schedule);
+        setContentView(R.layout.activity_tuesday_schedule);
         //Set Schedule from Database
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Schedule");
@@ -50,18 +42,18 @@ public class MondaySchedule extends AppCompatActivity {
         }
 
         table = (TableLayout) findViewById(R.id.table);
-        table.setOnTouchListener(new OnSwipeTouchListener(MondaySchedule.this){
+        table.setOnTouchListener(new OnSwipeTouchListener(TuesdaySchedule.this){
             public void onSwipeTop() {
             }
 
             public void onSwipeRight(){
-                Intent goToSunday = new Intent(MondaySchedule.this, Dashboard.class);
+                Intent goToSunday = new Intent(TuesdaySchedule.this, Dashboard.class);
                 storeData();
                 startActivity(goToSunday);
             }
 
             public void onSwipeLeft(){
-                Intent goToTuesday = new Intent(MondaySchedule.this, TuesdaySchedule.class);
+                Intent goToTuesday = new Intent(TuesdaySchedule.this, Dashboard.class);
                 storeData();
                 startActivity(goToTuesday);
 
