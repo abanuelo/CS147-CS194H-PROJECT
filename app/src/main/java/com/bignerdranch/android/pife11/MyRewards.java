@@ -30,7 +30,7 @@ public class MyRewards extends Fragment {
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getUserAvatar(view);
         getUserPifePoints(view);
-        
+
 
         return view;
     }
