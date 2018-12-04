@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -16,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,9 +43,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <!--PracticePlaying-->
-        <!--MainActivity-->
-        <activity android:name=".PracticePlaying"/>
+        <activity android:name=".PracticePlaying" />
         <activity android:name=".CreateAccount" />
         <activity android:name=".Dashboard" />
         <activity android:name=".PracticeMain" />
@@ -59,9 +55,13 @@
         <activity android:name=".Matches.Matches" />
         <activity android:name=".Chat.Chat" />
         <activity android:name=".MatchesChoice" />
-        <activity android:name=".Scheduler.ScheduleMain"></activity>
+        <activity android:name=".Scheduler.ScheduleMain" />
         <activity android:name=".SelectAvatar" />
-        <activity android:name=".RewardsShop"></activity>
+        <activity
+            android:name=".RewardsBoth"
+            android:label="@string/title_activity_rewards_both"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Trophies"></activity>
     </application>
 
 </manifest>

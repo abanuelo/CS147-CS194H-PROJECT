@@ -1,6 +1,8 @@
 package com.bignerdranch.android.pife11;
 
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +43,8 @@ public class RewardsShop extends Fragment {
     private Button button12;
     private Button button2;
     private Button button22;
+    private Button button3;
+    private Button button32;
 
     int constrainedX;
     int constrainedY;
@@ -48,16 +52,22 @@ public class RewardsShop extends Fragment {
     int button1Y;
     int button2X;
     int button2Y;
+    int button3X;
+    int button3Y;
+
     int constrainedX2;
     int constrainedY2;
     int button1X2;
     int button1Y2;
     int button2X2;
     int button2Y2;
+    int button3X2;
+    int button3Y2;
 
 
     private Handler handler;
-
+    private ImageView hat;
+    private ImageView shirt;
 
     @Nullable
     @Override
@@ -67,21 +77,26 @@ public class RewardsShop extends Fragment {
         getUserAvatar(view);
         getUserPifePoints(view);
 
-
         handler = new Handler();
+        hat = view.findViewById(R.id.hat);
+        shirt = view.findViewById(R.id.shirt);
 
+        //HAT BUTTON
         constraint = view.findViewById(R.id.constrained_view);
         scrollViewHats = view.findViewById(R.id.horizontalscrollview);
         button1 = view.findViewById(R.id.button1);
-        //button1.setImageResource(R.drawable.ic_jemi_shirt);
         button2 = view.findViewById(R.id.button2);
+        button3 = view.findViewById(R.id.button3);
 
+        //SHIRT BUTTON
         constraint2 = view.findViewById(R.id.constrained_view2);
         scrollViewHats2 = view.findViewById(R.id.horizontalscrollview2);
         button12 = view.findViewById(R.id.button12);
         button22 = view.findViewById(R.id.button22);
+        button32 = view.findViewById(R.id.button32);
 
         //Snapping Feature the Shop has been implemented
+        //HAT button
         scrollViewHats.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -97,10 +112,26 @@ public class RewardsShop extends Fragment {
                         button2X = (int) button2.getX();
                         button2Y = (int) button2.getY();
 
-                        if (Math.abs(constrainedX-button1X) < Math.abs(constrainedX-button2X)){
+                        button3X = (int) button3.getX();
+                        button3Y = (int) button3.getY();
+
+                        if (Math.abs(constrainedX-button1X) < Math.abs(constrainedX-button2X) && Math.abs(constrainedX-button1X) < Math.abs(constrainedX-button3X)){
                             scrollViewHats.smoothScrollTo(button1X, button1Y);
-                        } else {
+                            hat.setImageResource(0);
+                        } else if(Math.abs(constrainedX-button2X) < Math.abs(constrainedX-button1X ) && Math.abs(constrainedX-button2X) < Math.abs(constrainedX-button3X)){
                             scrollViewHats.smoothScrollTo(button2X, button2Y);
+                            if(myAvatar.equals("{avatar=Jemi}")){
+                                hat.setImageResource(R.drawable.ic_jemi_blue_hat);
+                            } else {
+                                hat.setImageResource(R.drawable.ic_ronal_blue_hat);
+                            }
+                        } else {
+                            scrollViewHats.smoothScrollTo(button3X, button3Y);
+                            if(myAvatar.equals("{avatar=Jemi}")){
+                                hat.setImageResource(R.drawable.ic_jemi_orange_hat);
+                            } else {
+                                hat.setImageResource(R.drawable.ic_ronald_orange_hat);
+                            }
                         }
                     }
                 }, 600);
@@ -109,6 +140,7 @@ public class RewardsShop extends Fragment {
         });
 
         //Snapping Feature the Shop has been implemented
+        //SHIRT button
         scrollViewHats2.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -124,11 +156,27 @@ public class RewardsShop extends Fragment {
                         button2X2 = (int) button22.getX();
                         button2Y2 = (int) button22.getY();
 
-                        if (Math.abs(constrainedX2-button1X2) < Math.abs(constrainedX2-button2X2)){
+                        button3X2 = (int) button32.getX();
+                        button3Y2 = (int) button32.getY();
+
+                        if (Math.abs(constrainedX2-button1X2) < Math.abs(constrainedX2-button2X2) && Math.abs(constrainedX2-button1X2) < Math.abs(constrainedX2-button3X2)){
                             scrollViewHats2.smoothScrollTo(button1X2, button1Y2);
+                            shirt.setImageResource(0);
+                        } else if(Math.abs(constrainedX2-button2X2) < Math.abs(constrainedX2-button1X2) && Math.abs(constrainedX2-button2X2) < Math.abs(constrainedX2-button3X2)){
+                            scrollViewHats2.smoothScrollTo(button2X2, button2Y2);
+                            if(myAvatar.equals("{avatar=Jemi}")){
+                                shirt.setImageResource(R.drawable.ic_jemi_green_shirt);
+                            } else {
+                                shirt.setImageResource(R.drawable.ic_ronald_green_shirt);
+                            }
 
                         } else {
-                            scrollViewHats2.smoothScrollTo(button2X2, button2Y2);
+                            scrollViewHats2.smoothScrollTo(button3X2, button3Y2);
+                            if(myAvatar.equals("{avatar=Jemi}")){
+                                shirt.setImageResource(R.drawable.ic_jemi_pink_shirt);
+                            } else {
+                                shirt.setImageResource(R.drawable.ic_ronald_pink_shirt);
+                            }
                         }
                     }
                 }, 600);
@@ -152,6 +200,7 @@ public class RewardsShop extends Fragment {
                 scrollViewHats2.smoothScrollTo((int)button22.getX(), (int)button22.getY());
             }
         });
+
 
         return view;
     }
