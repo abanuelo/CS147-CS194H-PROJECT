@@ -94,7 +94,7 @@
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/animation"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:layout_marginLeft="25sp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />

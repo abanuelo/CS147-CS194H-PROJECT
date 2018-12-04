@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
@@ -35,11 +37,12 @@ public class Dashboard extends AppCompatActivity {
     private ImageView userProfile;
     private String currentUserId;
     private GifImageView animation;
+    private GifDrawable drawable;
     //private LottieAnimationView animation;
     //private String myAvatar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
@@ -52,9 +55,18 @@ public class Dashboard extends AppCompatActivity {
         //animation.playAnimation();
 
         //Adding Gifs into the Code Content
-        //GifDrawable drawable = new GifDrawable(Bitmap.Config.R.drawable.jemi_happy);
+        try{
+            drawable = new GifDrawable(getResources(), R.drawable.jemi_happy);
+        } catch(IOException ie){
+
+        }
+
+        drawable.setLoopCount(0);
         animation = (GifImageView) findViewById(R.id.animation);
-        animation.setImageResource(R.drawable.jemi_happy);
+        animation.setBackground(drawable);
+
+//        animation = (GifImageView) findViewById(R.id.animation);
+//        animation.setImageResource(R.drawable.jemi_happy);
 
 
         animation.setOnClickListener(new View.OnClickListener() {
