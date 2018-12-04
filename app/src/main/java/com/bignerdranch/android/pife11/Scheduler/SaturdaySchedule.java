@@ -1,26 +1,14 @@
 package com.bignerdranch.android.pife11.Scheduler;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TableLayout;
 import android.widget.ToggleButton;
 
-import com.bignerdranch.android.pife11.Dashboard;
-import com.bignerdranch.android.pife11.OnSwipeTouchListener;
 import com.bignerdranch.android.pife11.Profile;
 import com.bignerdranch.android.pife11.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,30 +22,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MondaySchedule extends AppCompatActivity {
+public class SaturdaySchedule extends AppCompatActivity {
     private String currentUserId;
     private DatabaseReference userDb;
     private ArrayList<Integer> times;
-    private ImageView sunday,tuesday;
+    private ImageView friday,sunday;
     private Button finish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_monday_schedule);
+        setContentView(R.layout.activity_saturday_schedule);
         //Set Schedule from Database
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Schedule");
         times = new ArrayList<Integer>();
         //Populates times for 23 locations
-
         for (int i = 0; i < 24; i++){
             times.add(0);
         }
 
-        sunday = (ImageView) findViewById(R.id.sunday);
-        tuesday = (ImageView) findViewById(R.id.tuesday);
         finish = (Button) findViewById(R.id.finish);
+        friday = (ImageView) findViewById(R.id.thursday);
+        sunday = (ImageView) findViewById(R.id.saturday);
 
 
         //We are going to add a method that revolves around making sure that we already have entries
@@ -65,9 +52,9 @@ public class MondaySchedule extends AppCompatActivity {
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("MON").exists()){
+                if (dataSnapshot.child("SAT").exists()){
                     int index = 0;
-                    for (DataSnapshot time_slot : dataSnapshot.child("MON").getChildren()){
+                    for (DataSnapshot time_slot : dataSnapshot.child("SAT").getChildren()){
                         String value = time_slot.getValue().toString();
                         if (Integer.parseInt(value) == 1){
                             if (index == 0){
@@ -154,31 +141,31 @@ public class MondaySchedule extends AppCompatActivity {
             }
         });
 
-        //Selecting the finish button to see if it is there
+
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goBackToProfile = new Intent(MondaySchedule.this, Profile.class);
+                Intent goToProfile = new Intent(SaturdaySchedule.this, Profile.class);
                 storeData();
-                startActivity(goBackToProfile);
+                startActivity(goToProfile);
+            }
+        });
+
+        friday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToFriday = new Intent(SaturdaySchedule.this, FridaySchedule.class);
+                storeData();
+                startActivity(goToFriday);
             }
         });
 
         sunday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToSunday = new Intent(MondaySchedule.this, SundaySchedule.class);
+                Intent goToSunday = new Intent(SaturdaySchedule.this, SundaySchedule.class);
                 storeData();
                 startActivity(goToSunday);
-            }
-        });
-
-        tuesday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToTuesday = new Intent(MondaySchedule.this, TuesdaySchedule.class);
-                storeData();
-                startActivity(goToTuesday);
             }
         });
     }
@@ -187,11 +174,11 @@ public class MondaySchedule extends AppCompatActivity {
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("MON").exists()){
+                if (dataSnapshot.child("SAT").exists()){
                     //the case when the values are all zero
                     //Values already exist and we need to update those values in the database
                     ArrayList<Integer> new_times = new ArrayList<Integer>();
-                    for (DataSnapshot time_slots : dataSnapshot.child("MON").getChildren()){
+                    for (DataSnapshot time_slots : dataSnapshot.child("SAT").getChildren()){
                         String index_string = time_slots.getKey().trim();
                         String time_slot_val_string = time_slots.getValue().toString().trim();
                         Integer time_slot_val = Integer.parseInt(time_slot_val_string);
@@ -415,12 +402,12 @@ public class MondaySchedule extends AppCompatActivity {
                         }
                     }
                     Map new_mon_times = new HashMap();
-                    new_mon_times.put("MON", new_times);
+                    new_mon_times.put("SAT", new_times);
                     userDb.updateChildren(new_mon_times);
 
                 } else {
                     Map mon_times = new HashMap();
-                    mon_times.put("MON", times);
+                    mon_times.put("SAT", times);
                     userDb.updateChildren(mon_times);
                 }
             }

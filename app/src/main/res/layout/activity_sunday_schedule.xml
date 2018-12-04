@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/renew_background"
-    tools:context=".Scheduler.ThursdaySchedule">
+    tools:context=".Scheduler.SundaySchedule">
 
 
     <TableLayout
@@ -19,7 +19,7 @@
             android:layout_marginTop="20sp">
 
             <ImageView
-                android:id="@+id/wednesday"
+                android:id="@+id/saturday"
                 android:layout_gravity="center"
                 android:layout_height="40dp"
                 android:layout_width="40dp"
@@ -31,10 +31,10 @@
                 android:layout_width="wrap_content"
                 android:textSize="35dp"
                 android:textAlignment="center"
-                android:text="Thursday"/>
+                android:text="Sunday"/>
 
             <ImageView
-                android:id="@+id/friday"
+                android:id="@+id/monday"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"

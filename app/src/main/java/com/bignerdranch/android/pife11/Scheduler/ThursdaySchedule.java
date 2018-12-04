@@ -32,7 +32,7 @@ public class ThursdaySchedule extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tuesday_schedule);
+        setContentView(R.layout.activity_thursday_schedule);
         //Set Schedule from Database
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Schedule");
@@ -154,18 +154,18 @@ public class ThursdaySchedule extends AppCompatActivity {
         wednesday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToMonday = new Intent(ThursdaySchedule.this, WednesdaySchedule.class);
+                Intent goToWednesday = new Intent(ThursdaySchedule.this, WednesdaySchedule.class);
                 storeData();
-                startActivity(goToMonday);
+                startActivity(goToWednesday);
             }
         });
 
         friday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToTuesday = new Intent(ThursdaySchedule.this, ThursdaySchedule.class);
+                Intent goToFriday = new Intent(ThursdaySchedule.this, ThursdaySchedule.class);
                 storeData();
-                startActivity(goToTuesday);
+                startActivity(goToFriday);
             }
         });
     }

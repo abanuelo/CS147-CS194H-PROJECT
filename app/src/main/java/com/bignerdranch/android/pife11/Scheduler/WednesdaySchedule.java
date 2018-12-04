@@ -33,7 +33,7 @@ public class WednesdaySchedule extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tuesday_schedule);
+        setContentView(R.layout.activity_wednesday_schedule);
         //Set Schedule from Database
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Schedule");
