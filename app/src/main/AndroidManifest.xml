@@ -61,6 +61,9 @@
         <activity android:name=".Scheduler.TuesdaySchedule"></activity>
         <activity android:name=".Scheduler.WednesdaySchedule"/>
         <activity android:name=".Scheduler.ThursdaySchedule"/>
+        <activity android:name=".Scheduler.FridaySchedule"/>
+        <activity android:name=".Scheduler.SundaySchedule"/>
+        <activity android:name=".Scheduler.SaturdaySchedule"/>
         <activity android:name=".Scheduler.MondaySchedule"/>
         <activity android:name=".SelectAvatar" />
         <activity android:name=".RewardsShop"></activity>

@@ -43,8 +43,8 @@ public class SaturdaySchedule extends AppCompatActivity {
         }
 
         finish = (Button) findViewById(R.id.finish);
-        friday = (ImageView) findViewById(R.id.thursday);
-        sunday = (ImageView) findViewById(R.id.saturday);
+        friday = (ImageView) findViewById(R.id.friday);
+        sunday = (ImageView) findViewById(R.id.sunday);
 
 
         //We are going to add a method that revolves around making sure that we already have entries

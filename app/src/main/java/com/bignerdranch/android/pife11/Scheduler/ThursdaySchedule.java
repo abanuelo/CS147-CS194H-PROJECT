@@ -163,7 +163,7 @@ public class ThursdaySchedule extends AppCompatActivity {
         friday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToFriday = new Intent(ThursdaySchedule.this, ThursdaySchedule.class);
+                Intent goToFriday = new Intent(ThursdaySchedule.this, FridaySchedule.class);
                 storeData();
                 startActivity(goToFriday);
             }
