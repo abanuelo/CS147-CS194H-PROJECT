@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     tools:context=".Genres">
 
     <RelativeLayout
@@ -19,9 +19,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/proxima_novona_bold"
             android:text="Select Genres Played"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="25sp" />
 
     </RelativeLayout>
 
@@ -59,13 +60,22 @@
 
                 <TextView
                     android:id="@+id/blues_text"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Blues"
+                    android:fontFamily="@font/proxima_novona_bold"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/blues_icon"
+                    android:src="@drawable/ic_blues_icon"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -96,11 +106,19 @@
                     android:id="@+id/classical_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="Classical"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/violin_icon"
+                    android:src="@drawable/ic_violin"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -130,6 +148,7 @@
 
                 <TextView
                     android:id="@+id/country_text"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Country"
@@ -137,6 +156,13 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/country_icon"
+                    android:src="@drawable/ic_country_pic"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -165,13 +191,21 @@
 
                 <TextView
                     android:id="@+id/edm_text"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Electronic / EDM"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/edm_icon"
+                    android:src="@drawable/ic_edm_pic"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -201,6 +235,7 @@
 
                 <TextView
                     android:id="@+id/hip-hop_text"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hip-Hop"
@@ -208,6 +243,13 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/hiphop_icon"
+                    android:src="@drawable/ic_hiphop_pic"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -236,6 +278,7 @@
 
                 <TextView
                     android:id="@+id/jazz_text"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jazz"
@@ -243,6 +286,13 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/jazz_icon"
+                    android:src="@drawable/ic_jazz_pic"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -272,6 +322,7 @@
 
                 <TextView
                     android:id="@+id/pop_text"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pop"
@@ -279,6 +330,13 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/pop_icon"
+                    android:src="@drawable/ic_pop_pic"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -307,6 +365,7 @@
 
                 <TextView
                     android:id="@+id/rock_text"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rock"
@@ -314,6 +373,13 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/rock_icon"
+                    android:src="@drawable/ic_rock_pic"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -334,7 +400,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:paddingBottom="5sp"
             android:text="Proceed"
+            android:background="@drawable/buttonoval"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

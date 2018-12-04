@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/renew_background"
     tools:context=".Chat.Chat">
 
     <android.support.v4.widget.NestedScrollView
@@ -33,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/message"
+            android:fontFamily="@font/proxima_novona_bold"
             android:hint="Message"/>
 
         <Button
@@ -40,6 +42,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Send"
+            android:fontFamily="@font/proxima_novona_bold"
+            android:background="@drawable/buttonoval"
             android:id="@+id/send"/>
 
     </LinearLayout>
