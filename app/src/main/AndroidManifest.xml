@@ -59,6 +59,8 @@
         <activity android:name=".MatchesChoice" />
         <activity android:name=".Scheduler.ScheduleMain"></activity>
         <activity android:name=".Scheduler.TuesdaySchedule"></activity>
+        <activity android:name=".Scheduler.WednesdaySchedule"/>
+        <activity android:name=".Scheduler.ThursdaySchedule"/>
         <activity android:name=".Scheduler.MondaySchedule"/>
         <activity android:name=".SelectAvatar" />
         <activity android:name=".RewardsShop"></activity>

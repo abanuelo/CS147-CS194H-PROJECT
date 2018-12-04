@@ -1,18 +1,14 @@
 package com.bignerdranch.android.pife11.Scheduler;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
-import com.bignerdranch.android.pife11.Dashboard;
 import com.bignerdranch.android.pife11.Profile;
 import com.bignerdranch.android.pife11.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,11 +22,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TuesdaySchedule extends AppCompatActivity {
+public class ThursdaySchedule extends AppCompatActivity {
     private String currentUserId;
     private DatabaseReference userDb;
     private ArrayList<Integer> times;
-    private ImageView monday,wednesday;
+    private ImageView wednesday,friday;
     private Button finish;
 
     @Override
@@ -46,11 +42,9 @@ public class TuesdaySchedule extends AppCompatActivity {
             times.add(0);
         }
 
-
         finish = (Button) findViewById(R.id.finish);
-        monday = (ImageView) findViewById(R.id.monday);
         wednesday = (ImageView) findViewById(R.id.wednesday);
-
+        friday = (ImageView) findViewById(R.id.friday);
 
 
         //We are going to add a method that revolves around making sure that we already have entries
@@ -58,9 +52,9 @@ public class TuesdaySchedule extends AppCompatActivity {
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("TUES").exists()){
+                if (dataSnapshot.child("THURS").exists()){
                     int index = 0;
-                    for (DataSnapshot time_slot : dataSnapshot.child("TUES").getChildren()){
+                    for (DataSnapshot time_slot : dataSnapshot.child("THURS").getChildren()){
                         String value = time_slot.getValue().toString();
                         if (Integer.parseInt(value) == 1){
                             if (index == 0){
@@ -151,27 +145,27 @@ public class TuesdaySchedule extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToProfile = new Intent(TuesdaySchedule.this, Profile.class);
+                Intent goToProfile = new Intent(ThursdaySchedule.this, Profile.class);
                 storeData();
                 startActivity(goToProfile);
-            }
-        });
-
-        monday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToMonday = new Intent(TuesdaySchedule.this, MondaySchedule.class);
-                storeData();
-                startActivity(goToMonday);
             }
         });
 
         wednesday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToWednesday = new Intent(TuesdaySchedule.this, WednesdaySchedule.class);
+                Intent goToMonday = new Intent(ThursdaySchedule.this, WednesdaySchedule.class);
                 storeData();
-                startActivity(goToWednesday);
+                startActivity(goToMonday);
+            }
+        });
+
+        friday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToTuesday = new Intent(ThursdaySchedule.this, ThursdaySchedule.class);
+                storeData();
+                startActivity(goToTuesday);
             }
         });
     }
@@ -180,11 +174,11 @@ public class TuesdaySchedule extends AppCompatActivity {
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("TUES").exists()){
+                if (dataSnapshot.child("THURS").exists()){
                     //the case when the values are all zero
                     //Values already exist and we need to update those values in the database
                     ArrayList<Integer> new_times = new ArrayList<Integer>();
-                    for (DataSnapshot time_slots : dataSnapshot.child("TUES").getChildren()){
+                    for (DataSnapshot time_slots : dataSnapshot.child("THURS").getChildren()){
                         String index_string = time_slots.getKey().trim();
                         String time_slot_val_string = time_slots.getValue().toString().trim();
                         Integer time_slot_val = Integer.parseInt(time_slot_val_string);
@@ -408,12 +402,12 @@ public class TuesdaySchedule extends AppCompatActivity {
                         }
                     }
                     Map new_mon_times = new HashMap();
-                    new_mon_times.put("TUES", new_times);
+                    new_mon_times.put("THURS", new_times);
                     userDb.updateChildren(new_mon_times);
 
                 } else {
                     Map mon_times = new HashMap();
-                    mon_times.put("TUES", times);
+                    mon_times.put("THURS", times);
                     userDb.updateChildren(mon_times);
                 }
             }

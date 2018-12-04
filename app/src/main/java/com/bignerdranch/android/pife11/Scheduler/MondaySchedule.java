@@ -41,7 +41,6 @@ public class MondaySchedule extends AppCompatActivity {
     private ImageView sunday,tuesday;
     private Button finish;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -197,7 +196,6 @@ public class MondaySchedule extends AppCompatActivity {
                         String time_slot_val_string = time_slots.getValue().toString().trim();
                         Integer time_slot_val = Integer.parseInt(time_slot_val_string);
                         Integer index = Integer.parseInt(index_string);
-                        Log.d("Index val", index_string);
                         if (index == 0){
                             ToggleButton twelveam = (ToggleButton) findViewById(R.id.twelveambutton);
                             if (twelveam.isChecked() && time_slot_val == 0){
@@ -208,7 +206,6 @@ public class MondaySchedule extends AppCompatActivity {
                                 new_times.add(time_slot_val);
                             }
                         } else if (index == 1){
-                            Log.d("Second index received", "here");
                             ToggleButton oneam = (ToggleButton) findViewById(R.id.oneambutton);
                             if (oneam.isChecked() && time_slot_val == 0){
                                 new_times.add(1);
@@ -417,7 +414,6 @@ public class MondaySchedule extends AppCompatActivity {
                             }
                         }
                     }
-                    Log.d("newtimes array", new_times.toString());
                     Map new_mon_times = new HashMap();
                     new_mon_times.put("MON", new_times);
                     userDb.updateChildren(new_mon_times);

@@ -1,12 +1,9 @@
 package com.bignerdranch.android.pife11.Scheduler;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,11 +23,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TuesdaySchedule extends AppCompatActivity {
+public class WednesdaySchedule extends AppCompatActivity {
     private String currentUserId;
     private DatabaseReference userDb;
     private ArrayList<Integer> times;
-    private ImageView monday,wednesday;
+    private ImageView tuesday,thursday;
     private Button finish;
 
     @Override
@@ -48,8 +45,8 @@ public class TuesdaySchedule extends AppCompatActivity {
 
 
         finish = (Button) findViewById(R.id.finish);
-        monday = (ImageView) findViewById(R.id.monday);
-        wednesday = (ImageView) findViewById(R.id.wednesday);
+        tuesday = (ImageView) findViewById(R.id.tuesday);
+        thursday = (ImageView) findViewById(R.id.thursday);
 
 
 
@@ -58,9 +55,9 @@ public class TuesdaySchedule extends AppCompatActivity {
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("TUES").exists()){
+                if (dataSnapshot.child("WED").exists()){
                     int index = 0;
-                    for (DataSnapshot time_slot : dataSnapshot.child("TUES").getChildren()){
+                    for (DataSnapshot time_slot : dataSnapshot.child("WED").getChildren()){
                         String value = time_slot.getValue().toString();
                         if (Integer.parseInt(value) == 1){
                             if (index == 0){
@@ -151,27 +148,27 @@ public class TuesdaySchedule extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToProfile = new Intent(TuesdaySchedule.this, Profile.class);
+                Intent goToProfile = new Intent(WednesdaySchedule.this, Profile.class);
                 storeData();
                 startActivity(goToProfile);
             }
         });
 
-        monday.setOnClickListener(new View.OnClickListener() {
+        tuesday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToMonday = new Intent(TuesdaySchedule.this, MondaySchedule.class);
+                Intent goToTuesday = new Intent(WednesdaySchedule.this, TuesdaySchedule.class);
                 storeData();
-                startActivity(goToMonday);
+                startActivity(goToTuesday);
             }
         });
 
-        wednesday.setOnClickListener(new View.OnClickListener() {
+        thursday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToWednesday = new Intent(TuesdaySchedule.this, WednesdaySchedule.class);
+                Intent goToThursday = new Intent(WednesdaySchedule.this, ThursdaySchedule.class);
                 storeData();
-                startActivity(goToWednesday);
+                startActivity(goToThursday);
             }
         });
     }
@@ -180,11 +177,11 @@ public class TuesdaySchedule extends AppCompatActivity {
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("TUES").exists()){
+                if (dataSnapshot.child("WED").exists()){
                     //the case when the values are all zero
                     //Values already exist and we need to update those values in the database
                     ArrayList<Integer> new_times = new ArrayList<Integer>();
-                    for (DataSnapshot time_slots : dataSnapshot.child("TUES").getChildren()){
+                    for (DataSnapshot time_slots : dataSnapshot.child("WED").getChildren()){
                         String index_string = time_slots.getKey().trim();
                         String time_slot_val_string = time_slots.getValue().toString().trim();
                         Integer time_slot_val = Integer.parseInt(time_slot_val_string);
@@ -408,12 +405,12 @@ public class TuesdaySchedule extends AppCompatActivity {
                         }
                     }
                     Map new_mon_times = new HashMap();
-                    new_mon_times.put("TUES", new_times);
+                    new_mon_times.put("WED", new_times);
                     userDb.updateChildren(new_mon_times);
 
                 } else {
                     Map mon_times = new HashMap();
-                    mon_times.put("TUES", times);
+                    mon_times.put("WED", times);
                     userDb.updateChildren(mon_times);
                 }
             }
