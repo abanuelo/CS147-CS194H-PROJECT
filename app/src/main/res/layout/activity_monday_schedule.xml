@@ -12,10 +12,11 @@
         android:id="@+id/table"
         android:stretchColumns="*"
         android:layout_gravity="center"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="20sp">
 
             <ImageView
                 android:id="@+id/sunday"
@@ -491,8 +492,30 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </TableLayout>
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_marginBottom="20sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/finish"
+                android:layout_width="0dp"
+                android:layout_height="25sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonoval"
+                android:onClick="onClick"
+                android:text="Finish"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </TableLayout>
 
 </ScrollView>
 

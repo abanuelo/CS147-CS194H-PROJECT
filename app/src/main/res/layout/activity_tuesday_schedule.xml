@@ -12,10 +12,11 @@
         android:id="@+id/table"
         android:stretchColumns="*"
         android:layout_gravity="center"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="20sp">
 
             <ImageView
                 android:id="@+id/sunday"
@@ -25,12 +26,12 @@
                 android:src="@drawable/ic_arrow_point_to_right"
                 android:scaleX="-1"/>
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="35dp"
-            android:textAlignment="center"
-            android:text="Tuesday"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="35dp"
+                android:textAlignment="center"
+                android:text="Tuesday"/>
 
             <ImageView
                 android:id="@+id/tuesday"
@@ -129,7 +130,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toStartOf="@+id/fourambutton"
                 app:layout_constraintStart_toStartOf="parent"
-                 />
+                />
 
             <ToggleButton
                 android:id="@+id/fourambutton"
@@ -198,7 +199,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/eightambutton"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@id/sixambutton"
-                 />
+                />
 
             <ToggleButton
                 android:id="@+id/eightambutton"
@@ -213,7 +214,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/sevenambutton"
-                 />
+                />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -237,7 +238,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toStartOf="@id/tenambutton"
                 app:layout_constraintStart_toStartOf="parent"
-                 />
+                />
 
             <ToggleButton
                 android:id="@+id/tenambutton"
@@ -254,7 +255,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toStartOf="@id/elevenambutton"
                 app:layout_constraintStart_toEndOf="@id/nineambutton"
-                 />
+                />
 
             <ToggleButton
                 android:id="@+id/elevenambutton"
@@ -401,7 +402,7 @@
 
                 app:layout_constraintEnd_toStartOf="@id/sevenpmbutton"
                 app:layout_constraintStart_toStartOf="parent"
-                 />
+                />
 
             <ToggleButton
                 android:textAlignment="center"
@@ -455,7 +456,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toStartOf="@id/tenpmbutton"
                 app:layout_constraintStart_toStartOf="parent"
-                 />
+                />
 
             <ToggleButton
                 android:id="@+id/tenpmbutton"
@@ -471,7 +472,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toStartOf="@id/elevenpmbutton"
                 app:layout_constraintStart_toEndOf="@id/ninepmbutton"
-                 />
+                />
 
             <ToggleButton
                 android:id="@+id/elevenpmbutton"
@@ -487,12 +488,34 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tenpmbutton"
-                 />
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_marginBottom="20sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/finish"
+                android:layout_width="0dp"
+                android:layout_height="25sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonoval"
+                android:onClick="onClick"
+                android:text="Finish"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
 
         </android.support.constraint.ConstraintLayout>
 
     </TableLayout>
-
 
 </ScrollView>
 

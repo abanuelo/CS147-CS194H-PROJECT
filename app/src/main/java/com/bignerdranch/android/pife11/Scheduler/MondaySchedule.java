@@ -21,6 +21,7 @@ import android.widget.ToggleButton;
 
 import com.bignerdranch.android.pife11.Dashboard;
 import com.bignerdranch.android.pife11.OnSwipeTouchListener;
+import com.bignerdranch.android.pife11.Profile;
 import com.bignerdranch.android.pife11.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +39,7 @@ public class MondaySchedule extends AppCompatActivity {
     private DatabaseReference userDb;
     private ArrayList<Integer> times;
     private ImageView sunday,tuesday;
+    private Button finish;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -49,17 +51,125 @@ public class MondaySchedule extends AppCompatActivity {
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Schedule");
         times = new ArrayList<Integer>();
         //Populates times for 23 locations
+
         for (int i = 0; i < 24; i++){
             times.add(0);
         }
 
         sunday = (ImageView) findViewById(R.id.sunday);
         tuesday = (ImageView) findViewById(R.id.tuesday);
+        finish = (Button) findViewById(R.id.finish);
+
+
+        //We are going to add a method that revolves around making sure that we already have entries
+        //and populating the view accordingly
+        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("MON").exists()){
+                    int index = 0;
+                    for (DataSnapshot time_slot : dataSnapshot.child("MON").getChildren()){
+                        String value = time_slot.getValue().toString();
+                        if (Integer.parseInt(value) == 1){
+                            if (index == 0){
+                                ToggleButton twelveam = (ToggleButton) findViewById(R.id.twelveambutton);
+                                twelveam.setChecked(true);
+                            } else if (index == 1){
+                                ToggleButton oneam = (ToggleButton) findViewById(R.id.oneambutton);
+                                oneam.setChecked(true);
+                            } else if (index ==2){
+                                ToggleButton twoam = (ToggleButton) findViewById(R.id.twoambutton);
+                                twoam.setChecked(true);
+                            } else if (index == 3){
+                                ToggleButton threeam = (ToggleButton) findViewById(R.id.threeambutton);
+                                threeam.setChecked(true);
+                            } else if (index == 4){
+                                ToggleButton fouram = (ToggleButton) findViewById(R.id.fourambutton);
+                                fouram.setChecked(true);
+                            } else if (index == 5){
+                                ToggleButton fiveam = (ToggleButton) findViewById(R.id.fiveambutton);
+                                fiveam.setChecked(true);
+                            } else if (index == 6){
+                                ToggleButton sixam = (ToggleButton) findViewById(R.id.sixambutton);
+                                sixam.setChecked(true);
+                            } else if (index == 7){
+                                ToggleButton sevenam = (ToggleButton) findViewById(R.id.sevenambutton);
+                                sevenam.setChecked(true);
+                            } else if (index == 8){
+                                ToggleButton eightam = (ToggleButton) findViewById(R.id.eightambutton);
+                                eightam.setChecked(true);
+                            } else if (index == 9){
+                                ToggleButton nineam = (ToggleButton) findViewById(R.id.nineambutton);
+                                nineam.setChecked(true);
+                            } else if (index == 10){
+                                ToggleButton tenam = (ToggleButton) findViewById(R.id.tenambutton);
+                                tenam.setChecked(true);
+                            } else if (index == 11){
+                                ToggleButton elevenam = (ToggleButton) findViewById(R.id.elevenambutton);
+                                elevenam.setChecked(true);
+                            } else if (index == 12){
+                                ToggleButton twelvepm = (ToggleButton) findViewById(R.id.twelvepmbutton);
+                                twelvepm.setChecked(true);
+                            } else if (index == 13){
+                                ToggleButton onepm = (ToggleButton) findViewById(R.id.onepmbutton);
+                                onepm.setChecked(true);
+                            } else if (index == 14){
+                                ToggleButton twopm = (ToggleButton) findViewById(R.id.twopmbutton);
+                                twopm.setChecked(true);
+                            } else if (index == 15){
+                                ToggleButton threepm = (ToggleButton) findViewById(R.id.threepmbutton);
+                                threepm.setChecked(true);
+                            } else if (index == 16){
+                                ToggleButton fourpm = (ToggleButton) findViewById(R.id.fourpmbutton);
+                                fourpm.setChecked(true);
+                            } else if (index == 17){
+                                ToggleButton fivepm = (ToggleButton) findViewById(R.id.fivepmbutton);
+                                fivepm.setChecked(true);
+                            } else if (index == 18){
+                                ToggleButton sixpm = (ToggleButton) findViewById(R.id.sixpmbutton);
+                                sixpm.setChecked(true);
+                            } else if (index == 19){
+                                ToggleButton sevenpm = (ToggleButton) findViewById(R.id.sevenpmbutton);
+                                sevenpm.setChecked(true);
+                            } else if (index == 20){
+                                ToggleButton eightpm = (ToggleButton) findViewById(R.id.eightpmbutton);
+                                eightpm.setChecked(true);
+                            } else if (index == 21){
+                                ToggleButton ninepm = (ToggleButton) findViewById(R.id.ninepmbutton);
+                                ninepm.setChecked(true);
+                            } else if (index == 22){
+                                ToggleButton tenpm = (ToggleButton) findViewById(R.id.tenpmbutton);
+                                tenpm.setChecked(true);
+                            } else if (index == 23){
+                                ToggleButton elevenpm = (ToggleButton) findViewById(R.id.elevenpmbutton);
+                                elevenpm.setChecked(true);
+                            }
+                        }
+                        index += 1;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+        //Selecting the finish button to see if it is there
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goBackToProfile = new Intent(MondaySchedule.this, Profile.class);
+                storeData();
+                startActivity(goBackToProfile);
+            }
+        });
 
         sunday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent goToSunday = new Intent(MondaySchedule.this, Dashboard.class);
+                storeData();
                 startActivity(goToSunday);
             }
         });
@@ -68,15 +178,262 @@ public class MondaySchedule extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goToTuesday = new Intent(MondaySchedule.this, TuesdaySchedule.class);
+                storeData();
                 startActivity(goToTuesday);
             }
         });
     }
 
     public void storeData(){
-        Map mon_times = new HashMap();
-        mon_times.put("MON", times);
-        userDb.updateChildren(mon_times);
+        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("MON").exists()){
+                    //the case when the values are all zero
+                    //Values already exist and we need to update those values in the database
+                    ArrayList<Integer> new_times = new ArrayList<Integer>();
+                    for (DataSnapshot time_slots : dataSnapshot.child("MON").getChildren()){
+                        String index_string = time_slots.getKey().trim();
+                        String time_slot_val_string = time_slots.getValue().toString().trim();
+                        Integer time_slot_val = Integer.parseInt(time_slot_val_string);
+                        Integer index = Integer.parseInt(index_string);
+                        Log.d("Index val", index_string);
+                        if (index == 0){
+                            ToggleButton twelveam = (ToggleButton) findViewById(R.id.twelveambutton);
+                            if (twelveam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!twelveam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 1){
+                            Log.d("Second index received", "here");
+                            ToggleButton oneam = (ToggleButton) findViewById(R.id.oneambutton);
+                            if (oneam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!oneam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index ==2){
+                            ToggleButton twoam = (ToggleButton) findViewById(R.id.twoambutton);
+                            if (twoam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!twoam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 3){
+                            ToggleButton threeam = (ToggleButton) findViewById(R.id.threeambutton);
+                            if (threeam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!threeam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 4){
+                            ToggleButton fouram = (ToggleButton) findViewById(R.id.fourambutton);
+                            if (fouram.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!fouram.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 5){
+                            ToggleButton fiveam = (ToggleButton) findViewById(R.id.fiveambutton);
+                            if (fiveam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!fiveam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 6){
+                            ToggleButton sixam = (ToggleButton) findViewById(R.id.sixambutton);
+                            if (sixam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!sixam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 7){
+                            ToggleButton sevenam = (ToggleButton) findViewById(R.id.sevenambutton);
+                            if (sevenam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!sevenam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 8){
+                            ToggleButton eightam = (ToggleButton) findViewById(R.id.eightambutton);
+                            if (eightam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!eightam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 9){
+                            ToggleButton nineam = (ToggleButton) findViewById(R.id.nineambutton);
+                            if (nineam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!nineam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 10){
+                            ToggleButton tenam = (ToggleButton) findViewById(R.id.tenambutton);
+                            if (tenam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!tenam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 11){
+                            ToggleButton elevenam = (ToggleButton) findViewById(R.id.elevenambutton);
+                            if (elevenam.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!elevenam.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 12){
+                            ToggleButton twelvepm = (ToggleButton) findViewById(R.id.twelvepmbutton);
+                            if (twelvepm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!twelvepm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 13){
+                            ToggleButton onepm = (ToggleButton) findViewById(R.id.onepmbutton);
+                            if (onepm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!onepm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 14){
+                            ToggleButton twopm = (ToggleButton) findViewById(R.id.twopmbutton);
+                            if (twopm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!twopm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 15){
+                            ToggleButton threepm = (ToggleButton) findViewById(R.id.threepmbutton);
+                            if (threepm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!threepm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 16){
+                            ToggleButton fourpm = (ToggleButton) findViewById(R.id.fourpmbutton);
+                            if (fourpm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!fourpm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 17){
+                            ToggleButton fivepm = (ToggleButton) findViewById(R.id.fivepmbutton);
+                            if (fivepm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!fivepm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 18){
+                            ToggleButton sixpm = (ToggleButton) findViewById(R.id.sixpmbutton);
+                            if (sixpm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!sixpm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 19){
+                            ToggleButton sevenpm = (ToggleButton) findViewById(R.id.sevenpmbutton);
+                            if (sevenpm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!sevenpm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 20){
+                            ToggleButton eightpm = (ToggleButton) findViewById(R.id.eightpmbutton);
+                            if (eightpm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!eightpm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 21){
+                            ToggleButton ninepm = (ToggleButton) findViewById(R.id.ninepmbutton);
+                            if (ninepm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!ninepm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 22){
+                            ToggleButton tenpm = (ToggleButton) findViewById(R.id.tenpmbutton);
+                            if (tenpm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!tenpm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        } else if (index == 23){
+                            ToggleButton elevenpm = (ToggleButton) findViewById(R.id.elevenpmbutton);
+                            if (elevenpm.isChecked() && time_slot_val == 0){
+                                new_times.add(1);
+                            } else if (!elevenpm.isChecked() && time_slot_val == 1){
+                                new_times.add(0);
+                            } else {
+                                new_times.add(time_slot_val);
+                            }
+                        }
+                    }
+                    Log.d("newtimes array", new_times.toString());
+                    Map new_mon_times = new HashMap();
+                    new_mon_times.put("MON", new_times);
+                    userDb.updateChildren(new_mon_times);
+
+                } else {
+                    Map mon_times = new HashMap();
+                    mon_times.put("MON", times);
+                    userDb.updateChildren(mon_times);
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
     public void updateBitArray(final Boolean isChecked, final Integer index){
