@@ -1,6 +1,8 @@
 package com.bignerdranch.android.pife11;
 
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +31,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class RewardsShop extends AppCompatActivity {
+public class RewardsShop extends Fragment {
     private String pifePoints;
     private String myAvatar;
     private String currentUserId;
@@ -41,6 +43,8 @@ public class RewardsShop extends AppCompatActivity {
     private Button button12;
     private Button button2;
     private Button button22;
+    private Button button3;
+    private Button button32;
 
     int constrainedX;
     int constrainedY;
@@ -48,40 +52,51 @@ public class RewardsShop extends AppCompatActivity {
     int button1Y;
     int button2X;
     int button2Y;
+    int button3X;
+    int button3Y;
+
     int constrainedX2;
     int constrainedY2;
     int button1X2;
     int button1Y2;
     int button2X2;
     int button2Y2;
+    int button3X2;
+    int button3Y2;
+
 
     private Handler handler;
+    private ImageView hat;
+    private ImageView shirt;
 
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.rewards_shop);
-        //View view = inflater.inflate(R.layout.rewards_shop, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.rewards_shop, container, false);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        getUserAvatar();
-        getUserPifePoints();
-
+        getUserAvatar(view);
+        getUserPifePoints(view);
 
         handler = new Handler();
+        hat = view.findViewById(R.id.hat);
+        shirt = view.findViewById(R.id.shirt);
 
-        constraint = findViewById(R.id.constrained_view);
-        scrollViewHats = findViewById(R.id.horizontalscrollview);
-        button1 = findViewById(R.id.button1);
-        //button1.setImageResource(R.drawable.ic_jemi_shirt);
-        button2 = findViewById(R.id.button2);
+        //HAT BUTTON
+        constraint = view.findViewById(R.id.constrained_view);
+        scrollViewHats = view.findViewById(R.id.horizontalscrollview);
+        button1 = view.findViewById(R.id.button1);
+        button2 = view.findViewById(R.id.button2);
+        button3 = view.findViewById(R.id.button3);
 
-        constraint2 = findViewById(R.id.constrained_view2);
-        scrollViewHats2 = findViewById(R.id.horizontalscrollview2);
-        button12 = findViewById(R.id.button12);
-        button22 = findViewById(R.id.button22);
+        //SHIRT BUTTON
+        constraint2 = view.findViewById(R.id.constrained_view2);
+        scrollViewHats2 = view.findViewById(R.id.horizontalscrollview2);
+        button12 = view.findViewById(R.id.button12);
+        button22 = view.findViewById(R.id.button22);
+        button32 = view.findViewById(R.id.button32);
 
         //Snapping Feature the Shop has been implemented
+        //HAT button
         scrollViewHats.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -97,10 +112,26 @@ public class RewardsShop extends AppCompatActivity {
                         button2X = (int) button2.getX();
                         button2Y = (int) button2.getY();
 
-                        if (Math.abs(constrainedX-button1X) < Math.abs(constrainedX-button2X)){
+                        button3X = (int) button3.getX();
+                        button3Y = (int) button3.getY();
+
+                        if (Math.abs(constrainedX-button1X) < Math.abs(constrainedX-button2X) && Math.abs(constrainedX-button1X) < Math.abs(constrainedX-button3X)){
                             scrollViewHats.smoothScrollTo(button1X, button1Y);
-                        } else {
+                            hat.setImageResource(0);
+                        } else if(Math.abs(constrainedX-button2X) < Math.abs(constrainedX-button1X ) && Math.abs(constrainedX-button2X) < Math.abs(constrainedX-button3X)){
                             scrollViewHats.smoothScrollTo(button2X, button2Y);
+                            if(myAvatar.equals("{avatar=Jemi}")){
+                                hat.setImageResource(R.drawable.ic_jemi_blue_hat);
+                            } else {
+                                hat.setImageResource(R.drawable.ic_ronal_blue_hat);
+                            }
+                        } else {
+                            scrollViewHats.smoothScrollTo(button3X, button3Y);
+                            if(myAvatar.equals("{avatar=Jemi}")){
+                                hat.setImageResource(R.drawable.ic_jemi_orange_hat);
+                            } else {
+                                hat.setImageResource(R.drawable.ic_ronald_orange_hat);
+                            }
                         }
                     }
                 }, 600);
@@ -109,6 +140,7 @@ public class RewardsShop extends AppCompatActivity {
         });
 
         //Snapping Feature the Shop has been implemented
+        //SHIRT button
         scrollViewHats2.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -124,11 +156,27 @@ public class RewardsShop extends AppCompatActivity {
                         button2X2 = (int) button22.getX();
                         button2Y2 = (int) button22.getY();
 
-                        if (Math.abs(constrainedX2-button1X2) < Math.abs(constrainedX2-button2X2)){
+                        button3X2 = (int) button32.getX();
+                        button3Y2 = (int) button32.getY();
+
+                        if (Math.abs(constrainedX2-button1X2) < Math.abs(constrainedX2-button2X2) && Math.abs(constrainedX2-button1X2) < Math.abs(constrainedX2-button3X2)){
                             scrollViewHats2.smoothScrollTo(button1X2, button1Y2);
+                            shirt.setImageResource(0);
+                        } else if(Math.abs(constrainedX2-button2X2) < Math.abs(constrainedX2-button1X2) && Math.abs(constrainedX2-button2X2) < Math.abs(constrainedX2-button3X2)){
+                            scrollViewHats2.smoothScrollTo(button2X2, button2Y2);
+                            if(myAvatar.equals("{avatar=Jemi}")){
+                                shirt.setImageResource(R.drawable.ic_jemi_green_shirt);
+                            } else {
+                                shirt.setImageResource(R.drawable.ic_ronald_green_shirt);
+                            }
 
                         } else {
-                            scrollViewHats2.smoothScrollTo(button2X2, button2Y2);
+                            scrollViewHats2.smoothScrollTo(button3X2, button3Y2);
+                            if(myAvatar.equals("{avatar=Jemi}")){
+                                shirt.setImageResource(R.drawable.ic_jemi_pink_shirt);
+                            } else {
+                                shirt.setImageResource(R.drawable.ic_ronald_pink_shirt);
+                            }
                         }
                     }
                 }, 600);
@@ -153,16 +201,18 @@ public class RewardsShop extends AppCompatActivity {
             }
         });
 
+
+        return view;
     }
 
-    private void getUserAvatar() {
+    private void getUserAvatar(final View view) {
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     myAvatar = dataSnapshot.getValue().toString().trim();
-                    ImageView avatarDisplay = (ImageView) findViewById(R.id.avatarRewardsShop);
+                    ImageView avatarDisplay = (ImageView) view.findViewById(R.id.avatarRewardsShop);
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                     } else {
@@ -179,14 +229,14 @@ public class RewardsShop extends AppCompatActivity {
         });
     }
 
-    private void getUserPifePoints() {
+    private void getUserPifePoints(final View view) {
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     pifePoints = dataSnapshot.getValue().toString().trim();
-                    TextView pointsDisplay = (TextView) findViewById(R.id.pifepoints);
+                    TextView pointsDisplay = (TextView) view.findViewById(R.id.pifepoints);
                     pointsDisplay.setText(pifePoints);
 
                 }

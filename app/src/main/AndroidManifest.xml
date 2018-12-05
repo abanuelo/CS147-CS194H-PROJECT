@@ -46,7 +46,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".PracticePlaying"/>
+        <activity android:name=".PracticePlaying" />
         <activity android:name=".CreateAccount" />
         <activity android:name=".Dashboard" />
         <activity android:name=".CollabMain" />
@@ -66,7 +66,13 @@
         <activity android:name=".Scheduler.SaturdaySchedule"/>
         <activity android:name=".Scheduler.MondaySchedule"/>
         <activity android:name=".SelectAvatar" />
-        <activity android:name=".RewardsShop"></activity>
+        <activity
+            android:name=".RewardsBoth"
+            android:label="@string/title_activity_rewards_both"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Trophies"></activity>
+        <activity android:name=".RewardsShop" />
+        <activity android:name=".practice_goal_met"></activity>
     </application>
 
 </manifest>
