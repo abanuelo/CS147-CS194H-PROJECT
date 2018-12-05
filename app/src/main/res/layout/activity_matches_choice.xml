@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
     android:orientation="vertical"
     android:paddingBottom="100dp"
     android:background="@drawable/renew_background"
@@ -12,21 +13,32 @@
 
 
     <Button
+        android:layout_marginTop="40dp"
         android:layout_width="300sp"
-        android:layout_height="100sp"
+        android:layout_height="50sp"
         android:id="@+id/chats"
         android:text="Chat"
         android:fontFamily="@font/proxima_novona_bold"
-        android:layout_marginBottom="100sp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/buttonoval"
         android:layout_gravity="center" />
 
     <Button
         android:layout_width="300sp"
-        android:layout_height="100sp"
+        android:layout_height="50sp"
         android:id="@+id/schedule"
         android:fontFamily="@font/proxima_novona_bold"
         android:text="Schedule Collaboration"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/buttonoval"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:id="@+id/collab_now"
+        android:fontFamily="@font/proxima_novona_bold"
+        android:text="Collaborate Now"
         android:background="@drawable/buttonoval"
         android:layout_gravity="center"/>
 

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.Matches.Matches;
+import com.bignerdranch.android.pife11.Scheduler.MondaySchedule;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,7 +48,7 @@ public class Profile extends AppCompatActivity {
     private CircleImageView profileImage;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
-    private Button sign_out, schedule, history, matches;
+    private Button sign_out, schedule, history, matches, return_home;
     private Uri resultUri;
 
     @Override
@@ -64,6 +65,7 @@ public class Profile extends AppCompatActivity {
         matches = (Button) findViewById(R.id.matches);
         history = (Button) findViewById(R.id.history);
         schedule = (Button) findViewById(R.id.schedule);
+        return_home = (Button) findViewById(R.id.return_home);
 
         //Initalize the Text Views
         name = (TextView) findViewById(R.id.name);
@@ -72,7 +74,25 @@ public class Profile extends AppCompatActivity {
         instrument = (TextView) findViewById(R.id.instrument);
 
         //Sets the Profile picture Ready for the Jave Profile Class
-        profileImage = findViewById(R.id.profile_image);
+        profileImage = (CircleImageView) findViewById(R.id.profile_image);
+
+        //Clicking into the return home
+        return_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goHome = new Intent(Profile.this, Dashboard.class);
+                startActivity(goHome);
+            }
+        });
+
+        //Clicking into the Schedule
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent setSchedule = new Intent(Profile.this, MondaySchedule.class);
+                startActivity(setSchedule);
+            }
+        });
 
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
         userDatabase.addValueEventListener(new ValueEventListener() {

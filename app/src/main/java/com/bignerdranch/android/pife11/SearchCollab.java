@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,10 +135,15 @@ public class SearchCollab extends AppCompatActivity {
         usersDb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<String> filtered_instrument_users = filterByInstruments(dataSnapshot, filter_instruments);
-                ArrayList<String> filtered_genres_users = filterByGenres(dataSnapshot, filtered_instrument_users);
-                ArrayList<String> all_filtered_users = filtered_genres_users;
-                createCardView(dataSnapshot, all_filtered_users);
+                if (similar_genre_users.isEmpty() && filter_genres.isEmpty()){
+                    ArrayList<String> all_users = getAllUsers(dataSnapshot);
+                    createCardView(dataSnapshot, all_users);
+                } else {
+                    ArrayList<String> filtered_instrument_users = filterByInstruments(dataSnapshot, filter_instruments);
+                    ArrayList<String> filtered_genres_users = filterByGenres(dataSnapshot, filtered_instrument_users);
+                    ArrayList<String> all_filtered_users = filtered_genres_users;
+                    createCardView(dataSnapshot, all_filtered_users);
+                }
             }
 
             @Override
@@ -185,6 +191,16 @@ public class SearchCollab extends AppCompatActivity {
                     result.add(curr_profile);
                 }
             }
+        }
+        return result;
+    }
+
+    //Gets all the Users for the DataSnapShot if no filters are applied to the user profile
+    public ArrayList<String> getAllUsers(DataSnapshot dataSnapshot){
+        ArrayList<String> result = new ArrayList<String>();
+        for (DataSnapshot user: dataSnapshot.getChildren()){
+            String curr_profile = user.getKey().trim();
+            result.add(curr_profile);
         }
         return result;
     }
