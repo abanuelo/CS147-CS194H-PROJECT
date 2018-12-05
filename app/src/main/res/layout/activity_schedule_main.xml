@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/renew_background"
     tools:context=".Scheduler.ScheduleMain">
 
 
@@ -342,6 +343,7 @@
         android:text="Schedule"
         android:id="@+id/schedule"
         android:layout_below="@+id/table"
+        android:background="@drawable/buttonoval"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_width="300sp">

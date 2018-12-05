@@ -5,50 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     tools:context=".Profile"
     android:padding="20sp">
-
-    <ImageView
-        android:layout_width="150sp"
-        android:layout_height="150sp"
-        android:id="@+id/profile_image"
-        android:src="@drawable/user_profile"
-        android:layout_marginBottom="20sp"
+    
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@id/profile_image"
+        android:layout_marginBottom="10sp"
+        android:layout_centerInParent="true"
+        app:civ_border_color="@color/com_facebook_blue"
+        app:civ_border_width="3dp"
         android:layout_gravity="center_horizontal"
-        />
+        android:src="@drawable/user_profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
 
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="match_parent"
+        android:fontFamily="@font/proxima_novona_bold"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20sp"
+        android:layout_marginBottom="5sp"
         android:background="@null"
         android:hint="Name" />
 
     <TextView
         android:id="@+id/username"
-        android:layout_width="match_parent"
+        android:fontFamily="@font/proxima_novona_bold"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20sp"
+        android:layout_marginBottom="5sp"
         android:background="@null"
         android:hint="Username" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="150sp"
+        android:fontFamily="@font/proxima_novona_bold"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:id="@+id/genre"
         android:background="@null"
         android:hint="Genre"
-        android:layout_marginBottom="20sp"/>
+        android:layout_marginBottom="5sp"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="150sp"
+        android:fontFamily="@font/proxima_novona_bold"
         android:layout_height="wrap_content"
         android:id="@+id/instrument"
+        android:layout_gravity="center_horizontal"
         android:background="@null"
         android:hint="Instrument"
         android:layout_marginBottom="20sp"/>
@@ -60,28 +68,35 @@
 
         <Button
             android:id="@+id/schedule"
+            android:fontFamily="@font/proxima_novona_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/buttonoval"
             android:text="Schedule" />
 
         <Button
             android:id="@+id/history"
+            android:fontFamily="@font/proxima_novona_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/buttonoval"
             android:text="History" />
 
         <Button
             android:id="@+id/matches"
+            android:fontFamily="@font/proxima_novona_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/buttonoval"
             android:text="Matches" />
     </LinearLayout>
 
     <Button
         android:id="@+id/sign_out"
+        android:fontFamily="@font/proxima_novona_bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -89,8 +104,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Sign Out"
+        android:background="@drawable/buttonoval"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </LinearLayout>

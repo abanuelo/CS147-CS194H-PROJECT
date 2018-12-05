@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/android_background"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/renew_background"
+    >
 
     <EditText
         android:id="@+id/email"
@@ -17,7 +18,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="email"
+        android:hint="email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +34,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="password"
+        android:hint="password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,8 +96,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <LinearLayout
-        android:layout_width="291dp"
+        android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="430dp"
@@ -113,22 +115,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Don't have an account?   "
+            android:hint="Don't have an account?   "
             android:textAlignment="textEnd"
-            android:textSize="10sp" />
+            android:textColor="@color/bodyTextColor"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/createAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Register Here!"
+            android:hint="Register Here!"
             android:textAlignment="textStart"
-            android:textSize="10sp"
+            android:textColor="@color/bodyTextColor"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
-
 
 
 </android.support.constraint.ConstraintLayout>
