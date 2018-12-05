@@ -7,25 +7,28 @@ import android.view.View;
 import android.widget.Button;
 
 public class peform extends AppCompatActivity {
-    private Button bperform1;
+    private Button watch;
+    private Button perform;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.peform);
 
-//        Button btn = (Button) findViewById(R.id.activity_final_perform);
+        watch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent practice_intent = new Intent(peform.this, watch_performance.class);
+                startActivity(practice_intent);
+            }
+        });
 
-        //.. set what happens when user clicks
+        perform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent practice_intent = new Intent(peform.this, StartPerformance.class);
+                startActivity(practice_intent);
+            }
+        });
 
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v){
-//                Intent ine = new Intent(perform.this, Dashboard.class);
-//                startActivity(ine);
-//
-//                // check dashboard.java for how to click button and transfer to another page
-//                // check out online for how to incoporate video but this is something for later
-//            }
-//        });
     }
 }

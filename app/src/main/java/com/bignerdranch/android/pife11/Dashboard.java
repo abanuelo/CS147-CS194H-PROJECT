@@ -78,6 +78,7 @@ public class Dashboard extends AppCompatActivity {
 
         bPractice = findViewById(R.id.practice);
         bCollab = findViewById(R.id.collab);
+        bPerform = findViewById(R.id.perform);
         userProfile = findViewById(R.id.user_profile);
         rewardShop = findViewById(R.id.reward);
 
@@ -86,6 +87,14 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent practice_intent = new Intent(Dashboard.this, PracticePlaying.class);
+                startActivity(practice_intent);
+            }
+        });
+
+        bPerform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent practice_intent = new Intent(Dashboard.this, peform.class);
                 startActivity(practice_intent);
             }
         });
