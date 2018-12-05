@@ -9,5 +9,11 @@
         <item>45 Minutes</item>
         <item>60 Minutes</item>
     </string-array>
+    <string name="title_activity_rewards">Rewards</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_rewards_both">RewardsBoth</string>
+    <string name="tab_text_1">Rewards Shop</string>
+    <string name="tab_text_2">My Rewards</string>
 
 </resources>

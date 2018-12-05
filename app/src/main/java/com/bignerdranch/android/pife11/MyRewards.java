@@ -22,6 +22,7 @@ public class MyRewards extends Fragment {
     private String currentUserId;
     private String pifePoints;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,9 +30,9 @@ public class MyRewards extends Fragment {
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getUserAvatar(view);
         getUserPifePoints(view);
+
+
         return view;
-
-
     }
 
     private void getUserAvatar(final View view) {
