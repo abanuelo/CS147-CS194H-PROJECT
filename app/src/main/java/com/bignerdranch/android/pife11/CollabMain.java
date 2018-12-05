@@ -127,8 +127,7 @@ public class CollabMain extends AppCompatActivity {
                 if (violin.isChecked()){
                     Instruments.add("violin");
                 }
-
-
+                
                 Intent applyfilter_intent = new Intent(CollabMain.this, SearchCollab.class).putStringArrayListExtra("GENRES", Genres).putStringArrayListExtra("INSTRUMENTS", Instruments);
                 startActivity(applyfilter_intent);
             }

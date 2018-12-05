@@ -158,6 +158,16 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/return_home"
+        android:layout_gravity="center"
+        android:text="Return To Homepage"
+        android:fontFamily="@font/proxima_novona_bold"
+        android:background="@drawable/buttonoval"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
         android:id="@+id/sign_out"
         android:fontFamily="@font/proxima_novona_bold"
         android:layout_width="match_parent"
