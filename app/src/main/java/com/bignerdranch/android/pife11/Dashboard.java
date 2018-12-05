@@ -55,9 +55,9 @@ public class Dashboard extends AppCompatActivity {
 
         //Adding Gifs into the Code Content
         try{
-            drawable = new GifDrawable(getResources(), R.drawable.jemi_happy);
+            drawable = new GifDrawable(getResources(), R.drawable.jemi_sad);
         } catch(IOException ie){
-
+            //Catch the IO Exception in case of getting an hour
         }
 
         drawable.setLoopCount(0);
