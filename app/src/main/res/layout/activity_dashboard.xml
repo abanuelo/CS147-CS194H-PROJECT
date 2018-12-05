@@ -13,6 +13,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/DashboardHeader"
         android:layout_width="match_parent"
+        android:paddingTop="10dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -40,8 +41,8 @@
             android:gravity="center"
             android:text="Jemi"
             android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="28sp"
+            android:textColor="#FFF"
+            android:textSize="40sp"
             app:layout_constraintEnd_toStartOf="@+id/user_profile"
             app:layout_constraintStart_toEndOf="@id/reward"
             tools:layout_editor_absoluteY="5dp"
@@ -73,13 +74,89 @@
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toBottomOf="@+id/DashboardHeader" />-->
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/PracticeHeartLevel"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="111dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="61dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="216dp"
+            android:layout_marginBottom="350dp"
+            android:progress="25"
+            android:progressTint="#CC0000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="47dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="350dp"
+            android:src="@drawable/heart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.321" />
+
+        <ProgressBar
+            android:id="@+id/StreakLevel"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="111dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="405dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="216dp"
+            android:layout_marginBottom="350dp"
+            android:progress="25"
+            android:progressTint="#ffa500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.34" />
+
+        <ImageView
+            android:layout_width="59dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="380dp"
+            android:src="@drawable/ic_fire"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32999998" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/animation"
+        android:paddingTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="25sp"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:minHeight="200dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +178,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/animation"
     app:layout_constraintVertical_bias="0.85"
-    android:paddingBottom="10dp"
+    android:paddingBottom="20dp"
     >
 
     <Button
