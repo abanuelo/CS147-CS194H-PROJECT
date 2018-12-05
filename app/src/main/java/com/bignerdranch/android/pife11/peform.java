@@ -12,6 +12,7 @@ public class peform extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.peform);
+
 //        Button btn = (Button) findViewById(R.id.activity_final_perform);
 
         //.. set what happens when user clicks
