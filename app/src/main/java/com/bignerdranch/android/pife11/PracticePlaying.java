@@ -197,8 +197,15 @@ public class PracticePlaying extends AppCompatActivity {
         boolean goalMetBool = checkIfGoalMet();
 
         switch (v.getId()){
-
             case R.id.PracticeDone:
+                if (goalMetBool) {
+                    updateHeartLevel();
+                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class);
+                    startActivity(goalMet);
+                }
+                else {
+                    confirmExit();
+                }
 //
 //                check if time = goal
 

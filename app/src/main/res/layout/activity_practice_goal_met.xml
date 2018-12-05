@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/android_background"
+    android:background="@drawable/renew_background"
     tools:context=".practice_goal_met"
     >
 
     <EditText
         android:id="@+id/PracticeGoalMet"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="proxima_novona_bold"
         android:text="Goal  Met!"
-        android:textColor="@android:color/black"
         android:textSize="40sp"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

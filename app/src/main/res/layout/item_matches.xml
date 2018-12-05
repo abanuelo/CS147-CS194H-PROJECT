@@ -6,7 +6,7 @@
     android:background="@drawable/renew_background"
     android:padding="20sp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="50sp"
         android:layout_height="50sp"
         android:id="@+id/MatchImage"

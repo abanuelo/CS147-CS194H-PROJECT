@@ -11,15 +11,17 @@ import com.bignerdranch.android.pife11.Chat.Chat;
 import com.bignerdranch.android.pife11.MatchesChoice;
 import com.bignerdranch.android.pife11.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView myMatchId, myMatchName;
-    public ImageView myMatchImage;
+    public CircleImageView myMatchImage;
     public MatchesViewHolders(View itemView){
         super(itemView);
         itemView.setOnClickListener(this);
         myMatchId = (TextView) itemView.findViewById(R.id.Matchid);
         myMatchName = (TextView) itemView.findViewById(R.id.MatchName);
-        myMatchImage = (ImageView) itemView.findViewById(R.id.MatchImage);
+        myMatchImage = (CircleImageView) itemView.findViewById(R.id.MatchImage);
 
     }
     @Override

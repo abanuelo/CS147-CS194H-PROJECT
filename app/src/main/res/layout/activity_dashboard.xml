@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/renew_background"
+    android:background="@drawable/android_background"
     android:backgroundTint="#20FFFFFF"
     android:backgroundTintMode="src_over"
     tools:context=".Dashboard">
@@ -60,65 +60,81 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/avatarDisplay"
+    <!--<ImageView-->
+        <!--android:id="@+id/avatarDisplay"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginStart="12dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:minHeight="200dp"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/linearLayout"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/DashboardHeader" />-->
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/animation"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="25sp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:minHeight="200dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DashboardHeader" />
+    />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+<LinearLayout
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="8dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:visibility="visible"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/animation"
+    app:layout_constraintVertical_bias="0.85"
+    android:paddingBottom="10dp"
+    >
+
+    <Button
+        android:id="@+id/practice"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarDisplay"
-        app:layout_constraintVertical_bias="0.85">
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:background="@drawable/buttonoval"
+        android:fontFamily="@font/proxima_novona_bold"
+        android:text="Practice"
+        android:textColor="#FFFFFF" />
 
-        <Button
-            android:id="@+id/practice"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:background="@drawable/buttonoval"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:text="Practice"
-            android:textColor="#FFFFFF" />
+    <Button
+        android:id="@+id/perform"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20sp"
+        android:background="@drawable/buttonoval"
+        android:fontFamily="@font/proxima_novona_bold"
+        android:text="Perform"
+        android:textColor="#FFFFFF" />
 
-        <Button
-            android:id="@+id/perform"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20sp"
-            android:background="@drawable/buttonoval"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:text="Perform"
-            android:textColor="#FFFFFF" />
+    <Button
+        android:id="@+id/collab"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20sp"
+        android:background="@drawable/buttonoval"
+        android:fontFamily="@font/proxima_novona_bold"
+        android:text="Collab"
+        android:textColor="#FFFFFF" />
 
-        <Button
-            android:id="@+id/collab"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20sp"
-            android:background="@drawable/buttonoval"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:text="Collab"
-            android:textColor="#FFFFFF" />
-
-    </LinearLayout>
+</LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
