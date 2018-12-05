@@ -25,7 +25,6 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
     private List<MatchesObject> matchesList;
     private Context context;
     private String text;
-    private MatchesViewHolders result;
 
     public MatchesAdapter(List<MatchesObject> matchesList, Context context){
         this.matchesList = matchesList;
@@ -43,29 +42,10 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
 
     @Override
     public void onBindViewHolder (MatchesViewHolders holder, int position){
-        //holder.myMatchId.setText(matchesList.get(position).getUserId());
-        result = holder;
-        String match_id = matchesList.get(position).getUserId();
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(match_id).child("username");
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    text = dataSnapshot.getValue().toString().trim();
-                    result.myMatchId.setText(text);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        result.myMatchName.setText(matchesList.get(position).getName());
+        holder.myMatchId.setText(matchesList.get(position).getUserId());
+        holder.myMatchName.setText(matchesList.get(position).getName());
         if (!matchesList.get(position).getProfileImageURL().equals("default")){
-            Glide.with(context).load(matchesList.get(position).getProfileImageURL()).into(result.myMatchImage);
+            Glide.with(context).load(matchesList.get(position).getProfileImageURL()).into(holder.myMatchImage);
         }
 
     }

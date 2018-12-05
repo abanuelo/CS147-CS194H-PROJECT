@@ -23,7 +23,7 @@
             android:paddingTop="130sp"
             android:layout_gravity="center_horizontal"/>
 
-        <CircleImageView
+        <ImageView
             android:id="@+id/profile_image"
             android:layout_width="150sp"
             android:layout_height="150sp"

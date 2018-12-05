@@ -37,6 +37,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CreateAccount extends AppCompatActivity {
     private EditText name, username, email, password;
     private ImageView profile_image;
