@@ -197,7 +197,6 @@ public class PracticePlaying extends AppCompatActivity {
         boolean goalMetBool = checkIfGoalMet();
 
         switch (v.getId()){
-
             case R.id.PracticeDone:
                 if (goalMetBool) {
                     updateHeartLevel();
@@ -207,11 +206,30 @@ public class PracticePlaying extends AppCompatActivity {
                 else {
                     confirmExit();
                 }
+//
+//                check if time = goal
+
+                if (goalMetBool) {
+                    updateHeartLevel();
+                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class);
+                    startActivity(goalMet);
+                }
+                else {
+                    confirmExit();
+                }
+                        //if so, say congrats, show XP points gained, etc
+//                if else message
+                    //confirm hasn't hit target goal yet. Ask to stay
+                        //
+                        //transition to Home Screen
+//                Intent homeScreen = new Intent(PracticePlaying.this, Dashboard.class);
+//                startActivity(homeScreen);
                 break;
             case R.id.PracticePlayPause:
 //                See if Goal has been Met
                 EditText goalMet = (EditText) findViewById(R.id.PracticeGoalMet);
                 EditText todaysGoal = (EditText) findViewById(R.id.PracticeTodaysGoal);
+                //spinner also exists
 
                 if (playing) {
 //                    It is now paused

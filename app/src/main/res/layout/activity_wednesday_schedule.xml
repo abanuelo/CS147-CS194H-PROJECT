@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/renew_background"
+    tools:context=".Scheduler.WednesdaySchedule">
+
+
+    <TableLayout
+        android:id="@+id/table"
+        android:stretchColumns="*"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_marginTop="20sp">
+
+            <ImageView
+                android:id="@+id/tuesday"
+                android:layout_gravity="center"
+                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:src="@drawable/ic_arrow_point_to_right"
+                android:scaleX="-1"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="35dp"
+                android:textAlignment="center"
+                android:text="Wednesday"/>
+
+            <ImageView
+                android:id="@+id/thursday"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_point_to_right"/>
+
+        </TableRow>
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="16dp"
+            android:textAlignment="center"
+            android:paddingBottom="10sp"
+            android:text="Please select hour intervals you are free in"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/tableRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ToggleButton
+                android:id="@+id/twelveambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:checked="false"
+                android:textOff="12:00am"
+                android:textOn="12:00am"
+
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/oneambutton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ToggleButton
+                android:id="@+id/oneambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:checked="false"
+                android:textOff="1:00am"
+                android:textOn="1:00am"
+
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/twoambutton"
+                app:layout_constraintStart_toEndOf="@+id/twelveambutton" />
+
+            <ToggleButton
+                android:id="@+id/twoambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="2:00am"
+                android:textOn="2:00am"
+                android:checked="false"
+                android:textAlignment="center"
+                app:layout_constraintBaseline_toBaselineOf="@+id/oneambutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/oneambutton" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:id="@+id/threeambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="3:00am"
+                android:textOn="3:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@+id/fourambutton"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ToggleButton
+                android:id="@+id/fourambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="4:00am"
+                android:textOn="4:00am"
+                android:textAlignment="center"
+                app:layout_constraintBaseline_toBaselineOf="@+id/threeambutton"
+                app:layout_constraintEnd_toStartOf="@+id/fiveambutton"
+                app:layout_constraintStart_toEndOf="@id/threeambutton" />
+
+            <ToggleButton
+                android:id="@+id/fiveambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="5:00am"
+                android:textOn="5:00am"
+                android:textAlignment="center"
+                app:layout_constraintBaseline_toBaselineOf="@+id/threeambutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fourambutton" />
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:id="@+id/sixambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="6:00am"
+                android:textOn="6:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/sevenambutton"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ToggleButton
+                android:id="@+id/sevenambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="7:00am"
+                android:textOn="7:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@+id/eightambutton"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/sixambutton"
+                />
+
+            <ToggleButton
+                android:id="@+id/eightambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="8:00am"
+                android:textOn="8:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sevenambutton"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:id="@+id/nineambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="9:00am"
+                android:textOn="9:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/tenambutton"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ToggleButton
+                android:id="@+id/tenambutton"
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="10:00am"
+                android:textOn="10:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/elevenambutton"
+                app:layout_constraintStart_toEndOf="@id/nineambutton"
+                />
+
+            <ToggleButton
+                android:id="@+id/elevenambutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="11:00am"
+                android:textOn="11:00am"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tenambutton"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:id="@+id/twelvepmbutton"
+                android:background="@drawable/schedule_toggle_btn"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:textOff="12:00pm"
+                android:textOn="12:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/onepmbutton"/>
+
+            <ToggleButton
+                android:textAlignment="center"
+                android:id="@+id/onepmbutton"
+                android:layout_width="0dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:textOff="1:00pm"
+                android:textOn="1:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/twelvepmbutton"
+                app:layout_constraintEnd_toStartOf="@id/twopmbutton"/>
+
+            <ToggleButton
+                android:textAlignment="center"
+                android:id="@+id/twopmbutton"
+                android:background="@drawable/schedule_toggle_btn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:textOff="2:00pm"
+                android:textOn="2:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/onepmbutton"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:textAlignment="center"
+                android:layout_weight="1"
+                android:background="@drawable/schedule_toggle_btn"
+                android:id="@+id/threepmbutton"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:textOff="3:00pm"
+                android:textOn="3:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/fourpmbutton"/>
+
+            <ToggleButton
+                android:textAlignment="center"
+                android:id="@+id/fourpmbutton"
+                android:background="@drawable/schedule_toggle_btn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:textOff="4:00pm"
+                android:textOn="4:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/threepmbutton"
+                app:layout_constraintEnd_toStartOf="@id/fivepmbutton"/>
+
+            <ToggleButton
+                android:textAlignment="center"
+                android:id="@+id/fivepmbutton"
+                android:background="@drawable/schedule_toggle_btn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:textOff="5:00pm"
+                android:textOn="5:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/fourpmbutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:id="@+id/sixpmbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="6:00pm"
+                android:textOn="6:00pm"
+                android:textAlignment="center"
+
+                app:layout_constraintEnd_toStartOf="@id/sevenpmbutton"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ToggleButton
+                android:textAlignment="center"
+                android:id="@+id/sevenpmbutton"
+                android:background="@drawable/schedule_toggle_btn"
+                android:layout_width="0dp"
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                android:textOff="7:00pm"
+                android:textOn="7:00pm"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toEndOf="@id/sixpmbutton"
+                app:layout_constraintEnd_toStartOf="@id/eightpmbutton"
+                />
+
+            <ToggleButton
+                android:id="@+id/eightpmbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/schedule_toggle_btn"
+                android:textOff="8:00pm"
+                android:textOn="8:00pm"
+                android:onClick="onClick"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/sevenpmbutton"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <ToggleButton
+                android:id="@+id/ninepmbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="9:00pm"
+                android:textOn="9:00pm"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/tenpmbutton"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ToggleButton
+                android:id="@+id/tenpmbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="10:00pm"
+                android:textOn="10:00pm"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toStartOf="@id/elevenpmbutton"
+                app:layout_constraintStart_toEndOf="@id/ninepmbutton"
+                />
+
+            <ToggleButton
+                android:id="@+id/elevenpmbutton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/schedule_toggle_btn"
+                android:onClick="onClick"
+                android:textOff="11:00pm"
+                android:textOn="11:00pm"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tenpmbutton"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:padding="5sp"
+            android:layout_marginBottom="20sp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/finish"
+                android:layout_width="0dp"
+                android:layout_height="25sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonoval"
+                android:onClick="onClick"
+                android:text="Finish"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </TableLayout>
+
+</ScrollView>
+
+
