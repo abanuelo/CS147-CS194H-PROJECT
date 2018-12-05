@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/proxima_novona"
             android:text="Match ID"
+            android:visibility="invisible"
             android:layout_gravity="center"
             android:id="@+id/Matchid"/>
 
