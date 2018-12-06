@@ -142,6 +142,9 @@ public class Dashboard extends AppCompatActivity {
                 break;
             case 3:
                 taskflow = collab;
+                if (!collabBool) {
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((10)));
+                }
                 collabBool = true;
                 break;
             default:
@@ -202,8 +205,6 @@ public class Dashboard extends AppCompatActivity {
                     FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("toddler");
 
                 }
-                FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((10)));
-
             }
             catch (IOException ie) {
                 Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
