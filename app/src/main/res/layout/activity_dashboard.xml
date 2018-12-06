@@ -76,7 +76,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,13 +152,13 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/animation"
-        android:paddingTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="25sp"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
         android:minHeight="200dp"
+        android:paddingTop="30dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
