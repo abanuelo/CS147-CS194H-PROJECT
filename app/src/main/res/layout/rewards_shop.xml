@@ -72,15 +72,17 @@
             android:translationZ="2dp"
             >
             <TextView
+                android:id="@+id/price_tag_1"
                 android:layout_width="60dp"
                 android:layout_height="83dp"
-                android:text="5 Coins"
+                android:text="0 Coins"
                 />
             <TextView
+                android:id="@+id/price_tag2"
                 android:layout_width="60dp"
                 android:layout_height="82dp"
                 android:layout_marginTop="11dp"
-                android:text="5 Coins"
+                android:text="0 Coins"
                 />
         </LinearLayout>
         <!--End Ab's Additions-->

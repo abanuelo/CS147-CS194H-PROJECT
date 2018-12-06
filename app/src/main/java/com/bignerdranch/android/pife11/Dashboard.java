@@ -176,8 +176,8 @@ public class Dashboard extends AppCompatActivity {
                             if(hl == 1) collabBool = true;
                         }
                         if (match.getKey().equals("dressed")) {
-                            String dres = (match.getValue().toString());
-                            if(dres == "true") dressed = true;
+                            String dres = match.getValue().toString();
+                            if(dres.equals("true")) dressed = true;
                         }
                     }
                     updateAnimation();
