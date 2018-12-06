@@ -1,6 +1,6 @@
 # CS147 High-Fi Prototype: PIFE - Always Have a Friend to Practice With
 <p align="center">
-<img src="https://user-images.githubusercontent.com/32311654/49608589-e1269400-f94d-11e8-82fd-e23477eb7a8f.png" alt="Pife Logo" width="600" height="300">
+<img src="https://user-images.githubusercontent.com/32311654/49608589-e1269400-f94d-11e8-82fd-e23477eb7a8f.png" alt="Pife Logo" >
 </p>
 
 ## Overview
@@ -16,6 +16,7 @@ their needs.
 When creating an account, users have the option to select one of two avatars--Jemi or Ronald. The fully developed version of Pife would have multiple avatars to select from.
 
 <p align="center">
+  <img src="https://user-images.githubusercontent.com/32311654/49609953-ee458200-f951-11e8-9b9c-4136c98922a3.png">
 </p> 
   
 The three defined tasks for Pife are: (1) practice, (2) perform, and (3) collaborate. In the practice task flow, users can set daily goals for how long they wish to practice. By meeting their daily practice goals, they are able to gain pife-points and increase their avatar's happiness. The perform task flow has two options--viewing other musician's performances or performing a live performance yourself. The collaborate task flow has the option of filtering users by the type of instrument they play and their genre of choice. Users are then taken to a Tinder-like flow where they can swipe right to ask to collaborate with another musician or swipe left otherwise. If a match has been made, a collaboration session will commence. Below are screenshots of each of the task flows. 
