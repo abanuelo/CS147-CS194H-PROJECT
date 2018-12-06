@@ -81,7 +81,8 @@ public class PracticePlaying extends AppCompatActivity {
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                     } else {
-                        avatarDisplay.setImageResource(R.drawable.ic_nerdy_monster_baby);
+                        //THIS CHANGE WAS MADE SOLEY FOR THE SLIDES BUT CHANGE BACK TO IC_NERDY_MONSTER_BABY
+                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                     }
 
                 }

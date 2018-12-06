@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/renew_background"
+    android:background="@drawable/android_background"
     tools:context=".Profile"
     android:padding="20sp">
     

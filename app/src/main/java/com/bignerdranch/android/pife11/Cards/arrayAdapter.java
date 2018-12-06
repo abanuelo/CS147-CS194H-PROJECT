@@ -34,7 +34,8 @@ public class arrayAdapter extends ArrayAdapter<Cards> {
 
         //Setting the Image for Reference
         if(card_item.getProfileImageURL().equals("default")){
-            Glide.with(convertView.getContext()).load(R.mipmap.ic_launcher).into(image);
+            //THIS WILL USE THE AVATARS FOR
+            Glide.with(convertView.getContext()).load(R.drawable.ic_nerdy_monster_baby).into(image);
         } else {
             Glide.with(convertView.getContext()).load(card_item.getProfileImageURL()).into(image);
         }
