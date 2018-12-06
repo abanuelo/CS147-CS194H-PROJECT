@@ -1,7 +1,7 @@
 # CS147-PROJECT
 CS147 High-Fi Prototype Project
 
-<img src="https://user-images.githubusercontent.com/32311654/49608354-4928aa80-f94d-11e8-81d3-e5d2844da435.png" alt="Pife_Logo" width="300" height="300">
+<img src="https://user-images.githubusercontent.com/32311654/49608589-e1269400-f94d-11e8-82fd-e23477eb7a8f.png" alt="Pife Logo" width="300" height="300">
 
 PIFE - Always Have a Friend to Practice With
 ______________________________________
