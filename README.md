@@ -1,7 +1,7 @@
 # CS147-PROJECT
 CS147 High-Fi Prototype Project
 
-![alt text](https://raw.githubusercontent.com/abanuelo/CS147-PROJECT/master/app/src/main/res/drawable/pife_logo.png)
+![alt text](CS147-PROJECT/master/app/src/main/res/drawable/pife_logo.png?raw=true "Pife Logo")
 
 PIFE - Always Have a Friend to Practice With
 ______________________________________
