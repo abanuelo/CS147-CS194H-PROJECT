@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +41,21 @@ public class practice_goal_met extends AppCompatActivity {
         EditText messageView = findViewById(R.id.PracticeGoalMet);
         messageView.setText(message);
 
+        TextView talking = findViewById(R.id.PracticeGoalMetMessage);
+        talking.setText(message);
+    }
+
+    @Override
+    protected void onResume(){
+        getUserAvatar();
+        message = getIntent().getExtras().getString("message");
+
+        EditText messageView = findViewById(R.id.PracticeGoalMet);
+        messageView.setText(message);
+
+        TextView talking = findViewById(R.id.PracticeGoalMetMessage);
+        talking.setText(message);
+        super.onResume();
     }
 
     private void getUserAvatar() {
