@@ -1,6 +1,8 @@
 # CS147-PROJECT
 CS147 High-Fi Prototype Project
 
+![alt text](https://raw.githubusercontent.com/abanuelo/CS147-PROJECT/master/app/src/main/res/drawable/pife_logo.png)
+
 PIFE - Always Have a Friend to Practice With
 ______________________________________
 As part of the art and culture studio for Fall 2018 CS 147, our team decided to explore the domain of music creation via the 
