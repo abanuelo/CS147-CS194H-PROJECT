@@ -40,7 +40,7 @@ public class Dashboard extends AppCompatActivity {
     private String currentUserId;
     private GifImageView animation;
     private GifDrawable drawable;
-    private int heartLevelPoints;
+    private int heartLevelPoints = 0;
     private ProgressBar heartlevel;
     private ProgressBar streaklevel;
 
@@ -62,44 +62,15 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        FetchHeartStreakLevel();
+//        FetchHeartStreakLevel();
+//        checkIfTaskComplete();
 
-        checkIfTaskComplete();
 
-        if (practiceBool && performBool && collabBool) {
-            //Evolve the creature
-            try{
-                //do the dialog
-                drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
-            }
-            catch (IOException ie) {
-                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
-            }
-        }
-        else {
-
-            //Adding Gifs into the Code Content
-            try {
-                drawable = new GifDrawable(getResources(), R.drawable.jemi_sad);
-                if (heartLevelPoints > 51) {
-                    drawable = new GifDrawable(getResources(), R.drawable.jemi_happy);
-                }
-
-            } catch (IOException ie) {
-                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
-                //Catch the IO Exception in case of getting an hour
-            }
-        }
-
-        drawable.setLoopCount(0);
-        animation = (GifImageView) findViewById(R.id.animation);
-        animation.setBackground(drawable);
         bPractice = findViewById(R.id.practice);
         bCollab = findViewById(R.id.collab);
         bPerform = findViewById(R.id.perform);
         userProfile = findViewById(R.id.user_profile);
         rewardShop = findViewById(R.id.reward);
-
 
         bPractice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +119,14 @@ public class Dashboard extends AppCompatActivity {
 
     //Method to call when a button is clicked -> provides change in bool
     // 1=practice 2=perform 3=collab
+
+    @Override
+    protected void onResume(){
+        FetchHeartStreakLevel();
+        checkIfTaskComplete();
+        super.onResume();
+    }
+
     private void updateButton(final int task){
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
 
@@ -180,6 +159,7 @@ public class Dashboard extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot match: dataSnapshot.getChildren()){
+                        Log.i("Stats:", match.getKey() + ": " + match.getValue().toString());
                         if (match.getKey().equals(practice)) {
                             int hl = Integer.parseInt(match.getValue().toString().trim());
                             if(hl == 1) practiceBool = true;
@@ -193,6 +173,7 @@ public class Dashboard extends AppCompatActivity {
                             if(hl == 1) collabBool = true;
                         }
                     }
+                    updateAnimation();
                 }
             }
 
@@ -201,6 +182,44 @@ public class Dashboard extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void updateAnimation(){
+        Log.i("Stats:", "Truths: " + practiceBool + performBool + collabBool);
+        if (practiceBool && performBool && collabBool) {
+            //Evolve the creature
+            try{
+                //do the dialog
+                drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
+                FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((10)));
+
+            }
+            catch (IOException ie) {
+                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
+            }
+        }
+        else {
+
+            //Adding Gifs into the Code Content
+            try {
+                Log.i("heartLevelPoints", "Points" + Integer.toString(heartLevelPoints));
+                if (heartLevelPoints > 51) {
+                    drawable = new GifDrawable(getResources(), R.drawable.jemi_happy);
+                }
+                else {
+                    drawable = new GifDrawable(getResources(), R.drawable.jemi_sad);
+                }
+
+
+            } catch (IOException ie) {
+                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
+                //Catch the IO Exception in case of getting an hour
+            }
+        }
+
+        drawable.setLoopCount(0);
+        animation = (GifImageView) findViewById(R.id.animation);
+        animation.setBackground(drawable);
     }
 
     private void FetchHeartStreakLevel(){
@@ -214,6 +233,7 @@ public class Dashboard extends AppCompatActivity {
                         if (match.getKey().equals("heartlevel")) {
                             int hl = Integer.parseInt(match.getValue().toString().trim());
                             heartlevel = findViewById(R.id.DashboardHeartLevel);
+                            Log.i("heartlevel-hl", Integer.toString(hl) );
                             heartLevelPoints = hl;
                             heartlevel.setProgress(hl);
                         }
@@ -224,6 +244,7 @@ public class Dashboard extends AppCompatActivity {
                         }
                     }
                 }
+                checkIfTaskComplete();
             }
 
             @Override

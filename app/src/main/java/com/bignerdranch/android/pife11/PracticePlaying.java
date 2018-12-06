@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.os.SystemClock;
 import android.widget.Toast;
 
+
 import com.bignerdranch.android.pife11.Matches.MatchesObject;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +28,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 import static java.lang.Integer.min;
 import static java.lang.Integer.parseInt;
@@ -43,6 +49,10 @@ public class PracticePlaying extends AppCompatActivity {
     private ProgressBar heartlevel;
     long timeWhenStopped = 0;
     private String currentUserId;
+    private GifDrawable drawable;
+    private GifImageView animation;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +77,6 @@ public class PracticePlaying extends AppCompatActivity {
         getUserAvatar();
         FetchHeartLevel();
 
-        //delete later
     }
 
     private void getUserAvatar() {
@@ -80,9 +89,21 @@ public class PracticePlaying extends AppCompatActivity {
                     ImageView avatarDisplay = (ImageView) findViewById(R.id.PracticeAvatar);
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                        avatarDisplay.setVisibility(View.INVISIBLE);
+
+
+                        try {
+                            drawable = new GifDrawable(getResources(), R.drawable.jemi_talking);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        drawable.setLoopCount(0);
+                        animation = (GifImageView) findViewById(R.id.PracticeAvatarGIF);
+                        animation.setBackground(drawable);
+                        animation.setVisibility(View.VISIBLE);
+                        //make him talking?
                     } else {
-                        //THIS CHANGE WAS MADE SOLEY FOR THE SLIDES BUT CHANGE BACK TO IC_NERDY_MONSTER_BABY
-                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                        avatarDisplay.setImageResource(R.drawable.ic_nerdy_monster_baby);
                     }
 
                 }
@@ -127,8 +148,8 @@ public class PracticePlaying extends AppCompatActivity {
     private void updateHeartLevel(){
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
         String goal = spinner.getSelectedItem().toString().trim();
-        goal = goal.substring(0,2).trim();
-        final int minutes = Integer.parseInt(goal);
+        String min = goal.substring(0,2).trim();
+        final int minutes = Integer.parseInt(min);
 
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -201,7 +222,7 @@ public class PracticePlaying extends AppCompatActivity {
             case R.id.PracticeDone:
                 if (goalMetBool) {
                     updateHeartLevel();
-                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class);
+                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class).putExtra("message","You have met your Goal!!!");
                     startActivity(goalMet);
                 }
                 else {
@@ -212,7 +233,7 @@ public class PracticePlaying extends AppCompatActivity {
 
                 if (goalMetBool) {
                     updateHeartLevel();
-                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class);
+                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class).putExtra("message","Goal has been Met!");
                     startActivity(goalMet);
                 }
                 else {

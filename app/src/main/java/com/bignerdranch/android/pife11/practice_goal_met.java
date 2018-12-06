@@ -16,11 +16,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
+
 public class practice_goal_met extends AppCompatActivity {
 
     private String currentUserId;
     private String myAvatar;
-
+    private String message;
+    private GifDrawable drawable;
+    private GifImageView animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,10 @@ public class practice_goal_met extends AppCompatActivity {
         setContentView(R.layout.activity_practice_goal_met);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getUserAvatar();
+        message = getIntent().getExtras().getString("message");
+
+        EditText messageView = findViewById(R.id.PracticeGoalMet);
+        messageView.setText(message);
 
     }
 
@@ -41,6 +52,18 @@ public class practice_goal_met extends AppCompatActivity {
                     ImageView avatarDisplay = (ImageView) findViewById(R.id.PracticeGoalAvatar);
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                        avatarDisplay.setVisibility(View.INVISIBLE);
+
+
+                        try {
+                            drawable = new GifDrawable(getResources(), R.drawable.jemi_talking);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        drawable.setLoopCount(0);
+                        animation = (GifImageView) findViewById(R.id.PracticeGoalAvatarGIF);
+                        animation.setBackground(drawable);
+                        animation.setVisibility(View.VISIBLE);
                     } else {
                         avatarDisplay.setImageResource(R.drawable.ic_nerdy_monster_baby);
                     }
