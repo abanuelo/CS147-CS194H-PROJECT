@@ -51,7 +51,7 @@ public class Dashboard extends AppCompatActivity {
     private boolean practiceBool = false;
     private boolean performBool = false;
     private boolean collabBool = false;
-
+    private boolean dressed = false;
 
     //private LottieAnimationView animation;
     //private String myAvatar;
@@ -142,6 +142,9 @@ public class Dashboard extends AppCompatActivity {
                 break;
             case 3:
                 taskflow = collab;
+                if (!collabBool) {
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((10)));
+                }
                 collabBool = true;
                 break;
             default:
@@ -172,6 +175,10 @@ public class Dashboard extends AppCompatActivity {
                             int hl = Integer.parseInt(match.getValue().toString().trim());
                             if(hl == 1) collabBool = true;
                         }
+                        if (match.getKey().equals("dressed")) {
+                            String dres = (match.getValue().toString());
+                            if(dres == "true") dressed = true;
+                        }
                     }
                     updateAnimation();
                 }
@@ -190,9 +197,14 @@ public class Dashboard extends AppCompatActivity {
             //Evolve the creature
             try{
                 //do the dialog
-                drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
-                FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((10)));
+                if (dressed) {
+                    drawable = new GifDrawable(getResources(), R.drawable.jemi_dressed_toddler);
+                }
+                else{
+                    drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("toddler");
 
+                }
             }
             catch (IOException ie) {
                 Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
