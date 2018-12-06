@@ -32,6 +32,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class RewardsShop extends Fragment {
+    private TextView pifePointsLocation;
     private String pifePoints;
     private String myAvatar;
     private String currentUserId;
@@ -45,6 +46,8 @@ public class RewardsShop extends Fragment {
     private Button button22;
     private Button button3;
     private Button button32;
+    private Button buy1;
+    private Button buy2;
 
     int constrainedX;
     int constrainedY;
@@ -64,6 +67,7 @@ public class RewardsShop extends Fragment {
     int button3X2;
     int button3Y2;
 
+    private View view;
 
     private Handler handler;
     private ImageView hat;
@@ -71,11 +75,11 @@ public class RewardsShop extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.rewards_shop, container, false);
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.rewards_shop, container, false);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         getUserAvatar(view);
-        getUserPifePoints(view);
+        getUserPifePoints();
 
         handler = new Handler();
         hat = view.findViewById(R.id.hat);
@@ -94,6 +98,42 @@ public class RewardsShop extends Fragment {
         button12 = view.findViewById(R.id.button12);
         button22 = view.findViewById(R.id.button22);
         button32 = view.findViewById(R.id.button32);
+
+        //Buy Buttons
+        buy1 = view.findViewById(R.id.buy_1);
+        buy2 = view.findViewById(R.id.buy_2);
+        pifePointsLocation = (TextView) view.findViewById(R.id.pifepoints);
+
+
+        //Buying Hats
+        buy1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int curr_points = Integer.parseInt(pifePointsLocation.getText().toString());
+                if (curr_points >= 5){
+                    curr_points -= 5;
+                    pifePointsLocation.setText(Integer.toString(curr_points));
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString(curr_points));
+                    if (curr_points == 0) FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed").setValue("true");
+                }
+            }
+        });
+
+
+        //Buying Shirts
+        buy2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int curr_points = Integer.parseInt(pifePointsLocation.getText().toString());
+                if (curr_points >= 5){
+                    curr_points -= 5;
+                    pifePointsLocation.setText(Integer.toString(curr_points));
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString(curr_points));
+                    if (curr_points == 0) FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed").setValue("true");
+                }
+            }
+        });
+
 
         //Snapping Feature the Shop has been implemented
         //HAT button
@@ -205,6 +245,7 @@ public class RewardsShop extends Fragment {
         return view;
     }
 
+
     private void getUserAvatar(final View view) {
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -216,7 +257,8 @@ public class RewardsShop extends Fragment {
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                     } else {
-                        avatarDisplay.setImageResource(R.drawable.ic_nerdy_monster_baby);
+                        //always make this the monster baby
+                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                     }
 
                 }
@@ -224,12 +266,11 @@ public class RewardsShop extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
 
-    private void getUserPifePoints(final View view) {
+    private void getUserPifePoints() {
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -238,6 +279,7 @@ public class RewardsShop extends Fragment {
                     pifePoints = dataSnapshot.getValue().toString().trim();
                     TextView pointsDisplay = (TextView) view.findViewById(R.id.pifepoints);
                     pointsDisplay.setText(pifePoints);
+                    Log.i("STATS", pifePoints);
 
                 }
             }
