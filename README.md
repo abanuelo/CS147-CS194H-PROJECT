@@ -21,7 +21,9 @@ When creating an account, users have the option to select one of two avatars--Je
   
 The three defined tasks for Pife are: (1) practice, (2) perform, and (3) collaborate. In the practice task flow, users can set daily goals for how long they wish to practice. By meeting their daily practice goals, they are able to gain pife-points and increase their avatar's happiness. The perform task flow has two options--viewing other musician's performances or performing a live performance yourself. The collaborate task flow has the option of filtering users by the type of instrument they play and their genre of choice. Users are then taken to a Tinder-like flow where they can swipe right to ask to collaborate with another musician or swipe left otherwise. If a match has been made, a collaboration session will commence. Below are screenshots of each of the task flows. 
 
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/32311654/49610069-4da39200-f952-11e8-93f1-b5444f4172c6.png">
+</p>
 
 As for the gamified elements of Pife, we decided to create a reward shop where users felt their practice sessions could be rewarded with feature updates for their avatars. Along with this, we decided to incorporate an evolution of the avatar with the accumulation of streak points--how often do you regularly return back to the app. The reason why we decided to incorporate gamified elements into the app was to primarly incentivize users to continuously use the app and to make it simple and fun for musicians to form communities.
 
