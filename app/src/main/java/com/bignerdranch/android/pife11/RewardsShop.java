@@ -114,7 +114,11 @@ public class RewardsShop extends Fragment {
                     curr_points -= 5;
                     pifePointsLocation.setText(Integer.toString(curr_points));
                     FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString(curr_points));
-                    if (curr_points == 0) FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed").setValue("true");
+                    if (curr_points == 0){
+                        FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed").setValue("true");
+                        //Abs Code that Needs to Be Inserted
+                        FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("dressed");
+                    }
                 }
             }
         });
@@ -129,7 +133,11 @@ public class RewardsShop extends Fragment {
                     curr_points -= 5;
                     pifePointsLocation.setText(Integer.toString(curr_points));
                     FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString(curr_points));
-                    if (curr_points == 0) FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed").setValue("true");
+                    if (curr_points == 0){
+                        FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed").setValue("true");
+                        //Ab's Code Needed to be Inserted
+                        FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("dressed");
+                    }
                 }
             }
         });

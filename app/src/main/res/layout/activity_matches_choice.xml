@@ -7,7 +7,7 @@
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
     android:paddingBottom="100dp"
-    android:background="@drawable/renew_background"
+    android:background="@drawable/android_background"
     android:paddingTop="100dp"
     tools:context=".MatchesChoice">
 
