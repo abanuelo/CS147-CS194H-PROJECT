@@ -102,7 +102,7 @@ public class PracticePlaying extends AppCompatActivity {
                         animation.setVisibility(View.VISIBLE);
                         //make him talking?
                     }
-                    else if (myAvatar.equals("{avatar=dressed}")) { //have armando put this in
+                    else if (myAvatar.equals("dressed")) { //have armando put this in
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                         avatarDisplay.setVisibility(View.INVISIBLE);
 
@@ -116,7 +116,8 @@ public class PracticePlaying extends AppCompatActivity {
                         animation.setBackground(drawable);
                         animation.setVisibility(View.VISIBLE);
                     }
-                    else if (myAvatar.equals("{avatar=toddler}")) { //have armando put this in
+                    else if (myAvatar.equals("toddler")) { //have armando put this in
+                        Log.d("Avatar Toddler Detected", "Here");
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                         avatarDisplay.setVisibility(View.INVISIBLE);
 
