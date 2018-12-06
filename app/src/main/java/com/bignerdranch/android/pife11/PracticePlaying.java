@@ -91,7 +91,6 @@ public class PracticePlaying extends AppCompatActivity {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                         avatarDisplay.setVisibility(View.INVISIBLE);
 
-
                         try {
                             drawable = new GifDrawable(getResources(), R.drawable.jemi_talking);
                         } catch (IOException e) {
@@ -102,7 +101,36 @@ public class PracticePlaying extends AppCompatActivity {
                         animation.setBackground(drawable);
                         animation.setVisibility(View.VISIBLE);
                         //make him talking?
-                    } else {
+                    }
+                    else if (myAvatar.equals("{avatar=dressed}")) { //have armando put this in
+                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                        avatarDisplay.setVisibility(View.INVISIBLE);
+
+                        try {
+                            drawable = new GifDrawable(getResources(), R.drawable.jemi_dressed_toddler);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        drawable.setLoopCount(0);
+                        animation = (GifImageView) findViewById(R.id.PracticeAvatarGIF);
+                        animation.setBackground(drawable);
+                        animation.setVisibility(View.VISIBLE);
+                    }
+                    else if (myAvatar.equals("{avatar=toddler}")) { //have armando put this in
+                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                        avatarDisplay.setVisibility(View.INVISIBLE);
+
+                        try {
+                            drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        drawable.setLoopCount(0);
+                        animation = (GifImageView) findViewById(R.id.PracticeAvatarGIF);
+                        animation.setBackground(drawable);
+                        animation.setVisibility(View.VISIBLE);
+                    }
+                    else {
                         avatarDisplay.setImageResource(R.drawable.ic_nerdy_monster_baby);
                     }
 
@@ -228,25 +256,7 @@ public class PracticePlaying extends AppCompatActivity {
                 else {
                     confirmExit();
                 }
-//
-//                check if time = goal
 
-                if (goalMetBool) {
-                    updateHeartLevel();
-                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class).putExtra("message","Goal has been Met!");
-                    startActivity(goalMet);
-                }
-                else {
-                    confirmExit();
-                }
-                        //if so, say congrats, show XP points gained, etc
-//                if else message
-                    //confirm hasn't hit target goal yet. Ask to stay
-                        //
-                        //transition to Home Screen
-//                Intent homeScreen = new Intent(PracticePlaying.this, Dashboard.class);
-//                startActivity(homeScreen);
-                break;
             case R.id.PracticePlayPause:
 //                See if Goal has been Met
                 EditText goalMet = (EditText) findViewById(R.id.PracticeGoalMet);
