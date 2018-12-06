@@ -11,4 +11,4 @@ and collaborate with other like-minded artists along with consistent and easy sc
 exploring low-fi prototypes and concept videos, we decided to produce a gamified app that would allow music producers to fulfill 
 their needs. 
 
-For more of the story behind the creation of Pife, please refer to our website:
+For more of the story behind the creation of Pife, please refer to our website: http://web.stanford.edu/class/cs147/projects/ArtsCulture/Pife/
