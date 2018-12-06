@@ -1,9 +1,13 @@
 # CS147-PROJECT
-CS147 High-Fi Prototype Project
+<p align="center">
+# CS147 High-Fi Prototype Project
+</p>
 
-<img src="https://user-images.githubusercontent.com/32311654/49608589-e1269400-f94d-11e8-82fd-e23477eb7a8f.png" alt="Pife Logo" width="300" height="300">
+<img src="https://user-images.githubusercontent.com/32311654/49608589-e1269400-f94d-11e8-82fd-e23477eb7a8f.png" alt="Pife Logo" width="500" height="300" align="center">
 
-PIFE - Always Have a Friend to Practice With
+<p align="center">
+## PIFE - Always Have a Friend to Practice With
+</p>
 ______________________________________
 As part of the art and culture studio for Fall 2018 CS 147, our team decided to explore the domain of music creation via the 
 lense of music producers to see if we could identify any existing needs. After walking through the five stages of the d.school's 
