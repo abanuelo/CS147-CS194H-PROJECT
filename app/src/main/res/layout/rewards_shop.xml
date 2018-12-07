@@ -13,6 +13,7 @@
             android:src="@drawable/ic_coins"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"/>
+
         <TextView
             android:id="@+id/pifepoints"
             android:layout_width="match_parent"
@@ -71,15 +72,17 @@
             android:translationZ="2dp"
             >
             <TextView
+                android:id="@+id/price_tag_1"
                 android:layout_width="60dp"
                 android:layout_height="83dp"
-                android:text="70 Coins"
+                android:text="0 Coins"
                 />
             <TextView
+                android:id="@+id/price_tag2"
                 android:layout_width="60dp"
                 android:layout_height="82dp"
                 android:layout_marginTop="11dp"
-                android:text="70 Coins"
+                android:text="0 Coins"
                 />
         </LinearLayout>
         <!--End Ab's Additions-->
@@ -198,12 +201,14 @@
             android:layout_marginTop="65dp"
             android:layout_marginLeft="5dp">
             <Button
+                android:id="@+id/buy_1"
                 android:layout_width="60dp"
                 android:layout_height="83dp"
                 android:background="@drawable/buttonoval"
                 android:text="Buy"
                 />
             <Button
+                android:id="@+id/buy_2"
                 android:layout_width="60dp"
                 android:layout_height="82dp"
                 android:layout_marginTop="11dp"
