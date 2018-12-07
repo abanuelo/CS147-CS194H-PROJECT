@@ -4,7 +4,7 @@
 </p>
 
 ## Overview
-Our prototype was built using Android Studios and is available on our website as an .apk file.
+Our prototype was built using Android Studios and is available on our website as an .apk file. Simply download the .apk to access our prototype.
 
 ## Limitations
 Since this is a prototype, some features and extended data sets that would exist in the final app are not present here. More specifically, our limitations include: 
@@ -16,6 +16,7 @@ Since this is a prototype, some features and extended data sets that would exist
   <li>Practice tool does not capture audio to check if user is generating sound (practicing)</li>
   <li>Watching performances in the perform tool leads to empty performance rooms if no one is occupying the room</li>
   <li>Trophies the user has gained are hard-coded</li>
+  <li>Collaboration schedules are hard-coded</li>
 </ul>
 
 ## Website
