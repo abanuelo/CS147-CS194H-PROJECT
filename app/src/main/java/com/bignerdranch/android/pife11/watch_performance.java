@@ -22,7 +22,7 @@ public class watch_performance extends AppCompatActivity {
         searchPerform1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://appear.in/piferoom1";
+                String url = "https://appear.in/piferoom2";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.launchUrl(watch_performance.this, Uri.parse(url));
@@ -33,7 +33,7 @@ public class watch_performance extends AppCompatActivity {
         searchPerform2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://appear.in/piferoom1";
+                String url = "https://appear.in/piferoom2";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.launchUrl(watch_performance.this, Uri.parse(url));

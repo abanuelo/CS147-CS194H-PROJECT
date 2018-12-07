@@ -4,28 +4,19 @@
 </p>
 
 ## Overview
-As part of the art and culture studio for Fall 2018 CS 147, our team decided to explore the domain of music creation via the 
-lense of music producers to see if we could identify any existing needs. After walking through the five stages of the d.school's 
-design thinking methodology (ie Empathy, Define, Ideate, Prototype, and Test) and constantly revisiting the insights generated from 
-our original need-finding interviews, we noticed that music producers wanted to have a community where they can showcase their skills 
-and collaborate with other like-minded artists along with consistent and easy scheduling to find time for said collaboraion. Upon 
-exploring low-fi prototypes and concept videos, we decided to produce a gamified app that would allow music producers to fulfill 
-their needs. 
+Our prototype was built using Android Studios and is available on our website as a ←→ file. <Insert downloading instructions here>
 
-## Gamification and Task Flow
-When creating an account, users have the option to select one of two avatars--Jemi or Ronald. The fully developed version of Pife would have multiple avatars to select from.
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/32311654/49609953-ee458200-f951-11e8-9b9c-4136c98922a3.png">
-</p> 
-  
-The three defined tasks for Pife are: (1) practice, (2) perform, and (3) collaborate. In the practice task flow, users can set daily goals for how long they wish to practice. By meeting their daily practice goals, they are able to gain pife-points and increase their avatar's happiness. The perform task flow has two options--viewing other musician's performances or performing a live performance yourself. The collaborate task flow has the option of filtering users by the type of instrument they play and their genre of choice. Users are then taken to a Tinder-like flow where they can swipe right to ask to collaborate with another musician or swipe left otherwise. If a match has been made, a collaboration session will commence. Below are screenshots of each of the task flows. 
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/32311654/49610069-4da39200-f952-11e8-93f1-b5444f4172c6.png">
-</p>
-
-As for the gamified elements of Pife, we decided to create a reward shop where users felt their practice sessions could be rewarded with feature updates for their avatars. Along with this, we decided to incorporate an evolution of the avatar with the accumulation of streak points--how often do you regularly return back to the app. The reason why we decided to incorporate gamified elements into the app was to primarly incentivize users to continuously use the app and to make it simple and fun for musicians to form communities.
+## Limitations
+Since this is a prototype, some features and extended data sets that would exist in the final app are not present here. More specifically, our limitations include: 
+<ul>
+  <li>Jemi is fully implemented with animations, evolution and reward-receiving capabilities while Ronald is a static SVG (Jemi and Ronald are avatars that users can pick from)</li>
+  <li>Limited number of avatars to choose from and limited reward items available in the shop (two different hats and two different shirts)</li>
+  <li>Avatar’s evolution is limited to baby stage evolving into the toddler stage</li>
+  <li>Hard-coded for demo purposes: the practice tool times the user for 10 seconds (rather than 15 minutes) before congratulating the user on meeting their goal</li>
+  <li>Practice tool does not capture audio to check if user is generating sound (practicing)</li>
+  <li>Watching performances in the perform tool leads to empty performance rooms if no one is occupying the room</li>
+  <li>Trophies the user has gained are hard-coded</li>
+</ul>
 
 ## Website
 For more of the story behind the creation of Pife, please refer to our website: http://web.stanford.edu/class/cs147/projects/ArtsCulture/Pife/

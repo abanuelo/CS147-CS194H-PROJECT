@@ -63,28 +63,28 @@
         </RelativeLayout>
 
         <!--Ab's additions-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="65dp"
-            android:layout_marginLeft="-50dp"
-            android:translationZ="2dp"
-            >
-            <TextView
-                android:id="@+id/price_tag_1"
-                android:layout_width="60dp"
-                android:layout_height="83dp"
-                android:text="0 Coins"
-                />
-            <TextView
-                android:id="@+id/price_tag2"
-                android:layout_width="60dp"
-                android:layout_height="82dp"
-                android:layout_marginTop="11dp"
-                android:text="0 Coins"
-                />
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_marginTop="65dp"-->
+            <!--android:layout_marginLeft="-50dp"-->
+            <!--android:translationZ="2dp"-->
+            <!--&gt;-->
+            <!--<TextView-->
+                <!--android:id="@+id/price_tag_1"-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="83dp"-->
+                <!--android:text="0 Coins"-->
+                <!--/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/price_tag2"-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="82dp"-->
+                <!--android:layout_marginTop="11dp"-->
+                <!--android:text="0 Coins"-->
+                <!--/>-->
+        <!--</LinearLayout>-->
         <!--End Ab's Additions-->
 
         <LinearLayout
@@ -93,13 +93,13 @@
             android:layout_marginTop="-15dp"
             android:orientation="vertical">
 
+
             <LinearLayout
                 android:id="@+id/constrained_view"
                 android:layout_centerHorizontal="true"
                 android:layout_width="80dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="40dp"
                 android:layout_height="wrap_content">
-
 
                 <HorizontalScrollView
                     android:id="@+id/horizontalscrollview"
@@ -119,10 +119,10 @@
 
                         <Button
                             android:id="@+id/button1"
-                            android:drawableLeft="@drawable/none_icon"
-                            android:paddingLeft="9dp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/none_icon"
+                            android:paddingLeft="9dp" />
 
                         <Button
                             android:id="@+id/button2"
@@ -141,13 +141,62 @@
                     </LinearLayout>
                 </HorizontalScrollView>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/price_tag_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="20dp"
+                    android:text="0 Coins"
+                    android:textSize="10sp" />
+                <Button
+                    android:id="@+id/buy_1"
+                    android:paddingLeft="2dp"
+                    android:layout_width="40dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/buttonoval"
+                    android:text="Buy"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/price_tag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 Coins"
+                    android:textSize="10sp"
+                    android:textAlignment="center"
+                    />
+                <Button
+                    android:id="@+id/buy_2"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="2dp"
+                    android:layout_width="40dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/buttonoval"
+                    android:text="Buy"
+                    />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/constrained_view2"
                 android:layout_centerHorizontal="true"
                 android:layout_width="80dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content">
+
+
 
                 <HorizontalScrollView
                     android:id="@+id/horizontalscrollview2"
@@ -193,30 +242,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!--Ab's additions-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="65dp"
-            android:layout_marginLeft="5dp">
-            <Button
-                android:id="@+id/buy_1"
-                android:layout_width="60dp"
-                android:layout_height="83dp"
-                android:background="@drawable/buttonoval"
-                android:text="Buy"
-                />
-            <Button
-                android:id="@+id/buy_2"
-                android:layout_width="60dp"
-                android:layout_height="82dp"
-                android:layout_marginTop="11dp"
-                android:background="@drawable/buttonoval"
-                android:text="Buy"
-                />
-        </LinearLayout>
-        <!--End Ab's Additions-->
+
 
     </LinearLayout>
     <!--<TextView-->

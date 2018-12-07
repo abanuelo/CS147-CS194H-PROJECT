@@ -73,7 +73,7 @@ public class SearchCollab extends AppCompatActivity {
                 Cards obj = (Cards) dataObject;
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("Collaborations").child("No").child(currentUId).setValue(true);
-                makeToast(SearchCollab.this, "Left!");
+                makeToast(SearchCollab.this, "No Collaboration");
             }
 
             @Override
@@ -82,7 +82,7 @@ public class SearchCollab extends AppCompatActivity {
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("Collaborations").child("Yes").child(currentUId).setValue(true);
                 isConnectionMatch(userId);
-                makeToast(SearchCollab.this, "Right!");
+                makeToast(SearchCollab.this, "Collaboration");
             }
 
             @Override
