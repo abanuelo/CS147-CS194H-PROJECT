@@ -2,6 +2,7 @@ package com.bignerdranch.android.pife11;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -72,6 +73,22 @@ public class MyRewards extends Fragment {
         getUserAvatar(view);
         getUserPifePoints(view);
         handler = new Handler();
+
+        pifePointsLocation = view.findViewById(R.id.pifepoints);
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    pifePointsLocation.setText(dataSnapshot.getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
 
         //gets the hat and shirt
         hat = view.findViewById(R.id.button2);

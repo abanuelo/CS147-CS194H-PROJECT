@@ -15,6 +15,9 @@ import java.util.ArrayList;
 public class CollabMain extends AppCompatActivity {
     private Button bApplyFilter;
 
+    //Checkboxes to Select All of Them
+    private CheckBox checkall;
+
     //Checkboxes for Genres
     private CheckBox blues;
     private CheckBox classical;
@@ -67,6 +70,51 @@ public class CollabMain extends AppCompatActivity {
         sing = findViewById(R.id.sing_check);
         viola = findViewById(R.id.viola_check);
         violin = findViewById(R.id.violin_check);
+
+        //Checking all of the buttons
+        checkall = findViewById(R.id.select_all);
+
+        checkall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkall.isChecked()){
+                    blues.setChecked(true);
+                    classical.setChecked(true);
+                    country.setChecked(true);
+                    edm.setChecked(true);
+                    hip_hop.setChecked(true);
+                    jazz.setChecked(true);
+                    pop.setChecked(true);
+                    rock.setChecked(true);
+                    bass.setChecked(true);
+                    drums.setChecked(true);
+                    flute.setChecked(true);
+                    guitar.setChecked(true);
+                    piano.setChecked(true);
+                    sing.setChecked(true);
+                    viola.setChecked(true);
+                    violin.setChecked(true);
+                } else {
+                    blues.setChecked(false);
+                    classical.setChecked(false);
+                    country.setChecked(false);
+                    edm.setChecked(false);
+                    hip_hop.setChecked(false);
+                    jazz.setChecked(false);
+                    pop.setChecked(false);
+                    rock.setChecked(false);
+                    bass.setChecked(false);
+                    drums.setChecked(false);
+                    flute.setChecked(false);
+                    guitar.setChecked(false);
+                    piano.setChecked(false);
+                    sing.setChecked(false);
+                    viola.setChecked(false);
+                    violin.setChecked(false);
+                }
+
+            }
+        });
 
         /*
             Next set of methods will determine which checks are checked in order to carry out the filter

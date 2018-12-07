@@ -134,10 +134,14 @@ public class SelectAvatar extends AppCompatActivity {
 
                     // Day Last Played
 
+                    if (name.getText().equals("Ronald")){
+                        Toast.makeText(SelectAvatar.this, "Sorry this character is not fully implemented. Please select Jemi", Toast.LENGTH_LONG).show();
 
-
-                    Intent goToHomepage = new Intent(SelectAvatar.this, Dashboard.class);
-                    startActivity(goToHomepage);
+                    } else {
+                        Intent goToHomepage = new Intent(SelectAvatar.this, Dashboard.class);
+                        startActivity(goToHomepage);
+                  }
+//
                 }
             });
         }
