@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.os.SystemClock;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -251,7 +252,7 @@ public class PracticePlaying extends AppCompatActivity {
             case R.id.PracticeDone:
                 if (goalMetBool) {
                     updateHeartLevel();
-                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class).putExtra("message","You have met your Goal!!!");
+                    Intent goalMet = new Intent(PracticePlaying.this, practice_goal_met.class).putExtra("message","You Have Met Your Goal!!!");
                     startActivity(goalMet);
                 }
                 else {
@@ -260,8 +261,8 @@ public class PracticePlaying extends AppCompatActivity {
 
             case R.id.PracticePlayPause:
 //                See if Goal has been Met
-                EditText goalMet = (EditText) findViewById(R.id.PracticeGoalMet);
-                EditText todaysGoal = (EditText) findViewById(R.id.PracticeTodaysGoal);
+                TextView goalMet = (TextView) findViewById(R.id.PracticeGoalMet);
+                TextView todaysGoal = (TextView) findViewById(R.id.PracticeTodaysGoal);
                 //spinner also exists
 
                 if (playing) {
@@ -270,7 +271,7 @@ public class PracticePlaying extends AppCompatActivity {
                     stopwatch.stop();
                     playPause.setBackgroundResource(R.drawable.play);
 
-                    if(goalMetBool) {goalMet.setText("Goal has been Met!!!");}
+                    if(goalMetBool) {goalMet.setText("Goal Has Been Met!");}
                     else{goalMet.setText("Goal Not Met Yet!!!");}
                     goalMet.setVisibility(View.VISIBLE);
                     todaysGoal.setVisibility(View.INVISIBLE);

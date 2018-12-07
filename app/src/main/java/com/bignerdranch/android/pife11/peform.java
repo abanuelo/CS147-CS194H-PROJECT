@@ -31,7 +31,7 @@ public class peform extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //UPDATE THIS URL FOR THE FINAL PRESENTATION OF THE PROJECT
-                String url = "https://youtu.be/MZ5dz7BDbNw";
+                String url = "https://appear.in/piferoom2";
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent = builder.build();
                 customTabsIntent.launchUrl(peform.this, Uri.parse(url));

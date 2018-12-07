@@ -8,7 +8,7 @@
     tools:context=".practice_goal_met"
     >
 
-    <EditText
+    <TextView
         android:id="@+id/PracticeGoalMet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,17 +25,19 @@
 
     <TextView
         android:id="@+id/PracticeGoalMetMessage"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/proxima_novona"
         android:text="Sample Text"
         android:textSize="30sp"
         android:translationZ="2dp"
+        android:elevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PracticeGoalMet"
+        app:layout_constraintTop_toTopOf="@id/PracticeGoalAvatarGIF"
         app:layout_constraintBottom_toBottomOf="@id/PracticeGoalAvatarGIF"
-        tools:layout_editor_absoluteX="200dp"
-        tools:layout_editor_absoluteY="208dp" />
+        app:layout_constraintVertical_bias="0.25"
+        android:textAlignment="center"
+        />
 
     <ImageView
         android:id="@+id/PracticeGoalAvatar"
@@ -57,9 +59,8 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/PracticeGoalDone"
         app:layout_constraintTop_toBottomOf="@id/PracticeGoalMet"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp"></pl.droidsonroids.gif.GifImageView>
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/PracticeGoalDone"

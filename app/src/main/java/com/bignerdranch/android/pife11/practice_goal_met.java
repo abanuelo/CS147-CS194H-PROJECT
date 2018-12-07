@@ -5,8 +5,8 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,11 +38,11 @@ public class practice_goal_met extends AppCompatActivity {
         getUserAvatar();
         message = getIntent().getExtras().getString("message");
 
-        EditText messageView = findViewById(R.id.PracticeGoalMet);
+        TextView messageView = findViewById(R.id.PracticeGoalMet);
         messageView.setText(message);
 
         TextView talking = findViewById(R.id.PracticeGoalMetMessage);
-        talking.setText(message);
+        talking.setText("Great job!");
     }
 
     @Override
@@ -50,11 +50,11 @@ public class practice_goal_met extends AppCompatActivity {
         getUserAvatar();
         message = getIntent().getExtras().getString("message");
 
-        EditText messageView = findViewById(R.id.PracticeGoalMet);
+        TextView messageView = findViewById(R.id.PracticeGoalMet);
         messageView.setText(message);
 
         TextView talking = findViewById(R.id.PracticeGoalMetMessage);
-        talking.setText(message);
+        talking.setText("Great job!");
         super.onResume();
     }
 
@@ -80,7 +80,37 @@ public class practice_goal_met extends AppCompatActivity {
                         animation = (GifImageView) findViewById(R.id.PracticeGoalAvatarGIF);
                         animation.setBackground(drawable);
                         animation.setVisibility(View.VISIBLE);
+                    }else if (myAvatar.equals("dressed")) { //have armando put this in
+                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                        avatarDisplay.setVisibility(View.INVISIBLE);
+
+                        try {
+                            drawable = new GifDrawable(getResources(), R.drawable.jemi_dressed_toddler);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        drawable.setLoopCount(0);
+                        animation = (GifImageView) findViewById(R.id.PracticeGoalAvatarGIF);
+                        animation.setBackground(drawable);
+                        animation.setVisibility(View.VISIBLE);
+                    }
+                    else if (myAvatar.equals("toddler")) { //have armando put this in
+                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                        avatarDisplay.setVisibility(View.INVISIBLE);
+
+                        try {
+                            drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        drawable.setLoopCount(0);
+                        animation = (GifImageView) findViewById(R.id.PracticeGoalAvatarGIF);
+                        animation.setBackground(drawable);
+                        animation.setVisibility(View.VISIBLE);
                     } else {
+                        animation = (GifImageView) findViewById(R.id.PracticeGoalAvatarGIF);
+                        animation.setVisibility(View.INVISIBLE);
+                        avatarDisplay.setVisibility(View.VISIBLE);
                         avatarDisplay.setImageResource(R.drawable.ic_nerdy_monster_baby);
                     }
 
