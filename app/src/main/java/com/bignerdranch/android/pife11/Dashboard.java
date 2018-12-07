@@ -1,12 +1,16 @@
 package com.bignerdranch.android.pife11;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -134,16 +138,28 @@ public class Dashboard extends AppCompatActivity {
         switch (task) {
             case 1:
                 taskflow = practice;
+                if (collabBool && performBool && !practiceBool) {
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((10)));
+                    //do the thing where you evolveeeeee
+                    evolveMessage();
+                }
                 practiceBool = true;
                 break;
             case 2:
                 taskflow = perform;
+                if (collabBool && !performBool && practiceBool) {
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((10)));
+                    //evolve dialog
+                    evolveMessage();
+                }
                 performBool = true;
                 break;
             case 3:
                 taskflow = collab;
-                if (!collabBool) {
+                if (!collabBool && performBool && practiceBool) {
                     FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((10)));
+                    //evolve dialog
+                    evolveMessage();
                 }
                 collabBool = true;
                 break;
@@ -152,6 +168,17 @@ public class Dashboard extends AppCompatActivity {
         }
         FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child(taskflow).setValue(Integer.toString((1)));
 
+    }
+
+    private void evolveMessage(){
+
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Dashboard.this);
+
+        alertBuilder.setMessage("Your Character has Evolved!. Jemi is now a toddler");
+
+        alertBuilder.setPositiveButton("Continue", null);
+        Dialog dialog = alertBuilder.create();
+        dialog.show();
     }
 
     private void checkIfTaskComplete(){
