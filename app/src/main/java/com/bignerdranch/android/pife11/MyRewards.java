@@ -45,8 +45,13 @@ public class MyRewards extends Fragment {
                     ImageView avatarDisplay = (ImageView) view.findViewById(R.id.avatarMyRewards);
                     if(myAvatar.equals("{avatar=Jemi}")) {
                         avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
+                    } else if (myAvatar.equals("toddler")) {
+                        //always make this the monster baby
+                        avatarDisplay.setImageResource(R.drawable.ic_jemi_toddler_arms_down);
+                    } else if (myAvatar.equals("dressed")){
+                        avatarDisplay.setImageResource(R.drawable.ic_jemi_toddler_arms_down);
                     } else {
-                        avatarDisplay.setImageResource(R.drawable.ic_nerdy_monster_baby);
+                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
                     }
 
                 }
@@ -54,7 +59,6 @@ public class MyRewards extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
