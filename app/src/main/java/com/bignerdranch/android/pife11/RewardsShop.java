@@ -233,10 +233,10 @@ public class RewardsShop extends Fragment {
                             scrollViewHats2.smoothScrollTo(button2X2, button2Y2);
                             if(myAvatar.equals("{avatar=Jemi}")){
                                 shirt.setImageResource(R.drawable.ic_jemi_green_shirt);
-                                PriceTag2.setText("10 coins");
+                                PriceTag2.setText("5 coins");
                             } else {
                                 shirt.setImageResource(R.drawable.ic_jemi_green_shirt);
-                                PriceTag2.setText("10 coins");
+                                PriceTag2.setText("5 coins");
                             }
 
                         } else {
