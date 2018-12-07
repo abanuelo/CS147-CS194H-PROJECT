@@ -114,6 +114,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
+                        <Button
+                            android:id="@+id/button2"
+                            android:visibility="invisible"
+                            android:drawableLeft="@drawable/jemi_tiny_orange_hat"
+                            android:paddingLeft="9dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
                     </LinearLayout>
                 </HorizontalScrollView>
             </LinearLayout>
@@ -142,10 +151,18 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/button12"
+                            android:id="@+id/button3"
                             android:drawableLeft="@drawable/none_icon"
                             android:paddingLeft="9dp"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:id="@+id/button4"
+                            android:drawableLeft="@drawable/jemi_shirt_green"
+                            android:paddingLeft="4dp"
+                            android:layout_width="wrap_content"
+                            android:visibility="invisible"
                             android:layout_height="wrap_content" />
 
 
