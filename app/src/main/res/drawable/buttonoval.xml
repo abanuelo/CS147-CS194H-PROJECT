@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:shape="rectangle" android:padding="10dp"
     tools:ignore="MissingDefaultResource">
-    <solid android:color="#DAA530"/> <!-- this one is ths color of the Rounded Button -->
+    <solid android:color="#008080"/> <!-- this one is ths color of the Rounded Button -->
     <corners
         android:bottomRightRadius="100dp"
         android:bottomLeftRadius="100dp"
