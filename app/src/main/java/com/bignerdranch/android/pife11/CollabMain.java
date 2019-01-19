@@ -20,11 +20,13 @@ public class CollabMain extends AppCompatActivity {
 
     //Checkboxes for Genres
     private CheckBox blues;
+
     private CheckBox classical;
+
     private CheckBox country;
     private CheckBox edm;
     private CheckBox hip_hop;
-    private CheckBox jazz;
+    private CheckBox jazz; //hello
     private CheckBox pop;
     private CheckBox rock;
 
