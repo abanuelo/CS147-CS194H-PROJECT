@@ -1,14 +1,21 @@
 package com.bignerdranch.android.pife11;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bignerdranch.android.pife11.Cards.Cards;
 import com.bignerdranch.android.pife11.Cards.arrayAdapter;
+import com.bignerdranch.android.pife11.Matches.Matches;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +36,10 @@ public class SearchCollab extends AppCompatActivity {
     //private int i;
     private FirebaseAuth auth;
     private String currentUId;
+    private Button myMatches;
+    private ImageView filter;
+    private RewardsBoth.SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
     private DatabaseReference usersDb;
 
     //ListView listView;
@@ -40,6 +51,10 @@ public class SearchCollab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_collab);
 
+        //used to get different tabs
+
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
         //declaration of the private variables introduced above
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
         auth = FirebaseAuth.getInstance();
@@ -48,9 +63,46 @@ public class SearchCollab extends AppCompatActivity {
         //row items defined
         rowItems = new ArrayList<Cards>();
 
+        //initializing the filter_genres
+        ArrayList<String> filter_genres = new ArrayList<String>();
+        filter_genres.add("blues");
+        filter_genres.add("classical");
+        filter_genres.add("country");
+        filter_genres.add("edm");
+        filter_genres.add("hiphop");
+        filter_genres.add("jazz");
+        filter_genres.add("pop");
+        filter_genres.add("rock");
+
+        //initalizing the filter children
+        ArrayList<String> filter_instruments = new ArrayList<String>();
+        filter_instruments.add("bass");
+        filter_instruments.add("drums");
+        filter_instruments.add("flute");
+        filter_instruments.add("guitar");
+        filter_instruments.add("piano");
+        filter_instruments.add("sing");
+        filter_instruments.add("viola");
+        filter_instruments.add("violin");
+
         //Importing the Filters from Filter feature
-        ArrayList<String> filter_genres = getIntent().getExtras().getStringArrayList("GENRES");
-        ArrayList<String> filter_instruments = getIntent().getExtras().getStringArrayList("INSTRUMENTS");
+//        try {
+//            filter_genres = getIntent().getExtras().getStringArrayList("GENRES");
+//            filter_instruments = getIntent().getExtras().getStringArrayList("INSTRUMENTS");
+//        } catch (Exception e){
+//            System.out.println("Error " + e.getMessage());
+//        }
+
+        myMatches = findViewById(R.id.mymatches);
+        filter = findViewById(R.id.filter);
+
+        myMatches.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToMatches = new Intent(SearchCollab.this, Matches.class);
+                startActivity(goToMatches);
+            }
+        });
 
         //new commands that will include the names of people
         getFilteredUsers(filter_genres, filter_instruments);
