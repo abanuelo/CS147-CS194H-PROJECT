@@ -4,8 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/android_background"
     tools:context=".Matches.Matches">
+
+    <TextView
+        android:paddingTop="10dp"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:text="My Matches"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
