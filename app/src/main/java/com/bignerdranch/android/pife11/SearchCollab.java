@@ -134,6 +134,10 @@ public class SearchCollab extends AppCompatActivity {
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("Collaborations").child("Yes").child(currentUId).setValue(true);
                 isConnectionMatch(userId);
+
+                String key = FirebaseDatabase.getInstance().getReference().child("Chats").push().getKey();
+                usersDb.child(userId).child("Collaborations").child("Matches").child(currentUId).child("ChatID").setValue(key);
+                usersDb.child(currentUId).child("Collaborations").child("Matches").child(userId).child("ChatID").setValue(key);
                 makeToast(SearchCollab.this, "Collaboration");
             }
 
