@@ -90,7 +90,8 @@ public class CreateAccount extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()) {
-                            Toast.makeText(CreateAccount.this, "Sign Up Error!", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(CreateAccount.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         } else {
                             saveUserInfo();
                         }
