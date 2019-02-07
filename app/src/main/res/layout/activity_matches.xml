@@ -5,14 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/android_background"
+    android:background="@android:color/white"
     tools:context=".Matches.Matches">
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search_view"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        app:queryHint="Find your friends!"
+        android:searchIcon="@drawable/ic_search"
+        android:goIcon="@drawable/ic_search"/>
+        <!--android:commitIcon="@drawable/ic_search"-->
+        <!--android:searchHintIcon="@drawable/ic_search"-->
+        <!--android:closeIcon="@drawable/ic_search"-->
+
+
+
+    <!--style="@style/SearchViewStyle"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+         <!--/>-->
 
     <TextView
         android:paddingTop="10dp"
         android:layout_gravity="center"
         android:textSize="30dp"
         android:text="My Matches"
+        android:textColor="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="50dp" />
 

@@ -13,9 +13,9 @@
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -74,7 +74,17 @@
         <!-- <activity android:name=".RewardsShop" /> -->
         <activity android:name=".practice_goal_met" />
         <activity android:name=".watch_performance" />
-        <activity android:name=".StartPerformance"></activity>
+        <activity android:name=".StartPerformance" />
+        <activity android:name=".TabAdapter" />
+        <activity android:name=".Tab2Fragment" />
+        <activity android:name=".Tab1Fragment" />
+        <activity android:name=".CollabHiFi2" />
+        <activity android:name=".ViewerPagerCards.CardAdapter" />
+        <activity android:name=".ViewerPagerCards.CardFragment" />
+        <activity android:name=".ViewerPagerCards.CardFragmentPagerAdapter" />
+        <activity android:name=".ViewerPagerCards.CardItem" />
+        <activity android:name=".ViewerPagerCards.CardPagerAdapter" />
+        <activity android:name=".ViewerPagerCards.ShadowTransformer" />
     </application>
 
 </manifest>

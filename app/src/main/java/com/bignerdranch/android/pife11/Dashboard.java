@@ -98,7 +98,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateButton(3);
-                Intent collab_intent = new Intent(Dashboard.this, SearchCollab.class);
+                Intent collab_intent = new Intent(Dashboard.this, CollabHiFi2.class);
                 startActivity(collab_intent);
             }
         });

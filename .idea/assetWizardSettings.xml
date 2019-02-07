@@ -45,11 +45,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="972" />
-                            <entry key="outputName" value="ic_filter_filled_tool_symbol" />
+                            <entry key="height" value="57" />
+                            <entry key="outputName" value="ic_search" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/filter-filled-tool-symbol.svg" />
-                            <entry key="width" value="972" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/search.svg" />
+                            <entry key="width" value="57" />
                           </map>
                         </option>
                       </PersistentState>
