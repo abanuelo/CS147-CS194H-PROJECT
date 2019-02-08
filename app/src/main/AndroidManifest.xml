@@ -79,6 +79,7 @@
         <activity android:name=".Tab2Fragment" />
         <activity android:name=".Tab1Fragment" />
         <activity android:name=".CollabHiFi2" />
+        <activity android:name=".PracticeHiFi2"/>
         <activity android:name=".ViewerPagerCards.CardAdapter" />
         <activity android:name=".ViewerPagerCards.CardFragment" />
         <activity android:name=".ViewerPagerCards.CardFragmentPagerAdapter" />

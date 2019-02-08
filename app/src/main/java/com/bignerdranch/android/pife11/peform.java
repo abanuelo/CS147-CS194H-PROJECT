@@ -26,17 +26,21 @@ public class peform extends AppCompatActivity {
                                                                      public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                                                                          switch (menuItem.getItemId()){
                                                                              case R.id.practice_nav:
-                                                                                 Intent practice_intent = new Intent(peform.this, PracticePlaying.class);
+                                                                                 Intent practice_intent = new Intent(peform.this, PracticeHiFi2.class);
                                                                                  startActivity(practice_intent);
+                                                                                 break;
                                                                              case R.id.perform_nav:
                                                                                  Intent perform_intent = new Intent(peform.this, peform.class);
                                                                                  startActivity(perform_intent);
+                                                                                 break;
                                                                              case R.id.friends_nav:
                                                                                  Intent collab_intent = new Intent(peform.this, CollabHiFi2.class);
                                                                                  startActivity(collab_intent);
+                                                                                 break;
                                                                              case R.id.user_nav:
-                                                                                 Intent profile_intent = new Intent(peform.this, CollabHiFi2.class);
+                                                                                 Intent profile_intent = new Intent(peform.this, Profile.class);
                                                                                  startActivity(profile_intent);
+                                                                                 break;
                                                                          }
                                                                          return true;
                                                                      }
