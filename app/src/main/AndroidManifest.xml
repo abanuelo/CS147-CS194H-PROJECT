@@ -85,6 +85,11 @@
         <activity android:name=".ViewerPagerCards.CardItem" />
         <activity android:name=".ViewerPagerCards.CardPagerAdapter" />
         <activity android:name=".ViewerPagerCards.ShadowTransformer" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="a9c73533139ab62e421711b95cc12dea63a4de75" />
+
     </application>
 
 </manifest>

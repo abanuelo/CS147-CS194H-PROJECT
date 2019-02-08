@@ -2,6 +2,7 @@ package com.bignerdranch.android.pife11;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +39,8 @@ public class Tab1Fragment extends Fragment {
 
         myMatchesLayoutManager = new LinearLayoutManager(getContext());
         myRecyclerView.setLayoutManager(myMatchesLayoutManager);
+        myRecyclerView.addItemDecoration(new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
+
         myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
         myRecyclerView.setAdapter(myMatchesAdapter);
 
