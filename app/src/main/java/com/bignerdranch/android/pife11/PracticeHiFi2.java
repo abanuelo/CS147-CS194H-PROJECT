@@ -29,7 +29,9 @@ public class PracticeHiFi2 extends AppCompatActivity {
         DataSingleton ds = DataSingleton.getInstance();
         ArrayList<ArrayList<String>> routineLists = ds.getRoutinesList();
 
-        ArrayAdapter<String> tasksAdapter = null;
+        //ArrayAdapter<String> tasksAdapter = null;
+
+        ArrayList<String> justTasks = null;
 
         if (!routineName.contentEquals("Open Practice")) {
 
@@ -39,13 +41,13 @@ public class PracticeHiFi2 extends AppCompatActivity {
                 System.out.println("This routine doesn't exist :(");
                 return;
             }
-            ArrayList<String> justTasks = routineLists.get(currRoutineIndex);
+            justTasks = routineLists.get(currRoutineIndex);
 
             //Remove the title from the tasks...
             justTasks.remove(0);
 
             //Yes, I should have a checklist here, but let's do a simple one first...
-            tasksAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, justTasks);
+            //tasksAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, justTasks);
         }
         //You need to set the content view before you can set the listview.... yeah....
         setContentView(R.layout.activity_practice_hi_fi2);
@@ -60,12 +62,25 @@ public class PracticeHiFi2 extends AppCompatActivity {
 
 
         if (!routineName.contentEquals("Open Practice")) {
-            ListView lv = (ListView) findViewById(R.id.tasks);
-            lv.setAdapter(tasksAdapter);
+            //ListView lv = (ListView) findViewById(R.id.tasks);
+            //lv.setAdapter(tasksAdapter);
+            System.out.println("MOOOOO");
+            createTaskList(justTasks);
+            System.out.println(justTasks.toString());
+
         } else {
             TextView musicGoalsLabel = (TextView) findViewById(R.id.musicGoalsLabel);
             musicGoalsLabel.setVisibility(View.GONE);
         }
+    }
+
+    private void createTaskList(ArrayList<String> justTasks) {
+
+        TaskList adapter = new TaskList(this, justTasks);
+        ListView tasksView = (ListView) findViewById(R.id.tasks);
+
+        tasksView.setAdapter(adapter);
+
     }
 
     public void backHome(View view) {

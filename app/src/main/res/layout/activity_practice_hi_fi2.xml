@@ -43,7 +43,7 @@
         android:layout_gravity="center"
         android:id="@+id/musicGoalsLabel"/>
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
