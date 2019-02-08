@@ -1,8 +1,19 @@
 package com.bignerdranch.android.pife11;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CollabHiFi2 extends AppCompatActivity {
     private TabAdapter adapter;
@@ -19,5 +30,60 @@ public class CollabHiFi2 extends AppCompatActivity {
         adapter.addFragment(new Tab2Fragment(), "Find New");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        checkIfTaskComplete();
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
+        bottomNavigationView.setSelectedItemId(R.id.practice_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                                                     @Override
+                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                                                         switch (menuItem.getItemId()){
+                                                                             case R.id.practice_nav:
+                                                                                 Intent practice_intent = new Intent(CollabHiFi2.this, PracticeHiFi2.class);
+                                                                                 startActivity(practice_intent);
+                                                                                 break;
+                                                                             case R.id.perform_nav:
+                                                                                 Intent perform_intent = new Intent(CollabHiFi2.this, peform.class);
+                                                                                 startActivity(perform_intent);
+                                                                                 break;
+                                                                             case R.id.user_nav:
+                                                                                 Intent profile_intent = new Intent(CollabHiFi2.this, Profile.class);
+                                                                                 startActivity(profile_intent);
+                                                                                 break;
+                                                                         }
+                                                                         return true;
+                                                                     }
+                                                                 }
+        );
+
     }
+    private void checkIfTaskComplete(){
+        final String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        final DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot match: dataSnapshot.getChildren()){
+                        if (match.getKey().equals("collab")) {
+                            int hl = Integer.parseInt(match.getValue().toString().trim());
+                            if(hl == 0) {
+                                //run tutorial program
+                                FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("collab").setValue(Integer.toString((1)));
+
+                            }
+                        }
+                    } }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null){
-                    Intent createAccountIntent = new Intent(MainActivity.this, Dashboard.class);
+                    Intent createAccountIntent = new Intent(MainActivity.this, Profile.class);
                     startActivity(createAccountIntent);
                     finish();
                 }

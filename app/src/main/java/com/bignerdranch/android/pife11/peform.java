@@ -7,14 +7,23 @@ import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class peform extends AppCompatActivity {
     private Button watch;
     private Button perform;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +38,6 @@ public class peform extends AppCompatActivity {
                                                                              case R.id.practice_nav:
                                                                                  Intent practice_intent = new Intent(peform.this, PracticeHiFi2.class);
                                                                                  startActivity(practice_intent);
-                                                                                 break;
-                                                                             case R.id.perform_nav:
-                                                                                 Intent perform_intent = new Intent(peform.this, peform.class);
-                                                                                 startActivity(perform_intent);
                                                                                  break;
                                                                              case R.id.friends_nav:
                                                                                  Intent collab_intent = new Intent(peform.this, CollabHiFi2.class);
@@ -70,5 +75,37 @@ public class peform extends AppCompatActivity {
             }
         });
 
+        checkIfTaskComplete();
+
+
     }
+    private void checkIfTaskComplete(){
+        final String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        final DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot match: dataSnapshot.getChildren()){
+                        if (match.getKey().equals("perform")) {
+                            int hl = Integer.parseInt(match.getValue().toString().trim());
+                            if(hl == 0) {
+                                //run tutorial program
+                                FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("perform").setValue(Integer.toString((1)));
+
+                            }
+                        }
+                    } }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
 }

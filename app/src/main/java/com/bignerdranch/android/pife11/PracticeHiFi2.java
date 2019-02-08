@@ -14,6 +14,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,32 +36,29 @@ public class PracticeHiFi2 extends AppCompatActivity {
         ListView tasks = (ListView) findViewById(R.id.tasks);
         String routineName = getIntent().getExtras().getString("ROUTINE_NAME");
 
-//        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                                                                     @Override
-//                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                                                                         switch (menuItem.getItemId()){
-//                                                                             case R.id.practice_nav:
-//                                                                                 Intent practice_intent = new Intent(peform.this, PracticeHiFi2.class);
-//                                                                                 startActivity(practice_intent);
-//                                                                                 break;
-//                                                                             case R.id.perform_nav:
-//                                                                                 Intent perform_intent = new Intent(peform.this, peform.class);
-//                                                                                 startActivity(perform_intent);
-//                                                                                 break;
-//                                                                             case R.id.friends_nav:
-//                                                                                 Intent collab_intent = new Intent(peform.this, CollabHiFi2.class);
-//                                                                                 startActivity(collab_intent);
-//                                                                                 break;
-//                                                                             case R.id.user_nav:
-//                                                                                 Intent profile_intent = new Intent(peform.this, Profile.class);
-//                                                                                 startActivity(profile_intent);
-//                                                                                 break;
-//                                                                         }
-//                                                                         return true;
-//                                                                     }
-//                                                                 }
-//        );
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
+        bottomNavigationView.setSelectedItemId(R.id.practice_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                                                     @Override
+                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                                                         switch (menuItem.getItemId()){
+                                                                             case R.id.perform_nav:
+                                                                                 Intent perform_intent = new Intent(PracticeHiFi2.this, peform.class);
+                                                                                 startActivity(perform_intent);
+                                                                                 break;
+                                                                             case R.id.friends_nav:
+                                                                                 Intent collab_intent = new Intent(PracticeHiFi2.this, CollabHiFi2.class);
+                                                                                 startActivity(collab_intent);
+                                                                                 break;
+                                                                             case R.id.user_nav:
+                                                                                 Intent profile_intent = new Intent(PracticeHiFi2.this, Profile.class);
+                                                                                 startActivity(profile_intent);
+                                                                                 break;
+                                                                         }
+                                                                         return true;
+                                                                     }
+                                                                 }
+        );
 
         DataSingleton ds = DataSingleton.getInstance();
         ArrayList<ArrayList<String>> routineLists = ds.getRoutinesList();
@@ -102,6 +106,36 @@ public class PracticeHiFi2 extends AppCompatActivity {
             TextView musicGoalsLabel = (TextView) findViewById(R.id.musicGoalsLabel);
             musicGoalsLabel.setVisibility(View.GONE);
         }
+
+        checkIfTaskComplete();
+    }
+
+    private void checkIfTaskComplete(){
+        final String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        final DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot match: dataSnapshot.getChildren()){
+                        if (match.getKey().equals("practice")) {
+                            int hl = Integer.parseInt(match.getValue().toString().trim());
+                            if(hl == 0) {
+                                //run tutorial program
+                                FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("practice").setValue(Integer.toString((1)));
+
+                            }
+                        }
+                    } }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void createTaskList(ArrayList<String> justTasks) {

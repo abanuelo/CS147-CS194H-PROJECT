@@ -138,7 +138,7 @@ public class SelectAvatar extends AppCompatActivity {
                         Toast.makeText(SelectAvatar.this, "Sorry this character is not fully implemented. Please select Jemi", Toast.LENGTH_LONG).show();
 
                     } else {
-                        Intent goToHomepage = new Intent(SelectAvatar.this, Dashboard.class);
+                        Intent goToHomepage = new Intent(SelectAvatar.this, Profile.class);
                         startActivity(goToHomepage);
                   }
 //

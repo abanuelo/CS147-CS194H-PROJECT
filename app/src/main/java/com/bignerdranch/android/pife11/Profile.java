@@ -8,14 +8,17 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bignerdranch.android.pife11.Matches.Matches;
 import com.bignerdranch.android.pife11.Scheduler.MondaySchedule;
@@ -41,20 +44,47 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 public class Profile extends AppCompatActivity {
     private String userId;
     private TextView name, username, genre, instrument;
-    private CircleImageView profileImage;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
-    private Button sign_out, schedule, history, matches, return_home;
-    private Uri resultUri;
+    private Button sign_out;
+    private boolean practiceBool, performBool, collabBool,dressed;
+    private GifImageView animation;
+    private GifDrawable drawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
+        bottomNavigationView.setSelectedItemId(R.id.user_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                                                     @Override
+                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                                                         switch (menuItem.getItemId()){
+                                                                             case R.id.practice_nav:
+                                                                                 Intent practice_intent = new Intent(Profile.this, PracticeHiFi2.class);
+                                                                                 startActivity(practice_intent);
+                                                                                 break;
+                                                                             case R.id.perform_nav:
+                                                                                 Intent perform_intent = new Intent(Profile.this, peform.class);
+                                                                                 startActivity(perform_intent);
+                                                                                 break;
+                                                                             case R.id.friends_nav:
+                                                                                 Intent collab_intent = new Intent(Profile.this, CollabHiFi2.class);
+                                                                                 startActivity(collab_intent);
+                                                                                 break;
+                                                                         }
+                                                                         return true;
+                                                                     }
+                                                                 }
+        );
 
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
@@ -62,37 +92,12 @@ public class Profile extends AppCompatActivity {
 
         //Initialize the Buttons for the User Profile
         sign_out = (Button) findViewById(R.id.sign_out);
-        matches = (Button) findViewById(R.id.matches);
-        history = (Button) findViewById(R.id.history);
-        schedule = (Button) findViewById(R.id.schedule);
-        return_home = (Button) findViewById(R.id.return_home);
 
         //Initalize the Text Views
         name = (TextView) findViewById(R.id.name);
         username = (TextView) findViewById(R.id.username);
         genre = (TextView) findViewById(R.id.genre);
         instrument = (TextView) findViewById(R.id.instrument);
-
-        //Sets the Profile picture Ready for the Jave Profile Class
-        profileImage = (CircleImageView) findViewById(R.id.profile_image);
-
-        //Clicking into the return home
-        return_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goHome = new Intent(Profile.this, Dashboard.class);
-                startActivity(goHome);
-            }
-        });
-
-        //Clicking into the Schedule
-        schedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent setSchedule = new Intent(Profile.this, MondaySchedule.class);
-                startActivity(setSchedule);
-            }
-        });
 
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
         userDatabase.addValueEventListener(new ValueEventListener() {
@@ -129,11 +134,6 @@ public class Profile extends AppCompatActivity {
                     }
                 }
                 genre.setText(t_genres);
-
-                //P.S. we also need the image in case they have it
-                if (!dataSnapshot.child("profileImageURL").getValue().toString().trim().equals("default")){
-                    Glide.with(getApplicationContext()).load(dataSnapshot.child("profileImageURL").getValue().toString().trim()).into(profileImage);
-                }
             }
 
             @Override
@@ -142,16 +142,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        //Now whenever you click the profile image, you should in theory make sure that it takes them to
-        //their art gallery
-        profileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
-            }
-        });
 
 
         //Event that Initiates the Sign Out Process for the Profile Image
@@ -165,26 +155,100 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        checkIfTaskComplete();
+    }
 
-        //This is going to be the click listener associated for all matches
-        matches.setOnClickListener(new View.OnClickListener() {
+    private void updateAnimation(){
+        Log.i("Stats:", "Truths: " + practiceBool + performBool + collabBool);
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        if (practiceBool && performBool && collabBool) {
+            //Evolve the creature
+            try{
+                //do the dialog
+                if (dressed) {
+                    drawable = new GifDrawable(getResources(), R.drawable.jemi_dressed_toddler);
+                }
+                else{
+                    drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("toddler");
+
+                }
+            }
+            catch (IOException ie) {
+                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
+            }
+        }
+        else {
+
+            //Adding Gifs into the Code Content
+            try {
+                if (!practiceBool) {
+                    drawable = new GifDrawable(getResources(), R.drawable.jemi_happy);
+                }
+                else {
+                    drawable = new GifDrawable(getResources(), R.drawable.jemi_sad);
+                }
+
+
+            } catch (IOException ie) {
+                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
+                //Catch the IO Exception in case of getting an hour
+            }
+        }
+
+        drawable.setLoopCount(0);
+        animation = (GifImageView) findViewById(R.id.animation);
+        animation.setBackground(drawable);
+    }
+
+    private void checkIfTaskComplete(){
+
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Intent see_matches = new Intent(Profile.this, Matches.class);
-                startActivity(see_matches);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot match: dataSnapshot.getChildren()){
+                        Log.i("Stats:", match.getKey() + ": " + match.getValue().toString());
+                        if (match.getKey().equals("practice")) {
+                            int hl = Integer.parseInt(match.getValue().toString().trim());
+                            if(hl == 1) practiceBool = true;
+                        }
+                        if (match.getKey().equals("perform")) {
+                            int hl = Integer.parseInt(match.getValue().toString().trim());
+                            if(hl == 1) performBool = true;
+                        }
+                        if (match.getKey().equals("collab")) {
+                            int hl = Integer.parseInt(match.getValue().toString().trim());
+                            if(hl == 1) collabBool = true;
+                        }
+                        if (match.getKey().equals("dressed")) {
+                            String dres = match.getValue().toString();
+                            if(dres.equals("true")) dressed = true;
+                        }
+                    }
+                    updateAnimation();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
-
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK){
-            final Uri image_uri = data.getData();
-            resultUri = image_uri;
-            profileImage.setImageURI(resultUri);
-        }
-    }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == 1 && resultCode == Activity.RESULT_OK){
+//            final Uri image_uri = data.getData();
+//            resultUri = image_uri;
+//            profileImage.setImageURI(resultUri);
+//        }
+//    }
 }

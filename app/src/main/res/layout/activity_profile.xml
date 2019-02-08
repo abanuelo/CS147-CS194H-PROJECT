@@ -7,12 +7,15 @@
     android:orientation="vertical"
     android:background="@drawable/home"
     tools:context=".Profile"
-    android:padding="20sp">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
+        android:paddingTop="20dp">
 
         <Button
             android:layout_width="60dp"
@@ -176,6 +179,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"/>
 
-
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationViewPerform"
+        style="@style/Widget.Design.BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav" />
 
 </LinearLayout>
