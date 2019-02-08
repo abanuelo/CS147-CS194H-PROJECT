@@ -25,5 +25,10 @@
     <string name="title_4">Ugly card</string>
     <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
 
+    <string name="first_nav">Practice</string>
+    <string name="second_nav">Perform</string>
+    <string name="third_nav">Friends</string>
+    <string name="fourth_nav">User</string>
+
 
 </resources>
