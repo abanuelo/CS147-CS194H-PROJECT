@@ -1,10 +1,13 @@
 package com.bignerdranch.android.pife11;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.DragAndDropPermissions;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +42,10 @@ public class Tab1Fragment extends Fragment {
 
         myMatchesLayoutManager = new LinearLayoutManager(getContext());
         myRecyclerView.setLayoutManager(myMatchesLayoutManager);
-        myRecyclerView.addItemDecoration(new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
+        DividerItemDecoration divider = new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        Drawable verticalDivider = ContextCompat.getDrawable(getActivity(), R.drawable.vertical_divider);
+        divider.setDrawable(verticalDivider);
+        myRecyclerView.addItemDecoration(divider);
 
         myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
         myRecyclerView.setAdapter(myMatchesAdapter);

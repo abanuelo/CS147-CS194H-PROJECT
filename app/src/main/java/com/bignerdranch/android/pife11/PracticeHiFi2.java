@@ -36,30 +36,6 @@ public class PracticeHiFi2 extends AppCompatActivity {
         ListView tasks = (ListView) findViewById(R.id.tasks);
         String routineName = getIntent().getExtras().getString("ROUTINE_NAME");
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
-        bottomNavigationView.setSelectedItemId(R.id.practice_nav);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                                                                     @Override
-                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                                                                         switch (menuItem.getItemId()){
-                                                                             case R.id.perform_nav:
-                                                                                 Intent perform_intent = new Intent(PracticeHiFi2.this, peform.class);
-                                                                                 startActivity(perform_intent);
-                                                                                 break;
-                                                                             case R.id.friends_nav:
-                                                                                 Intent collab_intent = new Intent(PracticeHiFi2.this, CollabHiFi2.class);
-                                                                                 startActivity(collab_intent);
-                                                                                 break;
-                                                                             case R.id.user_nav:
-                                                                                 Intent profile_intent = new Intent(PracticeHiFi2.this, Profile.class);
-                                                                                 startActivity(profile_intent);
-                                                                                 break;
-                                                                         }
-                                                                         return true;
-                                                                     }
-                                                                 }
-        );
-
         DataSingleton ds = DataSingleton.getInstance();
         ArrayList<ArrayList<String>> routineLists = ds.getRoutinesList();
 

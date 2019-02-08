@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#00574B</color>
+    <!--<color name="colorPrimary">#008577</color>-->
+    <color name="colorAnalogous1">#21A94C</color>
+    <color name="colorAnalogous2">#1092CE</color>
+    <color name="colorComplementary">#B21C22</color>
+
+    <color name="cardbackground">#21A94C</color> <!--Analogous1-->
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#990D94</color>
+    <color name="colorAccent2">#4426A3</color>
     <color name="colorSecondary">#FFFAFA</color>
     <color name="white">#FFFAFA</color>
     <color name="black">#000000</color>
     <color name="btn1">#DAA530</color>
     <color name="btn2">#A9A9A9</color>
     <color name="back">#FCDFA6</color>
+    <color name="button">#696969</color>
+    <color name="button2">#C0C0C0</color>
+
 </resources>

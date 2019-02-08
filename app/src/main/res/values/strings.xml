@@ -10,7 +10,6 @@
         <item>60 Minutes</item>
     </string-array>
     <string name="title_activity_rewards">Rewards</string>
-    <color name="cardbackground">#BCE9FF</color>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_rewards_both">RewardsBoth</string>

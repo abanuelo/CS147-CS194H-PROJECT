@@ -5,26 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PracticeHiFi2"
+    android:background="@drawable/practice_2"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/TimeElasped"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/opensans_bold"
         android:text="Time Elapsed:"
-        android:id="@+id/TimeElasped"/>
+        android:textSize="18sp" />
 
     <Chronometer
         android:id="@+id/PracticeStopwatch"
         android:layout_width="168dp"
         android:layout_height="50dp"
+        android:layout_gravity="center"
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
+        android:fontFamily="@font/opensans_bold"
         android:textAlignment="center"
         android:textSize="36sp"
-        tools:text="@tools:sample/date/hhmmss"
-        android:layout_gravity="center"/>
+        tools:text="@tools:sample/date/hhmmss" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,17 +37,20 @@
         android:id="@+id/routineTitle"/>
 
     <TextView
+        android:id="@+id/musicGoalsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Music Goals"
         android:layout_gravity="center"
-        android:id="@+id/musicGoalsLabel"/>
+        android:fontFamily="@font/opensans_bold"
+        android:text="Music Goals"
+        android:textSize="18sp" />
     <ListView
         android:layout_width="350dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="center"
-        android:id="@+id/tasks">
+        android:id="@+id/tasks"
+        android:layout_marginBottom="20dp">
     </ListView>
 
     <Button
@@ -52,19 +59,9 @@
         android:layout_gravity="center"
         android:text="Done"
         android:onClick="backHome"
+        android:background="@drawable/buttonoval"
+        android:layout_margin="20dp"
         />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigationViewPerform"
-        style="@style/Widget.Design.BottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:labelVisibilityMode="labeled"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav" />
+
 </LinearLayout>

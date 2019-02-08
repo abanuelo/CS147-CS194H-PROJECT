@@ -69,7 +69,7 @@ public class Profile extends AppCompatActivity {
                                                                      public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                                                                          switch (menuItem.getItemId()){
                                                                              case R.id.practice_nav:
-                                                                                 Intent practice_intent = new Intent(Profile.this, PracticeHiFi2.class);
+                                                                                 Intent practice_intent = new Intent(Profile.this, ChooseRoutineActivity.class);
                                                                                  startActivity(practice_intent);
                                                                                  break;
                                                                              case R.id.perform_nav:
@@ -85,6 +85,15 @@ public class Profile extends AppCompatActivity {
                                                                      }
                                                                  }
         );
+
+        Button rewardShop = findViewById(R.id.shop_button);
+        rewardShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent rewards_intent = new Intent(Profile.this, RewardsBoth.class);
+                startActivity(rewards_intent);
+            }
+        });
 
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
@@ -170,6 +179,8 @@ public class Profile extends AppCompatActivity {
                     drawable = new GifDrawable(getResources(), R.drawable.jemi_dressed_toddler);
                 }
                 else{
+
+                    //check if avatar ==toddler //if not evolveMessage // if so do what is below
                     drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
                     FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("toddler");
 

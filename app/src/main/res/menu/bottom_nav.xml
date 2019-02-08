@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/practice_nav"
-        android:icon="@drawable/practice_icon"
+        android:icon="@drawable/practice_icon_2"
         android:title="@string/first_nav"
         />
     <item
@@ -17,7 +17,7 @@
         />
     <item
         android:id="@+id/user_nav"
-        android:icon="@drawable/user"
+        android:icon="@drawable/user_2"
         android:title="@string/fourth_nav"
         />
 </menu>

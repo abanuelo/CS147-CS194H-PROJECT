@@ -4,8 +4,8 @@
     android:shape="rectangle" android:padding="10dp"
     tools:ignore="MissingDefaultResource">
     <!--<solid android:color="#008080"/> &lt;!&ndash; this one is ths color of the Rounded Button &ndash;&gt;-->
-    <solid android:color="#696969"/> <!-- this one is ths color of the Rounded Button -->
-    <solid android:color="#C0C0C0"/> <!-- this one is ths color of the Rounded Button -->
+    <solid android:color="@color/button"/> <!-- this one is ths color of the Rounded Button -->
+    <!--<solid android:color="#C0C0C0"/> &lt;!&ndash; this one is ths color of the Rounded Button &ndash;&gt;-->
     <corners
         android:bottomRightRadius="100dp"
         android:bottomLeftRadius="100dp"

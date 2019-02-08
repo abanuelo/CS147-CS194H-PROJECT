@@ -5,19 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChooseRoutineActivity"
+    android:background="@drawable/practice"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Choose Routine"/>
+        android:fontFamily="@font/opensans_lightitalic"
+        android:text="Choose Routine"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
 
     <ListView
+        android:id="@+id/routinesList"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="437dp"
         android:layout_weight="1"
-        android:id="@+id/routinesList">
+        android:paddingBottom="30dp">
 
     </ListView>
 
@@ -25,18 +30,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:padding="20dp">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Add Routine"
+            android:fontFamily="@font/opensans_semibold"
+            android:background="@drawable/buttonoval"
+            android:padding="10dp"
             android:onClick="addRoutine"/>
-
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Open Practice"
+            android:padding="10dp"
+            android:fontFamily="@font/opensans_semibold"
+            android:background="@drawable/buttonoval"
             android:onClick="goToOpenPractice"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
     </LinearLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationViewPerform"
+        style="@style/Widget.Design.BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="0dp"
+        app:itemIconTint="@drawable/menu_state_list"
+        app:itemTextColor="@drawable/menu_state_list"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav" />
 
 </LinearLayout>

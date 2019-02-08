@@ -36,7 +36,7 @@ public class peform extends AppCompatActivity {
                                                                      public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                                                                          switch (menuItem.getItemId()){
                                                                              case R.id.practice_nav:
-                                                                                 Intent practice_intent = new Intent(peform.this, PracticeHiFi2.class);
+                                                                                 Intent practice_intent = new Intent(peform.this, ChooseRoutineActivity.class);
                                                                                  startActivity(practice_intent);
                                                                                  break;
                                                                              case R.id.friends_nav:

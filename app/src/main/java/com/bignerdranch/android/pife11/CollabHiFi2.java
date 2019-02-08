@@ -34,13 +34,13 @@ public class CollabHiFi2 extends AppCompatActivity {
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
-        bottomNavigationView.setSelectedItemId(R.id.practice_nav);
+        bottomNavigationView.setSelectedItemId(R.id.friends_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                                                                      @Override
                                                                      public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                                                                          switch (menuItem.getItemId()){
                                                                              case R.id.practice_nav:
-                                                                                 Intent practice_intent = new Intent(CollabHiFi2.this, PracticeHiFi2.class);
+                                                                                 Intent practice_intent = new Intent(CollabHiFi2.this, ChooseRoutineActivity.class);
                                                                                  startActivity(practice_intent);
                                                                                  break;
                                                                              case R.id.perform_nav:
