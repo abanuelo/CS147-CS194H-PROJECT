@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.ViewerPagerCards.CardFragmentPagerAdapter;
 import com.bignerdranch.android.pife11.ViewerPagerCards.CardItem;
@@ -35,6 +36,7 @@ public class Tab2Fragment extends Fragment   {
     private Button mButton;
     private ViewPager mViewPager;
     private CheckBox box;
+    private TextView name_text;
 
     private CardPagerAdapter mCardAdapter;
     private ShadowTransformer mCardShadowTransformer;
@@ -49,7 +51,11 @@ public class Tab2Fragment extends Fragment   {
     //@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_two, container, false);
+        //View viewCard = inflater.inflate(R.layout.adapter, container, false);
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        //mButton = (Button) viewCard.findViewById(R.id.collab_button);
+        //name_text = (TextView) viewCard.findViewById(R.id.name);
+        //mButton =(Button) mViewPager.findViewById(R.id.collab_button);
         //mButton = (Button) view.findViewById(R.id.cardTypeBtn);
         //box = (CheckBox) view.findViewById(R.id.checkBox);
         //mButton.setOnClickListener(this);
@@ -62,18 +68,9 @@ public class Tab2Fragment extends Fragment   {
 
         //Here insert Firebase Background for Log-In Iterate and create new ones
         populateCards();
-        Log.d("NAMES", names.toString());
-//        for(String name: names){
-//            mCardAdapter.addCardItem(new CardItem(name, name));
-//        }
-        mCardAdapter.addCardItem(new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing"));
-        //System.out.println(names);
 
-//        mCardAdapter.addCardItem(new CardItem("Title", "Text"));
-//        mCardAdapter.addCardItem(new CardItem("Title", "Text"));
-//        mCardAdapter.addCardItem(new CardItem("Title", "Text"));
-//        mCardAdapter.addCardItem(new CardItem("Title", "Text"));
-//        mCardAdapter.addCardItem(new CardItem("Title", "Text"));
+        mCardAdapter.addCardItem(new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing"));
+
         mFragmentCardAdapter = new CardFragmentPagerAdapter(getFragmentManager(),
                 dpToPixels(2, getContext()));
 
@@ -85,6 +82,15 @@ public class Tab2Fragment extends Fragment   {
         mViewPager.setAdapter(mCardAdapter);
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
         mViewPager.setOffscreenPageLimit(3);
+        
+
+//        mButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d("Arrived Here", "s");
+//            }
+//        });
+
         return view;
     }
 //

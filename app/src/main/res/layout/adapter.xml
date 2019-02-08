@@ -8,6 +8,8 @@
     app:cardUseCompatPadding="true">
 
     <FrameLayout
+        android:background="@color/cardbackground"
+        android:outlineSpotShadowColor="@android:color/black"
         android:layout_width="match_parent"
         android:layout_height="450dp">
 
@@ -20,7 +22,7 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/titleTextView"
+                android:id="@+id/name"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -112,11 +114,13 @@
             </LinearLayout>
 
             <Button
-                style="@style/ButtonStyle"
+                android:id="@+id/collab_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Collab" />
+                android:text="Collab"
+                android:onClick="CollabedClicked"/>
+
         </LinearLayout>
 
         <ImageView

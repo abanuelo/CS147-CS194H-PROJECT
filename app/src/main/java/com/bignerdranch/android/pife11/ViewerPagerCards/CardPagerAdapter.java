@@ -1,13 +1,22 @@
 package com.bignerdranch.android.pife11.ViewerPagerCards;
 
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -19,6 +28,9 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     private List<CardView> mViews;
     private List<CardItem> mData;
     private float mBaseElevation;
+    private DatabaseReference usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
+    private String currentUId = auth.getCurrentUser().getUid();
 
     public CardPagerAdapter() {
         mData = new ArrayList<>();
@@ -50,16 +62,64 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(final ViewGroup container, final int position) {
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.adapter, container, false);
         container.addView(view);
         bind(mData.get(position), view);
-        CardView cardView = (CardView) view.findViewById(R.id.cardView);
+        final CardView cardView = (CardView) view.findViewById(R.id.cardView);
 
         if (mBaseElevation == 0) {
             mBaseElevation = cardView.getCardElevation();
         }
+
+        final Button button = view.findViewById(R.id.collab_button);
+        //final TextView name = view.findViewById(R.id.name);
+        final String name = mData.get(position).getTitle();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                String key = FirebaseDatabase.getInstance().getReference().child("Chats").push().getKey();
+//                for (DataSnapshot user : usersDb.){
+//                    String users_name = user.child("name").getValue().toString().trim();
+//                    if (users_name.equals(name)){
+//                        String userId = user.getKey().trim();
+//                        usersDb.child(currentUId).child("Collaborations").child("Yes").child(userId);
+////                                usersDb.child(userId).child("Collaborations").child("Matches").child(currentUId).child("ChatID").setValue(key);
+////                                usersDb.child(currentUId).child("Collaborations").child("Matches").child(userId).child("ChatID").setValue(key);
+//                        Log.d("Hello", "Here");
+//                    }
+//                }
+
+                usersDb.addValueEventListener(new ValueEventListener() {
+                    boolean hasChanged = false;
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String key = FirebaseDatabase.getInstance().getReference().child("Chats").push().getKey();
+                        if (!hasChanged) {
+                            for (DataSnapshot user : dataSnapshot.getChildren()) {
+                                String users_name = user.child("name").getValue().toString().trim();
+                                if (users_name.equals(name)) {
+                                    String userId = user.getKey().trim();
+                                    usersDb.child(currentUId).child("Collaborations").child("Yes").child(userId);
+                                    usersDb.child(userId).child("Collaborations").child("Matches").child(currentUId).child("ChatID").setValue(key);
+                                    usersDb.child(currentUId).child("Collaborations").child("Matches").child(userId).child("ChatID").setValue(key);
+                                    hasChanged = true;
+                                    Log.d("Hello", "Here");
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                button.setText("Collab Sent");
+                button.setBackgroundColor(0xFFFF0000);
+            }
+        });
 
         cardView.setMaxCardElevation(mBaseElevation * MAX_ELEVATION_FACTOR);
         mViews.set(position, cardView);
@@ -73,7 +133,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     }
 
     private void bind(CardItem item, View view) {
-        TextView titleTextView = (TextView) view.findViewById(R.id.titleTextView);
+        TextView titleTextView = (TextView) view.findViewById(R.id.name);
         TextView Genre = (TextView) view.findViewById(R.id.GenreTitle);
         TextView Years = (TextView) view.findViewById(R.id.YearsTitle);
         TextView Instruments = (TextView) view.findViewById(R.id.InstrumentTitle);
