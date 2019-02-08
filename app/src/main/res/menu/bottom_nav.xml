@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/practice_nav"
+        android:icon="@drawable/practice_icon"
+        android:title="@string/first_nav"
+        />
+    <item
+        android:id="@+id/perform_nav"
+        android:icon="@drawable/mic_none"
+        android:title="@string/second_nav"
+        />
+    <item
+        android:id="@+id/friends_nav"
+        android:icon="@drawable/friends"
+        android:title="@string/third_nav"
+        />
+    <item
+        android:id="@+id/user_nav"
+        android:icon="@drawable/user"
+        android:title="@string/fourth_nav"
+        />
+</menu>

@@ -149,67 +149,67 @@ public class PracticePlaying extends AppCompatActivity {
     }
 
     private void FetchHeartLevel(){
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
-
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    for (DataSnapshot match: dataSnapshot.getChildren()){
-                        Log.i("Ab-matchkey", match.getKey());
-                        Log.i("Ab-matchVal", match.getValue().toString().trim());
-                        if (match.getKey().equals("heartlevel")) {
-                            int hl = Integer.parseInt(match.getValue().toString().trim());
-                            heartlevel = findViewById(R.id.PracticeHeartLevel);
-                            heartlevel.setProgress(hl);
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+//
+//        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()){
+//                    for (DataSnapshot match: dataSnapshot.getChildren()){
+//                        Log.i("Ab-matchkey", match.getKey());
+//                        Log.i("Ab-matchVal", match.getValue().toString().trim());
+//                        if (match.getKey().equals("heartlevel")) {
+//                            int hl = Integer.parseInt(match.getValue().toString().trim());
+//                            heartlevel = findViewById(R.id.PracticeHeartLevel);
+//                            heartlevel.setProgress(hl);
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
     }
 
     private void updateHeartLevel(){
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
-        String goal = spinner.getSelectedItem().toString().trim();
-        String min = goal.substring(0,2).trim();
-        final int minutes = Integer.parseInt(min);
-
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    for (DataSnapshot match: dataSnapshot.getChildren()){
-                        if (match.getKey().equals("heartlevel")) {
-                            int hl = Integer.parseInt(match.getValue().toString().trim());
-                            hl += minutes;
-                            if (hl >100) hl = 100;
-                            heartlevel = findViewById(R.id.PracticeHeartLevel);
-                            heartlevel.setProgress(hl);
-                            FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("heartlevel").setValue(Integer.toString((hl)));
-                        }
-                        if (match.getKey().equals("xp")) {
-                            int xp = Integer.parseInt(match.getValue().toString().trim());
-                            xp += minutes;
-                            FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((xp)));
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+//        String goal = spinner.getSelectedItem().toString().trim();
+//        String min = goal.substring(0,2).trim();
+//        final int minutes = Integer.parseInt(min);
+//
+//        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+//
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()){
+//                    for (DataSnapshot match: dataSnapshot.getChildren()){
+//                        if (match.getKey().equals("heartlevel")) {
+//                            int hl = Integer.parseInt(match.getValue().toString().trim());
+//                            hl += minutes;
+//                            if (hl >100) hl = 100;
+//                            heartlevel = findViewById(R.id.PracticeHeartLevel);
+//                            heartlevel.setProgress(hl);
+//                            FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("heartlevel").setValue(Integer.toString((hl)));
+//                        }
+//                        if (match.getKey().equals("xp")) {
+//                            int xp = Integer.parseInt(match.getValue().toString().trim());
+//                            xp += minutes;
+//                            FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp").setValue(Integer.toString((xp)));
+//                        }
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     private boolean checkIfGoalMet(){
