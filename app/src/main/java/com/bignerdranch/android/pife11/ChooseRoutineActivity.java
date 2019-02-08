@@ -30,9 +30,8 @@ public class ChooseRoutineActivity extends Activity {
             items.add(curr.get(0));
         }
 
-        /*items.add("15 minute practice");
-        items.add("1 minute practice");
-        items.add("Favorite Things Jam-out");*/
+        //TODO: Get clicking on routine to change the intent
+
         ArrayAdapter<String> routines = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         ListView routinesList = (ListView) findViewById(R.id.routinesList);
         routinesList.setAdapter(routines);
@@ -40,6 +39,13 @@ public class ChooseRoutineActivity extends Activity {
 
     public void addRoutine(View view){
         Intent practice_intent = new Intent(ChooseRoutineActivity.this, AddNewRoutine.class);
+        startActivity(practice_intent);
+    }
+
+    public void goToOpenPractice(View view) {
+        Intent practice_intent = new Intent(ChooseRoutineActivity.this, PracticeHiFi2.class);
+        practice_intent.putExtra("SOURCE", "CHOOSE");
+        practice_intent.putExtra("ROUTINE_NAME", "Open Practice");
         startActivity(practice_intent);
     }
 }

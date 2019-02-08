@@ -53,6 +53,8 @@ public class AddNewRoutine extends AppCompatActivity {
         ds.setRoutinesList(myRoutines);
 
         Intent practice_intent = new Intent(AddNewRoutine.this, PracticeHiFi2.class);
+        practice_intent.putExtra("SOURCE", "ADD NEW");
+        practice_intent.putExtra("ROUTINE_NAME", title);
         startActivity(practice_intent);
     }
 }

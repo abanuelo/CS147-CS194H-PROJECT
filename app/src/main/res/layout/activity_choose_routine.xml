@@ -35,7 +35,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Open Practice"/>
+            android:text="Open Practice"
+            android:onClick="goToOpenPractice"/>
     </LinearLayout>
 
 </LinearLayout>
