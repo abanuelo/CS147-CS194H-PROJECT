@@ -5,21 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/android_background"
+    android:background="@drawable/home"
     tools:context=".Profile"
     android:padding="20sp">
-    
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@id/profile_image"
-        android:layout_marginBottom="10sp"
-        android:layout_centerInParent="true"
-        app:civ_border_color="@color/com_facebook_blue"
-        app:civ_border_width="3dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/user_profile"
-        android:layout_width="150dp"
-        android:layout_height="150dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/shopping_cart"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="Jemi"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/sign_out"
+            android:fontFamily="@font/opensans_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Sign Out"
+            android:background="@drawable/buttonoval"
+            android:layout_gravity="end"
+            />
+    </LinearLayout>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/animation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:minHeight="200dp"
+        android:paddingTop="30dp"
+        android:scaleType="fitCenter"
+        android:layout_weight="1"
+        />
+    />
 
     <LinearLayout
         android:layout_gravity="center"
@@ -31,20 +68,22 @@
             android:text="Name:"
             android:fontFamily="@font/proxima_novona"
             android:id="@+id/textforname"
+            android:textColor="@color/black"
             android:layout_weight="1"
             android:layout_width="75dp"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/name"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:layout_weight="1"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="5sp"
+            android:layout_weight="1"
             android:background="@null"
-            android:hint="Name" />
+            android:fontFamily="@font/proxima_novona_bold"
+            android:hint="Name"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
@@ -59,7 +98,9 @@
             android:text="Username:"
             android:fontFamily="@font/proxima_novona"
             android:layout_width="75dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            />
 
         <TextView
             android:id="@+id/username"
@@ -69,6 +110,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="5sp"
             android:background="@null"
+            android:textColor="@color/black"
             android:hint="Username" />
 
     </LinearLayout>
@@ -84,6 +126,8 @@
             android:text="Genres:"
             android:fontFamily="@font/proxima_novona"
             android:layout_width="75dp"
+            android:textColor="@color/black"
+
             android:layout_height="wrap_content" />
 
         <TextView
@@ -94,6 +138,7 @@
             android:id="@+id/genre"
             android:background="@null"
             android:hint="Genre"
+            android:textColor="@color/black"
             android:layout_marginBottom="5sp"/>
 
     </LinearLayout>
@@ -108,6 +153,7 @@
             android:text="Instruments:"
             android:fontFamily="@font/proxima_novona"
             android:layout_width="90dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content" />
 
         <TextView
@@ -116,6 +162,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/instrument"
             android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
             android:background="@null"
             android:hint="Instrument"
             android:layout_marginBottom="20sp"/>
@@ -127,60 +174,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"/>
 
-        <Button
-            android:id="@+id/schedule"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/buttonoval"
-            android:text="Schedule" />
 
-        <Button
-            android:id="@+id/history"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/buttonoval"
-            android:text="History" />
-
-        <Button
-            android:id="@+id/matches"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/buttonoval"
-            android:text="Matches" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/return_home"
-        android:layout_gravity="center"
-        android:text="Return To Homepage"
-        android:fontFamily="@font/proxima_novona_bold"
-        android:background="@drawable/buttonoval"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/sign_out"
-        android:fontFamily="@font/proxima_novona_bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Sign Out"
-        android:background="@drawable/buttonoval"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>

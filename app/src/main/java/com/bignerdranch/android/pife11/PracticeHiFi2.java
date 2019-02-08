@@ -2,8 +2,11 @@ package com.bignerdranch.android.pife11;
 
 import android.content.Intent;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Chronometer;
@@ -25,6 +28,33 @@ public class PracticeHiFi2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ListView tasks = (ListView) findViewById(R.id.tasks);
         String routineName = getIntent().getExtras().getString("ROUTINE_NAME");
+
+//        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                                                                     @Override
+//                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                                                                         switch (menuItem.getItemId()){
+//                                                                             case R.id.practice_nav:
+//                                                                                 Intent practice_intent = new Intent(peform.this, PracticeHiFi2.class);
+//                                                                                 startActivity(practice_intent);
+//                                                                                 break;
+//                                                                             case R.id.perform_nav:
+//                                                                                 Intent perform_intent = new Intent(peform.this, peform.class);
+//                                                                                 startActivity(perform_intent);
+//                                                                                 break;
+//                                                                             case R.id.friends_nav:
+//                                                                                 Intent collab_intent = new Intent(peform.this, CollabHiFi2.class);
+//                                                                                 startActivity(collab_intent);
+//                                                                                 break;
+//                                                                             case R.id.user_nav:
+//                                                                                 Intent profile_intent = new Intent(peform.this, Profile.class);
+//                                                                                 startActivity(profile_intent);
+//                                                                                 break;
+//                                                                         }
+//                                                                         return true;
+//                                                                     }
+//                                                                 }
+//        );
 
         DataSingleton ds = DataSingleton.getInstance();
         ArrayList<ArrayList<String>> routineLists = ds.getRoutinesList();

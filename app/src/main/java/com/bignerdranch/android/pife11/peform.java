@@ -21,6 +21,7 @@ public class peform extends AppCompatActivity {
         setContentView(R.layout.peform);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
+        bottomNavigationView.setSelectedItemId(R.id.perform_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                                                                      @Override
                                                                      public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -45,7 +46,6 @@ public class peform extends AppCompatActivity {
                                                                          return true;
                                                                      }
                                                                  }
-
         );
 
         watch = findViewById(R.id.search);
