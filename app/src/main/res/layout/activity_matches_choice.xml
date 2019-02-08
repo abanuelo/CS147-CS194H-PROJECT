@@ -7,7 +7,7 @@
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
     android:paddingBottom="100dp"
-    android:background="@drawable/android_background"
+    android:background="@color/shadowColor"
     android:paddingTop="100dp"
     tools:context=".MatchesChoice">
 
@@ -20,7 +20,7 @@
         android:text="Chat"
         android:fontFamily="@font/proxima_novona_bold"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/buttonoval"
+        android:background="@drawable/button_oval_green"
         android:layout_gravity="center" />
 
     <Button
@@ -30,7 +30,7 @@
         android:fontFamily="@font/proxima_novona_bold"
         android:text="Schedule Collaboration"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/buttonoval"
+        android:background="@drawable/button_oval_green"
         android:layout_gravity="center"/>
 
     <Button
@@ -39,7 +39,7 @@
         android:id="@+id/collab_now"
         android:fontFamily="@font/proxima_novona_bold"
         android:text="Collaborate Now"
-        android:background="@drawable/buttonoval"
+        android:background="@drawable/button_oval_green"
         android:layout_gravity="center"/>
 
 </LinearLayout>
