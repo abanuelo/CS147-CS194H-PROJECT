@@ -15,5 +15,14 @@
     <string name="title_activity_rewards_both">RewardsBoth</string>
     <string name="tab_text_1">Rewards Shop</string>
     <string name="tab_text_2">My Rewards</string>
+    <string name="title_activity_collab_hi_fi2">CollabHiFi2</string>
+    <string name="search_hint">Search for Friends!</string>
+
+    <string name="title_1">Cool card</string>
+    <string name="title_2">Ok card</string>
+    <string name="title_3">Bad card</string>
+    <string name="title_4">Ugly card</string>
+    <string name="text_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
+
 
 </resources>

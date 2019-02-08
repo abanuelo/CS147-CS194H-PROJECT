@@ -12,4 +12,24 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="MyToolbarTheme"
+        parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="titleTextColor">@android:color/white</item>
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+    <!-- Gets rid of the search icon -->
+    <!-- Gets rid of the "underline" in the text -->
+    <item name="queryBackground">@android:color/holo_blue_light</item>
+    <!-- Gets rid of the search icon when the SearchView is expanded -->
+    <item name="searchHintIcon">@null</item>
+    <!-- The hint text that appears when the user has not typed anything -->
+    <item name="queryHint">@string/search_hint</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+
 </resources>

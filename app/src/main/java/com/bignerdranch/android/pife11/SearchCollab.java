@@ -103,6 +103,29 @@ public class SearchCollab extends AppCompatActivity {
                 startActivity(goToMatches);
             }
         });
+//        try {
+//            filter_genres = getIntent().getExtras().getStringArrayList("GENRES");
+//            filter_instruments = getIntent().getExtras().getStringArrayList("INSTRUMENTS");
+//        } catch (Exception e){
+//            System.out.println("Error " + e.getMessage());
+//        }
+
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToFilters = new Intent(SearchCollab.this, CollabMain.class);
+                startActivity(goToFilters);
+            }
+        });
+
+
+        myMatches.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToMatches = new Intent(SearchCollab.this, Matches.class);
+                startActivity(goToMatches);
+            }
+        });
 
         //new commands that will include the names of people
         getFilteredUsers(filter_genres, filter_instruments);
