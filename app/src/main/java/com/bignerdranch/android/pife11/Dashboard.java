@@ -66,9 +66,6 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        FetchHeartStreakLevel();
-//        checkIfTaskComplete();
-
 
         bPractice = findViewById(R.id.practice);
         bCollab = findViewById(R.id.collab);
@@ -127,7 +124,7 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onResume(){
         FetchHeartStreakLevel();
-        checkIfTaskComplete();
+        //checkIfTaskComplete(); //called in fetchHeartStreakLevel
         super.onResume();
     }
 
@@ -271,15 +268,8 @@ public class Dashboard extends AppCompatActivity {
                     for (DataSnapshot match: dataSnapshot.getChildren()){
                         if (match.getKey().equals("heartlevel")) {
                             int hl = Integer.parseInt(match.getValue().toString().trim());
-                            heartlevel = findViewById(R.id.DashboardHeartLevel);
                             Log.i("heartlevel-hl", Integer.toString(hl) );
                             heartLevelPoints = hl;
-                            heartlevel.setProgress(hl);
-                        }
-                        if (match.getKey().equals("streak")) {
-                            int hl = Integer.parseInt(match.getValue().toString().trim());
-                            streaklevel = findViewById(R.id.StreakLevel);
-                            streaklevel.setProgress(hl);
                         }
                     }
                 }

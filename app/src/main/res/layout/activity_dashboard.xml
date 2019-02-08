@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/android_background"
+    android:background="@drawable/home"
     android:backgroundTint="#20FFFFFF"
     android:backgroundTintMode="src_over"
     tools:context=".Dashboard">
@@ -26,10 +26,10 @@
             android:id="@+id/reward"
             android:layout_width="45dp"
             android:layout_height="48dp"
-            android:src="@drawable/reward"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/shopping_cart"
+            app:layout_constraintStart_toStartOf="parent"
 
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/avatar_name"
@@ -37,23 +37,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:fontFamily="@font/proxima_novona_bold"
+            android:fontFamily="@font/opensans_semibold"
             android:gravity="center"
             android:text="Jemi"
             android:textAlignment="center"
-            android:textColor="#FFF"
+            android:textColor="#000"
             android:textSize="40sp"
             app:layout_constraintEnd_toStartOf="@+id/user_profile"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toEndOf="@id/reward"
-            tools:layout_editor_absoluteY="5dp"
-            app:layout_constraintTop_toTopOf="parent"
-        />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/user_profile"
             android:layout_width="45dp"
             android:layout_height="48dp"
-            android:src="@drawable/user_profile"
+            android:src="@drawable/user"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="0dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -74,87 +73,13 @@
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toBottomOf="@+id/DashboardHeader" />-->
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ProgressBar
-            android:id="@+id/DashboardHeartLevel"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="111dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="61dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="216dp"
-            android:layout_marginBottom="350dp"
-            android:progress="25"
-            android:progressTint="#CC0000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.34" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="47dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="350dp"
-            android:src="@drawable/heart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.321" />
-
-        <ProgressBar
-            android:id="@+id/StreakLevel"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="111dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="405dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="216dp"
-            android:layout_marginBottom="350dp"
-            android:progress="25"
-            android:progressTint="#ffa500"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.34" />
-
-        <ImageView
-            android:layout_width="59dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="380dp"
-            android:src="@drawable/ic_fire"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32999998" />
-
-
-    </android.support.constraint.ConstraintLayout>
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/animation"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="25sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:adjustViewBounds="true"
         android:minHeight="200dp"
         android:paddingTop="30dp"
@@ -189,9 +114,11 @@
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:background="@drawable/buttonoval"
-        android:fontFamily="@font/proxima_novona_bold"
+        android:fontFamily="@font/opensans_semibold"
         android:text="Practice"
-        android:textColor="#FFFFFF" />
+        android:textColor="#000"
+
+        />
 
     <Button
         android:id="@+id/perform"
@@ -199,9 +126,9 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20sp"
         android:background="@drawable/buttonoval"
-        android:fontFamily="@font/proxima_novona_bold"
+        android:fontFamily="@font/opensans_semibold"
         android:text="Perform"
-        android:textColor="#FFFFFF" />
+        android:textColor="#000" />
 
     <Button
         android:id="@+id/collab"
@@ -209,9 +136,9 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20sp"
         android:background="@drawable/buttonoval"
-        android:fontFamily="@font/proxima_novona_bold"
-        android:text="Collab"
-        android:textColor="#FFFFFF" />
+        android:fontFamily="@font/opensans_semibold"
+        android:text="Connect"
+        android:textColor="#000" />
 
 </LinearLayout>
 
