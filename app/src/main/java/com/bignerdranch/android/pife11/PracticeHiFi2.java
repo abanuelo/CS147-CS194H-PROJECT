@@ -1,18 +1,24 @@
 package com.bignerdranch.android.pife11;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Chronometer;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PracticeHiFi2 extends AppCompatActivity {
+
+    private Chronometer stopwatch;
+    long timeWhenStopped = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,11 @@ public class PracticeHiFi2 extends AppCompatActivity {
         TextView routineTitle = (TextView) findViewById(R.id.routineTitle);
         routineTitle.setText(routineName);
 
+        stopwatch = (Chronometer) findViewById(R.id.PracticeStopwatch);
+        stopwatch.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
+        stopwatch.start();
+
+
         if (!routineName.contentEquals("Open Practice")) {
             ListView lv = (ListView) findViewById(R.id.tasks);
             lv.setAdapter(tasksAdapter);
@@ -58,8 +69,55 @@ public class PracticeHiFi2 extends AppCompatActivity {
     }
 
     public void backHome(View view) {
+        timeWhenStopped = SystemClock.elapsedRealtime() - stopwatch.getBase();
+        stopwatch.stop();
+
+        Toast t = Toast.makeText(getApplicationContext(), formToastText(timeWhenStopped), Toast.LENGTH_SHORT);
+        t.show();
+
         Intent practice_intent = new Intent(this, Dashboard.class);
         startActivity(practice_intent);
+    }
+
+    private String formToastText(long timeWhenStopped){
+        int hrs = 0;
+        int min = 0;
+        int sec = 0;
+        String res = "You have played for ";
+        System.out.println("hrs:" + timeWhenStopped);
+        hrs = (int)(timeWhenStopped / (60*60*1000));
+        timeWhenStopped -= hrs * (60*60*1000);
+        System.out.println("hrs1:" + timeWhenStopped);
+        min = (int)(timeWhenStopped / (60*1000));
+        timeWhenStopped -= hrs * (60*1000);
+        System.out.println("hrs2:" + timeWhenStopped);
+        sec = (int)(timeWhenStopped / (1000));
+        System.out.println("hrs:" + hrs + "hrs:" + min + "hrs:" + sec);
+        if (hrs != 0) {
+            res = res + Integer.toString(hrs) + " hrs";
+        }
+        if (min != 0) {
+            res = res + ifAnythingBeforeMin(hrs) + Integer.toString(min) + " min";
+        }
+        if (sec != 0) {
+            res = res + ifAnythingBeforeSec(hrs, min) + Integer.toString(sec) + " s";
+        }
+        res = res + "!";
+        return res;
+    }
+
+    private String ifAnythingBeforeMin(int before) {
+        if (before != 0) {
+            return " ";
+        }
+        return "";
+    }
+
+    private String ifAnythingBeforeSec(int hrs, int min) {
+        if (hrs != 0 || min != 0) {
+            return " ";
+        }
+        return "";
     }
 
     private int getRoutineIndex(ArrayList<ArrayList<String>> arr, String routineName) {
