@@ -5,25 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddNewRoutine"
+    android:background="@drawable/practice"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/opensans_light"
+        android:textColor="@color/white"
+        android:layout_marginTop="4dp"
         android:text="Create New Routine"
-        android:layout_gravity="center"/>
+        android:textSize="18sp" />
 
     <EditText
+        android:id="@+id/inputTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_regular"
         android:hint="Input Routine Name (e.g., Weekend-practice)"
-        android:id="@+id/inputTitle"/>
+        android:textSize="24sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Musical Goals:"/>
+        android:fontFamily="@font/opensans_bold"
+        android:text="Musical Goals:"
+        android:textSize="18sp" />
 
     <!--<TextView
         android:layout_width="wrap_content"
@@ -36,7 +45,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:id="@+id/listOfGoals">
 
     </ListView>
@@ -44,18 +53,22 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
+
         <EditText
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:id="@+id/newGoal"
-            android:hint="Add some musical goals in your routine!\n(e.g., Warm-up, Practice Arpeggios)"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Add some musical goals in your routine!\n(e.g., Warm-up, Practice Arpeggios)" />
         <Button
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AddGoal"
-            android:layout_gravity="center_vertical|right"
+            android:text="Add Goal"
+            android:layout_gravity="fill_vertical|end"
             android:onClick="addGoal"/>
 
     </LinearLayout>
@@ -63,7 +76,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Add Routine"
+        android:layout_marginBottom="30dp"
         android:onClick="finishRoutine"/>
 
 </LinearLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/shadowColor"
     android:orientation="vertical"
     tools:context=".Matches.Matches">
 
@@ -32,8 +33,10 @@
         android:layout_gravity="center"
         android:textSize="30dp"
         android:text="My Matches"
-        android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="50dp" />
 
     <android.support.v4.widget.NestedScrollView

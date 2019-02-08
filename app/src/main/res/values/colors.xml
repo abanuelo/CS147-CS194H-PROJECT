@@ -6,7 +6,7 @@
     <color name="colorAnalogous2">#1092CE</color>
     <color name="colorComplementary">#B21C22</color>
 
-    <color name="cardbackground">#21A94C</color> <!--Analogous1-->
+    <color name="cardbackground">@color/btn2</color> <!--Analogous1-->
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#990D94</color>
     <color name="colorAccent2">#4426A3</color>

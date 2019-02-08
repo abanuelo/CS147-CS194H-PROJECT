@@ -1,5 +1,6 @@
 package com.bignerdranch.android.pife11.ViewerPagerCards;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
@@ -75,6 +76,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
         final Button button = view.findViewById(R.id.collab_button);
         //final TextView name = view.findViewById(R.id.name);
+        button.setBackgroundColor(Color.parseColor("#00574B"));
         final String name = mData.get(position).getTitle();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +93,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 //                    }
 //                }
 
-                usersDb.addValueEventListener(new ValueEventListener() {
+                usersDb.addListenerForSingleValueEvent(new ValueEventListener() {
                     boolean hasChanged = false;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -117,7 +119,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
                     }
                 });
                 button.setText("Collab Sent");
-                button.setBackgroundColor(0xFFFF0000);
+                button.setBackgroundColor(Color.parseColor("#A9A9A9"));
             }
         });
 
