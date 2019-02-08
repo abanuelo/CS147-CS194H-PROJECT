@@ -17,6 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".PracticeHiFi2"></activity>
+        <activity android:name=".AddNewRoutine" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,12 +68,12 @@
         <activity android:name=".Scheduler.SaturdaySchedule" />
         <activity android:name=".Scheduler.MondaySchedule" />
         <activity android:name=".SelectAvatar" />
+        <activity android:name=".ChooseRoutineActivity" />
         <activity
             android:name=".RewardsBoth"
             android:label="@string/title_activity_rewards_both"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".Trophies" />
-        <!-- <activity android:name=".RewardsShop" /> -->
+        <activity android:name=".Trophies" /> <!-- <activity android:name=".RewardsShop" /> -->
         <activity android:name=".practice_goal_met" />
         <activity android:name=".watch_performance" />
         <activity android:name=".StartPerformance" />

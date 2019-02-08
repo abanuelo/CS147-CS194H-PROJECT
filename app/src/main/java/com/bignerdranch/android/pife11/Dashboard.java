@@ -80,7 +80,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateButton(1);
-                Intent practice_intent = new Intent(Dashboard.this, PracticePlaying.class);
+                Intent practice_intent = new Intent(Dashboard.this, ChooseRoutineActivity.class);
                 startActivity(practice_intent);
             }
         });
