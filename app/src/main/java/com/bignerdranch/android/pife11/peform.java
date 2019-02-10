@@ -59,7 +59,7 @@ public class peform extends AppCompatActivity {
         watch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent practice_intent = new Intent(peform.this, watch_performance.class);
+                Intent practice_intent = new Intent(peform.this, DeclarePerform.class);
                 startActivity(practice_intent);
             }
         });
