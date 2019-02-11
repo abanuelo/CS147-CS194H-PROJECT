@@ -9,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,13 +26,13 @@ public class ChooseRoutineActivity extends Activity {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
         bottomNavigationView.setSelectedItemId(R.id.practice_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                                                                     @Override
-                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                                                                         switch (menuItem.getItemId()){
-                                                                             case R.id.perform_nav:
-                                                                                 Intent practice_intent = new Intent(ChooseRoutineActivity.this, peform.class);
-                                                                                 startActivity(practice_intent);
-                                                                                 break;
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.perform_nav:
+                        Intent practice_intent = new Intent(ChooseRoutineActivity.this, peform.class);
+                        startActivity(practice_intent);
+                        break;
                                                                              case R.id.friends_nav:
                                                                                  Intent collab_intent = new Intent(ChooseRoutineActivity.this, CollabHiFi2.class);
                                                                                  startActivity(collab_intent);
@@ -52,14 +54,28 @@ public class ChooseRoutineActivity extends Activity {
 
         //Populate the list of routines with the names of the routines (the first string in each routine list)
         for (ArrayList<String> curr: dsRoutines){
+            System.out.println("Make List Add:" + curr.toString());
             items.add(curr.get(0));
         }
 
         //TODO: Get clicking on routine to change the intent
 
         ArrayAdapter<String> routines = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        ListView routinesList = (ListView) findViewById(R.id.routinesList);
+        final ListView routinesList = (ListView) findViewById(R.id.routinesList);
         routinesList.setAdapter(routines);
+        routinesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = routinesList.getItemAtPosition(position);
+                System.out.println(o.toString());
+
+                Intent practice_intent = new Intent(ChooseRoutineActivity.this, PracticeHiFi2.class);
+                practice_intent.putExtra("SOURCE", "CHOOSE");
+                practice_intent.putExtra("ROUTINE_NAME", o.toString());
+                startActivity(practice_intent);
+
+            }
+        });
     }
 
     public void addRoutine(View view){
