@@ -46,6 +46,7 @@ public class CreateAccount extends AppCompatActivity {
     private Uri resultUri;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
+    private DatabaseReference checkedDatabase;
     private FirebaseAuth.AuthStateListener auth_listener;
 
     @Override
@@ -127,6 +128,10 @@ public class CreateAccount extends AppCompatActivity {
         userInfo.put("password", t_password);
 
         userDatabase.updateChildren(userInfo);
+
+        checkedDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Checked");
+        //Sets the Checked Option for Firebase for user
+
 
         //Storing the Image into the Firebase Storage Component
         if(resultUri != null){

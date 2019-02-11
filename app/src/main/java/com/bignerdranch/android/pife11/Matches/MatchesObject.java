@@ -4,11 +4,21 @@ public class MatchesObject {
     private String userId;
     private String name;
     private String profileImageURL;
+    private int checkVisibility;
 
-    public MatchesObject (String userId, String name, String profileImageURL){
+    public MatchesObject (String userId, String name, String profileImageURL, int checkVisibility){
         this.userId = userId;
         this.name = name;
         this.profileImageURL = profileImageURL;
+        this.checkVisibility = checkVisibility;
+    }
+
+    public int getCheckVisibility(){
+        return checkVisibility;
+    }
+
+    public void setCheckVisibility(int checkVisibility) {
+        this.checkVisibility = checkVisibility;
     }
 
     public String getUserId(){

@@ -86,7 +86,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateButton(2);
-                Intent practice_intent = new Intent(Dashboard.this, peform.class);
+                Intent practice_intent = new Intent(Dashboard.this, MyPerform.class);
                 startActivity(practice_intent);
             }
         });

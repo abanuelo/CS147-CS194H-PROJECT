@@ -92,7 +92,7 @@ public class Tab1Fragment extends Fragment {
                         profileImageURL = dataSnapshot.child("profileImageURL").getValue().toString().trim();
                     }
 
-                    MatchesObject obj = new MatchesObject(userId, name, profileImageURL);
+                    MatchesObject obj = new MatchesObject(userId, name, profileImageURL, 0);
                     resultsMatches.add(obj);
                     myMatchesAdapter.notifyDataSetChanged();
 
