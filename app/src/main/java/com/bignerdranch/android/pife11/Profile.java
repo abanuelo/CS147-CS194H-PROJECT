@@ -86,170 +86,170 @@ public class Profile extends AppCompatActivity {
                                                                  }
         );
 
-        Button rewardShop = findViewById(R.id.shop_button);
-        rewardShop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent rewards_intent = new Intent(Profile.this, RewardsBoth.class);
-                startActivity(rewards_intent);
-            }
-        });
+//        Button rewardShop = findViewById(R.id.shop_button);
+//        rewardShop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent rewards_intent = new Intent(Profile.this, RewardsBoth.class);
+//                startActivity(rewards_intent);
+//            }
+//        });
 
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
         //Initialize the Buttons for the User Profile
-        sign_out = (Button) findViewById(R.id.sign_out);
+//        sign_out = (Button) findViewById(R.id.sign_out);
 
         //Initalize the Text Views
-        name = (TextView) findViewById(R.id.name);
-        username = (TextView) findViewById(R.id.username);
-        genre = (TextView) findViewById(R.id.genre);
-        instrument = (TextView) findViewById(R.id.instrument);
+//        name = (TextView) findViewById(R.id.name);
+//        username = (TextView) findViewById(R.id.username);
+//        genre = (TextView) findViewById(R.id.genre);
+//        instrument = (TextView) findViewById(R.id.instrument);
 
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
-        userDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Gets the Name and Inserts it within TextView
-                String t_name = dataSnapshot.child("name").getValue().toString().trim();
-                name.setText(t_name);
+//        userDatabase.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                //Gets the Name and Inserts it within TextView
+//                String t_name = dataSnapshot.child("name").getValue().toString().trim();
+//                name.setText(t_name);
+//
+//                //Gets the Username and inserts it within textView
+//                String t_username = dataSnapshot.child("username").getValue().toString().trim();
+//                username.setText(t_username);
+//
+//                //Gets the Instruments to Populate the Instruments
+//                String t_instruments = null;
+//                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
+//                    if (t_instruments == null){
+//                        t_instruments = instrument.getKey() + ": " + instrument.getValue().toString().trim();
+//                    } else {
+//                        t_instruments += ", " + instrument.getKey() + ": " + instrument.getValue().toString().trim();
+//                    }
+//                }
+//                instrument.setText(t_instruments);
+//
+//                //Lastly we are going to populate the Genres Category
+//                String t_genres = null;
+//                for (DataSnapshot genre : dataSnapshot.child("Genres").getChildren()){
+//                    if ((boolean) genre.getValue() == true){
+//                        if (t_genres == null){
+//                            t_genres = genre.getKey();
+//                        } else {
+//                            t_genres += ", " + genre.getKey();
+//                        }
+//                    }
+//                }
+//                genre.setText(t_genres);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
-                //Gets the Username and inserts it within textView
-                String t_username = dataSnapshot.child("username").getValue().toString().trim();
-                username.setText(t_username);
-
-                //Gets the Instruments to Populate the Instruments
-                String t_instruments = null;
-                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
-                    if (t_instruments == null){
-                        t_instruments = instrument.getKey() + ": " + instrument.getValue().toString().trim();
-                    } else {
-                        t_instruments += ", " + instrument.getKey() + ": " + instrument.getValue().toString().trim();
-                    }
-                }
-                instrument.setText(t_instruments);
-
-                //Lastly we are going to populate the Genres Category
-                String t_genres = null;
-                for (DataSnapshot genre : dataSnapshot.child("Genres").getChildren()){
-                    if ((boolean) genre.getValue() == true){
-                        if (t_genres == null){
-                            t_genres = genre.getKey();
-                        } else {
-                            t_genres += ", " + genre.getKey();
-                        }
-                    }
-                }
-                genre.setText(t_genres);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
+//        //Event that Initiates the Sign Out Process for the Profile Image
+//        sign_out.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                auth.signOut();
+//                Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
+//                startActivity(sign_out_intent);
+//                finish();
+//            }
+//        });
 
-        //Event that Initiates the Sign Out Process for the Profile Image
-        sign_out.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth.signOut();
-                Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
-                startActivity(sign_out_intent);
-                finish();
-            }
-        });
-
-        checkIfTaskComplete();
+//        checkIfTaskComplete();
     }
 
-    private void updateAnimation(){
-        Log.i("Stats:", "Truths: " + practiceBool + performBool + collabBool);
-        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//    private void updateAnimation(){
+//        Log.i("Stats:", "Truths: " + practiceBool + performBool + collabBool);
+//        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//
+//        if (practiceBool && performBool && collabBool) {
+//            //Evolve the creature
+//            try{
+//                //do the dialog
+//                if (dressed) {
+//                    drawable = new GifDrawable(getResources(), R.drawable.jemi_dressed_toddler);
+//                }
+//                else{
+//
+//                    //check if avatar ==toddler //if not evolveMessage // if so do what is below
+//                    drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
+//                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("toddler");
+//
+//                }
+//            }
+//            catch (IOException ie) {
+//                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
+//            }
+//        }
+//        else {
+//
+//            //Adding Gifs into the Code Content
+//            try {
+//                if (!practiceBool) {
+//                    drawable = new GifDrawable(getResources(), R.drawable.jemi_happy);
+//                }
+//                else {
+//                    drawable = new GifDrawable(getResources(), R.drawable.jemi_sad);
+//                }
+//
+//
+//            } catch (IOException ie) {
+//                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
+//                //Catch the IO Exception in case of getting an hour
+//            }
+//        }
+//
+////        drawable.setLoopCount(0);
+////        animation = (GifImageView) findViewById(R.id.animation);
+////        animation.setBackground(drawable);
+//    }
 
-        if (practiceBool && performBool && collabBool) {
-            //Evolve the creature
-            try{
-                //do the dialog
-                if (dressed) {
-                    drawable = new GifDrawable(getResources(), R.drawable.jemi_dressed_toddler);
-                }
-                else{
-
-                    //check if avatar ==toddler //if not evolveMessage // if so do what is below
-                    drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
-                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("toddler");
-
-                }
-            }
-            catch (IOException ie) {
-                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
-            }
-        }
-        else {
-
-            //Adding Gifs into the Code Content
-            try {
-                if (!practiceBool) {
-                    drawable = new GifDrawable(getResources(), R.drawable.jemi_happy);
-                }
-                else {
-                    drawable = new GifDrawable(getResources(), R.drawable.jemi_sad);
-                }
-
-
-            } catch (IOException ie) {
-                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
-                //Catch the IO Exception in case of getting an hour
-            }
-        }
-
-        drawable.setLoopCount(0);
-        animation = (GifImageView) findViewById(R.id.animation);
-        animation.setBackground(drawable);
-    }
-
-    private void checkIfTaskComplete(){
-
-        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    for (DataSnapshot match: dataSnapshot.getChildren()){
-                        Log.i("Stats:", match.getKey() + ": " + match.getValue().toString());
-                        if (match.getKey().equals("practice")) {
-                            int hl = Integer.parseInt(match.getValue().toString().trim());
-                            if(hl == 1) practiceBool = true;
-                        }
-                        if (match.getKey().equals("perform")) {
-                            int hl = Integer.parseInt(match.getValue().toString().trim());
-                            if(hl == 1) performBool = true;
-                        }
-                        if (match.getKey().equals("collab")) {
-                            int hl = Integer.parseInt(match.getValue().toString().trim());
-                            if(hl == 1) collabBool = true;
-                        }
-                        if (match.getKey().equals("dressed")) {
-                            String dres = match.getValue().toString();
-                            if(dres.equals("true")) dressed = true;
-                        }
-                    }
-                    updateAnimation();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
+//    private void checkIfTaskComplete(){
+//
+//        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+//        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()){
+//                    for (DataSnapshot match: dataSnapshot.getChildren()){
+//                        Log.i("Stats:", match.getKey() + ": " + match.getValue().toString());
+//                        if (match.getKey().equals("practice")) {
+//                            int hl = Integer.parseInt(match.getValue().toString().trim());
+//                            if(hl == 1) practiceBool = true;
+//                        }
+//                        if (match.getKey().equals("perform")) {
+//                            int hl = Integer.parseInt(match.getValue().toString().trim());
+//                            if(hl == 1) performBool = true;
+//                        }
+//                        if (match.getKey().equals("collab")) {
+//                            int hl = Integer.parseInt(match.getValue().toString().trim());
+//                            if(hl == 1) collabBool = true;
+//                        }
+//                        if (match.getKey().equals("dressed")) {
+//                            String dres = match.getValue().toString();
+//                            if(dres.equals("true")) dressed = true;
+//                        }
+//                    }
+//                    updateAnimation();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
 
 
