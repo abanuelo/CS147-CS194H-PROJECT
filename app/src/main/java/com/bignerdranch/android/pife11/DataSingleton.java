@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class DataSingleton {
@@ -49,20 +50,33 @@ public class DataSingleton {
     }
 
     public ArrayList<ArrayList<String>> getRoutinesList() {
-        DatabaseReference routinesDB = userDatabase.child("Routines");
-        /*routinesDB.addListenerForSingleValueEvent(new ValueEventListener() {
+        //DatabaseReference routinesDB = userDatabase.child("Routines");
+        myListOfRoutines = new ArrayList<ArrayList<String>>();
+        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                for (DataSnapshot curr: dataSnapshot.child("Routines").getChildren()) {
+                    /*ArrayList<String> toBeAdded = new ArrayList<String>();
+                    //System.out.println("Debugging the routines reading:" + curr.toString());
+                    Map currRoutine = (Map) curr.getValue();
+                    Iterator<Map.Entry<String, String>> itr = currRoutine.entrySet().iterator();
+                    while(itr.hasNext()) {
+                        Map.Entry<String, String> entry = itr.next();
+                        toBeAdded.add(Integer.parseInt(entry.getKey()), entry.getValue());
+                    }*/
+                    myListOfRoutines.add((ArrayList<String>) curr.getValue());
+                }
+                System.out.println("Debugging the routines total:" + myListOfRoutines.toString());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
         //Get the routines from the database?
 
+        System.out.println("Debugging the routines... finishing before the callback?");
         return myListOfRoutines;
     }
 
@@ -75,7 +89,7 @@ public class DataSingleton {
         Map routinesInfo = new HashMap();
         for (ArrayList<String> curr: arr) {
             Map currMapified = new HashMap();
-            currMapified.put("length", curr.size());
+            //currMapified.put("length", curr.size());
             for (int i = 0; i < curr.size(); i++) {
                 currMapified.put(Integer.toString(i), curr.get(i));
             }

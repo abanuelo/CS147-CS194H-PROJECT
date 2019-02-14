@@ -58,7 +58,7 @@ public class ChooseRoutineActivity extends Activity {
             items.add(curr.get(0));
         }
 
-        //TODO: Get clicking on routine to change the intent
+
 
         ArrayAdapter<String> routines = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         final ListView routinesList = (ListView) findViewById(R.id.routinesList);
