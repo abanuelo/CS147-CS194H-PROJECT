@@ -22,6 +22,9 @@ public class DataSingleton {
 
     private static DataSingleton instance = new DataSingleton();
 
+    //variables
+    private static ArrayList<ArrayList<String>> myListOfRoutines;
+
     public static DataSingleton getInstance() {
 
         auth = FirebaseAuth.getInstance();
@@ -29,6 +32,23 @@ public class DataSingleton {
 
         //The info of the actual user
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+
+        //myListOfRoutines = new ArrayList<ArrayList<String>>();
+
+        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot curr: dataSnapshot.child("Routines").getChildren()) {
+                    myListOfRoutines.add((ArrayList<String>) curr.getValue());
+                }
+                System.out.println("Debugging the routines total:" + myListOfRoutines.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         //userDatabase = auth.getCurrentUser();
         /* This is for updating & creating the user info
@@ -42,8 +62,7 @@ public class DataSingleton {
         return instance;
     }
 
-    //variables
-    ArrayList<ArrayList<String>> myListOfRoutines;
+
 
     private DataSingleton() {
         myListOfRoutines = new ArrayList<ArrayList<String>>();
@@ -51,11 +70,11 @@ public class DataSingleton {
 
     public ArrayList<ArrayList<String>> getRoutinesList() {
         //DatabaseReference routinesDB = userDatabase.child("Routines");
-        myListOfRoutines = new ArrayList<ArrayList<String>>();
-        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        //myListOfRoutines = new ArrayList<ArrayList<String>>();
+        /*userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot curr: dataSnapshot.child("Routines").getChildren()) {
+                for (DataSnapshot curr: dataSnapshot.child("Routines").getChildren()) {*/
                     /*ArrayList<String> toBeAdded = new ArrayList<String>();
                     //System.out.println("Debugging the routines reading:" + curr.toString());
                     Map currRoutine = (Map) curr.getValue();
@@ -64,7 +83,7 @@ public class DataSingleton {
                         Map.Entry<String, String> entry = itr.next();
                         toBeAdded.add(Integer.parseInt(entry.getKey()), entry.getValue());
                     }*/
-                    myListOfRoutines.add((ArrayList<String>) curr.getValue());
+                    /*myListOfRoutines.add((ArrayList<String>) curr.getValue());
                 }
                 System.out.println("Debugging the routines total:" + myListOfRoutines.toString());
             }
@@ -73,7 +92,7 @@ public class DataSingleton {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
         //Get the routines from the database?
 
         System.out.println("Debugging the routines... finishing before the callback?");
