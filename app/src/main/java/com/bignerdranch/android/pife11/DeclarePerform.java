@@ -33,8 +33,6 @@ public class DeclarePerform extends AppCompatActivity {
                 record(view);
             }
         });
-
-
     }
 
     public void record(View view){

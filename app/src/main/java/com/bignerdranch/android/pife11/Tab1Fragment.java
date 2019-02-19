@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.DragAndDropPermissions;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,7 @@ public class Tab1Fragment extends Fragment {
         return view;
     }
 
+
     private void getUserMatchId() {
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Collaborations").child("Matches");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -81,6 +83,7 @@ public class Tab1Fragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     String userId = dataSnapshot.getKey();
+
                     String name = "";
                     String profileImageURL = "";
 

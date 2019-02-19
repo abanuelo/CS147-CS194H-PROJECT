@@ -48,10 +48,9 @@ public class MatchesChoice extends AppCompatActivity {
         liveCollab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://appear.in/piferoom1";
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                CustomTabsIntent customTabsIntent = builder.build();
-                customTabsIntent.launchUrl(MatchesChoice.this, Uri.parse(url));
+                Intent loadVideo = new Intent(MatchesChoice.this, Video.class);
+                loadVideo.putExtras(extras);
+                startActivity(loadVideo);
             }
         });
     }

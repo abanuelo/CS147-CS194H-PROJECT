@@ -26,6 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
     public ImageView check;
+    public ImageView notification;
     public TextView myMatchId, myMatchName;
     public CircleImageView myMatchImage;
     private String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -36,13 +37,14 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
         myMatchName = (TextView) itemView.findViewById(R.id.MatchName);
         myMatchImage = (CircleImageView) itemView.findViewById(R.id.MatchImage);
         check = (ImageView) itemView.findViewById(R.id.check);
+        notification = (ImageView) itemView.findViewById(R.id.new_song);
 
     }
     @Override
     public void onClick(View view){
         //redirect this to see my matches and decide whether or not a collaboration wants to be set
         if (view.getContext().toString().contains("SendPerform")) {
-            Log.d("Located!", "Yes");
+            //Log.d("Located!", "Yes");
             if (check.getVisibility() == view.GONE) {
                 check.setVisibility(view.VISIBLE);
                 DatabaseReference checkDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Checked");

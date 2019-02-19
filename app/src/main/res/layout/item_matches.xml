@@ -46,8 +46,16 @@
         <ImageView
             android:id="@+id/check"
             android:paddingLeft="30dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:src="@drawable/ic_checkmark"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <ImageView
+            android:id="@+id/new_song"
+            android:paddingLeft="20dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_compact_disc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
