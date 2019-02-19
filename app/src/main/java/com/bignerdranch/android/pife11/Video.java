@@ -1,5 +1,6 @@
 package com.bignerdranch.android.pife11;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,7 +51,8 @@ public class Video extends AppCompatActivity {
         feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent giveFeedback = new Intent(Video.this, GiveFeedback.class);
+                startActivity(giveFeedback);
             }
         });
     }
