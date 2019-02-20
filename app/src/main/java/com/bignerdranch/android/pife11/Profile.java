@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -115,6 +116,20 @@ public class Profile extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.gridView);
         gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
         gridView.setAdapter(gridAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                ImageItem item = (ImageItem) parent.getItemAtPosition(position);
+                //Create intent
+                Intent intent = new Intent(Profile.this, SelectVideoOnProfile.class);
+                intent.putExtra("currentUserId", "6X6Eok5NaRNWYSArcoX4Q7qpoMv2");
+                intent.putExtra("currentVideo", "test.3gp");
+//                intent.putExtra("image", item.getImage());
+
+                //Start details activity
+                startActivity(intent);
+            }
+        });
 
         //Initialize the Buttons for the User Profile
         sign_out = (Button) findViewById(R.id.sign_out);
@@ -273,6 +288,8 @@ public class Profile extends AppCompatActivity {
         TypedArray imgs = getResources().obtainTypedArray(R.array.gridview_proof);
         for (int i = 0; i < imgs.length(); i++) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
+
+//            TODO: HERE IS WHERE YOU SET THE TITLE, THE SECOND PARAMETER
             imageItems.add(new ImageItem(bitmap, "Image#" + i));
         }
         return imageItems;
