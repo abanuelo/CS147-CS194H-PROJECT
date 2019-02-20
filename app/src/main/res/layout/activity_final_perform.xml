@@ -27,7 +27,7 @@
     android:layout_alignParentEnd="true"
     android:layout_marginTop="83dp"
     android:layout_marginEnd="63dp"
-    android:src="@drawable/x_cancel"
+    android:src="@drawable/none_icon"
     tools:layout_editor_absoluteX="19dp"
     tools:layout_editor_absoluteY="41dp" />
 
