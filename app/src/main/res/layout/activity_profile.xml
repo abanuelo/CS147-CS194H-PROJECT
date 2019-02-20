@@ -1,177 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/home"
+    android:background="@color/white"
     tools:context=".Profile"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="5dp"
-        android:paddingTop="20dp">
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/profile_top_part"
+        >
 
-        <Button
-            android:id="@+id/shop_button"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/shopping_cart" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Jemi"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="40sp" />
+        <android.support.v7.widget.CardView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/view2"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/transparent"
+            app:cardCornerRadius="100dp">
 
-        <Button
-            android:id="@+id/sign_out"
+            <ImageView
+                android:id="@+id/profile_img_post"
+                android:layout_width="match_parent"
+                android:background="@android:color/transparent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_fire"></ImageView>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/buttonoval"
-            android:fontFamily="@font/opensans_semibold"
-            android:text="Sign Out" />
+            android:id="@+id/profie_info"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                >
+                <LinearLayout
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/profilepostpadding"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="40dp"
+                        android:text="19"
+                        android:textAlignment="center"
+                        android:textSize="30sp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:text="posts"
+                        android:textSize="15sp"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/opensans_light"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/profilepostpadding"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="40dp"
+                        android:text="20"
+                        android:textAlignment="center"
+                        android:textSize="30sp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:text="friends"
+                        android:textSize="15sp"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/opensans_light"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/profilepostpadding"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="40dp"
+                        android:text="99"
+                        android:textAlignment="center"
+                        android:textSize="30sp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:text="days"
+                        android:textSize="15sp"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/opensans_light"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button_transparent"
+                android:textColor="@color/black"
+
+                android:text="Edit Profile"
+                />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/animation"
+    <LinearLayout
+        android:id="@+id/profile_user_info"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:adjustViewBounds="true"
-        android:minHeight="200dp"
-        android:paddingTop="30dp"
-        android:scaleType="fitCenter"
-        android:layout_weight="1"
-        />
-    />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
 
-    <LinearLayout
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        app:layout_constraintTop_toBottomOf="@id/profile_top_part"
+        tools:layout_editor_absoluteX="10dp">
 
         <TextView
-            android:text="Name:"
-            android:fontFamily="@font/proxima_novona"
-            android:id="@+id/textforname"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="75dp"
+            android:id="@+id/profile_username"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5sp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:hint="Name"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            android:fontFamily="@font/opensans_semibold"
+            android:text="User Name"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textforusername"
-            android:text="Username:"
-            android:fontFamily="@font/proxima_novona"
-            android:layout_width="75dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            />
-
-        <TextView
-            android:id="@+id/username"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="5sp"
-            android:background="@null"
-            android:textColor="@color/black"
-            android:hint="Username" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/textforinstruments"
-            android:text="Genres:"
-            android:fontFamily="@font/proxima_novona"
-            android:layout_width="75dp"
-            android:textColor="@color/black"
-
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="75dp"
-            android:fontFamily="@font/proxima_novona_bold"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/genre"
-            android:background="@null"
-            android:hint="Genre"
-            android:textColor="@color/black"
-            android:layout_marginBottom="5sp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/textforinstruments2"
+            android:fontFamily="@font/opensans_semibold"
             android:text="Instruments:"
-            android:fontFamily="@font/proxima_novona"
-            android:layout_width="90dp"
             android:textColor="@color/black"
-            android:layout_height="wrap_content" />
+            android:textSize="14sp" />
 
         <TextView
-            android:layout_width="90sp"
-            android:fontFamily="@font/proxima_novona_bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/instrument"
-            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/opensans_semibold"
+            android:text="Years Played:"
             android:textColor="@color/black"
-            android:background="@null"
-            android:hint="Instrument"
-            android:layout_marginBottom="10dp"/>
+            android:textSize="14sp" />
 
 
     </LinearLayout>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginTop="160dp"
+        android:clickable="true"
+        android:columnWidth="100dp"
+        android:drawSelectorOnTop="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp"
+        app:layout_constraintTop_toBottomOf="@id/profile_user_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteX="26dp" />
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_gravity="center"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+            <!--android:text="Name:"-->
+            <!--android:fontFamily="@font/proxima_novona"-->
+            <!--android:id="@+id/textforname"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="75dp"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/name"-->
+            <!--android:layout_width="75dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginBottom="5sp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@null"-->
+            <!--android:fontFamily="@font/proxima_novona_bold"-->
+            <!--android:hint="Name"-->
+            <!--android:textColor="@color/black" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_gravity="center"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/textforusername"-->
+            <!--android:text="Username:"-->
+            <!--android:fontFamily="@font/proxima_novona"-->
+            <!--android:layout_width="75dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/black"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/username"-->
+            <!--android:fontFamily="@font/proxima_novona_bold"-->
+            <!--android:layout_width="75dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginBottom="5sp"-->
+            <!--android:background="@null"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:hint="Username" />-->
+
+    <!--</LinearLayout>-->
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/textforinstruments"-->
+            <!--android:text="Genres:"-->
+            <!--android:fontFamily="@font/proxima_novona"-->
+            <!--android:layout_width="75dp"-->
+            <!--android:textColor="@color/black"-->
+
+            <!--android:layout_height="wrap_content" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="75dp"-->
+            <!--android:fontFamily="@font/proxima_novona_bold"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:id="@+id/genre"-->
+            <!--android:background="@null"-->
+            <!--android:hint="Genre"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:layout_marginBottom="5sp"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/textforinstruments2"-->
+            <!--android:text="Instruments:"-->
+            <!--android:fontFamily="@font/proxima_novona"-->
+            <!--android:layout_width="90dp"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="90sp"-->
+            <!--android:fontFamily="@font/proxima_novona_bold"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/instrument"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:background="@null"-->
+            <!--android:hint="Instrument"-->
+            <!--android:layout_marginBottom="10dp"/>-->
+
+
+    <!--</LinearLayout>-->
 
 
     <android.support.design.widget.BottomNavigationView
@@ -179,11 +316,13 @@
         style="@style/Widget.Design.BottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_gravity="bottom"
         android:background="@color/colorPrimary"
         app:itemIconTint="@drawable/menu_state_list"
         app:itemTextColor="@drawable/menu_state_list"
         app:labelVisibilityMode="labeled"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

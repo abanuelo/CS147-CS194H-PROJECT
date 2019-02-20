@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
         setContentView(R.layout.activity_main);
 
+
         /*
             Method #0: Allowing Edit Text Boxes to Clear upon clicking
          */
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
+
         auth_listener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
