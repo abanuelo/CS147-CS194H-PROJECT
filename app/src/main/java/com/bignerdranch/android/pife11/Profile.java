@@ -2,7 +2,9 @@ package com.bignerdranch.android.pife11;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +49,8 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
+import profile_grid_layout.GridViewAdapter;
+import profile_grid_layout.ImageItem;
 
 public class Profile extends AppCompatActivity {
     private String userId;
@@ -56,6 +61,8 @@ public class Profile extends AppCompatActivity {
     private boolean practiceBool, performBool, collabBool,dressed;
     private GifImageView animation;
     private GifDrawable drawable;
+    private GridView gridView;
+    private GridViewAdapter gridAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +93,7 @@ public class Profile extends AppCompatActivity {
                                                                  }
         );
 
+
 //        Button rewardShop = findViewById(R.id.shop_button);
 //        rewardShop.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -98,6 +106,10 @@ public class Profile extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+
+        gridView = (GridView) findViewById(R.id.gridView);
+        gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
+        gridView.setAdapter(gridAdapter);
 
         //Initialize the Buttons for the User Profile
 //        sign_out = (Button) findViewById(R.id.sign_out);
@@ -251,6 +263,15 @@ public class Profile extends AppCompatActivity {
 //        });
 //    }
 
+    private ArrayList<ImageItem> getData() {
+        final ArrayList<ImageItem> imageItems = new ArrayList<>();
+        TypedArray imgs = getResources().obtainTypedArray(R.array.gridview_proof);
+        for (int i = 0; i < imgs.length(); i++) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
+            imageItems.add(new ImageItem(bitmap, "Image#" + i));
+        }
+        return imageItems;
+    }
 
 
 //    @Override

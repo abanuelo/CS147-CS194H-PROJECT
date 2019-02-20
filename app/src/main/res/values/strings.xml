@@ -9,6 +9,14 @@
         <item>45 Minutes</item>
         <item>60 Minutes</item>
     </string-array>
+
+    <string-array name="gridview_proof">
+        <item>baby.png</item>
+        <item>pause.png</item>
+        <item>practice.jpg</item>
+        <item>pife_logo.png</item>
+    </string-array>
+
     <string name="title_activity_rewards">Rewards</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
