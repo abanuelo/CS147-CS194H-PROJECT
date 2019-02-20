@@ -1,18 +1,15 @@
 package com.bignerdranch.android.pife11;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,21 +27,21 @@ public class ChooseRoutineActivity extends Activity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.perform_nav:
-                        Intent practice_intent = new Intent(ChooseRoutineActivity.this, peform.class);
+                        Intent practice_intent = new Intent(ChooseRoutineActivity.this, DeclarePerform.class);
                         startActivity(practice_intent);
                         break;
-                                                                             case R.id.friends_nav:
-                                                                                 Intent collab_intent = new Intent(ChooseRoutineActivity.this, CollabHiFi2.class);
-                                                                                 startActivity(collab_intent);
-                                                                                 break;
-                                                                             case R.id.user_nav:
-                                                                                 Intent profile_intent = new Intent(ChooseRoutineActivity.this, Profile.class);
-                                                                                 startActivity(profile_intent);
-                                                                                 break;
-                                                                         }
-                                                                         return true;
-                                                                     }
-                                                                 }
+                     case R.id.friends_nav:
+                         Intent collab_intent = new Intent(ChooseRoutineActivity.this, CollabHiFi2.class);
+                         startActivity(collab_intent);
+                         break;
+                     case R.id.user_nav:
+                         Intent profile_intent = new Intent(ChooseRoutineActivity.this, Profile.class);
+                         startActivity(profile_intent);
+                         break;
+                         }
+                         return true;
+                     }
+                 }
         );
 
         DataSingleton ds = DataSingleton.getInstance();

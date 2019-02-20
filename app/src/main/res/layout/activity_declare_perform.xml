@@ -85,8 +85,23 @@
         android:layout_marginBottom="24dp"
         android:gravity="center_horizontal"
         android:text="Start recording"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/navigationViewPerform"
+        app:layout_goneMarginBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationViewPerform"
+        style="@style/Widget.Design.BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="0dp"
+        app:itemIconTint="@drawable/menu_state_list"
+        app:itemTextColor="@drawable/menu_state_list"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav" />
 
 </android.support.constraint.ConstraintLayout>

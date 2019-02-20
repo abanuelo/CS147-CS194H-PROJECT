@@ -14,7 +14,8 @@
         <item>@drawable/baby</item>
         <item>@drawable/pause</item>
         <item>@drawable/practice</item>
-        <item>@drawable/ic_coins</item>
+        <item>@drawable/home</item>
+        <item>@drawable/star_trophy</item>
     </string-array>
 
     <string name="title_activity_rewards">Rewards</string>
