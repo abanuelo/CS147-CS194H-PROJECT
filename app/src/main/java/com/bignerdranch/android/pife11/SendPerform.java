@@ -1,13 +1,20 @@
-package com.bignerdranch.android.pife11.Matches;
+package com.bignerdranch.android.pife11;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
-import com.bignerdranch.android.pife11.R;
+import com.bignerdranch.android.pife11.Matches.MatchesAdapter;
+import com.bignerdranch.android.pife11.Matches.MatchesObject;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,7 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Matches extends AppCompatActivity {
+public class SendPerform extends AppCompatActivity {
+
+    private Button sendPerformance;
     private RecyclerView myRecyclerView;
     private RecyclerView.Adapter myMatchesAdapter;
     private RecyclerView.LayoutManager myMatchesLayoutManager;
@@ -27,20 +36,32 @@ public class Matches extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_matches);
-
+        setContentView(R.layout.activity_send_perform);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         myRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         myRecyclerView.setNestedScrollingEnabled(false);
         myRecyclerView.setHasFixedSize(true);
 
-        myMatchesLayoutManager = new LinearLayoutManager(Matches.this);
+        myMatchesLayoutManager = new LinearLayoutManager(SendPerform.this);
         myRecyclerView.setLayoutManager(myMatchesLayoutManager);
-        myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), Matches.this);
+        DividerItemDecoration divider = new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        Drawable verticalDivider = ContextCompat.getDrawable(SendPerform.this, R.drawable.vertical_divider);
+        divider.setDrawable(verticalDivider);
+        myRecyclerView.addItemDecoration(divider);
+
+        myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), SendPerform.this);
         myRecyclerView.setAdapter(myMatchesAdapter);
 
         getUserMatchId();
+
+        sendPerformance = (Button) findViewById(R.id.sendPerformance);
+        sendPerformance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent returnHome = new Intent(SendPerform.this, Profile.class);
+                startActivity(returnHome);
+            }
+        });
 
     }
 
@@ -86,6 +107,7 @@ public class Matches extends AppCompatActivity {
                     myMatchesAdapter.notifyDataSetChanged();
 
                 }
+
             }
 
             @Override
@@ -101,3 +123,4 @@ public class Matches extends AppCompatActivity {
         return resultsMatches;
     }
 }
+

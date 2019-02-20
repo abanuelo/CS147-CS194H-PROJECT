@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".PracticeHiFi2"></activity>
+        <activity android:name=".PracticeHiFi2" />
         <activity android:name=".AddNewRoutine" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -85,6 +85,9 @@
             android:name="io.fabric.ApiKey"
             android:value="a9c73533139ab62e421711b95cc12dea63a4de75" />
 
+        <activity android:name=".MyPerform" />
+        <activity android:name=".DeclarePerform" />
+        <activity android:name=".SendPerform"></activity>
     </application>
 
 </manifest>

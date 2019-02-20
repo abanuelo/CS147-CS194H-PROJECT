@@ -45,11 +45,16 @@ public class AddNewRoutine extends AppCompatActivity {
         //Here, we assume that you are creating a routine to practice it; maybe add a button to immediately start practicing the routine before playing?
         EditText titleView = (EditText) findViewById(R.id.inputTitle);
         String title = titleView.getText().toString();
-        routine.add(0, title);
+        //System.out.println("Old Add:" + routine.toString());
 
         DataSingleton ds = DataSingleton.getInstance();
         ArrayList<ArrayList<String>> myRoutines = ds.getRoutinesList();
-        myRoutines.add(routine);
+
+        ArrayList<String> toBeAdded = (ArrayList<String>) routine.clone();
+        toBeAdded.add(0, title);
+        //System.out.println("New Add:" + routine.toString() + "|" + toBeAdded.toString());
+        myRoutines.add(toBeAdded);
+        //System.out.println("Entire List Here Add:" + myRoutines.toString());
         ds.setRoutinesList(myRoutines);
 
         Intent practice_intent = new Intent(AddNewRoutine.this, PracticeHiFi2.class);
