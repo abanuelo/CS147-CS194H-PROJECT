@@ -46,7 +46,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
     @Override
     public void onBindViewHolder (MatchesViewHolders holder, int position){
         final int position2 = position;
-        final MatchesViewHolders holder2 = holder;
+        //final MatchesViewHolders holder2 = holder;
         final String nameId = matchesList.get(position).getUserId();
         holder.myMatchId.setText(matchesList.get(position).getUserId());
         holder.myMatchName.setText(matchesList.get(position).getName());
@@ -55,35 +55,35 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
             matchesList.get(position).setCheckVisibility(1);
         }
         //Attempting to create notification
-        if (context.toString().contains("CollabHiFi2")){
-            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Checked");
-            userDb.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()){
-                        Log.d("000","here");
-                        for (DataSnapshot users: dataSnapshot.getChildren()){
-                            if (users.getKey().equals(nameId)){
-                                Log.d("001","here");
-                                holder2.check.setVisibility(View.INVISIBLE);
-                                long result = (long) users.getValue();
-                                if (result == (long) 1){
-                                    Log.d("Checked", users.getKey());
-                                    holder2.notification.setVisibility(View.VISIBLE);
-                                }
-                            }
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
+//        if (context.toString().contains("CollabHiFi2")){
+//            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//            DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Checked");
+//            userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.exists()){
+//                        Log.d("000","here");
+//                        for (DataSnapshot users: dataSnapshot.getChildren()){
+//                            if (users.getKey().equals(nameId)){
+//                                Log.d("001","here");
+//                                holder2.check.setVisibility(View.INVISIBLE);
+//                                long result = (long) users.getValue();
+//                                if (result == (long) 1){
+//                                    Log.d("Checked", users.getKey());
+//                                    holder2.notification.setVisibility(View.VISIBLE);
+//                                }
+//                            }
+//
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
+//        }
 
         if (!matchesList.get(position).getProfileImageURL().equals("default")){
             Glide.with(context).load(matchesList.get(position).getProfileImageURL()).into(holder.myMatchImage);
@@ -94,10 +94,6 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
     @Override
     public int getItemCount(){
         return this.matchesList.size();
-    }
-
-    public List<MatchesObject> getMatchesList(){
-        return this.matchesList;
     }
 
 }

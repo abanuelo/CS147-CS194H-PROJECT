@@ -32,9 +32,17 @@ public class Tab1Fragment extends Fragment {
     private RecyclerView.Adapter myMatchesAdapter;
     private RecyclerView.LayoutManager myMatchesLayoutManager;
     private String currentUserId;
+    private View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_matches, container, false);
+        Log.e("DEBUG", "onCreateView of LoginFragment");
+        if (myRecyclerView != null){
+            Log.e("DEBUG", "myRecyclerView is not null");
+        } else {
+            Log.e("DEBUG", "myRecyclerView is null");
+        }
+        view = inflater.inflate(R.layout.activity_matches, container, false);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         myRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
@@ -55,6 +63,7 @@ public class Tab1Fragment extends Fragment {
 
         return view;
     }
+
 
 
     private void getUserMatchId() {
