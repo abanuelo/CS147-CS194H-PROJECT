@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".SelectVideoOnProfile"></activity>
+        <activity android:name=".Store"></activity>
+        <activity android:name=".SelectVideoOnProfile" />
         <activity android:name=".TutorialReward" />
         <activity android:name=".GiveFeedback" />
         <activity android:name=".Video" />
