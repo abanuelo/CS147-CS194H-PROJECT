@@ -2,6 +2,7 @@ package com.bignerdranch.android.pife11;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -23,8 +25,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bignerdranch.android.pife11.Matches.Matches;
-import com.bignerdranch.android.pife11.Scheduler.MondaySchedule;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,15 +38,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.w3c.dom.Text;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import profile_grid_layout.GridViewAdapter;
@@ -63,10 +56,21 @@ public class Profile extends AppCompatActivity {
     private GifDrawable drawable;
     private GridView gridView;
     private GridViewAdapter gridAdapter;
+    private ValueEventListener listener;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(bitmap!=null){
+            Log.d("BITMAP", "Not null");
+        }
+
+        if(savedInstanceState != null){
+            Log.d("NOT NULL", "here");
+        } else{
+            Log.d("NULL", "here");
+        }
         setContentView(R.layout.activity_profile);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
@@ -74,24 +78,29 @@ public class Profile extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                                                                      @Override
                                                                      public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                                                                         switch (menuItem.getItemId()){
-                                                                             case R.id.practice_nav:
-                                                                                 Intent practice_intent = new Intent(Profile.this, ChooseRoutineActivity.class);
-                                                                                 startActivity(practice_intent);
-                                                                                 break;
-                                                                             case R.id.perform_nav:
-                                                                                 Intent perform_intent = new Intent(Profile.this, peform.class);
-                                                                                 startActivity(perform_intent);
-                                                                                 break;
-                                                                             case R.id.friends_nav:
-                                                                                 Intent collab_intent = new Intent(Profile.this, CollabHiFi2.class);
-                                                                                 startActivity(collab_intent);
-                                                                                 break;
-                                                                         }
-                                                                         return true;
-                                                                     }
-                                                                 }
+                         switch (menuItem.getItemId()){
+                             case R.id.practice_nav:
+                                 Intent practice_intent = new Intent(Profile.this, ChooseRoutineActivity.class);
+                                 finish();
+                                 startActivity(practice_intent);
+                                 break;
+                             case R.id.perform_nav:
+                                 Intent perform_intent = new Intent(Profile.this, DeclarePerform.class);
+                                 finish();
+                                 startActivity(perform_intent);
+                                 break;
+                             case R.id.friends_nav:
+                                 Intent collab_intent = new Intent(Profile.this, CollabHiFi2.class);
+                                 finish();
+                                 startActivity(collab_intent);
+                                 break;
+                         }
+                         return true;
+                     }
+                 }
         );
+
+
 
 
 //        Button rewardShop = findViewById(R.id.shop_button);
@@ -107,76 +116,130 @@ public class Profile extends AppCompatActivity {
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
+        Object profile_lookup = getIntent().getExtras();
+        if (profile_lookup != null) {
+            //do the regular shit
+            String toasty = "Profile is: " + profile_lookup.toString();
+            Toast.makeText(this, toasty, Toast.LENGTH_LONG).show();
+//            set Nav-bottom on click listener differently.
+        }
+        else {
+            //set on click listener default
+        }
+
+
         gridView = (GridView) findViewById(R.id.gridView);
         gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
         gridView.setAdapter(gridAdapter);
 
-        //Initialize the Buttons for the User Profile
-//        sign_out = (Button) findViewById(R.id.sign_out);
 
-        //Initalize the Text Views
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                ImageItem item = (ImageItem) parent.getItemAtPosition(position);
+                //Create intent
+                Intent intent = new Intent(Profile.this, SelectVideoOnProfile.class);
+                intent.putExtra("currentUserId", "6X6Eok5NaRNWYSArcoX4Q7qpoMv2");
+                intent.putExtra("currentVideo", "test.3gp");
+//                intent.putExtra("image", item.getImage());
+                finish();
+                //Start details activity
+                startActivity(intent);
+            }
+        });
+
+        //Initialize the Buttons for the User Profile
+        sign_out = (Button) findViewById(R.id.sign_out);
+
+//        Initalize the Text Views
 //        name = (TextView) findViewById(R.id.name);
-//        username = (TextView) findViewById(R.id.username);
-//        genre = (TextView) findViewById(R.id.genre);
-//        instrument = (TextView) findViewById(R.id.instrument);
+        username = (TextView) findViewById(R.id.profile_username);
+        genre = (TextView) findViewById(R.id.profile_years);
+        instrument = (TextView) findViewById(R.id.profile_instruments);
 
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
-//        userDatabase.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                //Gets the Name and Inserts it within TextView
+        listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Gets the Name and Inserts it within TextView
 //                String t_name = dataSnapshot.child("name").getValue().toString().trim();
 //                name.setText(t_name);
-//
-//                //Gets the Username and inserts it within textView
-//                String t_username = dataSnapshot.child("username").getValue().toString().trim();
-//                username.setText(t_username);
-//
-//                //Gets the Instruments to Populate the Instruments
-//                String t_instruments = null;
-//                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
-//                    if (t_instruments == null){
-//                        t_instruments = instrument.getKey() + ": " + instrument.getValue().toString().trim();
-//                    } else {
-//                        t_instruments += ", " + instrument.getKey() + ": " + instrument.getValue().toString().trim();
-//                    }
-//                }
-//                instrument.setText(t_instruments);
-//
-//                //Lastly we are going to populate the Genres Category
-//                String t_genres = null;
-//                for (DataSnapshot genre : dataSnapshot.child("Genres").getChildren()){
-//                    if ((boolean) genre.getValue() == true){
-//                        if (t_genres == null){
-//                            t_genres = genre.getKey();
-//                        } else {
-//                            t_genres += ", " + genre.getKey();
-//                        }
-//                    }
-//                }
-//                genre.setText(t_genres);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+
+                //Gets the Username and inserts it within textView
+                String t_username = dataSnapshot.child("username").getValue().toString().trim();
+                username.setText("User name: " + t_username);
+
+                //Gets the Instruments to Populate the Instruments
+                String t_instruments = null;
+                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
+                    if (t_instruments == null){
+                        t_instruments = instrument.getKey() + ": " + instrument.getValue().toString().trim();
+                    } else {
+                        t_instruments += ", " + instrument.getKey() + ": " + instrument.getValue().toString().trim();
+                    }
+                }
+                instrument.setText("Instruments: " + t_instruments);
+
+                //Lastly we are going to populate the Genres Category
+                String t_genres = null;
+                for (DataSnapshot genre : dataSnapshot.child("Genres").getChildren()){
+                    if ((boolean) genre.getValue() == true){
+                        if (t_genres == null){
+                            t_genres = genre.getKey();
+                        } else {
+                            t_genres += ", " + genre.getKey();
+                        }
+                    }
+                }
+                genre.setText("Genre: " + t_genres);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+
+        userDatabase.addValueEventListener(listener);
 
 
 
-//        //Event that Initiates the Sign Out Process for the Profile Image
-//        sign_out.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                auth.signOut();
-//                Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
-//                startActivity(sign_out_intent);
-//                finish();
-//            }
-//        });
+        //Event that Initiates the Sign Out Process for the Profile Image
+        sign_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                auth.signOut();
+                Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
+                finish();
+                startActivity(sign_out_intent);
+
+            }
+        });
 
 //        checkIfTaskComplete();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (userDatabase != null && listener != null) {
+            Log.d("Clear", "clearing userdatabase!");
+            userDatabase.removeEventListener(listener);
+        }
+        if(gridView != null){
+            gridView = null;
+        }
+        if (auth != null){
+            auth = null;
+        }
+        listener = null;
+        userId = null;
+        username = null;
+        genre = null;
+        instrument = null;
+        bitmap.recycle();
+        gridAdapter.clear();
+        finish();
     }
 
 //    private void updateAnimation(){
@@ -266,14 +329,26 @@ public class Profile extends AppCompatActivity {
     private ArrayList<ImageItem> getData() {
         final ArrayList<ImageItem> imageItems = new ArrayList<>();
         TypedArray imgs = getResources().obtainTypedArray(R.array.gridview_proof);
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
         for (int i = 0; i < imgs.length(); i++) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
+
+            //bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
+            bitmap = decodeSampledBitmapFromResource(getResources(), imgs.getResourceId(i, -1));
+//
+////            TODO: HERE IS WHERE YOU SET THE TITLE, THE SECOND PARAMETER
             imageItems.add(new ImageItem(bitmap, "Image#" + i));
         }
+        imgs.recycle();
+        //bitmap.recycle();
         return imageItems;
     }
 
 
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId){
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.Chat.Chat;
 import com.bignerdranch.android.pife11.MatchesChoice;
+import com.bignerdranch.android.pife11.Profile;
 import com.bignerdranch.android.pife11.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,8 +39,9 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
         myMatchImage = (CircleImageView) itemView.findViewById(R.id.MatchImage);
         check = (ImageView) itemView.findViewById(R.id.check);
         notification = (ImageView) itemView.findViewById(R.id.new_song);
-
     }
+
+
     @Override
     public void onClick(View view){
         //redirect this to see my matches and decide whether or not a collaboration wants to be set
@@ -59,7 +61,7 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
                 checkDb.updateChildren(info);
             }
         } else {
-            Intent intent = new Intent(view.getContext(), MatchesChoice.class);
+            Intent intent = new Intent(view.getContext(), Profile.class);
             Bundle b = new Bundle();
             b.putString("matchId", myMatchId.getText().toString());
             intent.putExtras(b);

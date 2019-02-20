@@ -12,6 +12,10 @@ public class ImageItem {
         this.title = title;
     }
 
+    public void clearBitmap(){
+        this.image.recycle();
+    }
+
     public Bitmap getImage() {
         return image;
     }

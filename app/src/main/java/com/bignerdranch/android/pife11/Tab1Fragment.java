@@ -32,9 +32,15 @@ public class Tab1Fragment extends Fragment {
     private RecyclerView.Adapter myMatchesAdapter;
     private RecyclerView.LayoutManager myMatchesLayoutManager;
     private String currentUserId;
+    private View view;
+    private ValueEventListener listener;
+    private ValueEventListener listener2;
+    private DatabaseReference userDb;
+    private DatabaseReference matchDb;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_matches, container, false);
+        view = inflater.inflate(R.layout.activity_matches, container, false);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         myRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
@@ -50,16 +56,28 @@ public class Tab1Fragment extends Fragment {
 
         myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
         myRecyclerView.setAdapter(myMatchesAdapter);
-
         getUserMatchId();
 
         return view;
     }
 
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (matchDb != null && listener != null) {
+            matchDb.removeEventListener(listener);
+        }
+
+        if (userDb != null && listener2 != null) {
+            userDb.removeEventListener(listener2);
+        }
+    }
+
+
     private void getUserMatchId() {
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Collaborations").child("Matches");
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Collaborations").child("Matches");
+        listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -73,12 +91,13 @@ public class Tab1Fragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+        matchDb.addValueEventListener(listener);
     }
 
     private void FetchMatchInformation(String key){
-        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
-        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
+        listener2 = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -106,7 +125,8 @@ public class Tab1Fragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+        userDb.addValueEventListener(listener2);
 
     }
 

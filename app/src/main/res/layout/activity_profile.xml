@@ -9,11 +9,41 @@
     tools:context=".Profile"
     >
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/coin_image"
+            android:src="@drawable/ic_coins"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:paddingLeft="20dp"
+            android:id="@+id/coins"
+            android:text="Your coins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layoutDirection="rtl"
+            android:src="@drawable/shopping_cart"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:paddingRight="30dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp" />
+    </android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="5dp"
@@ -127,14 +157,14 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/sign_out"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/button_transparent"
-                android:textColor="@color/black"
 
                 android:text="Edit Profile"
-                />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -161,6 +191,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/profile_instruments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_semibold"
@@ -169,6 +200,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/profile_years"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_semibold"
@@ -182,7 +214,7 @@
     <GridView
         android:id="@+id/gridView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="5dp"
         android:layout_marginTop="160dp"
         android:clickable="true"
@@ -190,12 +222,13 @@
         android:drawSelectorOnTop="true"
         android:focusable="true"
         android:gravity="center"
-        android:numColumns="auto_fit"
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="5dp"
-        app:layout_constraintTop_toBottomOf="@id/profile_user_info"
+        android:verticalSpacing="10dp"
+        app:layout_constraintBottom_toTopOf="@id/navigationViewPerform"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteX="26dp" />
+        app:layout_constraintTop_toBottomOf="@id/profile_user_info" />
 
 
     <!--<LinearLayout-->
@@ -321,7 +354,6 @@
         app:itemIconTint="@drawable/menu_state_list"
         app:itemTextColor="@drawable/menu_state_list"
         app:labelVisibilityMode="labeled"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav" />
 

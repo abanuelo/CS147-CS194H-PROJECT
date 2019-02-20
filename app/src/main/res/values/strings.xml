@@ -11,10 +11,11 @@
     </string-array>
 
     <string-array name="gridview_proof">
-        <item>baby.png</item>
-        <item>pause.png</item>
-        <item>practice.jpg</item>
-        <item>pife_logo.png</item>
+        <item>@drawable/baby</item>
+        <item>@drawable/pause</item>
+        <item>@drawable/practice</item>
+        <item>@drawable/home</item>
+        <item>@drawable/star_trophy</item>
     </string-array>
 
     <string name="title_activity_rewards">Rewards</string>

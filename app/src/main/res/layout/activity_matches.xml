@@ -4,19 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/shadowColor"
     android:orientation="vertical"
     tools:context=".Matches.Matches">
 
-    <android.support.v7.widget.SearchView
-        android:id="@+id/search_view"
-        android:paddingTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        app:queryHint="Find your friends!"
-        android:searchIcon="@drawable/ic_search"
-        android:goIcon="@drawable/ic_search"/>
+    <!--app:queryHint="Find your friends!"-->
         <!--android:commitIcon="@drawable/ic_search"-->
         <!--android:searchHintIcon="@drawable/ic_search"-->
         <!--android:closeIcon="@drawable/ic_search"-->

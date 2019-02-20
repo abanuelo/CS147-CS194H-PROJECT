@@ -1,6 +1,9 @@
 package com.bignerdranch.android.pife11;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -9,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 
@@ -21,10 +25,13 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.net.URI;
 
 public class MyPerform extends AppCompatActivity {
 
+    private ImageView pic;
     private Button upload;
     private Button rerecord;
     private ProgressBar pbar;
@@ -41,11 +48,15 @@ public class MyPerform extends AppCompatActivity {
         setContentView(R.layout.activity_my_perform);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+
+        //WE WANT TO BE ABLE TO RANDOMIZE THESE LINKS TO GET MULTIPLE LINKS
         videoRef = storageRef.child("/videos/" + uid + "/test.3gp");
 //        String videoUrl = getIntent().getStringExtra("videoUri");
 //        videoUri = Uri.parse(videoUrl);
         videoUri = getIntent().getData();
         Log.d("MyPerformUri", videoUri.toString());
+        Log.d("FilePath", videoUri.getEncodedPath());
+
         pbar = (ProgressBar) findViewById(R.id.pbar);
         video = (VideoView) findViewById(R.id.video);
         rerecord = (Button) findViewById(R.id.record);
@@ -69,16 +80,6 @@ public class MyPerform extends AppCompatActivity {
             }
         });
 
-
-
-        //record(view);
-        //download(view);
-//        video.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                video.start();
-//            }
-//        });
     }
 
     public void upload(){
@@ -96,7 +97,13 @@ public class MyPerform extends AppCompatActivity {
         long uploadBytes = taskSnapshot.getBytesTransferred();
         long progress = (100 * uploadBytes) / fileSize;
         pbar.setProgress((int) progress);
+    }
 
+    private Uri getImageUri(Context context, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "test.3gp", null);
+        return Uri.parse(path);
     }
 
     public void record(View view){

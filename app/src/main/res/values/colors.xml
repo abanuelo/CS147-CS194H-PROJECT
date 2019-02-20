@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#00574B</color>
     <!--<color name="colorPrimary">#008577</color>-->
     <color name="colorAnalogous1">#21A94C</color>
     <color name="colorAnalogous2">#1092CE</color>
     <color name="colorComplementary">#B21C22</color>
 
+    <color name="boxStrokeColor">#000000</color>
     <color name="cardbackground">@color/btn2</color> <!--Analogous1-->
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#990D94</color>
