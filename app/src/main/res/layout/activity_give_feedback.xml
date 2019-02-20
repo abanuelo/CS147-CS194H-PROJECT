@@ -25,13 +25,13 @@
             android:text="min 30 characters" />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/Title"
+            android:id="@+id/ilike"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="300dp"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/TitleText"
+                android:id="@+id/iliketext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="I like..." />
@@ -43,13 +43,13 @@
             android:text="min 30 characters" />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/Info"
+            android:id="@+id/iwish"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="300dp"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/InfoText"
+                android:id="@+id/iwishtext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="I wish" />
@@ -58,6 +58,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
