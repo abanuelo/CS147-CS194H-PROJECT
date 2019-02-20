@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".GiveFeedback"></activity>
+        <activity android:name=".TutorialReward"></activity>
+        <activity android:name=".GiveFeedback" />
         <activity android:name=".Video" />
         <activity android:name=".PracticeHiFi2" />
         <activity android:name=".AddNewRoutine" />

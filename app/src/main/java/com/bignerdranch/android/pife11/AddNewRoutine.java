@@ -50,14 +50,22 @@ public class AddNewRoutine extends AppCompatActivity {
         DataSingleton ds = DataSingleton.getInstance();
         ArrayList<ArrayList<String>> myRoutines = ds.getRoutinesList();
 
-        ArrayList<String> toBeAdded = (ArrayList<String>) routine.clone();
+        ArrayList<String> toBeAdded = new ArrayList<String>();
         toBeAdded.add(0, title);
+        for (String str: routine) {
+            toBeAdded.add(str);
+        }
+
+        System.out.println("Testing this one out...." + toBeAdded.toString());
+
         //System.out.println("New Add:" + routine.toString() + "|" + toBeAdded.toString());
         myRoutines.add(toBeAdded);
-        //System.out.println("Entire List Here Add:" + myRoutines.toString());
         ds.setRoutinesList(myRoutines);
+        System.out.println("Entire List Here Add:" + myRoutines.toString());
 
         Intent practice_intent = new Intent(AddNewRoutine.this, PracticeHiFi2.class);
+
+        System.out.println("Entire List Here:" + ds.getRoutinesList().toString());
         practice_intent.putExtra("SOURCE", "ADD NEW");
         practice_intent.putExtra("ROUTINE_NAME", title);
         startActivity(practice_intent);

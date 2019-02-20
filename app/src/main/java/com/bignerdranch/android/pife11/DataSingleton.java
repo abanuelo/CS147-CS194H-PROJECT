@@ -22,8 +22,7 @@ public class DataSingleton {
 
     private static DataSingleton instance = new DataSingleton();
 
-    //variables
-    private static ArrayList<ArrayList<String>> myListOfRoutines;
+
 
     public static DataSingleton getInstance() {
 
@@ -33,39 +32,27 @@ public class DataSingleton {
         //The info of the actual user
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
-        //myListOfRoutines = new ArrayList<ArrayList<String>>();
-
-        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot curr: dataSnapshot.child("Routines").getChildren()) {
-                    myListOfRoutines.add((ArrayList<String>) curr.getValue());
-                }
-                System.out.println("Debugging the routines total:" + myListOfRoutines.toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        //userDatabase = auth.getCurrentUser();
-        /* This is for updating & creating the user info
-        Map userInfo = new HashMap();
-        userInfo.put("name", t_name);
-        userInfo.put("username", t_username);
-        userInfo.put("email", t_email);
-        userInfo.put("password", t_password);
-        userDatabase.updateChildren(userInfo);*/
-
         return instance;
     }
 
 
 
+    //variables
+    private ArrayList<ArrayList<String>> myListOfRoutines;
+
+    public long getPracticeLength() {
+        return practiceLength;
+    }
+
+    public void setPracticeLength(long practiceLength) {
+        this.practiceLength = practiceLength;
+    }
+
+    private long practiceLength;
+
     private DataSingleton() {
         myListOfRoutines = new ArrayList<ArrayList<String>>();
+        practiceLength = 0;
     }
 
     public ArrayList<ArrayList<String>> getRoutinesList() {
@@ -95,14 +82,11 @@ public class DataSingleton {
         });*/
         //Get the routines from the database?
 
-        System.out.println("Debugging the routines... finishing before the callback?");
+        //System.out.println("Debugging the routines... finishing before the callback?");
         return myListOfRoutines;
     }
 
     public void setRoutinesList(ArrayList<ArrayList<String>> arr) {
-        myListOfRoutines = arr;
-
-
 
         //Creating the routines to be added to firebase
         Map routinesInfo = new HashMap();
@@ -120,18 +104,6 @@ public class DataSingleton {
         DatabaseReference routinesDB = userDatabase.child("Routines");
         routinesDB.updateChildren(routinesInfo);
 
-
-        /*Map userInfo = new HashMap();
-        userInfo.put("Routines", routinesInfo);
-        userDatabase.push().setValue(userInfo);*/
-
-
-        /* This is for updating & creating the user info
-        Map userInfo = new HashMap();
-        userInfo.put("name", t_name);
-        userInfo.put("username", t_username);
-        userInfo.put("email", t_email);
-        userInfo.put("password", t_password);
-        userDatabase.push().setValue(userInfo);*/
+        myListOfRoutines = arr;
     }
 }

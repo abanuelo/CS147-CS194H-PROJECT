@@ -130,8 +130,20 @@ public class PracticeHiFi2 extends AppCompatActivity {
         Toast t = Toast.makeText(getApplicationContext(), formToastText(timeWhenStopped), Toast.LENGTH_SHORT);
         t.show();
 
-        Intent practice_intent = new Intent(this, Dashboard.class);
-        startActivity(practice_intent);
+        //Add stuff to the DataSingleton
+        DataSingleton ds = DataSingleton.getInstance();
+        long currentTotal = ds.getPracticeLength() + timeWhenStopped;
+        ds.setPracticeLength(currentTotal);
+        System.out.println("Total practiced time is: " + Long.toString(currentTotal));
+
+        if (currentTotal > 15*1000) {
+            //Show the gamification
+            Intent practice_intent = new Intent(this, TutorialReward.class);
+            startActivity(practice_intent);
+        } else {
+            Intent practice_intent = new Intent(this, Profile.class);
+            startActivity(practice_intent);
+        }
     }
 
     private String formToastText(long timeWhenStopped){
