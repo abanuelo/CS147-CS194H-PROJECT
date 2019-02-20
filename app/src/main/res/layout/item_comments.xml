@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/Comment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username: " />
+    <TextView
+        android:id="@+id/Comment_likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Likes: " />
+    <TextView
+        android:id="@+id/Comment_wishes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wishes: " />
+</LinearLayout>

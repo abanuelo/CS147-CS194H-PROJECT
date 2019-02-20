@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".SelectVideoOnProfile"></activity>
+        <activity android:name="SelectVideoOnProfile.SelectVideoOnProfile"></activity>
         <activity android:name=".TutorialReward" />
         <activity android:name=".GiveFeedback" />
         <activity android:name=".Video" />
@@ -51,10 +51,10 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".PracticePlaying" />
+        <!--<activity android:name=".PracticePlaying" />-->
         <activity android:name=".CreateAccount" />
-        <activity android:name=".peform" />
-        <activity android:name=".Dashboard" />
+        <!--<activity android:name=".peform" />-->
+        <!--<activity android:name=".Dashboard" />-->
         <activity android:name=".CollabMain" />
         <activity android:name=".SearchCollab" />
         <activity android:name=".Profile" />
@@ -64,13 +64,13 @@
         <activity android:name=".Chat.Chat" />
         <activity android:name=".MatchesChoice" />
         <activity android:name=".Scheduler.ScheduleMain" />
-        <activity android:name=".Scheduler.TuesdaySchedule" />
-        <activity android:name=".Scheduler.WednesdaySchedule" />
-        <activity android:name=".Scheduler.ThursdaySchedule" />
-        <activity android:name=".Scheduler.FridaySchedule" />
-        <activity android:name=".Scheduler.SundaySchedule" />
-        <activity android:name=".Scheduler.SaturdaySchedule" />
-        <activity android:name=".Scheduler.MondaySchedule" />
+        <!--<activity android:name=".Scheduler.TuesdaySchedule" />-->
+        <!--<activity android:name=".Scheduler.WednesdaySchedule" />-->
+        <!--<activity android:name=".Scheduler.ThursdaySchedule" />-->
+        <!--<activity android:name=".Scheduler.FridaySchedule" />-->
+        <!--<activity android:name=".Scheduler.SundaySchedule" />-->
+        <!--<activity android:name=".Scheduler.SaturdaySchedule" />-->
+        <!--<activity android:name=".Scheduler.MondaySchedule" />-->
         <activity android:name=".SelectAvatar" />
         <activity android:name=".ChooseRoutineActivity" />
         <activity
@@ -78,7 +78,7 @@
             android:label="@string/title_activity_rewards_both"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Trophies" /> <!-- <activity android:name=".RewardsShop" /> -->
-        <activity android:name=".practice_goal_met" />
+        <!--<activity android:name=".practice_goal_met" />-->
         <activity android:name=".watch_performance" />
         <activity android:name=".StartPerformance" />
         <activity android:name=".CollabHiFi2" />
