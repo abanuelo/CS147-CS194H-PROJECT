@@ -1,5 +1,7 @@
 package com.bignerdranch.android.pife11.Matches;
 
+import com.bignerdranch.android.pife11.R;
+
 public class MatchesObject {
     private String userId;
     private String name;
