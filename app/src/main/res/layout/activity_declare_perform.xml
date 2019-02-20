@@ -4,26 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
     tools:context=".DeclarePerform">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/coin_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_coins" />
+
+        <TextView
+            android:id="@+id/coins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="Your coins" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layoutDirection="rtl"
+            android:paddingRight="30dp"
+            android:src="@drawable/shopping_cart" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="252dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:paddingVertical="15dp"
             android:text="My Performance"
+            android:textColor="@android:color/black"
             android:textSize="25dp" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/Title"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:paddingVertical="5dp"
+            style="@style/TextLabel"
             android:layout_width="300dp"
             android:layout_height="wrap_content">
 
@@ -31,12 +71,15 @@
                 android:id="@+id/TitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Title" />
+                android:hint="Title"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/Info"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:paddingVertical="5dp"
+            style="@style/TextLabel"
             android:layout_width="300dp"
             android:layout_height="wrap_content">
 
@@ -44,12 +87,15 @@
                 android:id="@+id/InfoText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Info about Performance" />
+                android:hint="Info about Performance"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/Genre"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:paddingVertical="5dp"
+            style="@style/TextLabel"
             android:layout_width="300dp"
             android:layout_height="wrap_content">
 
@@ -57,12 +103,15 @@
                 android:id="@+id/GenreText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Genre" />
+                android:hint="Genre"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/Instrument"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:paddingVertical="5dp"
+            style="@style/TextLabel"
             android:layout_width="300dp"
             android:layout_height="wrap_content">
 
@@ -70,7 +119,9 @@
                 android:id="@+id/InstrumentText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Instrument" />
+                android:hint="Instrument"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black" />
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
@@ -82,17 +133,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
-        android:gravity="center_horizontal"
+        android:gravity="right"
         android:text="Start recording"
         app:layout_constraintBottom_toTopOf="@id/navigationViewPerform"
-        app:layout_goneMarginBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationViewPerform"
         style="@style/Widget.Design.BottomNavigationView"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_gravity="bottom"
