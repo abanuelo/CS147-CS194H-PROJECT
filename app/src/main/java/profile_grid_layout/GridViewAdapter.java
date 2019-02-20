@@ -27,6 +27,15 @@ public class GridViewAdapter extends ArrayAdapter {
     }
 
     @Override
+    public void clear(){
+        System.out.println("Arrived Here");
+        for (int i = 0; i < data.size(); i++){
+            ImageItem item = (ImageItem) data.get(i);
+            item.clearBitmap();
+        }
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
         ViewHolder holder = null;

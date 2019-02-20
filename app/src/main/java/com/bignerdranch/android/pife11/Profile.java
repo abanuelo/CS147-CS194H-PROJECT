@@ -2,6 +2,7 @@ package com.bignerdranch.android.pife11;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -55,10 +56,21 @@ public class Profile extends AppCompatActivity {
     private GifDrawable drawable;
     private GridView gridView;
     private GridViewAdapter gridAdapter;
+    private ValueEventListener listener;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(bitmap!=null){
+            Log.d("BITMAP", "Not null");
+        }
+
+        if(savedInstanceState != null){
+            Log.d("NOT NULL", "here");
+        } else{
+            Log.d("NULL", "here");
+        }
         setContentView(R.layout.activity_profile);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
@@ -69,14 +81,17 @@ public class Profile extends AppCompatActivity {
                          switch (menuItem.getItemId()){
                              case R.id.practice_nav:
                                  Intent practice_intent = new Intent(Profile.this, ChooseRoutineActivity.class);
+                                 finish();
                                  startActivity(practice_intent);
                                  break;
                              case R.id.perform_nav:
                                  Intent perform_intent = new Intent(Profile.this, DeclarePerform.class);
+                                 finish();
                                  startActivity(perform_intent);
                                  break;
                              case R.id.friends_nav:
                                  Intent collab_intent = new Intent(Profile.this, CollabHiFi2.class);
+                                 finish();
                                  startActivity(collab_intent);
                                  break;
                          }
@@ -117,6 +132,8 @@ public class Profile extends AppCompatActivity {
         gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
         gridView.setAdapter(gridAdapter);
 
+
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ImageItem item = (ImageItem) parent.getItemAtPosition(position);
@@ -125,7 +142,7 @@ public class Profile extends AppCompatActivity {
                 intent.putExtra("currentUserId", "6X6Eok5NaRNWYSArcoX4Q7qpoMv2");
                 intent.putExtra("currentVideo", "test.3gp");
 //                intent.putExtra("image", item.getImage());
-
+                finish();
                 //Start details activity
                 startActivity(intent);
             }
@@ -141,7 +158,7 @@ public class Profile extends AppCompatActivity {
         instrument = (TextView) findViewById(R.id.profile_instruments);
 
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
-        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Gets the Name and Inserts it within TextView
@@ -181,7 +198,9 @@ public class Profile extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+
+        userDatabase.addValueEventListener(listener);
 
 
 
@@ -191,12 +210,36 @@ public class Profile extends AppCompatActivity {
             public void onClick(View view) {
                 auth.signOut();
                 Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
-                startActivity(sign_out_intent);
                 finish();
+                startActivity(sign_out_intent);
+
             }
         });
 
 //        checkIfTaskComplete();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (userDatabase != null && listener != null) {
+            Log.d("Clear", "clearing userdatabase!");
+            userDatabase.removeEventListener(listener);
+        }
+        if(gridView != null){
+            gridView = null;
+        }
+        if (auth != null){
+            auth = null;
+        }
+        listener = null;
+        userId = null;
+        username = null;
+        genre = null;
+        instrument = null;
+        bitmap.recycle();
+        gridAdapter.clear();
+        finish();
     }
 
 //    private void updateAnimation(){
@@ -286,16 +329,26 @@ public class Profile extends AppCompatActivity {
     private ArrayList<ImageItem> getData() {
         final ArrayList<ImageItem> imageItems = new ArrayList<>();
         TypedArray imgs = getResources().obtainTypedArray(R.array.gridview_proof);
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
         for (int i = 0; i < imgs.length(); i++) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
 
-//            TODO: HERE IS WHERE YOU SET THE TITLE, THE SECOND PARAMETER
+            //bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
+            bitmap = decodeSampledBitmapFromResource(getResources(), imgs.getResourceId(i, -1));
+//
+////            TODO: HERE IS WHERE YOU SET THE TITLE, THE SECOND PARAMETER
             imageItems.add(new ImageItem(bitmap, "Image#" + i));
         }
+        imgs.recycle();
+        //bitmap.recycle();
         return imageItems;
     }
 
 
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId){
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);

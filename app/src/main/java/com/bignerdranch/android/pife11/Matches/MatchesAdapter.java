@@ -8,6 +8,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -36,12 +37,17 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
 
     @Override
     public MatchesViewHolders onCreateViewHolder(ViewGroup parent, int viewType){
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_matches, null, false);
+        Context c = parent.getContext();
+        Log.d("Context", c.toString());
+        int s = R.layout.item_matches;
+
+        View layoutView = LayoutInflater.from(c).inflate(s, null, false);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutView.setLayoutParams(lp);
         MatchesViewHolders rcv = new MatchesViewHolders(layoutView);
         return rcv;
     }
+
 
     @Override
     public void onBindViewHolder (MatchesViewHolders holder, int position){
@@ -84,10 +90,10 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
 //                }
 //            });
 //        }
-
-        if (!matchesList.get(position).getProfileImageURL().equals("default")){
-            Glide.with(context).load(matchesList.get(position).getProfileImageURL()).into(holder.myMatchImage);
-        }
+//
+//        if (!matchesList.get(position).getProfileImageURL().equals("default")){
+//            Glide.with(context).load(matchesList.get(position).getProfileImageURL()).into(holder.myMatchImage);
+//        }
 
     }
 

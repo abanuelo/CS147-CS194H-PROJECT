@@ -41,14 +41,17 @@ public class CollabHiFi2 extends AppCompatActivity {
                                                                          switch (menuItem.getItemId()){
                                                                              case R.id.practice_nav:
                                                                                  Intent practice_intent = new Intent(CollabHiFi2.this, ChooseRoutineActivity.class);
+                                                                                 finish();
                                                                                  startActivity(practice_intent);
                                                                                  break;
                                                                              case R.id.perform_nav:
                                                                                  Intent perform_intent = new Intent(CollabHiFi2.this, DeclarePerform.class);
+                                                                                 finish();
                                                                                  startActivity(perform_intent);
                                                                                  break;
                                                                              case R.id.user_nav:
                                                                                  Intent profile_intent = new Intent(CollabHiFi2.this, Profile.class);
+                                                                                 finish();
                                                                                  startActivity(profile_intent);
                                                                                  break;
                                                                          }

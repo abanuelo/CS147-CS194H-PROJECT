@@ -36,34 +36,32 @@ public class Tab1Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e("DEBUG", "onCreateView of LoginFragment");
-        if (myRecyclerView != null){
-            Log.e("DEBUG", "myRecyclerView is not null");
-        } else {
-            Log.e("DEBUG", "myRecyclerView is null");
-        }
         view = inflater.inflate(R.layout.activity_matches, container, false);
-        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//
+//        myRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+//        myRecyclerView.setNestedScrollingEnabled(false);
+//        myRecyclerView.setHasFixedSize(true);
+//
+//        myMatchesLayoutManager = new LinearLayoutManager(getContext());
+//        myRecyclerView.setLayoutManager(myMatchesLayoutManager);
+//        DividerItemDecoration divider = new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
+//        Drawable verticalDivider = ContextCompat.getDrawable(getActivity(), R.drawable.vertical_divider);
+//        divider.setDrawable(verticalDivider);
+//        myRecyclerView.addItemDecoration(divider);
 
-        myRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        myRecyclerView.setNestedScrollingEnabled(false);
-        myRecyclerView.setHasFixedSize(true);
-
-        myMatchesLayoutManager = new LinearLayoutManager(getContext());
-        myRecyclerView.setLayoutManager(myMatchesLayoutManager);
-        DividerItemDecoration divider = new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
-        Drawable verticalDivider = ContextCompat.getDrawable(getActivity(), R.drawable.vertical_divider);
-        divider.setDrawable(verticalDivider);
-        myRecyclerView.addItemDecoration(divider);
-
-        myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
-        myRecyclerView.setAdapter(myMatchesAdapter);
-
-        getUserMatchId();
+        //Original OnResume Methods Created Here
 
         return view;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+//        myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
+//        myRecyclerView.setAdapter(myMatchesAdapter);
+//        getUserMatchId();
+    }
 
 
     private void getUserMatchId() {
