@@ -10,7 +10,7 @@
         android:layout_width="75sp"
         android:layout_height="75sp"
         android:id="@+id/MatchImage"
-        android:src="@drawable/ic_nerdy_monster_baby"/>
+        android:src="@drawable/ic_coins"/>
 
 
     <LinearLayout

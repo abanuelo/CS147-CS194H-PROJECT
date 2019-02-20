@@ -33,40 +33,51 @@ public class Tab1Fragment extends Fragment {
     private RecyclerView.LayoutManager myMatchesLayoutManager;
     private String currentUserId;
     private View view;
+    private ValueEventListener listener;
+    private ValueEventListener listener2;
+    private DatabaseReference userDb;
+    private DatabaseReference matchDb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_matches, container, false);
-//        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//
-//        myRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-//        myRecyclerView.setNestedScrollingEnabled(false);
-//        myRecyclerView.setHasFixedSize(true);
-//
-//        myMatchesLayoutManager = new LinearLayoutManager(getContext());
-//        myRecyclerView.setLayoutManager(myMatchesLayoutManager);
-//        DividerItemDecoration divider = new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
-//        Drawable verticalDivider = ContextCompat.getDrawable(getActivity(), R.drawable.vertical_divider);
-//        divider.setDrawable(verticalDivider);
-//        myRecyclerView.addItemDecoration(divider);
+        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        //Original OnResume Methods Created Here
+        myRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        myRecyclerView.setNestedScrollingEnabled(false);
+        myRecyclerView.setHasFixedSize(true);
+
+        myMatchesLayoutManager = new LinearLayoutManager(getContext());
+        myRecyclerView.setLayoutManager(myMatchesLayoutManager);
+        DividerItemDecoration divider = new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        Drawable verticalDivider = ContextCompat.getDrawable(getActivity(), R.drawable.vertical_divider);
+        divider.setDrawable(verticalDivider);
+        myRecyclerView.addItemDecoration(divider);
+
+        myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
+        myRecyclerView.setAdapter(myMatchesAdapter);
+        getUserMatchId();
 
         return view;
     }
 
+
     @Override
-    public void onResume(){
-        super.onResume();
-//        myMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
-//        myRecyclerView.setAdapter(myMatchesAdapter);
-//        getUserMatchId();
+    public void onDestroy(){
+        super.onDestroy();
+        if (matchDb != null && listener != null) {
+            matchDb.removeEventListener(listener);
+        }
+
+        if (userDb != null && listener2 != null) {
+            userDb.removeEventListener(listener2);
+        }
     }
 
 
     private void getUserMatchId() {
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Collaborations").child("Matches");
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Collaborations").child("Matches");
+        listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -80,12 +91,13 @@ public class Tab1Fragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+        matchDb.addValueEventListener(listener);
     }
 
     private void FetchMatchInformation(String key){
-        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
-        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
+        listener2 = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -113,7 +125,8 @@ public class Tab1Fragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+        userDb.addValueEventListener(listener2);
 
     }
 

@@ -36,12 +36,13 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
     }
 
     @Override
-    public MatchesViewHolders onCreateViewHolder(ViewGroup parent, int viewType){
-        Context c = parent.getContext();
-        Log.d("Context", c.toString());
-        int s = R.layout.item_matches;
+    public void onViewAttachedToWindow (MatchesViewHolders holder){
 
-        View layoutView = LayoutInflater.from(c).inflate(s, null, false);
+    }
+
+    @Override
+    public MatchesViewHolders onCreateViewHolder(ViewGroup parent, int viewType){
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_matches, null, false);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutView.setLayoutParams(lp);
         MatchesViewHolders rcv = new MatchesViewHolders(layoutView);
@@ -91,9 +92,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
 //            });
 //        }
 //
-//        if (!matchesList.get(position).getProfileImageURL().equals("default")){
-//            Glide.with(context).load(matchesList.get(position).getProfileImageURL()).into(holder.myMatchImage);
-//        }
+        if (!matchesList.get(position).getProfileImageURL().equals("default")){
+            Glide.with(context).load(matchesList.get(position).getProfileImageURL()).into(holder.myMatchImage);
+        }
 
     }
 
