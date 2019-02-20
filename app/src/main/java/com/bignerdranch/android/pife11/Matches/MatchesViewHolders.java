@@ -62,9 +62,7 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
             }
         } else {
             Intent intent = new Intent(view.getContext(), Profile.class);
-            Bundle b = new Bundle();
-            b.putString("matchId", myMatchId.getText().toString());
-            intent.putExtras(b);
+            intent.putExtra("profileId", myMatchId.getText().toString());
             view.getContext().startActivity(intent);
         }
     }

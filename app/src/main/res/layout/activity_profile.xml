@@ -133,7 +133,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/button_transparent"
 
-                android:text="Edit Profile"
+                android:text="Sign out"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -150,6 +150,15 @@
 
         app:layout_constraintTop_toBottomOf="@id/profile_top_part"
         tools:layout_editor_absoluteX="10dp">
+
+        <TextView
+            android:id="@+id/profile_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_semibold"
+            android:text="Profile ID: "
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/profile_username"

@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bignerdranch.android.pife11.Chat.Chat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,15 +51,7 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(bitmap!=null){
-            Log.d("BITMAP", "Not null");
-        }
 
-        if(savedInstanceState != null){
-            Log.d("NOT NULL", "here");
-        } else{
-            Log.d("NULL", "here");
-        }
         setContentView(R.layout.activity_profile);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
@@ -102,15 +96,54 @@ public class Profile extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+        sign_out = (Button) findViewById(R.id.sign_out);
 
-        Object profile_lookup = getIntent().getExtras();
+        /// UserID is the person signed in
+        /// Profile_Lookup is the person you are viewing
+
+        Intent intent = getIntent();
+        final String profile_lookup = intent.getStringExtra("profileId");
         if (profile_lookup != null) {
+            TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
+            profile_id_view.setText("Profile Id: " + profile_lookup);
             //do the regular shit
-            String toasty = "Profile is: " + profile_lookup.toString();
+            String toasty = "Profile is: " + profile_lookup;
             Toast.makeText(this, toasty, Toast.LENGTH_LONG).show();
-//            set Nav-bottom on click listener differently.
+
+            userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(profile_lookup);
+
+            sign_out.setText("Message");
+            sign_out.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
+                    Bundle b = new Bundle();
+                    b.putString("matchId", profile_lookup);
+                    sign_out_intent.putExtras(b);
+                    finish();
+                    startActivity(sign_out_intent);
+
+                }
+            });
+
         }
         else {
+            TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
+            profile_id_view.setText("Profile Id: " + userId);
+
+
+            sign_out.setText("Sign Out");
+            //Event that Initiates the Sign Out Process for the Profile Image
+            sign_out.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    auth.signOut();
+                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
+                    finish();
+                    startActivity(sign_out_intent);
+
+                }
+            });
             //set on click listener default
         }
 
@@ -135,8 +168,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        //Initialize the Buttons for the User Profile
-        sign_out = (Button) findViewById(R.id.sign_out);
 
 //        Initalize the Text Views
 //        name = (TextView) findViewById(R.id.name);
@@ -191,17 +222,7 @@ public class Profile extends AppCompatActivity {
 
 
 
-        //Event that Initiates the Sign Out Process for the Profile Image
-        sign_out.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                auth.signOut();
-                Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
-                finish();
-                startActivity(sign_out_intent);
 
-            }
-        });
 
 //        checkIfTaskComplete();
     }
