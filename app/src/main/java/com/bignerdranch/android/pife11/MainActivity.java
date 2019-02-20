@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //Handles Transition to Create Account Page
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
+//        Fabric.with(this, new Crashlytics.Builder().core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build());
         setContentView(R.layout.activity_main);
 
 
@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+
     }
 
     @Override
