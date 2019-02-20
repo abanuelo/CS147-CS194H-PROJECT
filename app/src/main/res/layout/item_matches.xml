@@ -9,9 +9,8 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="75sp"
         android:layout_height="75sp"
-        app:civ_border_color="@color/com_facebook_blue"
         android:id="@+id/MatchImage"
-        android:src="@drawable/ic_nerdy_monster_baby"/>
+        android:src="@drawable/ic_coins"/>
 
 
     <LinearLayout
@@ -60,8 +59,4 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-
-
-
 </LinearLayout>

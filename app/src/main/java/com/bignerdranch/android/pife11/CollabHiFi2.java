@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,6 +20,9 @@ public class CollabHiFi2 extends AppCompatActivity {
     private TabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private DatabaseReference matchDb;
+    private ValueEventListener listener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +45,17 @@ public class CollabHiFi2 extends AppCompatActivity {
                                                                          switch (menuItem.getItemId()){
                                                                              case R.id.practice_nav:
                                                                                  Intent practice_intent = new Intent(CollabHiFi2.this, ChooseRoutineActivity.class);
+                                                                                 finish();
                                                                                  startActivity(practice_intent);
                                                                                  break;
                                                                              case R.id.perform_nav:
                                                                                  Intent perform_intent = new Intent(CollabHiFi2.this, DeclarePerform.class);
+                                                                                 finish();
                                                                                  startActivity(perform_intent);
                                                                                  break;
                                                                              case R.id.user_nav:
                                                                                  Intent profile_intent = new Intent(CollabHiFi2.this, Profile.class);
+                                                                                 finish();
                                                                                  startActivity(profile_intent);
                                                                                  break;
                                                                          }
@@ -61,9 +68,9 @@ public class CollabHiFi2 extends AppCompatActivity {
     private void checkIfTaskComplete(){
         final String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        final DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+        matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
 
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -83,7 +90,17 @@ public class CollabHiFi2 extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+        matchDb.addValueEventListener(listener);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (matchDb != null && listener != null) {
+            Log.d("Clear", "clearing userdatabase!");
+            matchDb.removeEventListener(listener);
+        }
     }
 
 }
