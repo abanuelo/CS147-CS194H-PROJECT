@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".TutorialReward"></activity>
+        <activity android:name=".SelectVideoOnProfile"></activity>
+        <activity android:name=".TutorialReward" />
         <activity android:name=".GiveFeedback" />
         <activity android:name=".Video" />
         <activity android:name=".PracticeHiFi2" />
@@ -80,9 +81,7 @@
         <activity android:name=".practice_goal_met" />
         <activity android:name=".watch_performance" />
         <activity android:name=".StartPerformance" />
-
         <activity android:name=".CollabHiFi2" />
-
 
         <meta-data
             android:name="io.fabric.ApiKey"
