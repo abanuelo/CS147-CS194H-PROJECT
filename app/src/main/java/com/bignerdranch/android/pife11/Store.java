@@ -1,5 +1,6 @@
 package com.bignerdranch.android.pife11;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -171,15 +173,24 @@ public class Store extends AppCompatActivity {
 //                        button2Y = (int) button4.getY();
 
                         if (Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button2X) && Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button3X)) {
+                            //This is for the orange shirt
                             scrollViewHats2.smoothScrollTo(button1X, button1Y);
                             shirt_placement.setImageResource(0);
+
+                            System.out.println("WTF is this?");
                             //CHANGE THE PRICE TAG HERE
                         } else if (Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button1X) && Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button3X)) {
+                            //This is for the tutorial shirt!
+
                             scrollViewHats2.smoothScrollTo(button2X, button2Y);
                             shirt_placement.setImageResource(R.drawable.ic_jemi_green_shirt);
+                            System.out.println("WTF is this? 2");
 
                         } else {
+
+                            // THis is the no shirt sign
                             shirt_placement.setImageResource(0);
+                            System.out.println("WTF is this? 3");
                         }
                     }
                 }, 600);
@@ -190,6 +201,22 @@ public class Store extends AppCompatActivity {
     }
 
 
+    public void buyShirt(View view){
+        TextView pointsDisplay = (TextView) findViewById(R.id.pifepoints);
+        int coinsAvailable = Integer.parseInt(pointsDisplay.getText().toString());
+
+        if (Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button1X) && Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button3X)) {
+            if (coinsAvailable >= 15) {
+                DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+                matchDb.setValue(0);
+                Toast.makeText(Store.this, "Successfully obtained tutorial T-shirt from store!", Toast.LENGTH_LONG).show();
+            }
+            Intent practice_intent = new Intent(this, Profile.class);
+            startActivity(practice_intent);
+        }
+
+
+    }
 
 
     private void getUserAvatar() {

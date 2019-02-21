@@ -155,7 +155,7 @@
                     android:text="0 Coins"
                     android:textSize="10sp" />
                 <Button
-                    android:id="@+id/buy_1"
+                    android:id="@+id/buy_hat"
                     android:paddingLeft="2dp"
                     android:layout_width="40dp"
                     android:layout_height="15dp"
@@ -165,29 +165,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/price_tag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 Coins"
-                    android:textSize="10sp"
-                    android:textAlignment="center"
-                    />
-                <Button
-                    android:id="@+id/buy_2"
-                    android:layout_marginTop="5dp"
-                    android:paddingLeft="2dp"
-                    android:layout_width="40dp"
-                    android:layout_height="15dp"
-                    android:background="@drawable/buttonoval"
-                    android:text="Buy"
-                    />
-            </LinearLayout>
+
 
 
             <LinearLayout
@@ -241,8 +219,31 @@
                 </HorizontalScrollView>
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/price_tag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 Coins"
+                    android:textSize="10sp"
+                    android:textAlignment="center"
+                    />
+                <Button
+                    android:id="@+id/buy_shirts"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="2dp"
+                    android:layout_width="40dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/buttonoval"
+                    android:text="Buy Shirt"
+                    android:onClick="buyShirt"
+                    />
+            </LinearLayout>
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -319,6 +320,23 @@
     <!--android:layout_height="match_parent"-->
     <!--layout="@layout/activity_trophies"/>-->
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:id="@+id/accessDescription"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp"
+        android:paddingTop="50dp"
+        android:text="Use your 15 coins to buy your first shirt for Jemi! Scroll around to try on other accessories that can be unlocked through more activities on the app. Let's buy the tutorial shirt before heading home!"/>
 
 
 
