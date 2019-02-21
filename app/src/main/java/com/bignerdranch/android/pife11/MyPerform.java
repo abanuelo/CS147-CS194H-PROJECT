@@ -19,6 +19,11 @@ import android.widget.VideoView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -28,6 +33,11 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.net.URI;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MyPerform extends AppCompatActivity {
 
@@ -39,6 +49,8 @@ public class MyPerform extends AppCompatActivity {
     private Uri videoUri;
     private FirebaseAuth auth;
     private StorageReference videoRef;
+    private String videoId;
+    private String uid;
     private static final int REQUEST_CODE = 101;
 
     @Override
@@ -46,11 +58,19 @@ public class MyPerform extends AppCompatActivity {
         //UploadTask uploadTask = videoRef.putFile(videoUri);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_perform);
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
+        String currentTime = Calendar.getInstance().getTime().toString();
+        currentTime = currentTime.replaceAll(":","");
+        currentTime = currentTime.replaceAll("\\s","");
+        currentTime = currentTime.toLowerCase();
+        videoId = currentTime;
+
         //WE WANT TO BE ABLE TO RANDOMIZE THESE LINKS TO GET MULTIPLE LINKS
-        videoRef = storageRef.child("/videos/" + uid + "/test.3gp");
+        videoRef = storageRef.child("/videos/" + uid + "/" + currentTime+ ".3gp");
+
+
 //        String videoUrl = getIntent().getStringExtra("videoUri");
 //        videoUri = Uri.parse(videoUrl);
         videoUri = getIntent().getData();
@@ -88,8 +108,37 @@ public class MyPerform extends AppCompatActivity {
             @Override
             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                 updateProgress(taskSnapshot);
+
             }
         });
+
+        //upload thumbnail
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + videoId + ".jpg");
+
+        Uri file = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.baby);
+        uploadTask = imageRef.putFile(file);
+
+        // Register observers to listen for when the download is done or if it fails
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                        // ...
+                    }
+                });
+
+        //upload connection btn two
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Videos");
+
+        matchDb.child(videoId).setValue(videoId);
+
+
     }
 
     public void updateProgress(UploadTask.TaskSnapshot taskSnapshot){

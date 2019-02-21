@@ -19,13 +19,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bignerdranch.android.pife11.Chat.Chat;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import SelectVideoOnProfile.SelectVideoOnProfile;
@@ -36,6 +44,7 @@ import profile_grid_layout.ImageItem;
 
 public class Profile extends AppCompatActivity {
     private String userId;
+    private String profile_lookup2;
     private TextView name, username, genre, instrument;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
@@ -47,6 +56,8 @@ public class Profile extends AppCompatActivity {
     private GridViewAdapter gridAdapter;
     private ValueEventListener listener;
     private Bitmap bitmap;
+    final ArrayList<ImageItem> arr = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,9 +136,12 @@ public class Profile extends AppCompatActivity {
 
                 }
             });
+            profile_lookup2 = profile_lookup;
 
         }
         else {
+            profile_lookup2 = userId;
+
             TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
             profile_id_view.setText("Profile Id: " + userId);
 
@@ -147,20 +161,18 @@ public class Profile extends AppCompatActivity {
             //set on click listener default
         }
 
-
+        //end of thingo
         gridView = (GridView) findViewById(R.id.gridView);
-        gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
+        gridAdapter = new GridViewAdapter(Profile.this, R.layout.grid_item_layout, arr);
         gridView.setAdapter(gridAdapter);
-
-
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ImageItem item = (ImageItem) parent.getItemAtPosition(position);
                 //Create intent
                 Intent intent = new Intent(Profile.this, SelectVideoOnProfile.class);
-                intent.putExtra("currentUserId", "6X6Eok5NaRNWYSArcoX4Q7qpoMv2");
-                intent.putExtra("currentVideo", "test.3gp");
+                intent.putExtra("currentUserId", profile_lookup2);
+                intent.putExtra("currentVideo", item.getTitle());
 //                intent.putExtra("image", item.getImage());
                 finish();
                 //Start details activity
@@ -168,9 +180,30 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+//
+//
+//        gridView = (GridView) findViewById(R.id.gridView);
+//        gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
+//        gridView.setAdapter(gridAdapter);
+
+
+
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+//                ImageItem item = (ImageItem) parent.getItemAtPosition(position);
+//                //Create intent
+//                Intent intent = new Intent(Profile.this, SelectVideoOnProfile.class);
+//                intent.putExtra("currentUserId", "6X6Eok5NaRNWYSArcoX4Q7qpoMv2");
+//                intent.putExtra("currentVideo", "test.3gp");
+////                intent.putExtra("image", item.getImage());
+//                finish();
+//                //Start details activity
+//                startActivity(intent);
+//            }
+//        });
+
 
 //        Initalize the Text Views
-//        name = (TextView) findViewById(R.id.name);
         username = (TextView) findViewById(R.id.profile_username);
         genre = (TextView) findViewById(R.id.profile_years);
         instrument = (TextView) findViewById(R.id.profile_instruments);
@@ -210,6 +243,43 @@ public class Profile extends AppCompatActivity {
                     }
                 }
                 genre.setText("Genre: " + t_genres);
+
+
+                for (DataSnapshot video : dataSnapshot.child("Videos").getChildren()){
+                    String thumbnailId = video.getKey();
+                    final String videoId = (String) video.getValue(); //test.3pg
+
+                    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                    StorageReference imgRef = storageRef.child(("/videoThumbnails/" + profile_lookup2 + "/" + thumbnailId + ".jpg"));
+
+                    try {
+                        final File localImageFile = File.createTempFile("images", ".jpg");
+                        imgRef.getFile(localImageFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                // Local temp file has been created
+                                String filePath = localImageFile.getPath();
+                                Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+                                //downloads bitmap finder
+                                arr.add(new ImageItem(bitmap, videoId));
+
+                                gridAdapter.notifyDataSetChanged();
+
+
+
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle any errors
+                            }
+                        });
+                    } catch (Exception e) {}
+                }
+
+
+
             }
 
             @Override
@@ -218,13 +288,8 @@ public class Profile extends AppCompatActivity {
             }
         };
 
-        userDatabase.addValueEventListener(listener);
+        userDatabase.addListenerForSingleValueEvent(listener);
 
-
-
-
-
-//        checkIfTaskComplete();
     }
 
     @Override
@@ -245,94 +310,11 @@ public class Profile extends AppCompatActivity {
         username = null;
         genre = null;
         instrument = null;
-        bitmap.recycle();
+//        bitmap.recycle();
         gridAdapter.clear();
         finish();
     }
 
-//    private void updateAnimation(){
-//        Log.i("Stats:", "Truths: " + practiceBool + performBool + collabBool);
-//        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//
-//        if (practiceBool && performBool && collabBool) {
-//            //Evolve the creature
-//            try{
-//                //do the dialog
-//                if (dressed) {
-//                    drawable = new GifDrawable(getResources(), R.drawable.jemi_dressed_toddler);
-//                }
-//                else{
-//
-//                    //check if avatar ==toddler //if not evolveMessage // if so do what is below
-//                    drawable = new GifDrawable(getResources(), R.drawable.jemi_plain_toddler);
-//                    FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar").setValue("toddler");
-//
-//                }
-//            }
-//            catch (IOException ie) {
-//                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
-//            }
-//        }
-//        else {
-//
-//            //Adding Gifs into the Code Content
-//            try {
-//                if (!practiceBool) {
-//                    drawable = new GifDrawable(getResources(), R.drawable.jemi_happy);
-//                }
-//                else {
-//                    drawable = new GifDrawable(getResources(), R.drawable.jemi_sad);
-//                }
-//
-//
-//            } catch (IOException ie) {
-//                Toast.makeText(getApplicationContext(),"Error with Gif",Toast.LENGTH_LONG).show();
-//                //Catch the IO Exception in case of getting an hour
-//            }
-//        }
-//
-////        drawable.setLoopCount(0);
-////        animation = (GifImageView) findViewById(R.id.animation);
-////        animation.setBackground(drawable);
-//    }
-
-//    private void checkIfTaskComplete(){
-//
-//        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
-//        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()){
-//                    for (DataSnapshot match: dataSnapshot.getChildren()){
-//                        Log.i("Stats:", match.getKey() + ": " + match.getValue().toString());
-//                        if (match.getKey().equals("practice")) {
-//                            int hl = Integer.parseInt(match.getValue().toString().trim());
-//                            if(hl == 1) practiceBool = true;
-//                        }
-//                        if (match.getKey().equals("perform")) {
-//                            int hl = Integer.parseInt(match.getValue().toString().trim());
-//                            if(hl == 1) performBool = true;
-//                        }
-//                        if (match.getKey().equals("collab")) {
-//                            int hl = Integer.parseInt(match.getValue().toString().trim());
-//                            if(hl == 1) collabBool = true;
-//                        }
-//                        if (match.getKey().equals("dressed")) {
-//                            String dres = match.getValue().toString();
-//                            if(dres.equals("true")) dressed = true;
-//                        }
-//                    }
-//                    updateAnimation();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
 
     private ArrayList<ImageItem> getData() {
         final ArrayList<ImageItem> imageItems = new ArrayList<>();
@@ -357,13 +339,6 @@ public class Profile extends AppCompatActivity {
         final BitmapFactory.Options options = new BitmapFactory.Options();
         return BitmapFactory.decodeResource(res, resId, options);
     }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 1 && resultCode == Activity.RESULT_OK){
-//            final Uri image_uri = data.getData();
-//            resultUri = image_uri;
-//            profileImage.setImageURI(resultUri);
-//        }
-//    }
+
+
 }

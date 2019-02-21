@@ -4,76 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".Profile"
-    >
+    android:orientation="vertical"
+    tools:context=".Profile">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/profile_top_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="5dp"
-        android:id="@+id/profile_top_part"
-        >
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <android.support.v7.widget.CardView
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:id="@+id/view2"
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_marginRight="20dp"
             android:background="@android:color/transparent"
-            app:cardCornerRadius="100dp">
+            app:cardCornerRadius="100dp"
+            android:layout_gravity="left"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentLeft="true"
+            android:paddingRight="@dimen/profilepostpadding"
+            android:layout_marginEnd="@dimen/profilepostpadding"
+            >
 
             <ImageView
                 android:id="@+id/profile_img_post"
                 android:layout_width="match_parent"
-                android:background="@android:color/transparent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_fire"></ImageView>
         </android.support.v7.widget.CardView>
 
         <LinearLayout
+            android:id="@+id/profie_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/profie_info"
+            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/view2"
+            
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:layout_gravity="center"
+                android:gravity="center">
+
                 <LinearLayout
                     android:layout_width="65dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/profilepostpadding"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="65dp"
                         android:layout_height="40dp"
+                        android:fontFamily="@font/opensans_semibold"
                         android:text="19"
                         android:textAlignment="center"
-                        android:textSize="30sp"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
+
                     <TextView
                         android:layout_width="65dp"
                         android:layout_height="25dp"
-                        android:text="posts"
-                        android:textSize="15sp"
-                        android:textAlignment="center"
                         android:fontFamily="@font/opensans_light"
+                        android:text="posts"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -81,23 +89,24 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/profilepostpadding"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="65dp"
                         android:layout_height="40dp"
+                        android:fontFamily="@font/opensans_semibold"
                         android:text="20"
                         android:textAlignment="center"
-                        android:textSize="30sp"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
+
                     <TextView
                         android:layout_width="65dp"
                         android:layout_height="25dp"
-                        android:text="friends"
-                        android:textSize="15sp"
-                        android:textAlignment="center"
                         android:fontFamily="@font/opensans_light"
+                        android:text="friends"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -105,23 +114,24 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/profilepostpadding"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="65dp"
                         android:layout_height="40dp"
+                        android:fontFamily="@font/opensans_semibold"
                         android:text="99"
                         android:textAlignment="center"
-                        android:textSize="30sp"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
+
                     <TextView
                         android:layout_width="65dp"
                         android:layout_height="25dp"
-                        android:text="days"
-                        android:textSize="15sp"
-                        android:textAlignment="center"
                         android:fontFamily="@font/opensans_light"
+                        android:text="days"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
-                        />
+                        android:textSize="15sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -139,7 +149,7 @@
         </LinearLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/profile_user_info"
@@ -211,113 +221,113 @@
 
 
     <!--<LinearLayout-->
-        <!--android:layout_gravity="center"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
+    <!--android:layout_gravity="center"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
 
-        <!--<TextView-->
-            <!--android:text="Name:"-->
-            <!--android:fontFamily="@font/proxima_novona"-->
-            <!--android:id="@+id/textforname"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_width="75dp"-->
-            <!--android:layout_height="wrap_content" />-->
+    <!--<TextView-->
+    <!--android:text="Name:"-->
+    <!--android:fontFamily="@font/proxima_novona"-->
+    <!--android:id="@+id/textforname"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:layout_weight="1"-->
+    <!--android:layout_width="75dp"-->
+    <!--android:layout_height="wrap_content" />-->
 
-        <!--<TextView-->
-            <!--android:id="@+id/name"-->
-            <!--android:layout_width="75dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginBottom="5sp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@null"-->
-            <!--android:fontFamily="@font/proxima_novona_bold"-->
-            <!--android:hint="Name"-->
-            <!--android:textColor="@color/black" />-->
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_gravity="center"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textforusername"-->
-            <!--android:text="Username:"-->
-            <!--android:fontFamily="@font/proxima_novona"-->
-            <!--android:layout_width="75dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textColor="@color/black"-->
-            <!--/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/username"-->
-            <!--android:fontFamily="@font/proxima_novona_bold"-->
-            <!--android:layout_width="75dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginBottom="5sp"-->
-            <!--android:background="@null"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:hint="Username" />-->
-
-    <!--</LinearLayout>-->
-
-
-    <!--<LinearLayout-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/textforinstruments"-->
-            <!--android:text="Genres:"-->
-            <!--android:fontFamily="@font/proxima_novona"-->
-            <!--android:layout_width="75dp"-->
-            <!--android:textColor="@color/black"-->
-
-            <!--android:layout_height="wrap_content" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="75dp"-->
-            <!--android:fontFamily="@font/proxima_novona_bold"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:id="@+id/genre"-->
-            <!--android:background="@null"-->
-            <!--android:hint="Genre"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:layout_marginBottom="5sp"/>-->
+    <!--<TextView-->
+    <!--android:id="@+id/name"-->
+    <!--android:layout_width="75dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_marginBottom="5sp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@null"-->
+    <!--android:fontFamily="@font/proxima_novona_bold"-->
+    <!--android:hint="Name"-->
+    <!--android:textColor="@color/black" />-->
 
     <!--</LinearLayout>-->
 
     <!--<LinearLayout-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
+    <!--android:layout_gravity="center"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
 
-        <!--<TextView-->
-            <!--android:id="@+id/textforinstruments2"-->
-            <!--android:text="Instruments:"-->
-            <!--android:fontFamily="@font/proxima_novona"-->
-            <!--android:layout_width="90dp"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:layout_height="wrap_content" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/textforusername"-->
+    <!--android:text="Username:"-->
+    <!--android:fontFamily="@font/proxima_novona"-->
+    <!--android:layout_width="75dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textColor="@color/black"-->
+    <!--/>-->
 
-        <!--<TextView-->
-            <!--android:layout_width="90sp"-->
-            <!--android:fontFamily="@font/proxima_novona_bold"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/instrument"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:background="@null"-->
-            <!--android:hint="Instrument"-->
-            <!--android:layout_marginBottom="10dp"/>-->
+    <!--<TextView-->
+    <!--android:id="@+id/username"-->
+    <!--android:fontFamily="@font/proxima_novona_bold"-->
+    <!--android:layout_width="75dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:layout_marginBottom="5sp"-->
+    <!--android:background="@null"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:hint="Username" />-->
+
+    <!--</LinearLayout>-->
+
+
+    <!--<LinearLayout-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/textforinstruments"-->
+    <!--android:text="Genres:"-->
+    <!--android:fontFamily="@font/proxima_novona"-->
+    <!--android:layout_width="75dp"-->
+    <!--android:textColor="@color/black"-->
+
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="75dp"-->
+    <!--android:fontFamily="@font/proxima_novona_bold"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:id="@+id/genre"-->
+    <!--android:background="@null"-->
+    <!--android:hint="Genre"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:layout_marginBottom="5sp"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/textforinstruments2"-->
+    <!--android:text="Instruments:"-->
+    <!--android:fontFamily="@font/proxima_novona"-->
+    <!--android:layout_width="90dp"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="90sp"-->
+    <!--android:fontFamily="@font/proxima_novona_bold"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/instrument"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:background="@null"-->
+    <!--android:hint="Instrument"-->
+    <!--android:layout_marginBottom="10dp"/>-->
 
 
     <!--</LinearLayout>-->
