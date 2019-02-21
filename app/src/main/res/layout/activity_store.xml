@@ -147,21 +147,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/price_tag_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="20dp"
                     android:text="0 Coins"
-                    android:textSize="10sp" />
+                    android:textSize="10sp" />-->
                 <Button
                     android:id="@+id/buy_hat"
                     android:paddingLeft="2dp"
-                    android:layout_width="40dp"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
                     android:background="@drawable/buttonoval"
                     android:onClick="buyHats"
-                    android:text="Buy"
+                    android:text="Buy Hat"
                     />
 
             </LinearLayout>
@@ -222,23 +222,22 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+                <!--<TextView
                     android:id="@+id/price_tag2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0 Coins"
                     android:textSize="10sp"
                     android:textAlignment="center"
-                    />
+                    />-->
                 <Button
                     android:id="@+id/buy_shirts"
                     android:layout_marginTop="5dp"
                     android:paddingLeft="2dp"
-                    android:layout_width="40dp"
-                    android:layout_height="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
                     android:background="@drawable/buttonoval"
                     android:text="Buy Shirt"
                     android:onClick="buyShirt"
