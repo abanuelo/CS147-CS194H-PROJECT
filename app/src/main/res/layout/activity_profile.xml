@@ -8,10 +8,44 @@
     android:orientation="vertical"
     tools:context=".Profile">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/coin_image"
+            android:src="@drawable/ic_coins"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:paddingLeft="20dp"
+            android:id="@+id/coins"
+            android:text="Your coins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layoutDirection="rtl"
+            android:src="@drawable/shopping_cart"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:paddingRight="30dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
     <RelativeLayout
         android:id="@+id/profile_top_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
+        android:gravity="center"
         android:layout_marginTop="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -50,7 +84,7 @@
             android:layout_gravity="right"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@id/view2"
-            
+
             android:orientation="vertical">
 
             <LinearLayout
