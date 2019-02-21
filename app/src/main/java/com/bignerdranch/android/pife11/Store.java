@@ -172,12 +172,17 @@ public class Store extends AppCompatActivity {
 //                        button2X = (int) button4.getX();
 //                        button2Y = (int) button4.getY();
 
+                        TextView description = (TextView) findViewById(R.id.accessDescription);
+
                         if (Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button2X) && Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button3X)) {
                             //This is for the orange shirt
                             scrollViewHats2.smoothScrollTo(button1X, button1Y);
                             shirt_placement.setImageResource(0);
 
                             System.out.println("WTF is this?");
+
+                            description.setText("Proof of practicing for 1 hour on Pife.");
+
                             //CHANGE THE PRICE TAG HERE
                         } else if (Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button1X) && Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button3X)) {
                             //This is for the tutorial shirt!
@@ -185,6 +190,8 @@ public class Store extends AppCompatActivity {
                             scrollViewHats2.smoothScrollTo(button2X, button2Y);
                             shirt_placement.setImageResource(R.drawable.ic_jemi_green_shirt);
                             System.out.println("WTF is this? 2");
+
+                            description.setText("Proof of practicing for 15 seconds on Pife.");
 
                         } else {
 
@@ -201,6 +208,10 @@ public class Store extends AppCompatActivity {
     }
 
 
+    public void buyHats(View view) {
+        Toast.makeText(Store.this, "Sorry, this accessory hasn't been unlocked. Please purchase the green tutorial T-shirt.", Toast.LENGTH_LONG).show();
+    }
+
     public void buyShirt(View view){
         TextView pointsDisplay = (TextView) findViewById(R.id.pifepoints);
         int coinsAvailable = Integer.parseInt(pointsDisplay.getText().toString());
@@ -213,6 +224,8 @@ public class Store extends AppCompatActivity {
             }
             Intent practice_intent = new Intent(this, Profile.class);
             startActivity(practice_intent);
+        } else if (Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button2X) && Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button3X)) {
+            Toast.makeText(Store.this, "Sorry, this accessory hasn't been unlocked. Please purchase the green tutorial T-shirt.", Toast.LENGTH_LONG).show();
         }
 
 

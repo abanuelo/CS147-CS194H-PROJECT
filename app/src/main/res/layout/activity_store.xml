@@ -160,6 +160,7 @@
                     android:layout_width="40dp"
                     android:layout_height="15dp"
                     android:background="@drawable/buttonoval"
+                    android:onClick="buyHats"
                     android:text="Buy"
                     />
 
@@ -325,8 +326,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text=""
         android:id="@+id/accessDescription"
+        android:textColor="@color/black"
+        android:paddingTop="30dp"
         />
 
     <TextView
