@@ -17,10 +17,79 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="REWARD UNLOCKED!"
+            android:text="REWARDS UNLOCKED!"
             android:layout_gravity="center"
             android:textColor="@color/black"/>
 
+
+    <!--<TextView
+        android:paddingTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coins Unlocked"
+        android:layout_gravity="center"
+        android:textColor="@color/black"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+15"
+            android:textSize="45dp"
+            android:textColor="@color/black"
+            android:paddingRight="25dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_coins"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="You have received 15 coins for practicing your first time!"
+            android:gravity="center"
+            android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="Practice for additional time to receive more coins!"
+        android:gravity="center"
+        android:textColor="@color/black"/>
+
+
+    <!--<TextView
+        android:paddingTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Green T-shirt Unlocked"
+        android:layout_gravity="center"
+        android:textColor="@color/black"/>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="30dp">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,23 +99,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Green T-shirt Unlocked"
-            android:layout_gravity="center"
-            android:textColor="@color/black"/>
+            android:text="Unlocked!"
+            android:textSize="45dp"
+            android:textColor="@color/black"
+            android:paddingLeft="25dp"/>
 
+    </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
+            android:gravity="center"
             android:text="This T-shirt commemerates that you've practiced for 15 seconds!"
             android:layout_gravity="center"
             android:textColor="@color/black"/>
 
+    <TextView
+        android:paddingTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:gravity="center"
+        android:text="Now, let's spend your coins and obtain this commerative T-shirt in the store!"
+        android:layout_gravity="center"
+        android:textColor="@color/black"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Got it!"
+            android:text="Store"
             android:onClick="returnToProfile"
             android:layout_gravity="center" />
 
