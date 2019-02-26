@@ -38,7 +38,7 @@
             android:layout_height="30dp" />
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <!--<LinearLayout-->
     <RelativeLayout
         android:id="@+id/profile_top_part"
         android:layout_width="match_parent"
