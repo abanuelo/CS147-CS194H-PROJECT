@@ -7,6 +7,7 @@ import android.service.chooser.ChooserTargetService;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -59,6 +60,8 @@ import java.util.Map;
 
 public class ChooseRoutineActivity extends Activity {
     private ImageView store;
+    private DatabaseReference userDatabase;
+    private ValueEventListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,21 +105,26 @@ public class ChooseRoutineActivity extends Activity {
 
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (userDatabase != null && listener != null) {
+            userDatabase.removeEventListener(listener);
+        }
+    }
+
     private void populateRoutinesList() {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String userId = auth.getCurrentUser().getUid();
-        DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+        userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
 
         DatabaseReference routinesDB = userDatabase.child("Routines");
         //ArrayList<ArrayList<String>> myListOfRoutines = new ArrayList<ArrayList<String>>();
 
-
-
-
-
-        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        
+        listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<ArrayList<String>> dsRoutines = new ArrayList<ArrayList<String>>();
@@ -172,7 +180,7 @@ public class ChooseRoutineActivity extends Activity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
         //Get the routines from the database?
 
         //System.out.println("Debugging the routines... finishing before the callback?");
@@ -207,6 +215,7 @@ public class ChooseRoutineActivity extends Activity {
 
             }
         });*/
+        userDatabase.addValueEventListener(listener);
     }
 
     public void addRoutine(View view){

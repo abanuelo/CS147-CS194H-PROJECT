@@ -6,11 +6,20 @@
     android:orientation="horizontal"
     android:padding="20sp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="75sp"
-        android:layout_height="75sp"
+    <ImageView
+        android:id="@+id/check"
+        android:paddingRight="15dp"
+        android:layout_gravity="center_vertical"
+        android:visibility="visible"
+        android:src="@drawable/ic_checkmark"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <ImageView
+        android:layout_width="90sp"
+        android:layout_height="90sp"
         android:id="@+id/MatchImage"
-        android:src="@drawable/ic_coins"/>
+        android:src="@drawable/uprof"/>
 
 
     <LinearLayout
@@ -41,14 +50,6 @@
             android:fontFamily="@font/proxima_novona"
             android:text="Match ID"
             android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/check"
-            android:paddingLeft="30dp"
-            android:visibility="visible"
-            android:src="@drawable/ic_checkmark"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
 
         <ImageView
             android:id="@+id/new_song"

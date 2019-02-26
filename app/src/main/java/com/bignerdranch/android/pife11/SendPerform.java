@@ -32,6 +32,10 @@ public class SendPerform extends AppCompatActivity {
     private RecyclerView.Adapter myMatchesAdapter;
     private RecyclerView.LayoutManager myMatchesLayoutManager;
     private String currentUserId;
+    private DatabaseReference matchDb;
+    private DatabaseReference userDb;
+    private ValueEventListener listener;
+    private ValueEventListener listener2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +69,21 @@ public class SendPerform extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (matchDb != null && listener != null) {
+            Log.d("Clear", "clearing userdatabase!");
+            matchDb.removeEventListener(listener);
+        }
+        if(userDb != null && listener2 != null){
+            userDb.removeEventListener(listener2);
+        }
+    }
+
     private void getUserMatchId() {
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Collaborations").child("Matches");
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Collaborations").child("Matches");
+        listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -81,12 +97,13 @@ public class SendPerform extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+        matchDb.addValueEventListener(listener);
     }
 
     private void FetchMatchInformation(String key){
-        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
-        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
+        listener2 = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -114,8 +131,8 @@ public class SendPerform extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-
+        };
+        userDb.addValueEventListener(listener2);
     }
 
     private ArrayList<MatchesObject> resultsMatches = new ArrayList<MatchesObject>();
