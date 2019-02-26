@@ -160,7 +160,7 @@ public class ChooseRoutineActivity extends Activity {
                         Intent practice_intent = new Intent(ChooseRoutineActivity.this, PracticeHiFi2.class);
                         practice_intent.putExtra("SOURCE", "CHOOSE");
                         practice_intent.putExtra("ROUTINE_NAME", o.toString());
-                        System.out.println("Changing to routine:" + o.toString());
+                        //System.out.println("Changing to routine:" + o.toString());
                         startActivity(practice_intent);
 
                     }
