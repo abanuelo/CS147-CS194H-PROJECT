@@ -29,6 +29,7 @@
 
         <ImageView
             android:layoutDirection="rtl"
+            android:onClick="goToStore"
             android:src="@drawable/shopping_cart"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
