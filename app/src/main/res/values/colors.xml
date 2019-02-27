@@ -19,5 +19,6 @@
     <color name="back">#FCDFA6</color>
     <color name="button">#696969</color>
     <color name="button2">#C0C0C0</color>
+    <color name="my_spinner_text_color">#ff0000</color>
 
 </resources>
