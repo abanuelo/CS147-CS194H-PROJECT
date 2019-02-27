@@ -123,7 +123,7 @@ public class ChooseRoutineActivity extends Activity {
         DatabaseReference routinesDB = userDatabase.child("Routines");
         //ArrayList<ArrayList<String>> myListOfRoutines = new ArrayList<ArrayList<String>>();
 
-        
+
         listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
