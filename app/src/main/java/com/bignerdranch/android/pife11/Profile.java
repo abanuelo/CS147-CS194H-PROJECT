@@ -93,7 +93,7 @@ public class Profile extends AppCompatActivity {
         );
 
 
-
+        changeCoins();
 
 //        Button rewardShop = findViewById(R.id.shop_button);
 //        rewardShop.setOnClickListener(new View.OnClickListener() {
@@ -332,6 +332,32 @@ public class Profile extends AppCompatActivity {
         imgs.recycle();
         //bitmap.recycle();
         return imageItems;
+    }
+
+
+    public void changeCoins(){
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String pifePoints = dataSnapshot.getValue().toString().trim();
+                    TextView pointsDisplay = (TextView) findViewById(R.id.coins);
+                    pointsDisplay.setText(pifePoints);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void goToStore(View view) {
+        Intent practice_intent = new Intent(this, Store.class);
+        startActivity(practice_intent);
     }
 
 
