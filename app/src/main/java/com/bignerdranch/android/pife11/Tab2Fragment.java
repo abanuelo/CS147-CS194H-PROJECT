@@ -57,7 +57,6 @@ public class Tab2Fragment extends Fragment   {
     private String instrumentAdapter = "all";
     private String genreAdapter = "all";
     private String yearsAdapter = "all";
-    int TrueVal = 0;
 
     private CardPagerAdapter mCardAdapter;
     private ShadowTransformer mCardShadowTransformer;
@@ -122,6 +121,21 @@ public class Tab2Fragment extends Fragment   {
                         f.setBackgroundResource(0);
                         TextView years = u.findViewById(R.id.years);
                         String years_text = years.getText().toString();
+                        int text_num;
+                        if (isNumeric(years_text)){
+                            text_num = Integer.parseInt(years.getText().toString());
+                            if (text_num >= 5 && text_num < 10){
+                                years_text = "5+ years";
+                            } else if (text_num >= 10) {
+                                years_text = "10+ years";
+                            } else if (text_num == 0){
+                                years_text = "less than 1 year";
+                            } else {
+                                years_text += " years";
+                            }
+                        } else{
+                            text_num = -1;
+                        }
                         TextView genres = u.findViewById(R.id.genre);
                         String genres_text = genres.getText().toString();
                         TextView t = u.findViewById(R.id.instruments);
@@ -141,6 +155,8 @@ public class Tab2Fragment extends Fragment   {
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         } else if(instrumentAdapter.equals("all") && genreAdapter.equals("all") && yearsAdapter.equals("all")){
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if(text.contains(instrumentAdapter) && genreAdapter.equals("all") && years_text.contains(yearsAdapter)){
+
                         }
 
                     }
@@ -164,6 +180,21 @@ public class Tab2Fragment extends Fragment   {
                         f.setBackgroundResource(0);
                         TextView years = u.findViewById(R.id.years);
                         String years_text = years.getText().toString();
+                        int text_num;
+                        if (isNumeric(years_text)){
+                            text_num = Integer.parseInt(years.getText().toString());
+                            if (text_num >= 5 && text_num < 10){
+                                years_text = "5+ years";
+                            } else if (text_num >= 10) {
+                                years_text = "10+ years";
+                            } else if (text_num == 0){
+                                years_text = "less than 1 year";
+                            } else {
+                                years_text += " years";
+                            }
+                        } else{
+                            text_num = -1;
+                        }
                         TextView instruments = u.findViewById(R.id.instruments);
                         String instrument_text = instruments.getText().toString();
                         TextView t = u.findViewById(R.id.genre);
@@ -178,6 +209,8 @@ public class Tab2Fragment extends Fragment   {
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         } else if (text.contains(genreAdapter) && instrument_text.contains(instrumentAdapter) && yearsAdapter.equals("all")) {
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(genreAdapter) && instrumentAdapter.equals("all") && years_text.contains(yearsAdapter)) {
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         } else if (text.contains(genreAdapter) && instrument_text.contains(instrumentAdapter) && years_text.contains(yearsAdapter)){
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         } else if(genreAdapter.equals("all") && instrumentAdapter.equals("all") && yearsAdapter.equals("all")){
@@ -185,7 +218,6 @@ public class Tab2Fragment extends Fragment   {
                         }
 
                     }
-                    Log.d("Unable to access this card", Integer.toString(j));
                 }
             }
 
@@ -200,7 +232,6 @@ public class Tab2Fragment extends Fragment   {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 for(int j = 0; j < mCardAdapter.getCount(); j++) {
                     CardView u = mCardAdapter.getCardViewAt(j);
-                    TrueVal = 0;
                     if (u != null) {
                         FrameLayout f = u.findViewById(R.id.frame);
                         f.setBackgroundResource(0);
@@ -209,70 +240,41 @@ public class Tab2Fragment extends Fragment   {
                         TextView instruments = u.findViewById(R.id.instruments);
                         String instrument_text = instruments.getText().toString();
                         TextView t = u.findViewById(R.id.years);
-                        String text2 = t.getText().toString();
-                        int text;
-                        if (isNumeric(text2)){
-                            text = Integer.parseInt(t.getText().toString());
+                        String text = t.getText().toString();
+                        int text_num;
+                        if (isNumeric(text)){
+                            text_num = Integer.parseInt(t.getText().toString());
+                            if (text_num >= 5 && text_num < 10){
+                                text = "5+ years";
+                            } else if (text_num >= 10) {
+                                text = "10+ years";
+                            } else if (text_num == 0){
+                                text = "less than 1 year";
+                            } else {
+                                text += " years";
+                            }
                         } else{
-                            text = -1;
+                            text_num = -1;
                         }
-                        
+
                         if (i == 0) {
                             yearsAdapter = "all";
                         } else {
                             yearsAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
-
-                            if (yearsAdapter.equals("less than 1 year")){
-                                TrueVal = 0;
-                            } else if (yearsAdapter.equals("1 year")){
-                                TrueVal = 1;
-                            } else if (yearsAdapter.equals("2 years")){
-                                TrueVal = 2;
-                            } else if (yearsAdapter.equals("3 years")){
-                                TrueVal = 3;
-                            } else if (yearsAdapter.equals("4 years")){
-                                TrueVal = 4;
-                            } else if (yearsAdapter.equals("5+ years")){
-                                TrueVal = 5;
-                            } else if (yearsAdapter.equals("10+ years")){
-                                TrueVal = 10;
-                            } else {
-                                TrueVal = -2;
-                            }
-
+                            Log.d("text", text);
+                            Log.d("yearsAdapter", yearsAdapter);
                         }
 
-                        if (TrueVal < 5){
-                            if (text==TrueVal && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if (text==TrueVal && instrument_text.contains(instrumentAdapter) && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if (text==TrueVal && instrument_text.contains(instrumentAdapter) && genreAdapter.contains(genres_text)) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if (TrueVal == -2 && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            }
-                        } else if (TrueVal >= 5 && TrueVal < 10){
-                            if ((text>=TrueVal && text < 10) && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if ((text>=TrueVal && text < 10) && instrument_text.contains(instrumentAdapter) && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if ((text>=TrueVal && text < 10) && instrument_text.contains(instrumentAdapter) && genreAdapter.contains(genres_text)) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if (TrueVal == -2 && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            }
-                        } else {
-                            if (text >= 10 && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if (text >= 10 && instrument_text.contains(instrumentAdapter) && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if (text >= 10 && instrument_text.contains(instrumentAdapter) && genreAdapter.contains(genres_text)) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            } else if (TrueVal == -2 && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
-                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                            }
-
+                        if (text.contains(yearsAdapter) && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(yearsAdapter) && instrument_text.contains(instrumentAdapter) && genreAdapter.equals("all")) {
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(yearsAdapter) && instrument_text.contains(instrumentAdapter) && genreAdapter.contains(genres_text)){
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if(yearsAdapter.equals("all") && instrumentAdapter.equals("all") && genreAdapter.equals("all")){
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if(text.contains(yearsAdapter) && genres_text.contains(genreAdapter) && instrumentAdapter.equals("all")){
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         }
 
 
