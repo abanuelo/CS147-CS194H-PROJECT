@@ -1,12 +1,12 @@
-package SelectVideoOnProfile;
+package com.bignerdranch.android.pife11.SelectVideoOnProfile;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -17,6 +17,11 @@ import com.bignerdranch.android.pife11.Profile;
 import com.bignerdranch.android.pife11.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -38,7 +43,8 @@ public class SelectVideoOnProfile extends AppCompatActivity {
         Intent intent = getIntent();
         final String videoUserId = intent.getStringExtra("currentUserId");
         //6X6Eok5NaRNWYSArcoX4Q7qpoMv2
-        final String currentVideo = intent.getStringExtra("currentVideo") + ".3gp"; //test.3pg
+        final String currVideo = intent.getStringExtra("currentVideo");
+        final String currentVideo = currVideo + ".3gp"; //test.3pg
 
 //        String[] splited = currentVideo.split("[.]");
 //        String prefix = splited[0]; //passed into createTempFile
@@ -74,17 +80,40 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
         if (userid.equals(videoUserId)){
             ArrayList<Comment> arrayOfComments = new ArrayList<Comment>();
-            CommentAdapter adapter = new CommentAdapter(this, arrayOfComments);
+            final CommentAdapter adapter = new CommentAdapter(this, arrayOfComments);
 
             listView.setVisibility(View.VISIBLE);
             listView.setAdapter(adapter);
 
-            Comment newComment = new Comment("John", "December 12th, 2019", "I like your smile", "I wish you smiled more");
-            Comment newComment1 = new Comment("Arm", "December 12th, 2019", "I like your sauce", "I wish you got THE sauce");
+            final DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Comments").child(currVideo);
+
+            //loop thru children
+
+            matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot comment : dataSnapshot.getChildren()){
+                        String date = comment.child("date").getValue().toString().trim();
+                        String like = comment.child("ilike").getValue().toString().trim();
+                        String wish = comment.child("iwish").getValue().toString().trim();
+                        String user = comment.child("user").getValue().toString().trim();
+                        String userName = comment.child("username").getValue().toString().trim();
+
+                        adapter.add(new Comment(userName, date, like, wish));
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
             Comment newComment2 = new Comment("Ab", "December 12th, 2019", "I like your fart lol", "I wish you looked at the camera");
-            adapter.add(newComment);
-            adapter.add(newComment1);
             adapter.add(newComment2);
+
 
             exit_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -106,7 +135,7 @@ public class SelectVideoOnProfile extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent sign_out_intent = new Intent(SelectVideoOnProfile.this, GiveFeedback.class);
                     sign_out_intent.putExtra("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                    sign_out_intent.putExtra("videoId", currentVideo);
+                    sign_out_intent.putExtra("videoId", currVideo);
                     sign_out_intent.putExtra("videoUserId", videoUserId);
                     finish();
                     startActivity(sign_out_intent);
