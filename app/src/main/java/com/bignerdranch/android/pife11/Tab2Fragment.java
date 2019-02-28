@@ -54,6 +54,10 @@ public class Tab2Fragment extends Fragment   {
     private String instrument;
     private String genre;
     private String years;
+    private String instrumentAdapter = "all";
+    private String genreAdapter = "all";
+    private String yearsAdapter = "all";
+    int TrueVal = 0;
 
     private CardPagerAdapter mCardAdapter;
     private ShadowTransformer mCardShadowTransformer;
@@ -110,27 +114,168 @@ public class Tab2Fragment extends Fragment   {
         InstrumentsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if ( i != 0){
-                    Log.d("Instrument", adapterView.getItemAtPosition(i).toString());
-                    Log.d("CardView", mCardAdapter.getCardViewAt(0).toString());
-                    Log.d("Count of cards", Integer.toString(mFragmentCardAdapter.getCount()));
+                for(int j = 0; j < mCardAdapter.getCount(); j++) {
+                    CardView u = mCardAdapter.getCardViewAt(j);
+                    //Log.d("Item Selected", adapterView.getItemAtPosition(i).toString());
+                    if (u != null) {
+                        FrameLayout f = u.findViewById(R.id.frame);
+                        f.setBackgroundResource(0);
+                        TextView years = u.findViewById(R.id.years);
+                        String years_text = years.getText().toString();
+                        TextView genres = u.findViewById(R.id.genre);
+                        String genres_text = genres.getText().toString();
+                        TextView t = u.findViewById(R.id.instruments);
+                        String text = t.getText().toString();
+                        if (i == 0){
+                            instrumentAdapter = "all";
+                        } else {
+                            instrumentAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
+                        }
 
-                    for(int j = 0; j < mCardAdapter.getCount(); j++) {
-                        CardView u = mCardAdapter.getCardViewAt(j);
-                        //Log.d("Item Selected", adapterView.getItemAtPosition(i).toString());
-                        if (u != null) {
-                            Log.d("Curr Card", u.toString());
-                            FrameLayout f = u.findViewById(R.id.frame);
-                            f.setBackgroundResource(0);
-                            TextView t = u.findViewById(R.id.instruments);
-                            String text = t.getText().toString();
-                            if (text.contains(adapterView.getItemAtPosition(i).toString().toLowerCase())) {
+                        //Encapsulte all four scenarios
+                        if (text.contains(instrumentAdapter) && genreAdapter.equals("all") && yearsAdapter.equals("all")) {
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && yearsAdapter.equals("all")) {
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && years_text.contains(yearsAdapter)){
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if(instrumentAdapter.equals("all") && genreAdapter.equals("all") && yearsAdapter.equals("all")){
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        }
+
+                    }
+                    Log.d("Unable to access this card", Integer.toString(j));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        GenreFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                for(int j = 0; j < mCardAdapter.getCount(); j++) {
+                    CardView u = mCardAdapter.getCardViewAt(j);
+                    if (u != null) {
+                        FrameLayout f = u.findViewById(R.id.frame);
+                        f.setBackgroundResource(0);
+                        TextView years = u.findViewById(R.id.years);
+                        String years_text = years.getText().toString();
+                        TextView instruments = u.findViewById(R.id.instruments);
+                        String instrument_text = instruments.getText().toString();
+                        TextView t = u.findViewById(R.id.genre);
+                        String text = t.getText().toString();
+                        if (i ==0){
+                            genreAdapter = "all";
+                        } else {
+                            genreAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
+                        }
+
+                        if (text.contains(genreAdapter) && instrumentAdapter.equals("all") && yearsAdapter.equals("all")) {
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(genreAdapter) && instrument_text.contains(instrumentAdapter) && yearsAdapter.equals("all")) {
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(genreAdapter) && instrument_text.contains(instrumentAdapter) && years_text.contains(yearsAdapter)){
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if(genreAdapter.equals("all") && instrumentAdapter.equals("all") && yearsAdapter.equals("all")){
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        }
+
+                    }
+                    Log.d("Unable to access this card", Integer.toString(j));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        YearsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                for(int j = 0; j < mCardAdapter.getCount(); j++) {
+                    CardView u = mCardAdapter.getCardViewAt(j);
+                    TrueVal = 0;
+                    if (u != null) {
+                        FrameLayout f = u.findViewById(R.id.frame);
+                        f.setBackgroundResource(0);
+                        TextView genres = u.findViewById(R.id.genre);
+                        String genres_text = genres.getText().toString();
+                        TextView instruments = u.findViewById(R.id.instruments);
+                        String instrument_text = instruments.getText().toString();
+                        TextView t = u.findViewById(R.id.years);
+                        String text2 = t.getText().toString();
+                        int text;
+                        if (isNumeric(text2)){
+                            text = Integer.parseInt(t.getText().toString());
+                        } else{
+                            text = -1;
+                        }
+                        
+                        if (i == 0) {
+                            yearsAdapter = "all";
+                        } else {
+                            yearsAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
+
+                            if (yearsAdapter.equals("less than 1 year")){
+                                TrueVal = 0;
+                            } else if (yearsAdapter.equals("1 year")){
+                                TrueVal = 1;
+                            } else if (yearsAdapter.equals("2 years")){
+                                TrueVal = 2;
+                            } else if (yearsAdapter.equals("3 years")){
+                                TrueVal = 3;
+                            } else if (yearsAdapter.equals("4 years")){
+                                TrueVal = 4;
+                            } else if (yearsAdapter.equals("5+ years")){
+                                TrueVal = 5;
+                            } else if (yearsAdapter.equals("10+ years")){
+                                TrueVal = 10;
+                            } else {
+                                TrueVal = -2;
+                            }
+
+                        }
+
+                        if (TrueVal < 5){
+                            if (text==TrueVal && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if (text==TrueVal && instrument_text.contains(instrumentAdapter) && genreAdapter.equals("all")) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if (text==TrueVal && instrument_text.contains(instrumentAdapter) && genreAdapter.contains(genres_text)) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if (TrueVal == -2 && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
                                 f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                             }
-                            Log.d("num", Integer.toString(j));
-                            Log.d("Text For Each Card", text);
+                        } else if (TrueVal >= 5 && TrueVal < 10){
+                            if ((text>=TrueVal && text < 10) && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if ((text>=TrueVal && text < 10) && instrument_text.contains(instrumentAdapter) && genreAdapter.equals("all")) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if ((text>=TrueVal && text < 10) && instrument_text.contains(instrumentAdapter) && genreAdapter.contains(genres_text)) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if (TrueVal == -2 && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            }
+                        } else {
+                            if (text >= 10 && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if (text >= 10 && instrument_text.contains(instrumentAdapter) && genreAdapter.equals("all")) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if (text >= 10 && instrument_text.contains(instrumentAdapter) && genreAdapter.contains(genres_text)) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            } else if (TrueVal == -2 && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            }
+
                         }
-                        Log.d("Unable to access this card", Integer.toString(j));
+
+
                     }
                 }
             }
@@ -170,6 +315,19 @@ public class Tab2Fragment extends Fragment   {
 
     public static float dpToPixels(int dp, Context context) {
         return dp * (context.getResources().getDisplayMetrics().density);
+    }
+
+    public static boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Integer.parseInt(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
     }
 
 
