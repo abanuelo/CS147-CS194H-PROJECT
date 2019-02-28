@@ -1,4 +1,4 @@
-package SelectVideoOnProfile;
+package com.bignerdranch.android.pife11.SelectVideoOnProfile;
 
 import android.content.Context;
 import android.view.LayoutInflater;

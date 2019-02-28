@@ -12,7 +12,10 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:background="@color/colorPrimary"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        >
 
         <ImageView
             android:id="@+id/coin_image"
@@ -38,7 +41,6 @@
             android:layout_height="30dp" />
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
     <RelativeLayout
         android:id="@+id/profile_top_part"
         android:layout_width="match_parent"
@@ -48,7 +50,7 @@
         android:gravity="center"
         android:layout_marginTop="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    >
 
 
         <android.support.v7.widget.CardView

@@ -70,6 +70,7 @@ public class DeclarePerform extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         try {
             videoUri = data.getData();
+
             Log.d("videoUri", videoUri.toString());
             if (videoUri != null){
                 Intent sendRecording = new Intent(DeclarePerform.this, MyPerform.class);
@@ -80,4 +81,6 @@ public class DeclarePerform extends AppCompatActivity {
 
         }
     }
+
+
 }

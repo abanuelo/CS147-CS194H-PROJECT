@@ -1,4 +1,4 @@
-package SelectVideoOnProfile;
+package com.bignerdranch.android.pife11.SelectVideoOnProfile;
 
 public class Comment {
         public String user;
