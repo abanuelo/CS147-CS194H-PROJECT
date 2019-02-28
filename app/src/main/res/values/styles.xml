@@ -50,4 +50,13 @@
         <item name="colorButtonNormal">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme2" parent="AppTheme">
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
+    </style>
+
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/my_spinner_text_color</item>
+    </style>
+
+
 </resources>

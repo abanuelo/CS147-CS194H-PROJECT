@@ -8,6 +8,7 @@
     android:layout_gravity="center">
 
     <FrameLayout
+        android:id="@+id/frame"
         android:background="@color/cardbackground"
         android:layout_width="match_parent"
         android:layout_height="450dp">

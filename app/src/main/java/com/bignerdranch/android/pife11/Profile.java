@@ -32,11 +32,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import SelectVideoOnProfile.SelectVideoOnProfile;
+import com.bignerdranch.android.pife11.SelectVideoOnProfile.SelectVideoOnProfile;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import profile_grid_layout.GridViewAdapter;
@@ -179,28 +177,6 @@ public class Profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//
-//
-//        gridView = (GridView) findViewById(R.id.gridView);
-//        gridAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
-//        gridView.setAdapter(gridAdapter);
-
-
-
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-//                ImageItem item = (ImageItem) parent.getItemAtPosition(position);
-//                //Create intent
-//                Intent intent = new Intent(Profile.this, SelectVideoOnProfile.class);
-//                intent.putExtra("currentUserId", "6X6Eok5NaRNWYSArcoX4Q7qpoMv2");
-//                intent.putExtra("currentVideo", "test.3gp");
-////                intent.putExtra("image", item.getImage());
-//                finish();
-//                //Start details activity
-//                startActivity(intent);
-//            }
-//        });
 
 
 //        Initalize the Text Views

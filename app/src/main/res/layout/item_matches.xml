@@ -15,7 +15,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="90sp"
         android:layout_height="90sp"
         android:id="@+id/MatchImage"
