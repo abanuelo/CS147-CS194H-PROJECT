@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,8 @@ public class PracticeHiFi2 extends AppCompatActivity {
 
     private Chronometer stopwatch;
     long timeWhenStopped = 0;
+    private DatabaseReference matchDb;
+    private ValueEventListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +89,21 @@ public class PracticeHiFi2 extends AppCompatActivity {
         checkIfTaskComplete();
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if (matchDb != null && listener != null) {
+            Log.d("Clear", "clearing userdatabase!");
+            matchDb.removeEventListener(listener);
+        }
+    }
+
     private void checkIfTaskComplete(){
         final String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        final DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+        matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
 
-        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+        listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -111,7 +123,8 @@ public class PracticeHiFi2 extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+        matchDb.addValueEventListener(listener);
     }
 
     private void createTaskList(ArrayList<String> justTasks) {

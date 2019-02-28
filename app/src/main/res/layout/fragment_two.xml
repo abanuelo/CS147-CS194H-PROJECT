@@ -2,45 +2,78 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/white"
     android:fitsSystemWindows="true">
 
     <LinearLayout
+        android:weightSum="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:spinnerMode="dialog"
+            android:id="@+id/InstrumentFilter"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:textAlignment="center"
+            android:entries="@array/instrument_arrays"
+            android:prompt="@string/instrument_prompt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"></Spinner>
+
+        <Spinner
+            android:spinnerMode="dialog"
+            android:id="@+id/GenreFilter"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:layout_width="0dp"
+            android:entries="@array/genre_arrays"
+            android:prompt="@string/genre_prompt"
+            android:layout_height="match_parent"></Spinner>
+
+        <Spinner
+            android:spinnerMode="dialog"
+            android:id="@+id/YearsFilter"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:textAlignment="center"
+            android:layout_width="0dp"
+            android:entries="@array/years_arrays"
+            android:prompt="@string/years_prompt"
+            android:layout_height="match_parent"></Spinner>
 
         <!--<Button-->
-            <!--android:id="@+id/cardTypeBtn"-->
-            <!--style="@style/ButtonStyle"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Fragments" />-->
+        <!--android:id="@+id/cardTypeBtn"-->
+        <!--style="@style/ButtonStyle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Fragments" />-->
 
         <!--<CheckBox-->
-            <!--android:id="@+id/checkBox"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:checked="true"-->
-            <!--android:layout_marginTop="16dp"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:text="Scale" />-->
+        <!--android:id="@+id/checkBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:checked="true"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:text="Scale" />-->
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
+        android:layout_marginTop="35dp"
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="450dp"
         android:layout_gravity="center"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingBottom="30dp"
-        android:paddingEnd="@dimen/card_padding"
+        android:paddingStart="@dimen/card_padding"
         android:paddingLeft="@dimen/card_padding"
+        android:paddingEnd="@dimen/card_padding"
         android:paddingRight="@dimen/card_padding"
-        android:paddingStart="@dimen/card_padding" />
+        android:paddingBottom="30dp" />
 
 </android.support.design.widget.CoordinatorLayout>

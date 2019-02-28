@@ -38,5 +38,44 @@
     <string name="third_nav">Friends</string>
     <string name="fourth_nav">User</string>
 
+    <string name="instrument_prompt">Instruments: All</string>
+    <string name="genre_prompt">Genres: All</string>
+    <string name="years_prompt">Years Playing: All</string>
+
+    <string-array name="instrument_arrays">
+        <item>Instruments:All</item>
+        <item>Bass</item>
+        <item>Drum</item>
+        <item>Flute</item>
+        <item>Guitar</item>
+        <item>Piano</item>
+        <item>Sing</item>
+        <item>Viola</item>
+        <item>Violin</item>
+    </string-array>
+
+    <string-array name="genre_arrays">
+        <item>Genres:All</item>
+        <item>Blues</item>
+        <item>Classical</item>
+        <item>Country</item>
+        <item>EDM</item>
+        <item>HipHop</item>
+        <item>Jazz</item>
+        <item>Pop</item>
+        <item>Rock</item>
+    </string-array>
+
+    <string-array name="years_arrays">
+        <item>Years Playing:All</item>
+        <item>less than 1 year</item>
+        <item>1 year</item>
+        <item>2 years</item>
+        <item>3 years</item>
+        <item>4 years</item>
+        <item>5+ years</item>
+        <item>10+ years</item>
+    </string-array>
+
 
 </resources>
