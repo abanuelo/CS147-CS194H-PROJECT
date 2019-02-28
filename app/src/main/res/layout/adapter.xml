@@ -8,6 +8,7 @@
     app:cardUseCompatPadding="true">
 
     <FrameLayout
+        android:id="@+id/frame"
         android:background="@color/cardbackground"
         android:outlineSpotShadowColor="@android:color/black"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

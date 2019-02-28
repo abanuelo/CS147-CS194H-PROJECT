@@ -1,20 +1,30 @@
 package com.bignerdranch.android.pife11;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
+import android.widget.Scroller;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.ViewerPagerCards.CardFragmentPagerAdapter;
@@ -38,6 +48,13 @@ public class Tab2Fragment extends Fragment   {
     private CheckBox box;
     private TextView name_text;
 
+    private Spinner InstrumentsFilter;
+    private Spinner GenreFilter;
+    private Spinner YearsFilter;
+    private String instrument;
+    private String genre;
+    private String years;
+
     private CardPagerAdapter mCardAdapter;
     private ShadowTransformer mCardShadowTransformer;
     private CardFragmentPagerAdapter mFragmentCardAdapter;
@@ -47,6 +64,7 @@ public class Tab2Fragment extends Fragment   {
     private FirebaseAuth auth;
     private String currentUId;
     private ArrayList<String> names;
+    private CardItem start;
 
     //@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,10 +84,15 @@ public class Tab2Fragment extends Fragment   {
         auth = FirebaseAuth.getInstance();
         currentUId = auth.getCurrentUser().getUid();
 
+        InstrumentsFilter = view.findViewById(R.id.InstrumentFilter);
+        GenreFilter = view.findViewById(R.id.GenreFilter);
+        YearsFilter = view.findViewById(R.id.YearsFilter);
+
         //Here insert Firebase Background for Log-In Iterate and create new ones
         populateCards();
-
-        mCardAdapter.addCardItem(new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing"));
+        start = new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing");
+        mCardAdapter.addCardItem(start);
+        mCardAdapter.notifyDataSetChanged();
 
         mFragmentCardAdapter = new CardFragmentPagerAdapter(getFragmentManager(),
                 dpToPixels(2, getContext()));
@@ -81,7 +104,42 @@ public class Tab2Fragment extends Fragment   {
 
         mViewPager.setAdapter(mCardAdapter);
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(30);
+
+
+        InstrumentsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if ( i != 0){
+                    Log.d("Instrument", adapterView.getItemAtPosition(i).toString());
+                    Log.d("CardView", mCardAdapter.getCardViewAt(0).toString());
+                    Log.d("Count of cards", Integer.toString(mFragmentCardAdapter.getCount()));
+
+                    for(int j = 0; j < mCardAdapter.getCount(); j++) {
+                        CardView u = mCardAdapter.getCardViewAt(j);
+                        //Log.d("Item Selected", adapterView.getItemAtPosition(i).toString());
+                        if (u != null) {
+                            Log.d("Curr Card", u.toString());
+                            FrameLayout f = u.findViewById(R.id.frame);
+                            f.setBackgroundResource(0);
+                            TextView t = u.findViewById(R.id.instruments);
+                            String text = t.getText().toString();
+                            if (text.contains(adapterView.getItemAtPosition(i).toString().toLowerCase())) {
+                                f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                            }
+                            Log.d("num", Integer.toString(j));
+                            Log.d("Text For Each Card", text);
+                        }
+                        Log.d("Unable to access this card", Integer.toString(j));
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         
 
 //        mButton.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +150,7 @@ public class Tab2Fragment extends Fragment   {
 //        });
 
         return view;
+
     }
 //
 //    @Override
@@ -112,6 +171,8 @@ public class Tab2Fragment extends Fragment   {
     public static float dpToPixels(int dp, Context context) {
         return dp * (context.getResources().getDisplayMetrics().density);
     }
+
+
 
     public void populateCards(){
 
@@ -158,6 +219,7 @@ public class Tab2Fragment extends Fragment   {
             }
         });
     }
+
 
 //    @Override
 //    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
