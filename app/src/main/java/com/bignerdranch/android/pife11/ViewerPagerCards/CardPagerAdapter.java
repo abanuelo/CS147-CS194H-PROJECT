@@ -2,6 +2,7 @@ package com.bignerdranch.android.pife11.ViewerPagerCards;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
@@ -121,6 +122,10 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
                 });
                 button.setText("Collab Sent");
                 button.setBackgroundColor(Color.parseColor("#A9A9A9"));
+                cardView.setVisibility(View.GONE);
+
+
+
             }
         });
 
@@ -132,7 +137,8 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
-        mViews.set(position, null);
+        mViews.remove(position);
+        //mViews.set(position, null);
     }
 
     private void bind(CardItem item, View view) {

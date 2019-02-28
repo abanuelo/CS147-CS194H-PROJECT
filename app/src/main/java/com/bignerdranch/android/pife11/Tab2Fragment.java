@@ -1,9 +1,11 @@
 package com.bignerdranch.android.pife11;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
@@ -69,6 +71,12 @@ public class Tab2Fragment extends Fragment   {
     private ArrayList<String> names;
     private CardItem start;
 
+    private FragmentActivity myContext;
+
+    private int instrumentPosition;
+    private int genrePosition;
+    private int yearPosition;
+
     //@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_two, container, false);
@@ -119,6 +127,7 @@ public class Tab2Fragment extends Fragment   {
                     if (u != null) {
                         FrameLayout f = u.findViewById(R.id.frame);
                         f.setBackgroundResource(0);
+                        u.setVisibility(View.GONE);
                         TextView years = u.findViewById(R.id.years);
                         String years_text = years.getText().toString();
                         int text_num;
@@ -144,24 +153,37 @@ public class Tab2Fragment extends Fragment   {
                             instrumentAdapter = "all";
                         } else {
                             instrumentAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
+
                         }
 
                         //Encapsulte all four scenarios
                         if (text.contains(instrumentAdapter) && genreAdapter.equals("all") && yearsAdapter.equals("all")) {
+                            u.setVisibility(View.VISIBLE);
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && yearsAdapter.equals("all")) {
+                            u.setVisibility(View.VISIBLE);
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && years_text.contains(yearsAdapter)){
+                            u.setVisibility(View.VISIBLE);
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         } else if(instrumentAdapter.equals("all") && genreAdapter.equals("all") && yearsAdapter.equals("all")){
+                            u.setVisibility(View.VISIBLE);
                             f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
                         } else if(text.contains(instrumentAdapter) && genreAdapter.equals("all") && years_text.contains(yearsAdapter)){
+                            u.setVisibility(View.VISIBLE);
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        }
 
+                        //If the spinner actually changed.
+                        if (instrumentPosition != i) {
+                            instrumentPosition = i;
+                            refreshFragment();
                         }
 
                     }
                     Log.d("Unable to access this card", Integer.toString(j));
                 }
+                //refreshPage();
             }
 
             @Override
@@ -380,6 +402,21 @@ public class Tab2Fragment extends Fragment   {
         });
     }
 
+    public void refreshFragment() {
+        FragmentTransaction ft = myContext.getSupportFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }
+
+    public void refreshPage() {
+        myContext.finish();
+        startActivity(myContext.getIntent());
+    }
+
+    @Override
+    public void onAttach(Activity activity){
+        myContext = (FragmentActivity) activity;
+        super.onAttach(activity);
+    }
 
 //    @Override
 //    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
