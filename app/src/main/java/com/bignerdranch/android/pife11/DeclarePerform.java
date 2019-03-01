@@ -1,6 +1,10 @@
 package com.bignerdranch.android.pife11;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -11,7 +15,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,9 +31,12 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.UploadTask;
 
 public class DeclarePerform extends AppCompatActivity {
-    private Button startPerform;
+    private Button startPerform, uploadThumbnail;
     private static final int REQUEST_CODE = 101;
+    private static final int CAMERA_REQUEST = 1888;
+    private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private Uri videoUri;
+    private ImageView thumbnail;
 
 
     @Override
@@ -35,6 +44,22 @@ public class DeclarePerform extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_declare_perform);
         startPerform = (Button) findViewById(R.id.startPerform);
+        thumbnail = (ImageView) findViewById(R.id.thumbnail);
+        uploadThumbnail = (Button) findViewById(R.id.upload_thumbnail);
+
+        uploadThumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkSelfPermission(Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA},
+                            MY_CAMERA_PERMISSION_CODE);
+                } else {
+                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                }
+            }
+        });
 
         startPerform.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +95,7 @@ public class DeclarePerform extends AppCompatActivity {
         changeCoins();
     }
 
+
     public void record(View view){
         Intent cameraIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
         cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -77,6 +103,11 @@ public class DeclarePerform extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            thumbnail.setImageBitmap(photo);
+        }
+
         try {
             videoUri = data.getData();
             Log.d("videoUri", videoUri.toString());
@@ -113,5 +144,21 @@ public class DeclarePerform extends AppCompatActivity {
     public void goToStore(View view) {
         Intent practice_intent = new Intent(this, Store.class);
         startActivity(practice_intent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_CAMERA_PERMISSION_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
+                Intent cameraIntent = new
+                        Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            } else {
+                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
+            }
+
+        }
     }
 }

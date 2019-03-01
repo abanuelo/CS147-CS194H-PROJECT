@@ -127,8 +127,15 @@
 
         <ImageView
             android:id="@+id/thumbnail"
-            android:layout_width="220dp"
-            android:layout_height="220dp" />
+            android:src="@drawable/ic_photo_upload"
+            android:layout_width="110dp"
+            android:layout_height="100dp" />
+
+        <Button
+            android:id="@+id/upload_thumbnail"
+            android:text="Upload Video Thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
