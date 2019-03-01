@@ -103,6 +103,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/posts"
                         android:layout_width="65dp"
                         android:layout_height="40dp"
                         android:fontFamily="@font/opensans_semibold"
@@ -128,6 +129,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/friends"
                         android:layout_width="65dp"
                         android:layout_height="40dp"
                         android:fontFamily="@font/opensans_semibold"
@@ -153,10 +155,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/days"
                         android:layout_width="65dp"
                         android:layout_height="40dp"
                         android:fontFamily="@font/opensans_semibold"
-                        android:text="99"
+                        android:text="0"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="30sp" />

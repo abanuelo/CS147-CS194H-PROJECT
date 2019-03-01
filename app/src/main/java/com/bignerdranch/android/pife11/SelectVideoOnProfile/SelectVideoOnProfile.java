@@ -111,8 +111,8 @@ public class SelectVideoOnProfile extends AppCompatActivity {
                 }
             });
 
-            Comment newComment2 = new Comment("Ab", "December 12th, 2019", "I like your fart lol", "I wish you looked at the camera");
-            adapter.add(newComment2);
+//            Comment newComment2 = new Comment("Ab", "December 12th, 2019", "I like your fart lol", "I wish you looked at the camera");
+//            adapter.add(newComment2);
 
 
             exit_btn.setOnClickListener(new View.OnClickListener() {
