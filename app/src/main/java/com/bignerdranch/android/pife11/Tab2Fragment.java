@@ -72,10 +72,13 @@ public class Tab2Fragment extends Fragment   {
     private CardItem start;
 
     private FragmentActivity myContext;
+    private DataSingleton ds;
 
     private int instrumentPosition;
     private int genrePosition;
     private int yearPosition;
+
+    private boolean didPopulate = false;
 
     //@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,8 +92,10 @@ public class Tab2Fragment extends Fragment   {
         //box = (CheckBox) view.findViewById(R.id.checkBox);
         //mButton.setOnClickListener(this);
 
+        ds = DataSingleton.getInstance();
+
         names = new ArrayList<String>();
-        mCardAdapter = new CardPagerAdapter();
+        //mCardAdapter = new CardPagerAdapter();
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
         auth = FirebaseAuth.getInstance();
         currentUId = auth.getCurrentUser().getUid();
@@ -100,10 +105,16 @@ public class Tab2Fragment extends Fragment   {
         YearsFilter = view.findViewById(R.id.YearsFilter);
 
         //Here insert Firebase Background for Log-In Iterate and create new ones
-        populateCards();
-        start = new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing");
-        mCardAdapter.addCardItem(start);
-        mCardAdapter.notifyDataSetChanged();
+        if (!didPopulate) {
+            mCardAdapter = new CardPagerAdapter();
+            populateCards();
+            //We need to kinda get rid of Gerald...
+
+            start = new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing");
+            mCardAdapter.addCardItem(start);
+            mCardAdapter.notifyDataSetChanged();
+        }
+        System.out.println("Printing current cardAdapter status: "+ mCardAdapter.getCount());
 
         mFragmentCardAdapter = new CardFragmentPagerAdapter(getFragmentManager(),
                 dpToPixels(2, getContext()));
@@ -117,8 +128,135 @@ public class Tab2Fragment extends Fragment   {
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
         mViewPager.setOffscreenPageLimit(30);
 
+//        instrumentPosition = 0;
+//        genrePosition = 0;
+//        yearPosition = 0;
 
-        InstrumentsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //Trying this out:
+
+
+
+        //Let's change the mCardAdapter here for instruments filter
+        /*InstrumentsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i != instrumentPosition) {
+                    mCardAdapter = new CardPagerAdapter();
+                    CardPagerAdapter dsAdapter = ds.getAllPossibleFriends();
+                    for (int j = 0; j < dsAdapter.getCount(); j++) {
+                        CardItem curr = dsAdapter.getCardItemAt(j);
+
+                        /*FrameLayout f = curr.findViewById(R.id.frame);
+                        f.setBackgroundResource(0);
+                        curr.setVisibility(View.GONE);
+                        TextView years = curr.findViewById(R.id.years);
+                        String years_text = years.getText().toString();
+                        int text_num;
+                        if (isNumeric(years_text)){
+                            text_num = Integer.parseInt(years.getText().toString());
+                            if (text_num >= 5 && text_num < 10){
+                                years_text = "5+ years";
+                            } else if (text_num >= 10) {
+                                years_text = "10+ years";
+                            } else if (text_num == 0){
+                                years_text = "less than 1 year";
+                            } else {
+                                years_text += " years";
+                            }
+                        } else{
+                            text_num = -1;
+                        }
+                        TextView genres = curr.findViewById(R.id.genre);
+                        String genres_text = genres.getText().toString();
+                        TextView t = curr.findViewById(R.id.instruments);
+                        String text = t.getText().toString();*/
+                        /*if (i == 0){
+                            instrumentAdapter = "all";
+                        } else {
+                            instrumentAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
+
+                        }
+
+                        if (shouldIncludeUser(curr.getInstrumentsText(), curr.getGenreText(), curr.getYearsText())) {
+                            mCardAdapter.addCardItem(dsAdapter.getCardItemAt(j));
+                        }
+                        instrumentPosition = i;
+                        refreshFragment();
+                    }
+
+                }*/
+
+                /*for(int j = 0; j < mCardAdapter.getCount(); j++) {
+                    CardView u = mCardAdapter.getCardViewAt(j);
+                    //Log.d("Item Selected", adapterView.getItemAtPosition(i).toString());
+                    if (u != null) {
+                        FrameLayout f = u.findViewById(R.id.frame);
+                        f.setBackgroundResource(0);
+                        u.setVisibility(View.GONE);
+                        TextView years = u.findViewById(R.id.years);
+                        String years_text = years.getText().toString();
+                        int text_num;
+                        if (isNumeric(years_text)){
+                            text_num = Integer.parseInt(years.getText().toString());
+                            if (text_num >= 5 && text_num < 10){
+                                years_text = "5+ years";
+                            } else if (text_num >= 10) {
+                                years_text = "10+ years";
+                            } else if (text_num == 0){
+                                years_text = "less than 1 year";
+                            } else {
+                                years_text += " years";
+                            }
+                        } else{
+                            text_num = -1;
+                        }
+                        TextView genres = u.findViewById(R.id.genre);
+                        String genres_text = genres.getText().toString();
+                        TextView t = u.findViewById(R.id.instruments);
+                        String text = t.getText().toString();
+                        if (i == 0){
+                            instrumentAdapter = "all";
+                        } else {
+                            instrumentAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
+
+                        }
+
+                        //Encapsulte all four scenarios
+                        if (text.contains(instrumentAdapter) && genreAdapter.equals("all") && yearsAdapter.equals("all")) {
+                            u.setVisibility(View.VISIBLE);
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && yearsAdapter.equals("all")) {
+                            u.setVisibility(View.VISIBLE);
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && years_text.contains(yearsAdapter)){
+                            u.setVisibility(View.VISIBLE);
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if(instrumentAdapter.equals("all") && genreAdapter.equals("all") && yearsAdapter.equals("all")){
+                            u.setVisibility(View.VISIBLE);
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        } else if(text.contains(instrumentAdapter) && genreAdapter.equals("all") && years_text.contains(yearsAdapter)){
+                            u.setVisibility(View.VISIBLE);
+                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
+                        }
+
+                        //If the spinner actually changed.
+                        if (instrumentPosition != i) {
+                            instrumentPosition = i;
+                            refreshFragment();
+                        }
+
+                    }
+                    Log.d("Unable to access this card", Integer.toString(j));
+                }*/
+                //refreshPage();
+            /*}
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });*/
+        /*InstrumentsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 for(int j = 0; j < mCardAdapter.getCount(); j++) {
@@ -190,9 +328,9 @@ public class Tab2Fragment extends Fragment   {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
 
-        GenreFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*GenreFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 for(int j = 0; j < mCardAdapter.getCount(); j++) {
@@ -308,7 +446,7 @@ public class Tab2Fragment extends Fragment   {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
         
 
 //        mButton.setOnClickListener(new View.OnClickListener() {
@@ -358,9 +496,11 @@ public class Tab2Fragment extends Fragment   {
 
     public void populateCards(){
 
-        usersDb.addValueEventListener(new ValueEventListener() {
+        usersDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                didPopulate = true;
+                CardPagerAdapter allPossibleFriends = new CardPagerAdapter();
                 for (DataSnapshot user : dataSnapshot.getChildren()){
                     //Get user name from backend
                     String name = user.child("name").getValue().toString().trim();
@@ -392,7 +532,24 @@ public class Tab2Fragment extends Fragment   {
                     names.add(name);
                     mCardAdapter.addCardItem(new CardItem(name, "Genre","Years", "Instruments", genres, years, instruments));
                     mCardAdapter.notifyDataSetChanged();
+
+                    allPossibleFriends.addCardItem(new CardItem(name, "Genre","Years", "Instruments", genres, years, instruments));
                 }
+                ds.setAllPossibleFriends(allPossibleFriends);
+                assert(allPossibleFriends.getCount() != 0);
+
+                mCardAdapter = new CardPagerAdapter();
+                CardPagerAdapter dsAdapter = ds.getAllPossibleFriends();
+                for (int j = 0; j < dsAdapter.getCount(); j++) {
+                    CardItem curr = dsAdapter.getCardItemAt(j);
+                    if (shouldIncludeUser(curr.getInstrumentsText(), curr.getGenreText(), curr.getYearsText())) {
+                        mCardAdapter.addCardItem(dsAdapter.getCardItemAt(j));
+                    }
+                    //instrumentPosition = i;
+                }
+
+                refreshFragment();
+                System.out.println("Printing current length: " + mCardAdapter.getCount());
             }
 
             @Override
@@ -416,6 +573,32 @@ public class Tab2Fragment extends Fragment   {
     public void onAttach(Activity activity){
         myContext = (FragmentActivity) activity;
         super.onAttach(activity);
+    }
+
+    private boolean shouldIncludeUser(String text, String genres_text, String years_text) {
+        text = text.toLowerCase();
+        genres_text = genres_text.toLowerCase();
+        years_text = years_text.toLowerCase();
+        System.out.println("Debugging this boolean function: " + text + " | " + genres_text + " | " + years_text);
+        System.out.println("Debugging this boolean function part II: " + instrumentAdapter + " | " + genreAdapter + " | " + yearsAdapter);
+
+        boolean instruRes = (text.contains(instrumentAdapter) || instrumentAdapter.equals("all") );
+        boolean genreRes = (genres_text.contains(genreAdapter) || genreAdapter.equals("all") );
+        boolean yearsRes = (years_text.contains(yearsAdapter) || yearsAdapter.equals("all") );
+
+        /*if (text.contains(instrumentAdapter) && genreAdapter.equals("all") && yearsAdapter.equals("all")) {
+            return true;
+        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && yearsAdapter.equals("all")) {
+            return true;
+        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && years_text.contains(yearsAdapter)){
+            return true;
+        } else if(instrumentAdapter.equals("all") && genreAdapter.equals("all") && yearsAdapter.equals("all")){
+            return true;
+        } else if(text.contains(instrumentAdapter) && genreAdapter.equals("all") && years_text.contains(yearsAdapter)){
+            return true;
+        }*/
+        if ((instruRes && genreRes && yearsRes)) System.out.println("Debugging this boolean function: We passed!");
+        return (instruRes && genreRes && yearsRes);
     }
 
 //    @Override

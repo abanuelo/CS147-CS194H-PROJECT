@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -102,6 +103,8 @@ public class ChooseRoutineActivity extends Activity {
                 startActivity(goToShop);
             }
         });
+
+        changeCoins();
 
     }
 
@@ -227,6 +230,31 @@ public class ChooseRoutineActivity extends Activity {
         Intent practice_intent = new Intent(ChooseRoutineActivity.this, PracticeHiFi2.class);
         practice_intent.putExtra("SOURCE", "CHOOSE");
         practice_intent.putExtra("ROUTINE_NAME", "Open Practice");
+        startActivity(practice_intent);
+    }
+
+    public void changeCoins(){
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String pifePoints = dataSnapshot.getValue().toString().trim();
+                    TextView pointsDisplay = (TextView) findViewById(R.id.coins);
+                    pointsDisplay.setText(pifePoints);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void goToStore(View view) {
+        Intent practice_intent = new Intent(this, Store.class);
         startActivity(practice_intent);
     }
 }

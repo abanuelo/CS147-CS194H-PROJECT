@@ -11,9 +11,16 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.UploadTask;
 
@@ -59,6 +66,8 @@ public class DeclarePerform extends AppCompatActivity {
              }
          }
         );
+
+        changeCoins();
     }
 
     public void record(View view){
@@ -70,7 +79,6 @@ public class DeclarePerform extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         try {
             videoUri = data.getData();
-
             Log.d("videoUri", videoUri.toString());
             if (videoUri != null){
                 Intent sendRecording = new Intent(DeclarePerform.this, MyPerform.class);
@@ -82,5 +90,28 @@ public class DeclarePerform extends AppCompatActivity {
         }
     }
 
+    public void changeCoins(){
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String pifePoints = dataSnapshot.getValue().toString().trim();
+                    TextView pointsDisplay = (TextView) findViewById(R.id.coins);
+                    pointsDisplay.setText(pifePoints);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void goToStore(View view) {
+        Intent practice_intent = new Intent(this, Store.class);
+        startActivity(practice_intent);
+    }
 }

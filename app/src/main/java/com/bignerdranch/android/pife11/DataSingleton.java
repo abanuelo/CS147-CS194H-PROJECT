@@ -2,6 +2,7 @@ package com.bignerdranch.android.pife11;
 
 import android.support.annotation.NonNull;
 
+import com.bignerdranch.android.pife11.ViewerPagerCards.CardPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,22 +21,30 @@ public class DataSingleton {
     private static DatabaseReference userDatabase;
     private static FirebaseAuth auth;
 
+    private static CardPagerAdapter allPossibleFriends;
+
+
     private static DataSingleton instance = new DataSingleton();
 
 
 
     public static DataSingleton getInstance() {
-
         auth = FirebaseAuth.getInstance();
         String userId = auth.getCurrentUser().getUid();
-
+        allPossibleFriends = new CardPagerAdapter();
         //The info of the actual user
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
         return instance;
     }
 
+    public static CardPagerAdapter getAllPossibleFriends() {
+        return allPossibleFriends;
+    }
 
+    public static void setAllPossibleFriends(CardPagerAdapter allPossibleFriends) {
+        DataSingleton.allPossibleFriends = allPossibleFriends;
+    }
 
     //variables
     private ArrayList<ArrayList<String>> myListOfRoutines;
