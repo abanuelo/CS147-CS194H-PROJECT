@@ -54,6 +54,7 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
                 info.put(myMatchId.getText().toString(), 1);
                 checkDb.updateChildren(info);
             } else {
+                Log.d("Returned back to normal", "here");
                 check.setVisibility(view.GONE);
                 DatabaseReference checkDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Checked");
                 HashMap info = new HashMap();

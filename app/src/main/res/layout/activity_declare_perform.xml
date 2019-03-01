@@ -124,6 +124,11 @@
                 android:textColorHint="@android:color/black" />
         </android.support.design.widget.TextInputLayout>
 
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="220dp"
+            android:layout_height="220dp" />
+
     </LinearLayout>
 
     <Button
