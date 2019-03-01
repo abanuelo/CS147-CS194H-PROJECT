@@ -33,6 +33,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.bignerdranch.android.pife11.SelectVideoOnProfile.SelectVideoOnProfile;
 import pl.droidsonroids.gif.GifDrawable;
@@ -43,7 +44,7 @@ import profile_grid_layout.ImageItem;
 public class Profile extends AppCompatActivity {
     private String userId;
     private String profile_lookup2;
-    private TextView name, username, genre, instrument;
+    private TextView name, username, genre, instrument, posts, friends, days;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
     private Button sign_out;
@@ -106,6 +107,8 @@ public class Profile extends AppCompatActivity {
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
         sign_out = (Button) findViewById(R.id.sign_out);
+        posts = findViewById(R.id.posts);
+        friends = findViewById(R.id.friends);
 
         /// UserID is the person signed in
         /// Profile_Lookup is the person you are viewing
@@ -162,6 +165,7 @@ public class Profile extends AppCompatActivity {
         //end of thingo
         gridView = (GridView) findViewById(R.id.gridView);
         gridAdapter = new GridViewAdapter(Profile.this, R.layout.grid_item_layout, arr);
+
         gridView.setAdapter(gridAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -220,13 +224,24 @@ public class Profile extends AppCompatActivity {
                 }
                 genre.setText("Genre: " + t_genres);
 
+                int friends_count = 0;
+                for (DataSnapshot friends : dataSnapshot.child("Collaborations").child("Matches").getChildren()){
+                    friends_count+=1;
+                }
+                HashMap friendsMap = new HashMap();
+                friendsMap.put("friends", friends_count);
+                userDatabase.updateChildren(friendsMap);
+                friends.setText(Integer.toString(friends_count));
 
+
+                int count = 0;
                 for (DataSnapshot video : dataSnapshot.child("Videos").getChildren()){
                     String thumbnailId = video.getKey();
                     final String videoId = (String) video.getValue(); //test.3pg
 
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference();
                     StorageReference imgRef = storageRef.child(("/videoThumbnails/" + profile_lookup2 + "/" + thumbnailId + ".jpg"));
+                    count +=1;
 
                     try {
                         final File localImageFile = File.createTempFile("images", ".jpg");
@@ -253,6 +268,10 @@ public class Profile extends AppCompatActivity {
                         });
                     } catch (Exception e) {}
                 }
+                HashMap post = new HashMap();
+                post.put("posts", count);
+                posts.setText(Integer.toString(count));
+                userDatabase.updateChildren(post);
 
 
 
@@ -264,8 +283,8 @@ public class Profile extends AppCompatActivity {
             }
         };
 
-        userDatabase.addListenerForSingleValueEvent(listener);
 
+        userDatabase.addListenerForSingleValueEvent(listener);
     }
 
     @Override
