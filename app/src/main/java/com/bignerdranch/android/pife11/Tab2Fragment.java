@@ -56,9 +56,9 @@ public class Tab2Fragment extends Fragment   {
     private String instrument;
     private String genre;
     private String years;
-    private String instrumentAdapter = "all";
-    private String genreAdapter = "all";
-    private String yearsAdapter = "all";
+    private String instrumentAdapter;
+    private String genreAdapter;
+    private String yearsAdapter;
 
     private CardPagerAdapter mCardAdapter;
     private ShadowTransformer mCardShadowTransformer;
@@ -103,6 +103,32 @@ public class Tab2Fragment extends Fragment   {
         InstrumentsFilter = view.findViewById(R.id.InstrumentFilter);
         GenreFilter = view.findViewById(R.id.GenreFilter);
         YearsFilter = view.findViewById(R.id.YearsFilter);
+        instrumentAdapter = InstrumentsFilter.getSelectedItem().toString().toLowerCase();
+        if (instrumentAdapter.contains("all")) instrumentAdapter = "all";
+        genreAdapter = GenreFilter.getSelectedItem().toString().toLowerCase();
+        if (genreAdapter.contains("all")) genreAdapter = "all";
+        yearsAdapter = YearsFilter.getSelectedItem().toString().toLowerCase();
+        if (yearsAdapter.contains("all")) yearsAdapter = "all";
+
+
+        Button buttonOne = (Button) view.findViewById(R.id.applyFilter);
+        buttonOne.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                //Do stuff here
+                //InstrumentsFilter = v.findViewById(R.id.InstrumentFilter);
+                //didPopulate = false;
+
+                instrumentAdapter = InstrumentsFilter.getSelectedItem().toString().toLowerCase();
+                if (instrumentAdapter.contains("all")) instrumentAdapter = "all";
+                genreAdapter = GenreFilter.getSelectedItem().toString().toLowerCase();
+                if (genreAdapter.contains("all")) genreAdapter = "all";
+                yearsAdapter = YearsFilter.getSelectedItem().toString().toLowerCase();
+                if (yearsAdapter.contains("all")) yearsAdapter = "all";
+
+                System.out.println("Let's see if this is happening!");
+                populateCards();
+            }
+        });
 
         //Here insert Firebase Background for Log-In Iterate and create new ones
         if (!didPopulate) {
@@ -128,333 +154,6 @@ public class Tab2Fragment extends Fragment   {
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
         mViewPager.setOffscreenPageLimit(30);
 
-//        instrumentPosition = 0;
-//        genrePosition = 0;
-//        yearPosition = 0;
-
-        //Trying this out:
-
-
-
-        //Let's change the mCardAdapter here for instruments filter
-        /*InstrumentsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i != instrumentPosition) {
-                    mCardAdapter = new CardPagerAdapter();
-                    CardPagerAdapter dsAdapter = ds.getAllPossibleFriends();
-                    for (int j = 0; j < dsAdapter.getCount(); j++) {
-                        CardItem curr = dsAdapter.getCardItemAt(j);
-
-                        /*FrameLayout f = curr.findViewById(R.id.frame);
-                        f.setBackgroundResource(0);
-                        curr.setVisibility(View.GONE);
-                        TextView years = curr.findViewById(R.id.years);
-                        String years_text = years.getText().toString();
-                        int text_num;
-                        if (isNumeric(years_text)){
-                            text_num = Integer.parseInt(years.getText().toString());
-                            if (text_num >= 5 && text_num < 10){
-                                years_text = "5+ years";
-                            } else if (text_num >= 10) {
-                                years_text = "10+ years";
-                            } else if (text_num == 0){
-                                years_text = "less than 1 year";
-                            } else {
-                                years_text += " years";
-                            }
-                        } else{
-                            text_num = -1;
-                        }
-                        TextView genres = curr.findViewById(R.id.genre);
-                        String genres_text = genres.getText().toString();
-                        TextView t = curr.findViewById(R.id.instruments);
-                        String text = t.getText().toString();*/
-                        /*if (i == 0){
-                            instrumentAdapter = "all";
-                        } else {
-                            instrumentAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
-
-                        }
-
-                        if (shouldIncludeUser(curr.getInstrumentsText(), curr.getGenreText(), curr.getYearsText())) {
-                            mCardAdapter.addCardItem(dsAdapter.getCardItemAt(j));
-                        }
-                        instrumentPosition = i;
-                        refreshFragment();
-                    }
-
-                }*/
-
-                /*for(int j = 0; j < mCardAdapter.getCount(); j++) {
-                    CardView u = mCardAdapter.getCardViewAt(j);
-                    //Log.d("Item Selected", adapterView.getItemAtPosition(i).toString());
-                    if (u != null) {
-                        FrameLayout f = u.findViewById(R.id.frame);
-                        f.setBackgroundResource(0);
-                        u.setVisibility(View.GONE);
-                        TextView years = u.findViewById(R.id.years);
-                        String years_text = years.getText().toString();
-                        int text_num;
-                        if (isNumeric(years_text)){
-                            text_num = Integer.parseInt(years.getText().toString());
-                            if (text_num >= 5 && text_num < 10){
-                                years_text = "5+ years";
-                            } else if (text_num >= 10) {
-                                years_text = "10+ years";
-                            } else if (text_num == 0){
-                                years_text = "less than 1 year";
-                            } else {
-                                years_text += " years";
-                            }
-                        } else{
-                            text_num = -1;
-                        }
-                        TextView genres = u.findViewById(R.id.genre);
-                        String genres_text = genres.getText().toString();
-                        TextView t = u.findViewById(R.id.instruments);
-                        String text = t.getText().toString();
-                        if (i == 0){
-                            instrumentAdapter = "all";
-                        } else {
-                            instrumentAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
-
-                        }
-
-                        //Encapsulte all four scenarios
-                        if (text.contains(instrumentAdapter) && genreAdapter.equals("all") && yearsAdapter.equals("all")) {
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && yearsAdapter.equals("all")) {
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && years_text.contains(yearsAdapter)){
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if(instrumentAdapter.equals("all") && genreAdapter.equals("all") && yearsAdapter.equals("all")){
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if(text.contains(instrumentAdapter) && genreAdapter.equals("all") && years_text.contains(yearsAdapter)){
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        }
-
-                        //If the spinner actually changed.
-                        if (instrumentPosition != i) {
-                            instrumentPosition = i;
-                            refreshFragment();
-                        }
-
-                    }
-                    Log.d("Unable to access this card", Integer.toString(j));
-                }*/
-                //refreshPage();
-            /*}
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
-        /*InstrumentsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                for(int j = 0; j < mCardAdapter.getCount(); j++) {
-                    CardView u = mCardAdapter.getCardViewAt(j);
-                    //Log.d("Item Selected", adapterView.getItemAtPosition(i).toString());
-                    if (u != null) {
-                        FrameLayout f = u.findViewById(R.id.frame);
-                        f.setBackgroundResource(0);
-                        u.setVisibility(View.GONE);
-                        TextView years = u.findViewById(R.id.years);
-                        String years_text = years.getText().toString();
-                        int text_num;
-                        if (isNumeric(years_text)){
-                            text_num = Integer.parseInt(years.getText().toString());
-                            if (text_num >= 5 && text_num < 10){
-                                years_text = "5+ years";
-                            } else if (text_num >= 10) {
-                                years_text = "10+ years";
-                            } else if (text_num == 0){
-                                years_text = "less than 1 year";
-                            } else {
-                                years_text += " years";
-                            }
-                        } else{
-                            text_num = -1;
-                        }
-                        TextView genres = u.findViewById(R.id.genre);
-                        String genres_text = genres.getText().toString();
-                        TextView t = u.findViewById(R.id.instruments);
-                        String text = t.getText().toString();
-                        if (i == 0){
-                            instrumentAdapter = "all";
-                        } else {
-                            instrumentAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
-
-                        }
-
-                        //Encapsulte all four scenarios
-                        if (text.contains(instrumentAdapter) && genreAdapter.equals("all") && yearsAdapter.equals("all")) {
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && yearsAdapter.equals("all")) {
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && years_text.contains(yearsAdapter)){
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if(instrumentAdapter.equals("all") && genreAdapter.equals("all") && yearsAdapter.equals("all")){
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if(text.contains(instrumentAdapter) && genreAdapter.equals("all") && years_text.contains(yearsAdapter)){
-                            u.setVisibility(View.VISIBLE);
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        }
-
-                        //If the spinner actually changed.
-                        if (instrumentPosition != i) {
-                            instrumentPosition = i;
-                            refreshFragment();
-                        }
-
-                    }
-                    Log.d("Unable to access this card", Integer.toString(j));
-                }
-                //refreshPage();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
-
-        /*GenreFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                for(int j = 0; j < mCardAdapter.getCount(); j++) {
-                    CardView u = mCardAdapter.getCardViewAt(j);
-                    if (u != null) {
-                        FrameLayout f = u.findViewById(R.id.frame);
-                        f.setBackgroundResource(0);
-                        TextView years = u.findViewById(R.id.years);
-                        String years_text = years.getText().toString();
-                        int text_num;
-                        if (isNumeric(years_text)){
-                            text_num = Integer.parseInt(years.getText().toString());
-                            if (text_num >= 5 && text_num < 10){
-                                years_text = "5+ years";
-                            } else if (text_num >= 10) {
-                                years_text = "10+ years";
-                            } else if (text_num == 0){
-                                years_text = "less than 1 year";
-                            } else {
-                                years_text += " years";
-                            }
-                        } else{
-                            text_num = -1;
-                        }
-                        TextView instruments = u.findViewById(R.id.instruments);
-                        String instrument_text = instruments.getText().toString();
-                        TextView t = u.findViewById(R.id.genre);
-                        String text = t.getText().toString();
-                        if (i ==0){
-                            genreAdapter = "all";
-                        } else {
-                            genreAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
-                        }
-
-                        if (text.contains(genreAdapter) && instrumentAdapter.equals("all") && yearsAdapter.equals("all")) {
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(genreAdapter) && instrument_text.contains(instrumentAdapter) && yearsAdapter.equals("all")) {
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(genreAdapter) && instrumentAdapter.equals("all") && years_text.contains(yearsAdapter)) {
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(genreAdapter) && instrument_text.contains(instrumentAdapter) && years_text.contains(yearsAdapter)){
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if(genreAdapter.equals("all") && instrumentAdapter.equals("all") && yearsAdapter.equals("all")){
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        }
-
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        YearsFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                for(int j = 0; j < mCardAdapter.getCount(); j++) {
-                    CardView u = mCardAdapter.getCardViewAt(j);
-                    if (u != null) {
-                        FrameLayout f = u.findViewById(R.id.frame);
-                        f.setBackgroundResource(0);
-                        TextView genres = u.findViewById(R.id.genre);
-                        String genres_text = genres.getText().toString();
-                        TextView instruments = u.findViewById(R.id.instruments);
-                        String instrument_text = instruments.getText().toString();
-                        TextView t = u.findViewById(R.id.years);
-                        String text = t.getText().toString();
-                        int text_num;
-                        if (isNumeric(text)){
-                            text_num = Integer.parseInt(t.getText().toString());
-                            if (text_num >= 5 && text_num < 10){
-                                text = "5+ years";
-                            } else if (text_num >= 10) {
-                                text = "10+ years";
-                            } else if (text_num == 0){
-                                text = "less than 1 year";
-                            } else {
-                                text += " years";
-                            }
-                        } else{
-                            text_num = -1;
-                        }
-
-                        if (i == 0) {
-                            yearsAdapter = "all";
-                        } else {
-                            yearsAdapter = adapterView.getItemAtPosition(i).toString().toLowerCase();
-                            Log.d("text", text);
-                            Log.d("yearsAdapter", yearsAdapter);
-                        }
-
-                        if (text.contains(yearsAdapter) && instrumentAdapter.equals("all") && genreAdapter.equals("all")) {
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(yearsAdapter) && instrument_text.contains(instrumentAdapter) && genreAdapter.equals("all")) {
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if (text.contains(yearsAdapter) && instrument_text.contains(instrumentAdapter) && genreAdapter.contains(genres_text)){
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if(yearsAdapter.equals("all") && instrumentAdapter.equals("all") && genreAdapter.equals("all")){
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        } else if(text.contains(yearsAdapter) && genres_text.contains(genreAdapter) && instrumentAdapter.equals("all")){
-                            f.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.android_background));
-                        }
-
-
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
-        
-
-//        mButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d("Arrived Here", "s");
-//            }
-//        });
 
         return view;
 
