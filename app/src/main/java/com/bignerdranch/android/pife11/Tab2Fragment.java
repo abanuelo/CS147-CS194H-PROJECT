@@ -133,6 +133,7 @@ public class Tab2Fragment extends Fragment   {
         //Here insert Firebase Background for Log-In Iterate and create new ones
         if (!didPopulate) {
             mCardAdapter = new CardPagerAdapter();
+            mCardAdapter.setRunnable(refreshFrag());
             populateCards();
             //We need to kinda get rid of Gerald...
 
@@ -238,6 +239,7 @@ public class Tab2Fragment extends Fragment   {
                 assert(allPossibleFriends.getCount() != 0);
 
                 mCardAdapter = new CardPagerAdapter();
+                mCardAdapter.setRunnable(refreshFrag());
                 CardPagerAdapter dsAdapter = ds.getAllPossibleFriends();
                 for (int j = 0; j < dsAdapter.getCount(); j++) {
                     CardItem curr = dsAdapter.getCardItemAt(j);
@@ -272,6 +274,15 @@ public class Tab2Fragment extends Fragment   {
     public void onAttach(Activity activity){
         myContext = (FragmentActivity) activity;
         super.onAttach(activity);
+    }
+
+    public Runnable refreshFrag() {
+        return new Runnable() {
+            public void run() {
+                mCardAdapter.notifyDataSetChanged();
+                refreshFragment();
+            }
+        };
     }
 
     private boolean shouldIncludeUser(String text, String genres_text, String years_text) {
