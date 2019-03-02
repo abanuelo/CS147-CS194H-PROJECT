@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -429,7 +430,7 @@
             android:paddingLeft="10dp"
             android:id="@+id/avatarRewardsShop"
             android:layout_width="350dp"
-            android:layout_height="350dp"
+            android:layout_height="300dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_monster_baby" />
 
@@ -439,6 +440,7 @@
     <LinearLayout
         android:id="@+id/ItemDetail"
         android:weightSum="2"
+        android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -476,6 +478,19 @@
     </LinearLayout>
 
 
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationViewPerform"
+        style="@style/Widget.Design.BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="0dp"
+        app:itemIconTint="@drawable/menu_state_list"
+        app:itemTextColor="@drawable/menu_state_list"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav" />
 
 
 </LinearLayout>
