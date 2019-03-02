@@ -6,338 +6,476 @@
     android:orientation="vertical">
 
     <LinearLayout
+
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_coins"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="20dp"/>
 
         <TextView
-            android:id="@+id/pifepoints"
-            android:layout_width="match_parent"
-            android:layout_height= "wrap_content"
-            android:layout_marginTop="20dp"
+            android:id="@+id/ShopTitle"
+            android:paddingTop="10dp"
+            android:text="Shop"
+            android:paddingLeft="180dp"
+            android:fontFamily="@font/opensans_semibold"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
             android:textSize="30dp"
-            android:gravity="center"
-            android:textColor="#000"
-            android:layout_gravity="center"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/coin_image"
+            android:paddingTop="10dp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:paddingLeft="40dp"
+            android:src="@drawable/ic_coins" />
+
+        <TextView
+            android:id="@+id/user_coins"
+            android:paddingLeft="10dp"
+            android:text="Coins"
+            android:fontFamily="@font/opensans_semibold"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:paddingTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/left_arrow"
+            android:scaleX="-1"
+            android:src="@drawable/ic_arrow_point_to_right"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <HorizontalScrollView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="340dp"
+            android:layout_height="75dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:id="@+id/HatView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/first_container"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:background="@color/white"
+                        android:id="@+id/first_item"
+                        android:drawableLeft="@drawable/jemi_tiny_blue_hat"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/second_container"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/second_item"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/jemi_tiny_orange_hat"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="$1000"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/third_container"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:background="@color/white"
+                        android:id="@+id/third_item"
+                        android:drawableLeft="@drawable/jemi_tiny_blue_hat"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$1500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fourth_container"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/fourth_item"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/jemi_tiny_orange_hat"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="$2000"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fifth_container"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:background="@color/white"
+                        android:id="@+id/fifth_item"
+                        android:drawableLeft="@drawable/jemi_tiny_blue_hat"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$2500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sixth_container"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/sixth_item"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/jemi_tiny_orange_hat"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="$3000"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/right_arrow"
+            android:src="@drawable/ic_arrow_point_to_right"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/left_arrow_2"
+            android:scaleX="-1"
+            android:src="@drawable/ic_arrow_point_to_right"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <HorizontalScrollView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="340dp"
+            android:layout_height="75dp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:id="@+id/ShirtView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/first_container_shirts"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:background="@color/white"
+                        android:id="@+id/first_item_shirt"
+                        android:drawableLeft="@drawable/jemi_shirt_green"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/second_container_shirts"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/second_item_shirt"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/jemi_shirt_pink"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="$1000"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/third_container_shirts"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:background="@color/white"
+                        android:id="@+id/third_item_shirt"
+                        android:drawableLeft="@drawable/jemi_shirt_green"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$1500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fourth_container_shirts"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/fourth_item_shirt"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/jemi_shirt_pink"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="$2000"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fifth_container_shirts"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:background="@color/white"
+                        android:id="@+id/fifth_item_shirt"
+                        android:drawableLeft="@drawable/jemi_shirt_green"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$2500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sixth_container_shirts"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/sixth_item_shirt"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/jemi_shirt_pink"
+                        android:paddingLeft="9dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="$3000"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/right_arrow_2"
+            android:src="@drawable/ic_arrow_point_to_right"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:paddingLeft="10dp"
+            android:id="@+id/avatarRewardsShop"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_monster_baby" />
 
-            <ImageView
-                android:id="@+id/avatarRewardsShop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-30dp"
-                android:layout_marginTop="50dp"
-                android:adjustViewBounds="true"
-                android:maxWidth="350dp"
-                android:maxHeight="200dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_monster_baby" />
+    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/hat"
-                android:layout_width="110dp"
-                android:layout_height="90dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp" />
 
-            <ImageView
-                android:id="@+id/shirt"
-                android:layout_width="125dp"
-                android:layout_height="120dp"
-                android:layout_marginLeft="29dp"
-                android:layout_marginTop="120dp" />
+    <LinearLayout
+        android:id="@+id/ItemDetail"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        </RelativeLayout>
-
-        <!--Ab's additions-->
-        <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_marginTop="65dp"-->
-        <!--android:layout_marginLeft="-50dp"-->
-        <!--android:translationZ="2dp"-->
-        <!--&gt;-->
-        <!--<TextView-->
-        <!--android:id="@+id/price_tag_1"-->
-        <!--android:layout_width="60dp"-->
-        <!--android:layout_height="83dp"-->
-        <!--android:text="0 Coins"-->
-        <!--/>-->
-        <!--<TextView-->
-        <!--android:id="@+id/price_tag2"-->
-        <!--android:layout_width="60dp"-->
-        <!--android:layout_height="82dp"-->
-        <!--android:layout_marginTop="11dp"-->
-        <!--android:text="0 Coins"-->
-        <!--/>-->
-        <!--</LinearLayout>-->
-        <!--End Ab's Additions-->
+        <ImageView
+            android:src="@drawable/clock_trophy"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-15dp"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
-
-            <LinearLayout
-                android:id="@+id/constrained_view"
-                android:layout_centerHorizontal="true"
-                android:layout_width="80dp"
-                android:layout_marginTop="40dp"
-                android:layout_height="wrap_content">
-
-                <HorizontalScrollView
-                    android:id="@+id/horizontalscrollview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:scrollbars="none"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp">
-
-                    <LinearLayout
-                        android:id="@+id/shapeLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/button1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/none_icon"
-                            android:paddingLeft="9dp" />
-
-                        <Button
-                            android:id="@+id/button2"
-                            android:drawableLeft="@drawable/jemi_tiny_blue_hat"
-                            android:paddingLeft="9dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <Button
-                            android:id="@+id/button3"
-                            android:drawableLeft="@drawable/jemi_tiny_orange_hat"
-                            android:paddingLeft="9dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </LinearLayout>
-            <LinearLayout
+            <TextView
+                android:text="Place Description of Item Here"
+                android:textColor="@color/black"
+                android:fontFamily="@font/opensans_semibold"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content" />
 
-                <!--<TextView
-                    android:id="@+id/price_tag_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minHeight="20dp"
-                    android:text="0 Coins"
-                    android:textSize="10sp" />-->
-                <Button
-                    android:id="@+id/buy_hat"
-                    android:paddingLeft="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:background="@drawable/buttonoval"
-                    android:onClick="buyHats"
-                    android:text="Buy Hat"
-                    />
-
-            </LinearLayout>
-
-
-
-
-            <LinearLayout
-                android:id="@+id/constrained_view2"
-                android:layout_centerHorizontal="true"
-                android:layout_width="80dp"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content">
-
-
-
-                <HorizontalScrollView
-                    android:id="@+id/horizontalscrollview2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:scrollbars="none"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp">
-
-                    <LinearLayout
-                        android:id="@+id/shapeLayout2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/button12"
-                            android:drawableLeft="@drawable/none_icon"
-                            android:paddingLeft="9dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <Button
-                            android:id="@+id/button22"
-                            android:drawableLeft="@drawable/jemi_shirt_green"
-                            android:paddingLeft="4dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <Button
-                            android:id="@+id/button32"
-                            android:drawableLeft="@drawable/jemi_shirt_pink"
-                            android:paddingLeft="4dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-                </HorizontalScrollView>
-
-            </LinearLayout>
-            <LinearLayout
+            <Button
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/opensans_semibold"
+                android:text="Buy Item"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <!--<TextView
-                    android:id="@+id/price_tag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0 Coins"
-                    android:textSize="10sp"
-                    android:textAlignment="center"
-                    />-->
-                <Button
-                    android:id="@+id/buy_shirts"
-                    android:layout_marginTop="5dp"
-                    android:paddingLeft="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:background="@drawable/buttonoval"
-                    android:text="Buy Shirt"
-                    android:onClick="buyShirt"
-                    />
-            </LinearLayout>
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
 
+
     </LinearLayout>
-    <!--<TextView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="T R O P H Y   C A S E"-->
-    <!--android:textColor="#000"-->
-    <!--android:gravity="center"-->
-    <!--android:layout_marginTop="20dp"/>-->
-
-    <!--<HorizontalScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="20dp">-->
-    <!--<ImageView-->
-    <!--android:id="@+id/heart_trophy"-->
-    <!--android:alpha="0.3"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/heart_trophy"/>-->
-    <!--<ImageView-->
-    <!--android:id="@+id/smiley_trophy"-->
-    <!--android:alpha="0.3"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/smiley_trophy"/>-->
-    <!--<ImageView-->
-    <!--android:id="@+id/lightning_trophy"-->
-    <!--android:alpha="0.3"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/lightning_trophy"/>-->
-    <!--<ImageView-->
-    <!--android:id="@+id/sun_trophy"-->
-    <!--android:alpha="0.3"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/sun_trophy"/>-->
-    <!--<ImageView-->
-    <!--android:id="@+id/clock_trophy"-->
-    <!--android:alpha="0.3"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/clock_trophy"/>-->
-    <!--<ImageView-->
-    <!--android:id="@+id/star_trophy"-->
-    <!--android:alpha="0.3"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/star_trophy"/>-->
-    <!--<ImageView-->
-    <!--android:id="@+id/banner_trophy"-->
-    <!--android:alpha="0.3"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:src="@drawable/banner_trophy"/>-->
-    <!--</LinearLayout>-->
-
-    <!--</HorizontalScrollView>-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/description_view"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--android:gravity="center"-->
-    <!--android:textColor="#000"/>-->
-    <!--<include-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--layout="@layout/activity_trophies"/>-->
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/accessDescription"
-        android:textColor="@color/black"
-        android:paddingTop="30dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:paddingRight="50dp"
-        android:paddingLeft="50dp"
-        android:paddingTop="50dp"
-        android:text="Use your 15 coins to buy your first shirt for Jemi! Scroll around to try on other accessories that can be unlocked through more activities on the app. Let's buy the tutorial shirt before heading home!"/>
 
 
 </LinearLayout>
