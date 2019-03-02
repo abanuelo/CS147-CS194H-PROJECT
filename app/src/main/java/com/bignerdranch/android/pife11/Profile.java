@@ -115,9 +115,10 @@ public class Profile extends AppCompatActivity {
         if (profile_lookup != null) {
             TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
             profile_id_view.setText("Profile Id: " + profile_lookup);
-            //do the regular shit
-            String toasty = "Profile is: " + profile_lookup;
-            Toast.makeText(this, toasty, Toast.LENGTH_LONG).show();
+            profile_id_view.setVisibility(View.GONE);
+
+//                        String toasty = "Profile is: " + profile_lookup;
+//            Toast.makeText(this, toasty, Toast.LENGTH_LONG).show();
 
             userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(profile_lookup);
 
@@ -142,6 +143,7 @@ public class Profile extends AppCompatActivity {
 
             TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
             profile_id_view.setText("Profile Id: " + userId);
+            profile_id_view.setVisibility(View.GONE);
 
 
             sign_out.setText("Sign Out");
