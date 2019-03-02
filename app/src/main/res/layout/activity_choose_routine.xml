@@ -39,6 +39,7 @@
             android:layout_gravity="right"
             android:layoutDirection="rtl"
             android:paddingRight="30dp"
+            android:onClick="goToStore"
             android:src="@drawable/shopping_cart" />
     </android.support.v7.widget.Toolbar>
 

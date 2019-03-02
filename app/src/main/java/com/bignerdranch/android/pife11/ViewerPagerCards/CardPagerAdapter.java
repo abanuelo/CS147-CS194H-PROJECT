@@ -2,6 +2,7 @@ package com.bignerdranch.android.pife11.ViewerPagerCards;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bignerdranch.android.pife11.DataSingleton;
 import com.bignerdranch.android.pife11.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -53,9 +55,19 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         return mViews.get(position);
     }
 
+    public CardItem getCardItemAt(int position) {
+        return mData.get(position);
+    }
+
     @Override
     public int getCount() {
         return mData.size();
+    }
+
+    public Runnable refreshPage;
+
+    public void setRunnable(Runnable r) {
+        refreshPage = r;
     }
 
     @Override
@@ -82,17 +94,6 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String key = FirebaseDatabase.getInstance().getReference().child("Chats").push().getKey();
-//                for (DataSnapshot user : usersDb.){
-//                    String users_name = user.child("name").getValue().toString().trim();
-//                    if (users_name.equals(name)){
-//                        String userId = user.getKey().trim();
-//                        usersDb.child(currentUId).child("Collaborations").child("Yes").child(userId);
-////                                usersDb.child(userId).child("Collaborations").child("Matches").child(currentUId).child("ChatID").setValue(key);
-////                                usersDb.child(currentUId).child("Collaborations").child("Matches").child(userId).child("ChatID").setValue(key);
-//                        Log.d("Hello", "Here");
-//                    }
-//                }
 
                 usersDb.addListenerForSingleValueEvent(new ValueEventListener() {
                     boolean hasChanged = false;
@@ -121,6 +122,11 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
                 });
                 button.setText("Collab Sent");
                 button.setBackgroundColor(Color.parseColor("#A9A9A9"));
+                //cardView.setVisibility(View.GONE);
+                destroyItem(container, position, cardView);
+                refreshPage.run();
+
+
             }
         });
 
@@ -131,8 +137,9 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View) object);
-        mViews.set(position, null);
+        mViews.remove(position);
+        mData.remove(position);
+        //mViews.set(position, null);
     }
 
     private void bind(CardItem item, View view) {

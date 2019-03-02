@@ -47,7 +47,7 @@ public class GiveFeedback extends AppCompatActivity {
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                username = dataSnapshot.child("user").getValue().toString().trim();
+                username = dataSnapshot.child("username").getValue().toString().trim();
             }
 
             @Override
