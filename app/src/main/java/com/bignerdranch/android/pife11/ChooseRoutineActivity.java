@@ -76,7 +76,7 @@ public class ChooseRoutineActivity extends Activity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.perform_nav:
-                        Intent practice_intent = new Intent(ChooseRoutineActivity.this, DeclarePerform.class);
+                        Intent practice_intent = new Intent(ChooseRoutineActivity.this, MyPerform.class);
                         startActivity(practice_intent);
                         break;
                      case R.id.friends_nav:

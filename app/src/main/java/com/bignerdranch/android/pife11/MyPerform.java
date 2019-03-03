@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -88,9 +89,14 @@ public class MyPerform extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                upload();//Invisible in the backend development of the app
-                Intent sendPerformance = new Intent(MyPerform.this, UploadThumbnail.class);
-                startActivity(sendPerformance);
+                if (videoUri == null){
+                    Toast.makeText(MyPerform.this, "No Video To Upload! Please press re-record.", Toast.LENGTH_SHORT).show();
+                } else {
+                    upload();//Invisible in the backend development of the app
+                    Intent sendPerformance = new Intent(MyPerform.this, UploadThumbnail.class);
+                    sendPerformance.putExtra("videoId", videoId);
+                    startActivity(sendPerformance);
+                }
             }
         });
 
@@ -114,31 +120,25 @@ public class MyPerform extends AppCompatActivity {
         });
 
         //upload thumbnail
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + videoId + ".jpg");
-
-        Uri file = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.baby);
-        uploadTask = imageRef.putFile(file);
-
-        // Register observers to listen for when the download is done or if it fails
-                uploadTask.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                        // ...
-                    }
-                });
-
-        //upload connection btn two
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Videos");
-
-        matchDb.child(videoId).setValue(videoId);
-
+//        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+//        StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + videoId + ".jpg");
+//
+//        Uri file = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.baby);
+//        uploadTask = imageRef.putFile(file);
+//
+//        // Register observers to listen for when the download is done or if it fails
+//                uploadTask.addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception exception) {
+//                        // Handle unsuccessful uploads
+//                    }
+//                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+//                        // ...
+//                    }
+//                });
 
     }
 
