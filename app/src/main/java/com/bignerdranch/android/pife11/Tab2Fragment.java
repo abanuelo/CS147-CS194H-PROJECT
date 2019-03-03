@@ -100,6 +100,7 @@ public class Tab2Fragment extends Fragment   {
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
         auth = FirebaseAuth.getInstance();
         currentUId = auth.getCurrentUser().getUid();
+        //System.out.println("Current U id is: " + currentUId.toString());
         matchesDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUId).child("Collaborations").child("Matches");
 
         InstrumentsFilter = view.findViewById(R.id.InstrumentFilter);
@@ -220,7 +221,7 @@ public class Tab2Fragment extends Fragment   {
                             System.out.println("Here we go!" + user.toString());
 
                             String userKey = user.getKey();
-                            if (isInMatches(matches, userKey)) {
+                            if (shouldIncludeInNew(matches, userKey)) {
 
                                 //Get user name from backend
                                 String name = user.child("name").getValue().toString().trim();
@@ -366,7 +367,8 @@ public class Tab2Fragment extends Fragment   {
         };
     }
 
-    private boolean isInMatches(ArrayList<String> matches, String userKey){
+    private boolean shouldIncludeInNew(ArrayList<String> matches, String userKey){
+        if (userKey.equals(currentUId)) return false;
         for (String curr : matches) {
             if (curr.equals(userKey)) {
                 return false;
