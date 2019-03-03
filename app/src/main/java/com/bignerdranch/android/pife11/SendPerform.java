@@ -64,6 +64,7 @@ public class SendPerform extends AppCompatActivity {
             public void onClick(View view) {
                 Intent returnHome = new Intent(SendPerform.this, Profile.class);
                 startActivity(returnHome);
+                finish();
             }
         });
 
