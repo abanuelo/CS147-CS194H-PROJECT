@@ -1,21 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.Design.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppBarOverlay" parent="Theme.Design.Light" />
+
+    <style name="PopupOverlay" parent="Theme.Design.Light" />
 
     <style name="MyToolbarTheme"
         parent="@style/ThemeOverlay.AppCompat.Dark">
         <item name="colorControlNormal">@android:color/white</item>
-        <item name="titleTextColor">@android:color/white</item>
+        <item name="titleTextColor">@android:color/black</item>
     </style>
 
     <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">

@@ -68,6 +68,8 @@ public class DeclarePerform extends AppCompatActivity {
             }
         });
 
+
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
         bottomNavigationView.setSelectedItemId(R.id.perform_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
