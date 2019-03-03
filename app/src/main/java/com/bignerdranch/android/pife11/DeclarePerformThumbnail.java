@@ -29,7 +29,7 @@ public class DeclarePerformThumbnail extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_declare_perform);
-        startPerform = (Button) findViewById(R.id.startPerform);
+        startPerform = (Button) findViewById(R.id.submitPerform);
 
         startPerform.setOnClickListener(new View.OnClickListener() {
             @Override

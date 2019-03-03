@@ -73,22 +73,23 @@ public class MyPerform extends AppCompatActivity {
 
 //        String videoUrl = getIntent().getStringExtra("videoUri");
 //        videoUri = Uri.parse(videoUrl);
-        videoUri = getIntent().getData();
-        Log.d("MyPerformUri", videoUri.toString());
-        Log.d("FilePath", videoUri.getEncodedPath());
+        //videoUri = getIntent().getData();
+//        Log.d("MyPerformUri", videoUri.toString());
+  //      Log.d("FilePath", videoUri.getEncodedPath());
 
         pbar = (ProgressBar) findViewById(R.id.pbar);
         video = (VideoView) findViewById(R.id.video);
         rerecord = (Button) findViewById(R.id.record);
         upload = (Button) findViewById(R.id.upload);
-        video.setVideoURI(videoUri);
-        video.start();
+        record(getCurrentFocus());
+        //video.setVideoURI(videoUri);
+        //video.start();
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 upload();//Invisible in the backend development of the app
-                Intent sendPerformance = new Intent(MyPerform.this, SendPerform.class);
+                Intent sendPerformance = new Intent(MyPerform.this, UploadThumbnail.class);
                 startActivity(sendPerformance);
             }
         });

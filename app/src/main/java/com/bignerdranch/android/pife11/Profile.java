@@ -76,7 +76,7 @@ public class Profile extends AppCompatActivity {
                                  startActivity(practice_intent);
                                  break;
                              case R.id.perform_nav:
-                                 Intent perform_intent = new Intent(Profile.this, DeclarePerform.class);
+                                 Intent perform_intent = new Intent(Profile.this, MyPerform.class);
                                  finish();
                                  startActivity(perform_intent);
                                  break;
