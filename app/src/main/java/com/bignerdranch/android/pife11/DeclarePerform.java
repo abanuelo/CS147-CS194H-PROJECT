@@ -2,6 +2,7 @@ package com.bignerdranch.android.pife11;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -27,8 +28,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 
 public class DeclarePerform extends AppCompatActivity {
     private Button startPerform, uploadThumbnail;
@@ -102,6 +108,13 @@ public class DeclarePerform extends AppCompatActivity {
         startActivityForResult(cameraIntent, REQUEST_CODE);
     }
 
+    private Uri getImageUri(Context context, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
@@ -112,7 +125,44 @@ public class DeclarePerform extends AppCompatActivity {
             videoUri = data.getData();
             Log.d("videoUri", videoUri.toString());
             if (videoUri != null){
+                //create video id
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                String currentTime = Calendar.getInstance().getTime().toString();
+                currentTime = currentTime.replaceAll(":","");
+                currentTime = currentTime.replaceAll("\\s","");
+                currentTime = currentTime.toLowerCase();
+                // videoId = currentTime;
+
+                StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + currentTime + ".jpg");
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+                Uri file = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.baby);
+                if (photo.getByteCount() != 0) {
+                    file = getImageUri(this, photo);
+                }
+
+                UploadTask uploadTask = imageRef.putFile(file);
+
+                // Register observers to listen for when the download is done or if it fails
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                        // ...
+                    }
+                });
+
+
+
+                //pass in video id thru sendRecording
                 Intent sendRecording = new Intent(DeclarePerform.this, MyPerform.class);
+                sendRecording.putExtra("videoID", currentTime);
                 sendRecording.setData(videoUri);
                 startActivity(sendRecording);
             }

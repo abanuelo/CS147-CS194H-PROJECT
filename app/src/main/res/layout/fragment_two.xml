@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Filter"
-            android:id="@+id/applyFilter"/>
+            android:id="@+id/applyFilter2"/>
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
