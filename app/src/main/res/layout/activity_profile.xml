@@ -65,7 +65,7 @@
             android:layout_marginLeft="20dp"
             android:paddingRight="@dimen/profilepostpadding"
             android:innerRadius="0dp"
-            android:background="@drawable/android_background"
+            android:background="@color/white"
             android:shape="ring"
             android:thicknessRatio="1.9"
             app:cardCornerRadius="100dp">
