@@ -19,7 +19,7 @@
         <!--android:layout_alignParentTop="true"-->
          <!--/>-->
 
-    <!--<TextView
+    <!--<TextViewx
         android:paddingTop="10dp"
         android:layout_gravity="center"
         android:textSize="30dp"
