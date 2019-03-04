@@ -241,6 +241,9 @@ public class Profile extends AppCompatActivity {
                 int count = 0;
                 for (DataSnapshot video : dataSnapshot.child("Videos").getChildren()){
                     String thumbnailId = video.getKey();
+
+                    final String title = (String) dataSnapshot.child("VideoInfo").child(thumbnailId).child("Title").getValue();
+
                     final String videoId = (String) video.getValue(); //test.3pg
 
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference();
@@ -256,7 +259,7 @@ public class Profile extends AppCompatActivity {
                                 String filePath = localImageFile.getPath();
                                 Bitmap bitmap = BitmapFactory.decodeFile(filePath);
                                 //downloads bitmap finder
-                                arr.add(new ImageItem(bitmap, videoId));
+                                arr.add(new ImageItem(bitmap, title));
 
                                 gridAdapter.notifyDataSetChanged();
 
@@ -315,23 +318,20 @@ public class Profile extends AppCompatActivity {
     }
 
 
-    private ArrayList<ImageItem> getData() {
-        final ArrayList<ImageItem> imageItems = new ArrayList<>();
-        TypedArray imgs = getResources().obtainTypedArray(R.array.gridview_proof);
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        for (int i = 0; i < imgs.length(); i++) {
-
-            //bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
-            bitmap = decodeSampledBitmapFromResource(getResources(), imgs.getResourceId(i, -1));
-//
-////            TODO: HERE IS WHERE YOU SET THE TITLE, THE SECOND PARAMETER
-            imageItems.add(new ImageItem(bitmap, "Image#" + i));
-        }
-        imgs.recycle();
-        //bitmap.recycle();
-        return imageItems;
-    }
+//    private ArrayList<ImageItem> getData() {
+//        final ArrayList<ImageItem> imageItems = new ArrayList<>();
+//        TypedArray imgs = getResources().obtainTypedArray(R.array.gridview_proof);
+//        final BitmapFactory.Options options = new BitmapFactory.Options();
+//        options.inJustDecodeBounds = true;
+//        for (int i = 0; i < imgs.length(); i++) {
+//            //bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
+//            bitmap = decodeSampledBitmapFromResource(getResources(), imgs.getResourceId(i, -1));
+//            imageItems.add(new ImageItem(bitmap, "Image#" + i));
+//        }
+//        imgs.recycle();
+//        //bitmap.recycle();
+//        return imageItems;
+//    }
 
 
     public void changeCoins(){
