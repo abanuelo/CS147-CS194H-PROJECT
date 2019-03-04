@@ -3,6 +3,7 @@ package com.bignerdranch.android.pife11;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.norm_login);
 
+
+
         /*
             Method #1: If Users Select the Option to Register for a New Account
         */
@@ -76,8 +79,22 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                boolean missingData = false;
+
                 final String f_email = email.getText().toString();
                 final String f_password = password.getText().toString();
+
+                if (TextUtils.isEmpty(f_email)) {
+                    email.setError("Please input your email address. If you don't have an account, register below.");
+                    missingData = true;
+                }
+                if (TextUtils.isEmpty(f_password)) {
+                    password.setError("Please input your password.");
+                    missingData = true;
+                }
+                if (missingData) return;
+
                 auth.signInWithEmailAndPassword(f_email, f_password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
