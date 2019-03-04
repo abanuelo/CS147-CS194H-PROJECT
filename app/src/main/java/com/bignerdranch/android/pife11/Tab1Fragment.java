@@ -80,6 +80,7 @@ public class Tab1Fragment extends Fragment {
         listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                resultsMatches.clear();
                 if (dataSnapshot.exists()){
                     for (DataSnapshot match: dataSnapshot.getChildren()){
                         FetchMatchInformation(match.getKey());

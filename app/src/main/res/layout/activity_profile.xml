@@ -60,9 +60,9 @@
             android:layout_height="120dp"
             android:layout_alignParentTop="false"
             android:paddingTop="0dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="5dp"
             android:paddingRight="@dimen/profilepostpadding"
             android:innerRadius="0dp"
             android:background="@color/white"
@@ -188,7 +188,9 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/button_transparent"
                 android:text="Sign out"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+
+                />
 
             <Button
                 android:id="@+id/edit_profile"

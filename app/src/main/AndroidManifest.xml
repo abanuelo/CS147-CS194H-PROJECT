@@ -64,14 +64,10 @@
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-        </activity> <!-- <activity android:name=".PracticePlaying" /> -->
+        </activity>
         <activity android:name=".CreateAccount"
             android:screenOrientation="portrait"/> <!-- <activity android:name=".peform" /> -->
-        <!-- <activity android:name=".Dashboard" /> -->
-        <activity android:name=".CollabMain"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SearchCollab"
-            android:screenOrientation="portrait"/>
+
         <activity android:name=".Profile"
             android:screenOrientation="portrait"/>
         <activity android:name=".Instruments"
@@ -82,32 +78,17 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Chat.Chat"
             android:screenOrientation="portrait"/>
-        <activity android:name=".MatchesChoice"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Scheduler.ScheduleMain"
-            android:screenOrientation="portrait"/> <!-- <activity android:name=".Scheduler.TuesdaySchedule" /> -->
-        <!-- <activity android:name=".Scheduler.WednesdaySchedule" /> -->
-        <!-- <activity android:name=".Scheduler.ThursdaySchedule" /> -->
-        <!-- <activity android:name=".Scheduler.FridaySchedule" /> -->
-        <!-- <activity android:name=".Scheduler.SundaySchedule" /> -->
-        <!-- <activity android:name=".Scheduler.SaturdaySchedule" /> -->
-        <!-- <activity android:name=".Scheduler.MondaySchedule" /> -->
+
         <activity android:name=".SelectAvatar"
             android:screenOrientation="portrait"/>
         <activity android:name=".ChooseRoutineActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".RewardsBoth"
-            android:label="@string/title_activity_rewards_both"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Trophies"
-            android:screenOrientation="portrait"/> <!-- <activity android:name=".RewardsShop" /> -->
-        <!-- <activity android:name=".practice_goal_met" /> -->
+
+
         <activity android:name=".watch_performance"
             android:screenOrientation="portrait"/>
-        <activity android:name=".StartPerformance"
-            android:screenOrientation="portrait"/>
+
+
         <activity android:name=".CollabHiFi2"
             android:screenOrientation="portrait"/>
 

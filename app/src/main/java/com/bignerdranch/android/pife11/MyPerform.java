@@ -71,20 +71,11 @@ public class MyPerform extends AppCompatActivity {
         //WE WANT TO BE ABLE TO RANDOMIZE THESE LINKS TO GET MULTIPLE LINKS
         videoRef = storageRef.child("/videos/" + uid + "/" + currentTime+ ".3gp");
 
-
-//        String videoUrl = getIntent().getStringExtra("videoUri");
-//        videoUri = Uri.parse(videoUrl);
-        //videoUri = getIntent().getData();
-//        Log.d("MyPerformUri", videoUri.toString());
-  //      Log.d("FilePath", videoUri.getEncodedPath());
-
         pbar = (ProgressBar) findViewById(R.id.pbar);
         video = (VideoView) findViewById(R.id.video);
         rerecord = (Button) findViewById(R.id.record);
         upload = (Button) findViewById(R.id.upload);
         record(getCurrentFocus());
-        //video.setVideoURI(videoUri);
-        //video.start();
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,31 +112,8 @@ public class MyPerform extends AppCompatActivity {
             @Override
             public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                 updateProgress(taskSnapshot);
-
             }
         });
-
-        //upload thumbnail
-//        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-//        StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + videoId + ".jpg");
-//
-//        Uri file = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.baby);
-//        uploadTask = imageRef.putFile(file);
-//
-//        // Register observers to listen for when the download is done or if it fails
-//                uploadTask.addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception exception) {
-//                        // Handle unsuccessful uploads
-//                    }
-//                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-//                        // ...
-//                    }
-//                });
-
     }
 
     public void updateProgress(UploadTask.TaskSnapshot taskSnapshot){
@@ -179,49 +147,5 @@ public class MyPerform extends AppCompatActivity {
             }
         } catch (Exception ex){
         }
-
-
     }
-
-//    public void download(View view){
-//        try{
-//            final File localfile = File.createTempFile("test", "3gp");
-//            videoRef.getFile(localfile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                    video = (VideoView) findViewById(R.id.video);
-//                    video.setVideoURI(Uri.fromFile(localfile));
-//                    video.start();
-//                }
-//            });
-//        } catch(Exception e){
-//
-//        }
-//    }
-
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-//        try {
-//            videoUri = data.getData();
-//            UploadTask uploadTask = videoRef.putFile(videoUri);
-//            //Error Checking Performed For Video Upload Feature
-//            uploadTask.addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//
-//                }
-//            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                }
-//            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-//                    updateProgress(taskSnapshot);
-//                }
-//            });
-//        } catch (Exception ex){
-//
-//        }
-//    }
 }

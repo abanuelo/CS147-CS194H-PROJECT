@@ -113,7 +113,7 @@ public class Tab2Fragment extends Fragment   {
         yearsAdapter = YearsFilter.getSelectedItem().toString().toLowerCase();
         if (yearsAdapter.contains("all")) yearsAdapter = "all";
 
-        Button buttonOne = (Button) view.findViewById(R.id.applyFilter2);
+        Button buttonOne = (Button) view.findViewById(R.id.applyFilter);
         buttonOne.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //Do stuff here
@@ -166,21 +166,8 @@ public class Tab2Fragment extends Fragment   {
         return view;
 
     }
-//
-//    @Override
-//    public void onClick(View view) {
-//        if (!mShowingFragments) {
-//            mButton.setText("Views");
-//            mViewPager.setAdapter(mFragmentCardAdapter);
-//            mViewPager.setPageTransformer(false, mFragmentCardShadowTransformer);
-//        } else {
-//            mButton.setText("Fragments");
-//            mViewPager.setAdapter(mCardAdapter);
-//            mViewPager.setPageTransformer(false, mCardShadowTransformer);
-//        }
-//
-//        mShowingFragments = !mShowingFragments;
-//    }
+
+
 
     public static float dpToPixels(int dp, Context context) {
         return dp * (context.getResources().getDisplayMetrics().density);
@@ -228,7 +215,9 @@ public class Tab2Fragment extends Fragment   {
                             if (shouldIncludeInNew(matches, userKey)) {
 
                                 //Get user name from backend
-                                String name = user.child("name").getValue().toString().trim();
+                                Object objectname = user.child("name").getValue();
+                                if (objectname == null) continue;
+                                String name = objectname.toString().trim();
                                 //Get user genre from backend
                                 String genres = "";
                                 String years = "";
@@ -284,59 +273,6 @@ public class Tab2Fragment extends Fragment   {
 
                     }
                 });
-
-                /*didPopulate = true;
-                CardPagerAdapter allPossibleFriends = new CardPagerAdapter();
-                for (DataSnapshot user : dataSnapshot.getChildren()){
-                    //Get user name from backend
-                    String name = user.child("name").getValue().toString().trim();
-                    //Get user genre from backend
-                    String genres = "";
-                    String years = "";
-                    String instruments = "";
-                    for (DataSnapshot genre: user.child("Genres").getChildren()) {
-                        if ((boolean) genre.getValue() == true) {
-                            if (genres.length() == 0) {
-                                genres = genre.getKey();
-                            } else {
-                                genres = genres + ", " + genre.getKey();
-                            }
-                        }
-                    }
-                    for (DataSnapshot year: user.child("Years").getChildren()) {
-                        years = year.getValue().toString();
-                    }
-                    for (DataSnapshot instrument: user.child("Instruments").getChildren()) {
-                        if ((boolean) instrument.getValue() == true) {
-                            if (instruments.length() == 0) {
-                                instruments = instrument.getKey();
-                            } else {
-                                instruments = instruments + " " + instrument.getKey();
-                            }
-                        }
-                    }
-                    names.add(name);
-                    mCardAdapter.addCardItem(new CardItem(name, "Genre","Years", "Instruments", genres, years, instruments));
-                    mCardAdapter.notifyDataSetChanged();
-
-                    allPossibleFriends.addCardItem(new CardItem(name, "Genre","Years", "Instruments", genres, years, instruments));
-                }
-                ds.setAllPossibleFriends(allPossibleFriends);
-                assert(allPossibleFriends.getCount() != 0);
-
-                mCardAdapter = new CardPagerAdapter();
-                mCardAdapter.setRunnable(refreshFrag());
-                CardPagerAdapter dsAdapter = ds.getAllPossibleFriends();
-                for (int j = 0; j < dsAdapter.getCount(); j++) {
-                    CardItem curr = dsAdapter.getCardItemAt(j);
-                    if (shouldIncludeUser(curr.getInstrumentsText(), curr.getGenreText(), curr.getYearsText())) {
-                        mCardAdapter.addCardItem(dsAdapter.getCardItemAt(j));
-                    }
-                    //instrumentPosition = i;
-                }
-
-                refreshFragment();
-                System.out.println("Printing current length: " + mCardAdapter.getCount());*/
             }
 
             @Override
@@ -392,24 +328,8 @@ public class Tab2Fragment extends Fragment   {
         boolean genreRes = (genres_text.contains(genreAdapter) || genreAdapter.equals("all") );
         boolean yearsRes = (years_text.contains(yearsAdapter) || yearsAdapter.equals("all") );
 
-        /*if (text.contains(instrumentAdapter) && genreAdapter.equals("all") && yearsAdapter.equals("all")) {
-            return true;
-        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && yearsAdapter.equals("all")) {
-            return true;
-        } else if (text.contains(instrumentAdapter) && genres_text.contains(genreAdapter) && years_text.contains(yearsAdapter)){
-            return true;
-        } else if(instrumentAdapter.equals("all") && genreAdapter.equals("all") && yearsAdapter.equals("all")){
-            return true;
-        } else if(text.contains(instrumentAdapter) && genreAdapter.equals("all") && years_text.contains(yearsAdapter)){
-            return true;
-        }*/
         if ((instruRes && genreRes && yearsRes)) System.out.println("Debugging this boolean function: We passed!");
         return (instruRes && genreRes && yearsRes);
     }
 
-//    @Override
-//    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//        mCardShadowTransformer.enableScaling(b);
-//        mFragmentCardShadowTransformer.enableScaling(b);
-//    }
 }

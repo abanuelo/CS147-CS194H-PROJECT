@@ -46,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="3"
+        android:theme="@style/FontOpenSansSemiBold"
         android:id="@+id/listOfGoals">
 
     </ListView>
@@ -62,6 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/opensans_bold"
             android:textColorHint="#808080"
             android:textColor="@color/black"
             android:hint="Add some musical goals in your routine!\n(e.g., Warm-up, Practice Arpeggios)"
@@ -73,6 +75,7 @@
             android:text="Add Goal"
             android:layout_gravity="fill_vertical|end"
             android:theme="@style/AppTheme.RoundedCornerMaterialButton"
+            android:textColor="@color/white"
             android:onClick="addGoal"/>
 
     </LinearLayout>
@@ -83,6 +86,7 @@
         android:layout_gravity="center"
         android:text="Add Routine"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/white"
         android:theme="@style/AppTheme.RoundedCornerMaterialButton"
         android:onClick="finishRoutine"/>
 
