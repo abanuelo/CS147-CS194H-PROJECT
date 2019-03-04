@@ -102,7 +102,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
                         String key = FirebaseDatabase.getInstance().getReference().child("Chats").push().getKey();
                         if (!hasChanged) {
                             for (DataSnapshot user : dataSnapshot.getChildren()) {
-                                String users_name = user.child("name").getValue().toString().trim();
+                                String users_name = user.child("username").getValue().toString().trim();
                                 if (users_name.equals(name)) {
                                     String userId = user.getKey().trim();
                                     usersDb.child(currentUId).child("Collaborations").child("Yes").child(userId);

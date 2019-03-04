@@ -144,7 +144,7 @@ public class Profile extends AppCompatActivity {
         }
         else {
             profile_lookup2 = userId;
-            bottomNavigationView.setSelectedItemId(R.id.friends_nav);
+            bottomNavigationView.setSelectedItemId(R.id.user_nav);
             bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                                                                          @Override
                                                                          public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
