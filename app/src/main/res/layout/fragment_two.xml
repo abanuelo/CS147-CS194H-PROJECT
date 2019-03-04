@@ -19,13 +19,12 @@
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Spinner
-                android:paddingTop="10dp"
+                android:paddingTop="12dp"
                 android:spinnerMode="dialog"
                 android:id="@+id/InstrumentFilter"
                 android:background="@color/white"
@@ -36,7 +35,7 @@
                 android:layout_height="match_parent"></Spinner>
 
             <Spinner
-                android:paddingTop="10dp"
+                android:paddingTop="12dp"
                 android:spinnerMode="dialog"
                 android:id="@+id/GenreFilter"
                 android:textAlignment="center"
@@ -47,7 +46,7 @@
                 android:layout_height="match_parent"></Spinner>
 
             <Spinner
-                android:paddingTop="10dp"
+                android:paddingTop="12dp"
                 android:spinnerMode="dialog"
                 android:id="@+id/YearsFilter"
                 android:background="@color/white"
@@ -81,23 +80,23 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:layout_gravity="center"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingStart="@dimen/card_padding"
+        android:paddingStart="45dp"
         android:paddingLeft="@dimen/card_padding"
         android:paddingEnd="@dimen/card_padding"
         android:paddingRight="@dimen/card_padding"
-        android:paddingBottom="30dp" />
+        android:paddingBottom="0dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingTop="175dp"
+        android:layout_marginTop="0dp"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
         android:text="Sorry, no users match these criteria."
