@@ -27,9 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Store extends AppCompatActivity {
 
-    private TextView description;
+    private TextView description, userCoins;
     private ImageView top, bottom, rewardType;
-    private String currentUserId;
+    private String currentUserId, pifePoints;
     private Handler handler;
     private DatabaseReference userDb;
     private ImageButton yellowHat, pinkHat, blueHat, orangeHat;
@@ -42,6 +42,10 @@ public class Store extends AppCompatActivity {
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed");
         handler = new Handler();
+
+        //Current Coin Levels to Buy Objects
+        userCoins = findViewById(R.id.user_coins);
+        pifePoints = userCoins.getText().toString();
 
         //Description
         description = findViewById(R.id.rewardDescription);
@@ -165,6 +169,7 @@ public class Store extends AppCompatActivity {
                                                                                  Intent collab = new Intent(Store.this, CollabHiFi2.class);
                                                                                  finish();
                                                                                  startActivity(collab);
+                                                                                 break;
                                                                              case R.id.practice_nav:
                                                                                  Intent practice_intent = new Intent(Store.this, ChooseRoutineActivity.class);
                                                                                  finish();
@@ -185,6 +190,26 @@ public class Store extends AppCompatActivity {
                                                                      }
                                                                  }
         );
+
+        getUserPifePoints();
+    }
+
+    private void getUserPifePoints() {
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    pifePoints = dataSnapshot.getValue().toString().trim();
+                    userCoins.setText(pifePoints);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
 
@@ -377,23 +402,5 @@ public class Store extends AppCompatActivity {
 //        });
 //    }
 //
-//    private void getUserPifePoints() {
-//        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
-//        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()){
-//                    pifePoints = dataSnapshot.getValue().toString().trim();
-//                    TextView pointsDisplay = (TextView) findViewById(R.id.pifepoints);
-//                    pointsDisplay.setText(pifePoints);
 //
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
 
