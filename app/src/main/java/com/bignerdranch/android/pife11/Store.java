@@ -100,6 +100,7 @@ public class Store extends AppCompatActivity {
         checkThirdTutorialCompleted();
 
         avatarDefaultLoad();
+        changeToDefault();
 
         //Set the hats to clickable
 
