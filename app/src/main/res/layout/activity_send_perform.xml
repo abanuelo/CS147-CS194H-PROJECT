@@ -23,6 +23,7 @@
         <Button
             android:id="@+id/sendPerformance"
             android:text="Send Performance"
+            android:theme="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

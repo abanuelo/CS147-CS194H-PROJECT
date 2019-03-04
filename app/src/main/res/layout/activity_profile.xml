@@ -120,7 +120,7 @@
                         android:layout_width="65dp"
                         android:layout_height="25dp"
                         android:fontFamily="@font/opensans_light"
-                        android:text="posts"
+                        android:text="videos"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
@@ -188,7 +188,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/button_transparent"
                 android:text="Sign out"
-                android:textColor="@color/black" />
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/edit_profile"
@@ -198,7 +198,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/button_transparent"
                 android:text="Edit Profile"
-                android:textColor="@color/black" />
+                android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
 

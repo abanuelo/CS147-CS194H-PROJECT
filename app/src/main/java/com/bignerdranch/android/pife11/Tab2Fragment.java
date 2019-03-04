@@ -142,20 +142,25 @@ public class Tab2Fragment extends Fragment   {
             start = new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing");
             mCardAdapter.addCardItem(start);
             mCardAdapter.notifyDataSetChanged();
+        } if (mCardAdapter.getCount() != 0) {
+            System.out.println("Printing current cardAdapter status: " + mCardAdapter.getCount());
+
+            mFragmentCardAdapter = new CardFragmentPagerAdapter(getFragmentManager(),
+                    dpToPixels(2, getContext()));
+
+            mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
+            mFragmentCardShadowTransformer = new ShadowTransformer(mViewPager, mFragmentCardAdapter);
+            mCardShadowTransformer.enableScaling(true);
+            mFragmentCardShadowTransformer.enableScaling(true);
+
+            mViewPager.setAdapter(mCardAdapter);
+            mViewPager.setPageTransformer(false, mCardShadowTransformer);
+            mViewPager.setOffscreenPageLimit(30);
+        } else {
+            mViewPager.setVisibility(View.GONE);
+            TextView noMatches = (TextView) view.findViewById(R.id.noMatches);
+            noMatches.setVisibility(View.VISIBLE);
         }
-        System.out.println("Printing current cardAdapter status: "+ mCardAdapter.getCount());
-
-        mFragmentCardAdapter = new CardFragmentPagerAdapter(getFragmentManager(),
-                dpToPixels(2, getContext()));
-
-        mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
-        mFragmentCardShadowTransformer = new ShadowTransformer(mViewPager, mFragmentCardAdapter);
-        mCardShadowTransformer.enableScaling(true);
-        mFragmentCardShadowTransformer.enableScaling(true);
-
-        mViewPager.setAdapter(mCardAdapter);
-        mViewPager.setPageTransformer(false, mCardShadowTransformer);
-        mViewPager.setOffscreenPageLimit(30);
 
 
         return view;
