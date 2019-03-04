@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/renew_background"
+    android:background="@color/colorPrimary"
     >
 
 
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="email" />
+            android:hint="Email Address" />
 
 
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="password" />
+            android:hint="Password" />
 
     </LinearLayout>
 
@@ -82,7 +82,8 @@
         android:text="Log In"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_bar" />
+        app:layout_constraintTop_toBottomOf="@id/password_bar"
+        android:background="@color/grayHint"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

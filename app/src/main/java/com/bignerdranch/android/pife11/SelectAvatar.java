@@ -3,6 +3,7 @@ package com.bignerdranch.android.pife11;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -38,6 +39,9 @@ public class SelectAvatar extends AppCompatActivity {
             name = (TextView)findViewById(R.id.name);
 
             auth = FirebaseAuth.getInstance();
+
+            DataSingleton ds = DataSingleton.getInstance();
+            ds.setAvatarClothes(new Pair(0, 0));
 
             //currently looking at Jemi
             derpy_creature.setOnTouchListener(new OnSwipeTouchListener(SelectAvatar.this) {

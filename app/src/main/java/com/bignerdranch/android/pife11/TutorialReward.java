@@ -1,6 +1,7 @@
 package com.bignerdranch.android.pife11;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class TutorialReward extends AppCompatActivity {
 
     int pifePoints = 0;
@@ -26,6 +29,11 @@ public class TutorialReward extends AppCompatActivity {
 
         DatabaseReference statsDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
         statsDb.setValue(pifePoints + 15);
+        DatabaseReference firstTutorialSuccess = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+        HashMap map = new HashMap();
+        map.put("FirstTutorial", true);
+        firstTutorialSuccess.updateChildren(map);
+
 
         //getUserPifePoints();
 
@@ -35,6 +43,7 @@ public class TutorialReward extends AppCompatActivity {
 
     public void returnToProfile(View view){
         Intent practice_intent = new Intent(this, Store.class);
+        practice_intent.putExtra("firstTutorial", true);
         startActivity(practice_intent);
     }
 
@@ -46,10 +55,6 @@ public class TutorialReward extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     pifePoints = (int) dataSnapshot.getValue();
 
-
-
-
-                    System.out.println("Let's go with that 15 coins!");
                 }
             }
 

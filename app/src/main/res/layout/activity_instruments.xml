@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@drawable/renew_background"
+    android:background="@color/colorPrimary"
     tools:context=".Instruments">
     
     <RelativeLayout
@@ -21,7 +21,7 @@
             android:layout_centerInParent="true"
             android:text="Select Instruments Played"
             android:fontFamily="@font/proxima_novona_bold"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="25sp" />
 
     </RelativeLayout>
