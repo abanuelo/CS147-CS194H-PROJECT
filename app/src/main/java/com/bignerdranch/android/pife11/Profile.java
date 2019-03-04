@@ -314,7 +314,7 @@ public class Profile extends AppCompatActivity {
         instrument = null;
 //        bitmap.recycle();
         gridAdapter.clear();
-        finish();
+        //finish();
     }
 
 

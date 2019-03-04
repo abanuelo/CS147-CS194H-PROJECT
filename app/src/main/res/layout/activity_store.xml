@@ -56,6 +56,7 @@
         <ImageView
             android:layout_gravity="center"
             android:id="@+id/left_arrow"
+            android:visibility="gone"
             android:scaleX="-1"
             android:src="@drawable/ic_arrow_point_to_right"
             android:layout_width="30dp"
@@ -89,12 +90,13 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$500"
+                        android:id="@+id/first_item_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$5"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -114,12 +116,13 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:text="$1000"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/opensans_semibold"
+                        android:id="@+id/second_item_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$10"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -138,12 +141,13 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$1500"
+                        android:id="@+id/third_item_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$15"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -161,12 +165,13 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:text="$2000"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/opensans_semibold"
+                        android:id="@+id/fourth_item_text"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="$20"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -175,6 +180,7 @@
         </HorizontalScrollView>
 
         <ImageView
+            android:visibility="gone"
             android:layout_gravity="center"
             android:id="@+id/right_arrow"
             android:src="@drawable/ic_arrow_point_to_right"
@@ -194,6 +200,7 @@
             android:id="@+id/left_arrow_2"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:visibility="gone"
             android:layout_gravity="center"
             android:scaleX="-1"
             android:src="@drawable/ic_arrow_point_to_right" />
@@ -220,12 +227,13 @@
 
                     <ImageButton
                         android:id="@+id/first_item_shirt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/jemi_shirt_green"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/greenshirtlockedtrans"
                         android:src="#00ffffff" />
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -245,12 +253,13 @@
 
                     <ImageButton
                         android:id="@+id/second_item_shirt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/jemi_shirt_pink"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/pinkshirtlockedtrans"
                         android:src="#00ffffff" />
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -269,12 +278,13 @@
 
                     <ImageButton
                         android:id="@+id/third_item_shirt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/yellowshirttrans"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/yellowshirtlockedtrans"
                         android:src="#00ffffff" />
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -292,12 +302,13 @@
 
                     <ImageButton
                         android:id="@+id/fourth_item_shirt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/brownshirttrans"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/brownshirtlockedtrans"
                         android:src="#00ffffff" />
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -315,6 +326,7 @@
         <ImageView
             android:id="@+id/right_arrow_2"
             android:layout_width="30dp"
+            android:visibility="gone"
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_arrow_point_to_right" />

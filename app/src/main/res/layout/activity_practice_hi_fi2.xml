@@ -53,6 +53,7 @@
     </ListView>
 
     <Button
+        android:id="@+id/done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -61,6 +62,13 @@
         android:theme="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_margin="20dp"
         />
+
+    <Button
+        android:id="@+id/firstTutorial"
+        android:text="False"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

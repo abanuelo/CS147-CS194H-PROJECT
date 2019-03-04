@@ -1,5 +1,6 @@
 package com.bignerdranch.android.pife11;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +34,9 @@ public class PracticeHiFi2 extends AppCompatActivity {
     long timeWhenStopped = 0;
     private DatabaseReference matchDb;
     private ValueEventListener listener;
+    private Button done, firstTutorialButton;
+    private String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    private boolean finishedFirstTutorial = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class PracticeHiFi2 extends AppCompatActivity {
 
         DataSingleton ds = DataSingleton.getInstance();
         ArrayList<ArrayList<String>> routineLists = ds.getRoutinesList();
+        done = findViewById(R.id.done);
 
         //ArrayAdapter<String> tasksAdapter = null;
 
@@ -149,10 +155,32 @@ public class PracticeHiFi2 extends AppCompatActivity {
         ds.setPracticeLength(currentTotal);
         System.out.println("Total practiced time is: " + Long.toString(currentTotal));
 
-        if (currentTotal > 15*1000) {
-            //Show the gamification
-            Intent practice_intent = new Intent(this, TutorialReward.class);
-            startActivity(practice_intent);
+
+        if (currentTotal > 2*1000) {
+            final Context context = getApplicationContext();
+            final DatabaseReference firstTutorial = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("FirstTutorial");
+            firstTutorial.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.getValue() != null){
+                        Intent practice_intent = new Intent(context, Profile.class);
+                        practice_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(practice_intent);
+                    } else {
+                        //Show the gamification
+                        Intent practice_intent = new Intent(context, TutorialReward.class);
+                        practice_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(practice_intent);
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         } else {
             Intent practice_intent = new Intent(this, Profile.class);
             startActivity(practice_intent);

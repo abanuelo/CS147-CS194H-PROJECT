@@ -3,12 +3,15 @@ package com.bignerdranch.android.pife11;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
@@ -25,12 +28,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class Store extends AppCompatActivity {
 
     private TextView description, userCoins;
+    private TextView blueHatText, orangeHatText, pinkHatText, yellowHatText;
     private ImageView top, bottom, rewardType;
-    private String currentUserId, pifePoints;
+    private String currentUserId, pifePoints, items;
+    private int price;
+    private boolean result;
     private Handler handler;
+    private Button buy;
     private DatabaseReference userDb;
     private ImageButton yellowHat, pinkHat, blueHat, orangeHat;
     private ImageButton greenShirt, pinkShirt, yellowShirt, brownShirt;
@@ -42,6 +51,9 @@ public class Store extends AppCompatActivity {
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed");
         handler = new Handler();
+
+        //Button
+        buy = findViewById(R.id.buy);
 
         //Current Coin Levels to Buy Objects
         userCoins = findViewById(R.id.user_coins);
@@ -63,16 +75,41 @@ public class Store extends AppCompatActivity {
         blueHat = findViewById(R.id.first_item);
         orangeHat = findViewById(R.id.second_item);
 
+        //Find the price tags for each hat
+        blueHatText = findViewById(R.id.first_item_text);
+        orangeHatText = findViewById(R.id.second_item_text);
+        pinkHatText = findViewById(R.id.third_item_text);
+        yellowHatText = findViewById(R.id.fourth_item_text);
+
+        //Method to update from firebase based on if you bought an item or not
+        checkIfItemBought();
+
         //Find the shirts in the XML File
         greenShirt = findViewById(R.id.first_item_shirt);
         pinkShirt = findViewById(R.id.second_item_shirt);
         yellowShirt = findViewById(R.id.third_item_shirt);
         brownShirt = findViewById(R.id.fourth_item_shirt);
 
+        checkFirstTutorialCompleted();
+        checkSecondTutorialCompleted();
+        checkThirdTutorialCompleted();
+
         //Set the hats to clickable
         yellowHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (yellowHatText.getText().equals("Purchased")){
+                    description.setText("Purchased");
+                    buy.setVisibility(View.GONE);
+                } else {
+                    description.setText("Press 'Buy Item' to purchase item");
+                    buy.setVisibility(View.VISIBLE);
+                }
+                rewardType.setImageResource(R.drawable.money_bag);
+                rewardType.getLayoutParams().height = 300;
+                rewardType.getLayoutParams().width = 300;
+                price = 20;
+                items = "YellowHat";
                 top.setImageResource(R.drawable.yellowtoptrans);
             }
         });
@@ -80,6 +117,18 @@ public class Store extends AppCompatActivity {
         pinkHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (pinkHatText.getText().equals("Purchased")){
+                    description.setText("Purchased");
+                    buy.setVisibility(View.GONE);
+                } else {
+                    description.setText("Press 'Buy Item' to purchase item");
+                    buy.setVisibility(View.VISIBLE);
+                }
+                rewardType.setImageResource(R.drawable.money_bag);
+                rewardType.getLayoutParams().height = 300;
+                rewardType.getLayoutParams().width = 300;
+                price = 15;
+                items = "PinkHat";
                 top.setImageResource(R.drawable.pinktoptrans);
             }
         });
@@ -87,6 +136,19 @@ public class Store extends AppCompatActivity {
         blueHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (blueHatText.getText().equals("Purchased")){
+                    description.setText("Purchased");
+                    buy.setVisibility(View.GONE);
+                } else {
+                    description.setText("Press 'Buy Item' to purchase item");
+                    buy.setVisibility(View.VISIBLE);
+                }
+
+                rewardType.setImageResource(R.drawable.money_bag);
+                rewardType.getLayoutParams().height = 300;
+                rewardType.getLayoutParams().width = 300;
+                price = 5;
+                items = "BlueHat";
                 top.setImageResource(R.drawable.bluetoptrans);
             }
         });
@@ -94,6 +156,20 @@ public class Store extends AppCompatActivity {
         orangeHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (orangeHatText.getText().equals("Purchased")){
+                    description.setText("Purchased");
+                    buy.setVisibility(View.GONE);
+                } else {
+                    description.setText("Press 'Buy Item' to purchase item");
+                    buy.setVisibility(View.VISIBLE);
+                }
+
+                rewardType.setImageResource(R.drawable.money_bag);
+                rewardType.getLayoutParams().height = 300;
+                rewardType.getLayoutParams().width = 300;
+                price = 10;
+                items = "OrangeHat";
+                buy.setVisibility(View.VISIBLE);
                 top.setImageResource(R.drawable.orangetoptrans);
             }
         });
@@ -102,30 +178,47 @@ public class Store extends AppCompatActivity {
         greenShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("FirstTutorial").getKey() == null){
+                    description.setText("Complete one practice session!");
+                }
+                else {
+                    description.setText("Congrats! You completed one practice session!");
+
+                }
                 bottom.setImageResource(R.drawable.greenbottomtrans);
+                rewardType.setImageResource(R.drawable.star_trophy);
+                items = "GreenShirt";
+                buy.setVisibility(View.GONE);
+
             }
         });
 
         pinkShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottom.setImageResource(R.drawable.pinkbottomtrans);
+                checkSecondTutorialCompleted();
             }
         });
 
         yellowShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottom.setImageResource(R.drawable.yellowbottomtrans);
+                checkThirdTutorialCompleted();
             }
         });
 
         brownShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                description.setText("Practice for a total of 3 hours!");
+                rewardType.setImageResource(R.drawable.clock_trophy);
                 bottom.setImageResource(R.drawable.brownbottomtrans);
+                items = "BrownShirt";
+                buy.setVisibility(View.GONE);
             }
         });
+
+        //initializeFireBase();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
         bottomNavigationView.setSelectedItemId(R.id.user_nav);
@@ -160,6 +253,142 @@ public class Store extends AppCompatActivity {
         );
 
         getUserPifePoints();
+
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Integer.parseInt(pifePoints) >= price){
+                    DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Store");
+                    HashMap map = new HashMap();
+                    map.put(items, true);
+                    matchDb.updateChildren(map);
+                    DatabaseReference userCoinsData = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+                    userCoinsData.setValue(Integer.parseInt(pifePoints)-price);
+                    pifePoints = Integer.toString(Integer.parseInt(pifePoints)-price);
+                    userCoins.setText(pifePoints);
+
+                    changePriceTag();
+                    description.setText("Purchased item!");
+                    buy.setVisibility(View.GONE);
+
+                    Toast.makeText(Store.this, "Successfully bought!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Store.this,"Insufficient funds! Practice some more!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    private void checkIfItemBought(){
+        final DatabaseReference itemDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Store");
+        itemDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot item : dataSnapshot.getChildren()){
+                    String purchased_item = item.getKey();
+                    items = purchased_item;
+                    changePriceTag();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void changePriceTag(){
+        if (items.equals("BlueHat")){
+            blueHatText.setText("Purchased");
+        } else if (items.equals("OrangeHat")){
+            orangeHatText.setText("Purchased");
+        } else if (items.equals("PinkHat")){
+            pinkHatText.setText("Purchased");
+        } else {
+            yellowHatText.setText("Purchased");
+        }
+    }
+
+    private void checkThirdTutorialCompleted(){
+        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("TutorialThree");
+        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null){
+                    if (((Long) dataSnapshot.getValue()).intValue() >= 3){
+                        yellowShirt.setImageResource(R.drawable.yellowshirttrans);
+                        description.setText("Congrats! You have commented on a total of three videos!");
+                    } else {
+                        description.setText("Comment on a total of three videos!");
+                    }
+                    rewardType.setImageResource(R.drawable.sun_trophy);
+                    bottom.setImageResource(R.drawable.yellowbottomtrans);
+                    items = "YellowShirt";
+                    buy.setVisibility(View.GONE);
+                } else {
+                    description.setText("Comment on a total of three videos!");
+                    rewardType.setImageResource(R.drawable.sun_trophy);
+                    bottom.setImageResource(R.drawable.yellowbottomtrans);
+                    items = "YellowShirt";
+                    buy.setVisibility(View.GONE);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void checkSecondTutorialCompleted(){
+        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Collaborations").child("Matches");
+        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int num_friends = (int) dataSnapshot.getChildrenCount();
+                if (num_friends >= 5){
+                    pinkShirt.setImageResource(R.drawable.pinkshirttrans);
+                    description.setText("Congrats! You have made at least 5 friends!");
+                } else {
+                    description.setText("Make a total of five friends!");
+                }
+                rewardType.setImageResource(R.drawable.smiley_trophy);
+                bottom.setImageResource(R.drawable.pinkbottomtrans);
+                items = "PinkShirt";
+                buy.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void checkFirstTutorialCompleted(){
+        DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("FirstTutorial");
+        userDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() != null){
+                    greenShirt.setImageResource(R.drawable.jemi_shirt_green);
+                    description.setText("Congrats! You completed one practice session!");
+                    bottom.setImageResource(R.drawable.greenbottomtrans);
+                    rewardType.setImageResource(R.drawable.star_trophy);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void getUserPifePoints() {
@@ -179,196 +408,21 @@ public class Store extends AppCompatActivity {
             }
         });
     }
+
+//    private void initializeFireBase(){
+//        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Store");
+//        HashMap map = new HashMap();
+//        map.put("BlueHat", false);
+//        map.put("OrangeHat", false);
+//        map.put("PinkHat", false);
+//        map.put("YellowHat", false);
+//        map.put("GreenShirt", false);
+//        map.put("PinkShirt", false);
+//        map.put("YellowShirt", false);
+//        map.put("BrownShirt", false);
+//        matchDb.updateChildren(map);
+//    }
 }
 
-//        pifePointsLocation = findViewById(R.id.pifepoints);
 
-//        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
-//        db.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()){
-//                    pifePointsLocation.setText(dataSnapshot.getValue().toString());
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//            }
-//        });
-//
-//        //gets the hat and shirt
-//        hat = findViewById(R.id.button2);
-////        shirt = findViewById(R.id.button4);
-//
-//        hat_placement = findViewById(R.id.hat);
-//        shirt_placement = findViewById(R.id.shirt);
-//
-//        //Gets the button for the constraints
-//        constraint = findViewById(R.id.shapeLayout);
-//        scrollViewHats = findViewById(R.id.horizontalscrollview);
-//        scrollViewHats2 = findViewById(R.id.horizontalscrollview2);
-//        button1 = findViewById(R.id.button1);
-//        button2 = findViewById(R.id.button2);
-//        button3 = findViewById(R.id.button3);
-////        button4 = findViewById(R.id.button4);
-//
-//        //Sets the visibility true if we are fully dressed
-//
-//        userDb.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//                    String value = dataSnapshot.getValue().toString().trim();
-//                    if (value.equals("true")) {
-//                        hat.setVisibility(View.VISIBLE);
-////                        shirt.setVisibility(View.VISIBLE);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//
-//        scrollViewHats.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-//            @Override
-//            public void onScrollChanged() {
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        constrainedX = (int) scrollViewHats.getScrollX();
-//                        constrainedY = (int) scrollViewHats.getScrollY();
-//
-//                        button1X = (int) button1.getX();
-//                        button1Y = (int) button1.getY();
-//
-//                        button2X = (int) button2.getX();
-//                        button2Y = (int) button2.getY();
-//
-//                        if (Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button2X) && Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button3X)) {
-//                            scrollViewHats.smoothScrollTo(button1X, button1Y);
-//                            hat_placement.setImageResource(0);
-//                            //CHANGE THE PRICE TAG HERE
-//                        } else if (Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button1X) && Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button3X)) {
-//                            scrollViewHats.smoothScrollTo(button2X, button2Y);
-//
-//                            hat_placement.setImageResource(R.drawable.ic_jemi_orange_hat);
-//
-//                        } else {
-//                            hat_placement.setImageResource(0);
-//                        }
-//                    }
-//                }, 600);
-//
-//            }
-//        });
-//
-//
-//        scrollViewHats2.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-//            @Override
-//            public void onScrollChanged() {
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        constrainedX = (int) scrollViewHats2.getScrollX();
-//                        constrainedY = (int) scrollViewHats2.getScrollY();
-//
-//                        button1X = (int) button3.getX();
-//                        button1Y = (int) button3.getY();
-//
-////                        button2X = (int) button4.getX();
-////                        button2Y = (int) button4.getY();
-//
-//                        TextView description = (TextView) findViewById(R.id.accessDescription);
-//
-//                        if (Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button2X) && Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button3X)) {
-//                            //This is for the orange shirt
-//                            scrollViewHats2.smoothScrollTo(button1X, button1Y);
-//                            shirt_placement.setImageResource(0);
-//
-//                            System.out.println("WTF is this?");
-//
-//                            description.setText("Proof of practicing for 1 hour on Pife.");
-//
-//                            //CHANGE THE PRICE TAG HERE
-//                        } else if (Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button1X) && Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button3X)) {
-//                            //This is for the tutorial shirt!
-//
-//                            scrollViewHats2.smoothScrollTo(button2X, button2Y);
-//                            shirt_placement.setImageResource(R.drawable.ic_jemi_green_shirt);
-//                            System.out.println("WTF is this? 2");
-//
-//                            description.setText("Proof of practicing for 15 seconds on Pife.");
-//
-//                        } else {
-//
-//                            // THis is the no shirt sign
-//                            shirt_placement.setImageResource(0);
-//                            System.out.println("WTF is this? 3");
-//                        }
-//                    }
-//                }, 600);
-//
-//            }
-//        });
-//
-//    }
-//
-//
-//    public void buyHats(View view) {
-//        Toast.makeText(Store.this, "Sorry, this accessory hasn't been unlocked. Please purchase the green tutorial T-shirt.", Toast.LENGTH_LONG).show();
-//    }
-//
-//    public void buyShirt(View view){
-//        TextView pointsDisplay = (TextView) findViewById(R.id.pifepoints);
-//        int coinsAvailable = Integer.parseInt(pointsDisplay.getText().toString());
-//
-//        if (Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button1X) && Math.abs(constrainedX - button2X) < Math.abs(constrainedX - button3X)) {
-//            if (coinsAvailable >= 15) {
-//                DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
-//                matchDb.setValue(0);
-//                Toast.makeText(Store.this, "Successfully obtained tutorial T-shirt from store!", Toast.LENGTH_LONG).show();
-//            }
-//            Intent practice_intent = new Intent(this, Profile.class);
-//            startActivity(practice_intent);
-//        } else if (Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button2X) && Math.abs(constrainedX - button1X) < Math.abs(constrainedX - button3X)) {
-//            Toast.makeText(Store.this, "Sorry, this accessory hasn't been unlocked. Please purchase the green tutorial T-shirt.", Toast.LENGTH_LONG).show();
-//        }
-//
-//
-//    }
-//
-//
-//    private void getUserAvatar() {
-//        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Avatar");
-//        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-////                if (dataSnapshot.exists()){
-////                    myAvatar = dataSnapshot.getValue().toString().trim();
-////                    ImageView avatarDisplay = (ImageView) findViewById(R.id.avatarMyRewards);
-////                    if(myAvatar.equals("{avatar=Jemi}")) {
-////                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
-////                    } else if (myAvatar.equals("toddler")) {
-////                        //always make this the monster baby
-////                        avatarDisplay.setImageResource(R.drawable.ic_jemi_toddler_arms_down);
-////                    } else if (myAvatar.equals("dressed")){
-////                        avatarDisplay.setImageResource(R.drawable.ic_jemi_toddler_arms_down);
-////                    } else {
-////                        avatarDisplay.setImageResource(R.drawable.ic_monster_baby);
-////                    }
-////
-////                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//            }
-//        });
-//    }
-//
-//
 
