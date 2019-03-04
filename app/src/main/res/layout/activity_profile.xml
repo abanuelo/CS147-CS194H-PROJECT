@@ -76,7 +76,7 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/undressedtoptrans"></ImageView>
             <ImageView
-                android:id="@+id/profile_img_post1.1"
+                android:id="@+id/profile_img_post2"
                 android:layout_width="match_parent"
                 android:layout_marginTop="-10.5dp"
                 android:layout_height="70dp"

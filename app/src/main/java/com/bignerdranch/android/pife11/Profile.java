@@ -5,16 +5,20 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +67,8 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_profile);
+
+        changeAvatarClothes();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
         bottomNavigationView.setSelectedItemId(R.id.user_nav);
@@ -332,6 +338,75 @@ public class Profile extends AppCompatActivity {
 //        //bitmap.recycle();
 //        return imageItems;
 //    }
+
+    private void changeAvatarClothes(){
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference avatarDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("AvatarClothes");
+        avatarDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    System.out.println("Datasnapshot:" + dataSnapshot.getValue().toString());
+
+                    Long hatL = (Long) dataSnapshot.child("hat").getValue();
+                    int hat = hatL.intValue();
+                    System.out.println("What do we have here: hat OG: " + hat);
+                    Long shirtL = (Long) dataSnapshot.child("shirt").getValue();
+                    int shirt = shirtL.intValue();
+                    System.out.println("What do we have here: shirt OG: " + shirt);
+
+                    DataSingleton ds = DataSingleton.getInstance();
+                    ds.setAvatarClothes(new Pair(hat, shirt));
+
+                    changeHat(hat);
+                    changeShirt(shirt);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void changeHat(int hat){
+        System.out.println("What do we have here: hat: " + hat);
+        // Table of contents: 0 - no hat, 1 - blue, 2 - orange, 3 - pink, 4 - yellow
+        ImageView hatImg = (ImageView) findViewById(R.id.profile_img_post);
+        Drawable myDraw = getResources().getDrawable(R.drawable.yellowtoptrans);
+
+        if (hat == 0) {
+            myDraw = getResources().getDrawable(R.drawable.undressedtoptrans);
+        } else if (hat == 1) {
+            myDraw = getResources().getDrawable(R.drawable.bluetoptrans);
+        } else if (hat == 2) {
+            myDraw = getResources().getDrawable(R.drawable.orangetoptrans);
+        } else if (hat == 3) {
+            myDraw = getResources().getDrawable(R.drawable.pinktoptrans);
+        }
+        hatImg.setImageDrawable(myDraw);
+    }
+
+    private void changeShirt(int shirt) {
+        System.out.println("What do we have here: shirt: " + shirt);
+        // Table of contents: 0 - no shirt, 1 - green, 2 - pink, 3 - yellow, 4 - brown
+        ImageView shirtImg = (ImageView) findViewById(R.id.profile_img_post2);
+
+        Drawable myDraw = getResources().getDrawable(R.drawable.brownbottomtrans);
+
+        if (shirt == 0) {
+            myDraw = getResources().getDrawable(R.drawable.undressedbottomtrans);
+        } else if (shirt == 1) {
+            myDraw = getResources().getDrawable(R.drawable.greenbottomtrans);
+        } else if (shirt == 2) {
+            myDraw = getResources().getDrawable(R.drawable.pinkbottomtrans);
+        } else if (shirt == 3) {
+            myDraw = getResources().getDrawable(R.drawable.yellowbottomtrans);
+        }
+        shirtImg.setImageDrawable(myDraw);
+
+    }
 
 
     public void changeCoins(){

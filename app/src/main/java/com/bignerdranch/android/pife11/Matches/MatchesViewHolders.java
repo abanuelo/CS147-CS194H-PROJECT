@@ -36,7 +36,7 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
         itemView.setOnClickListener(this);
         myMatchId = (TextView) itemView.findViewById(R.id.Matchid);
         myMatchName = (TextView) itemView.findViewById(R.id.MatchName);
-        myMatchImage = (CircleImageView) itemView.findViewById(R.id.MatchImage);
+        //myMatchImage = (CircleImageView) itemView.findViewById(R.id.MatchImage);
         check = (ImageView) itemView.findViewById(R.id.check);
         notification = (ImageView) itemView.findViewById(R.id.new_song);
     }
