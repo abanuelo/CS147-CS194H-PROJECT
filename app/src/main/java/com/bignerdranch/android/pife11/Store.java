@@ -1,6 +1,7 @@
 package com.bignerdranch.android.pife11;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -22,44 +23,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Store extends AppCompatActivity {
-    private String myAvatar;
+
+    private ImageView top, bottom;
     private String currentUserId;
-    private String pifePoints;
-    private Button hat, shirt;
-    private LinearLayout constraint;
-    private LinearLayout constraint2;
-    private View view;
-
-    private TextView pifePointsLocation, PriceTag1, PriceTag2;
-
     private Handler handler;
-    private ImageView shirt_placement, hat_placement;
     private DatabaseReference userDb;
-    private HorizontalScrollView scrollViewHats;
-    private HorizontalScrollView scrollViewHats2;
-
-    private Button button1;
-    private Button button3;
-    private Button button2;
-    private Button button4;
-
-    int constrainedX;
-    int constrainedY;
-    int button1X;
-    int button1Y;
-    int button2X;
-    int button2Y;
-    int button3X;
-    int button3Y;
-
-    int constrainedX2;
-    int constrainedY2;
-    int button1X2;
-    int button1Y2;
-    int button2X2;
-    int button2Y2;
-    int button3X2;
-    int button3Y2;
+    private Button yellowHat, pinkHat, blueHat, orangeHat;
+    private Button greenShirt, pinkShirt, yellowShirt, brownShirt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +37,115 @@ public class Store extends AppCompatActivity {
         setContentView(R.layout.activity_store);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed");
-//        getUserAvatar();
-//        getUserPifePoints();
         handler = new Handler();
+
+        //Find the Avatar Portions to Change
+        top = findViewById(R.id.avatarTop);
+        bottom = findViewById(R.id.avatarBottom);
+
+        //Find the hats in the XML File
+        yellowHat = findViewById(R.id.fourth_item);
+        pinkHat = findViewById(R.id.third_item);
+        blueHat = findViewById(R.id.first_item);
+        blueHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        orangeHat = findViewById(R.id.second_item);
+
+        //Find the shirts in the XML File
+        greenShirt = findViewById(R.id.first_item_shirt);
+        greenShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
+        pinkShirt = findViewById(R.id.second_item_shirt);
+        yellowShirt = findViewById(R.id.third_item_shirt);
+        brownShirt = findViewById(R.id.fourth_item_shirt);
+
+        //Set the hats to clickable
+        yellowHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                yellowHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                pinkHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                blueHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                orangeHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                top.setImageResource(R.drawable.yellowtoptrans);
+            }
+        });
+
+        pinkHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pinkHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                yellowHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                blueHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                orangeHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                top.setImageResource(R.drawable.pinktoptrans);
+            }
+        });
+
+        blueHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                blueHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                yellowHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                orangeHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                pinkHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                top.setImageResource(R.drawable.bluetoptrans);
+            }
+        });
+
+        orangeHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orangeHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                yellowHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                pinkHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                blueHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                top.setImageResource(R.drawable.orangetoptrans);
+            }
+        });
+
+        //Set the shirts to clickable
+        greenShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                greenShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                pinkShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                yellowShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                brownShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                bottom.setImageResource(R.drawable.greenbottomtrans);
+            }
+        });
+
+        pinkShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pinkShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                yellowShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                brownShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                greenShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                bottom.setImageResource(R.drawable.pinkbottomtrans);
+            }
+        });
+
+        yellowShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                yellowShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                brownShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                greenShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                pinkShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                bottom.setImageResource(R.drawable.yellowbottomtrans);
+            }
+        });
+
+        brownShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                brownShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
+                greenShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                pinkShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                yellowShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                bottom.setImageResource(R.drawable.brownbottomtrans);
+            }
+        });
     }
 }
 

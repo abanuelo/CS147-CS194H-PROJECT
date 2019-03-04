@@ -131,7 +131,7 @@
                     <Button
                         android:background="@color/white"
                         android:id="@+id/third_item"
-                        android:drawableLeft="@drawable/jemi_tiny_blue_hat"
+                        android:drawableLeft="@drawable/pinkhattrans"
                         android:paddingLeft="9dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -155,7 +155,7 @@
                     <Button
                         android:id="@+id/fourth_item"
                         android:background="@color/white"
-                        android:drawableLeft="@drawable/jemi_tiny_orange_hat"
+                        android:drawableLeft="@drawable/yellowhattrans"
                         android:paddingLeft="9dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -169,55 +169,6 @@
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/fifth_container"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <Button
-                        android:background="@color/white"
-                        android:id="@+id/fifth_item"
-                        android:drawableLeft="@drawable/jemi_tiny_blue_hat"
-                        android:paddingLeft="9dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$2500"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/sixth_container"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <Button
-                        android:id="@+id/sixth_item"
-                        android:background="@color/white"
-                        android:drawableLeft="@drawable/jemi_tiny_orange_hat"
-                        android:paddingLeft="9dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:text="$3000"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
 
             </LinearLayout>
 
@@ -318,7 +269,7 @@
                     <Button
                         android:background="@color/white"
                         android:id="@+id/third_item_shirt"
-                        android:drawableLeft="@drawable/jemi_shirt_green"
+                        android:drawableLeft="@drawable/yellowshirttrans"
                         android:paddingLeft="9dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -342,61 +293,13 @@
                     <Button
                         android:id="@+id/fourth_item_shirt"
                         android:background="@color/white"
-                        android:drawableLeft="@drawable/jemi_shirt_pink"
+                        android:drawableLeft="@drawable/brownshirttrans"
                         android:paddingLeft="9dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:text="$2000"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/fifth_container_shirts"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <Button
-                        android:background="@color/white"
-                        android:id="@+id/fifth_item_shirt"
-                        android:drawableLeft="@drawable/jemi_shirt_green"
-                        android:paddingLeft="9dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$2500"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/sixth_container_shirts"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <Button
-                        android:id="@+id/sixth_item_shirt"
-                        android:background="@color/white"
-                        android:drawableLeft="@drawable/jemi_shirt_pink"
-                        android:paddingLeft="9dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:text="$3000"
                         android:layout_gravity="center"
                         android:textColor="@color/black"
                         android:fontFamily="@font/opensans_semibold"
@@ -423,24 +326,25 @@
     <LinearLayout
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
             android:paddingLeft="10dp"
-            android:id="@+id/avatarRewardsShop"
+            android:id="@+id/avatarTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
-            android:src="@drawable/orangehattop" />
+            android:src="@drawable/bluetoptrans" />
         <ImageView
             android:paddingLeft="10dp"
-            android:id="@+id/avatarRewardsShopShirt"
+            android:id="@+id/avatarBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
-            android:src="@drawable/greenshirtbottom" />
+            android:src="@drawable/greenbottomtrans" />
 
     </LinearLayout>
 
