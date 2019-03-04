@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -61,32 +62,41 @@ public class MyPerform extends AppCompatActivity {
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-
-        videoId = getIntent().getStringExtra("videoId");
+        String currentTime = Calendar.getInstance().getTime().toString();
+        currentTime = currentTime.replaceAll(":","");
+        currentTime = currentTime.replaceAll("\\s","");
+        currentTime = currentTime.toLowerCase();
+        videoId = currentTime;
 
         //WE WANT TO BE ABLE TO RANDOMIZE THESE LINKS TO GET MULTIPLE LINKS
-        videoRef = storageRef.child("/videos/" + uid + "/" + videoId+ ".3gp");
+        videoRef = storageRef.child("/videos/" + uid + "/" + currentTime+ ".3gp");
 
 
 //        String videoUrl = getIntent().getStringExtra("videoUri");
 //        videoUri = Uri.parse(videoUrl);
-        videoUri = getIntent().getData();
-        Log.d("MyPerformUri", videoUri.toString());
-        Log.d("FilePath", videoUri.getEncodedPath());
+        //videoUri = getIntent().getData();
+//        Log.d("MyPerformUri", videoUri.toString());
+  //      Log.d("FilePath", videoUri.getEncodedPath());
 
         pbar = (ProgressBar) findViewById(R.id.pbar);
         video = (VideoView) findViewById(R.id.video);
         rerecord = (Button) findViewById(R.id.record);
         upload = (Button) findViewById(R.id.upload);
-        video.setVideoURI(videoUri);
-        video.start();
+        record(getCurrentFocus());
+        //video.setVideoURI(videoUri);
+        //video.start();
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                upload();//Invisible in the backend development of the app
-                Intent sendPerformance = new Intent(MyPerform.this, SendPerform.class);
-                startActivity(sendPerformance);
+                if (videoUri == null){
+                    Toast.makeText(MyPerform.this, "No Video To Upload! Please press re-record.", Toast.LENGTH_SHORT).show();
+                } else {
+                    upload();//Invisible in the backend development of the app
+                    Intent sendPerformance = new Intent(MyPerform.this, UploadThumbnail.class);
+                    sendPerformance.putExtra("videoId", videoId);
+                    startActivity(sendPerformance);
+                }
             }
         });
 
@@ -109,10 +119,26 @@ public class MyPerform extends AppCompatActivity {
             }
         });
 
-        //upload connection btn two
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Videos");
-        matchDb.child(videoId).setValue(videoId);
-
+        //upload thumbnail
+//        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+//        StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + videoId + ".jpg");
+//
+//        Uri file = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.baby);
+//        uploadTask = imageRef.putFile(file);
+//
+//        // Register observers to listen for when the download is done or if it fails
+//                uploadTask.addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception exception) {
+//                        // Handle unsuccessful uploads
+//                    }
+//                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+//                        // ...
+//                    }
+//                });
 
     }
 

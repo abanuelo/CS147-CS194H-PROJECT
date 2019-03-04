@@ -66,6 +66,7 @@ public class Tab2Fragment extends Fragment   {
     private ShadowTransformer mFragmentCardShadowTransformer;
     private boolean mShowingFragments = false;
     private DatabaseReference usersDb;
+    private DatabaseReference matchesDb;
     private FirebaseAuth auth;
     private String currentUId;
     private ArrayList<String> names;
@@ -99,6 +100,8 @@ public class Tab2Fragment extends Fragment   {
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
         auth = FirebaseAuth.getInstance();
         currentUId = auth.getCurrentUser().getUid();
+        //System.out.println("Current U id is: " + currentUId.toString());
+        matchesDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUId).child("Collaborations").child("Matches");
 
         InstrumentsFilter = view.findViewById(R.id.InstrumentFilter);
         GenreFilter = view.findViewById(R.id.GenreFilter);
@@ -197,8 +200,87 @@ public class Tab2Fragment extends Fragment   {
 
         usersDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                didPopulate = true;
+            public void onDataChange(@NonNull DataSnapshot dataSnapshotOrig) {
+
+                final DataSnapshot dataSnapshot = dataSnapshotOrig;
+
+                matchesDb.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshotMatches) {
+
+                        ArrayList<String> matches = new ArrayList<>();
+                        for (DataSnapshot match: dataSnapshotMatches.getChildren()) {
+                            matches.add((String) match.getKey());
+                        }
+
+                        didPopulate = true;
+                        CardPagerAdapter allPossibleFriends = new CardPagerAdapter();
+                        for (DataSnapshot user : dataSnapshot.getChildren()){
+                            System.out.println("Here we go!" + user.toString());
+
+                            String userKey = user.getKey();
+                            if (shouldIncludeInNew(matches, userKey)) {
+
+                                //Get user name from backend
+                                String name = user.child("name").getValue().toString().trim();
+                                //Get user genre from backend
+                                String genres = "";
+                                String years = "";
+                                String instruments = "";
+                                for (DataSnapshot genre : user.child("Genres").getChildren()) {
+                                    if ((boolean) genre.getValue() == true) {
+                                        if (genres.length() == 0) {
+                                            genres = genre.getKey();
+                                        } else {
+                                            genres = genres + ", " + genre.getKey();
+                                        }
+                                    }
+                                }
+                                for (DataSnapshot year : user.child("Years").getChildren()) {
+                                    years = year.getValue().toString();
+                                }
+                                for (DataSnapshot instrument : user.child("Instruments").getChildren()) {
+                                    if ((boolean) instrument.getValue() == true) {
+                                        if (instruments.length() == 0) {
+                                            instruments = instrument.getKey();
+                                        } else {
+                                            instruments = instruments + " " + instrument.getKey();
+                                        }
+                                    }
+                                }
+                                names.add(name);
+                                mCardAdapter.addCardItem(new CardItem(name, "Genre", "Years", "Instruments", genres, years, instruments));
+                                mCardAdapter.notifyDataSetChanged();
+
+                                allPossibleFriends.addCardItem(new CardItem(name, "Genre", "Years", "Instruments", genres, years, instruments));
+                            }
+                        }
+                        ds.setAllPossibleFriends(allPossibleFriends);
+                        assert(allPossibleFriends.getCount() != 0);
+
+                        mCardAdapter = new CardPagerAdapter();
+                        mCardAdapter.setRunnable(refreshFrag());
+                        CardPagerAdapter dsAdapter = ds.getAllPossibleFriends();
+                        for (int j = 0; j < dsAdapter.getCount(); j++) {
+                            CardItem curr = dsAdapter.getCardItemAt(j);
+                            if (shouldIncludeUser(curr.getInstrumentsText(), curr.getGenreText(), curr.getYearsText())) {
+                                mCardAdapter.addCardItem(dsAdapter.getCardItemAt(j));
+                            }
+                            //instrumentPosition = i;
+                        }
+
+                        refreshFragment();
+                        System.out.println("Printing current length: " + mCardAdapter.getCount());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                /*didPopulate = true;
                 CardPagerAdapter allPossibleFriends = new CardPagerAdapter();
                 for (DataSnapshot user : dataSnapshot.getChildren()){
                     //Get user name from backend
@@ -212,7 +294,7 @@ public class Tab2Fragment extends Fragment   {
                             if (genres.length() == 0) {
                                 genres = genre.getKey();
                             } else {
-                                genres = genres + " " + genre.getKey();
+                                genres = genres + ", " + genre.getKey();
                             }
                         }
                     }
@@ -249,7 +331,7 @@ public class Tab2Fragment extends Fragment   {
                 }
 
                 refreshFragment();
-                System.out.println("Printing current length: " + mCardAdapter.getCount());
+                System.out.println("Printing current length: " + mCardAdapter.getCount());*/
             }
 
             @Override
@@ -282,6 +364,16 @@ public class Tab2Fragment extends Fragment   {
                 refreshFragment();
             }
         };
+    }
+
+    private boolean shouldIncludeInNew(ArrayList<String> matches, String userKey){
+        if (userKey.equals(currentUId)) return false;
+        for (String curr : matches) {
+            if (curr.equals(userKey)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean shouldIncludeUser(String text, String genres_text, String years_text) {

@@ -45,9 +45,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Desktop/Screen Shot 2019-02-26 at 15.36.42.png" />
-                                      <entry key="outputName" value="uprof" />
-                                      <entry key="theme" value="HOLO_DARK" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/shopping-cart.svg" />
+                                      <entry key="outputName" value="shop" />
+                                      <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
                                   </option>
@@ -143,8 +143,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_photo_upload" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/photo.svg" />
+                            <entry key="outputName" value="ic_music_player" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/music-player.svg" />
                           </map>
                         </option>
                       </PersistentState>

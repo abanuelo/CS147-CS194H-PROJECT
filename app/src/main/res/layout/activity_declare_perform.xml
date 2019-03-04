@@ -43,6 +43,7 @@
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
+        android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -125,29 +126,15 @@
                 android:textColorHint="@android:color/black" />
         </android.support.design.widget.TextInputLayout>
 
-        <ImageView
-            android:id="@+id/thumbnail"
-            android:src="@drawable/ic_photo_upload"
-            android:layout_width="110dp"
-            android:layout_height="100dp" />
-
-        <Button
-            android:id="@+id/upload_thumbnail"
-            android:text="Upload Video Thumbnail"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/startPerform"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/submitPerform"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:gravity="right"
-        android:text="Start recording"
+        android:text="Submit Performance"
         app:layout_constraintBottom_toTopOf="@id/navigationViewPerform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

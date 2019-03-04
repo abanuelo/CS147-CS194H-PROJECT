@@ -49,7 +49,7 @@ public class CollabHiFi2 extends AppCompatActivity {
                                                                                  startActivity(practice_intent);
                                                                                  break;
                                                                              case R.id.perform_nav:
-                                                                                 Intent perform_intent = new Intent(CollabHiFi2.this, DeclarePerform.class);
+                                                                                 Intent perform_intent = new Intent(CollabHiFi2.this, MyPerform.class);
                                                                                  finish();
                                                                                  startActivity(perform_intent);
                                                                                  break;

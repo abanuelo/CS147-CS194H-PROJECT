@@ -47,7 +47,7 @@ public class Profile extends AppCompatActivity {
     private TextView name, username, genre, instrument, posts, friends, days;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
-    private Button sign_out;
+    private Button sign_out, edit_profile;
     private boolean practiceBool, performBool, collabBool,dressed;
     private GifImageView animation;
     private GifDrawable drawable;
@@ -76,7 +76,7 @@ public class Profile extends AppCompatActivity {
                                  startActivity(practice_intent);
                                  break;
                              case R.id.perform_nav:
-                                 Intent perform_intent = new Intent(Profile.this, DeclarePerform.class);
+                                 Intent perform_intent = new Intent(Profile.this, MyPerform.class);
                                  finish();
                                  startActivity(perform_intent);
                                  break;
@@ -107,6 +107,7 @@ public class Profile extends AppCompatActivity {
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
         sign_out = (Button) findViewById(R.id.sign_out);
+        edit_profile = findViewById(R.id.edit_profile);
         posts = findViewById(R.id.posts);
         friends = findViewById(R.id.friends);
 
@@ -126,6 +127,7 @@ public class Profile extends AppCompatActivity {
             userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(profile_lookup);
 
             sign_out.setText("Message");
+            edit_profile.setVisibility(View.GONE);
             sign_out.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -200,18 +202,18 @@ public class Profile extends AppCompatActivity {
 
                 //Gets the Username and inserts it within textView
                 String t_username = dataSnapshot.child("username").getValue().toString().trim();
-                username.setText("User name: " + t_username);
+                username.setText("Username: " + t_username);
 
                 //Gets the Instruments to Populate the Instruments
                 String t_instruments = null;
                 for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
                     if (t_instruments == null){
-                        t_instruments = instrument.getKey() + ": " + instrument.getValue().toString().trim();
+                        t_instruments = instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
                     } else {
-                        t_instruments += ", " + instrument.getKey() + ": " + instrument.getValue().toString().trim();
+                        t_instruments += ", " + instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
                     }
                 }
-                instrument.setText("Instruments: " + t_instruments);
+                instrument.setText("Instrument(s): " + t_instruments);
 
                 //Lastly we are going to populate the Genres Category
                 String t_genres = null;
@@ -224,7 +226,7 @@ public class Profile extends AppCompatActivity {
                         }
                     }
                 }
-                genre.setText("Genre: " + t_genres);
+                genre.setText("Genre(s): " + t_genres);
 
                 int friends_count = 0;
                 for (DataSnapshot friends : dataSnapshot.child("Collaborations").child("Matches").getChildren()){

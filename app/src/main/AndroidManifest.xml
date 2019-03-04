@@ -4,10 +4,9 @@
     package="com.bignerdranch.android.pife11">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -19,14 +18,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Store" />
-        <activity android:name=".SelectVideoOnProfile.SelectVideoOnProfile" />
-        <activity android:name=".TutorialReward" />
-        <activity android:name=".GiveFeedback" />
-        <activity android:name=".Video" />
-        <activity android:name=".PracticeHiFi2" />
-        <activity android:name=".AddNewRoutine" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".UploadThumbnail"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Store"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SelectVideoOnProfile.SelectVideoOnProfile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TutorialReward"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".GiveFeedback"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Video"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PracticeHiFi2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddNewRoutine"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,10 +50,12 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -53,46 +64,63 @@
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-        </activity>
-        <!--<activity android:name=".PracticePlaying" />-->
-        <activity android:name=".CreateAccount" />
-        <!--<activity android:name=".peform" />-->
-        <!--<activity android:name=".Dashboard" />-->
-        <activity android:name=".CollabMain" />
-        <activity android:name=".SearchCollab" />
-        <activity android:name=".Profile" />
-        <activity android:name=".Instruments" />
-        <activity android:name=".Genres" />
-        <activity android:name=".Matches.Matches" />
-        <activity android:name=".Chat.Chat" />
-        <activity android:name=".MatchesChoice" />
-        <activity android:name=".Scheduler.ScheduleMain" />
-        <!--<activity android:name=".Scheduler.TuesdaySchedule" />-->
-        <!--<activity android:name=".Scheduler.WednesdaySchedule" />-->
-        <!--<activity android:name=".Scheduler.ThursdaySchedule" />-->
-        <!--<activity android:name=".Scheduler.FridaySchedule" />-->
-        <!--<activity android:name=".Scheduler.SundaySchedule" />-->
-        <!--<activity android:name=".Scheduler.SaturdaySchedule" />-->
-        <!--<activity android:name=".Scheduler.MondaySchedule" />-->
-        <activity android:name=".SelectAvatar" />
-        <activity android:name=".ChooseRoutineActivity" />
+        </activity> <!-- <activity android:name=".PracticePlaying" /> -->
+        <activity android:name=".CreateAccount"
+            android:screenOrientation="portrait"/> <!-- <activity android:name=".peform" /> -->
+        <!-- <activity android:name=".Dashboard" /> -->
+        <activity android:name=".CollabMain"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SearchCollab"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Profile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Instruments"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Genres"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Matches.Matches"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Chat.Chat"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MatchesChoice"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Scheduler.ScheduleMain"
+            android:screenOrientation="portrait"/> <!-- <activity android:name=".Scheduler.TuesdaySchedule" /> -->
+        <!-- <activity android:name=".Scheduler.WednesdaySchedule" /> -->
+        <!-- <activity android:name=".Scheduler.ThursdaySchedule" /> -->
+        <!-- <activity android:name=".Scheduler.FridaySchedule" /> -->
+        <!-- <activity android:name=".Scheduler.SundaySchedule" /> -->
+        <!-- <activity android:name=".Scheduler.SaturdaySchedule" /> -->
+        <!-- <activity android:name=".Scheduler.MondaySchedule" /> -->
+        <activity android:name=".SelectAvatar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChooseRoutineActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RewardsBoth"
             android:label="@string/title_activity_rewards_both"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".Trophies" /> <!-- <activity android:name=".RewardsShop" /> -->
-        <!--<activity android:name=".practice_goal_met" />-->
-        <activity android:name=".watch_performance" />
-        <activity android:name=".StartPerformance" />
-        <activity android:name=".CollabHiFi2" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Trophies"
+            android:screenOrientation="portrait"/> <!-- <activity android:name=".RewardsShop" /> -->
+        <!-- <activity android:name=".practice_goal_met" /> -->
+        <activity android:name=".watch_performance"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".StartPerformance"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CollabHiFi2"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a9c73533139ab62e421711b95cc12dea63a4de75" />
 
-        <activity android:name=".MyPerform" />
-        <activity android:name=".DeclarePerform" />
-        <activity android:name=".SendPerform" />
+        <activity android:name=".MyPerform"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DeclarePerform"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SendPerform"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
