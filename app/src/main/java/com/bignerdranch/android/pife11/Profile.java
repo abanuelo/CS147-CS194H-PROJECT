@@ -115,6 +115,31 @@ public class Profile extends AppCompatActivity {
         Intent intent = getIntent();
         final String profile_lookup = intent.getStringExtra("profileId");
         if (profile_lookup != null) {
+            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                                                         @Override
+                                                                         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                                                             switch (menuItem.getItemId()){
+                                                                                 case R.id.practice_nav:
+                                                                                     Intent practice_intent = new Intent(Profile.this, ChooseRoutineActivity.class);
+                                                                                     finish();
+                                                                                     startActivity(practice_intent);
+                                                                                     break;
+                                                                                 case R.id.perform_nav:
+                                                                                     Intent perform_intent = new Intent(Profile.this, MyPerform.class);
+                                                                                     finish();
+                                                                                     startActivity(perform_intent);
+                                                                                     break;
+                                                                                 case R.id.user_nav:
+                                                                                     Intent profile_intent = new Intent(Profile.this, Profile.class);
+                                                                                     finish();
+                                                                                     startActivity(profile_intent);
+                                                                                     break;
+                                                                             }
+                                                                             return true;
+                                                                         }
+                                                                     }
+            );
+            bottomNavigationView.setSelectedItemId(R.id.friends_nav);
 //            bottomNavigationView.setSelectedItemId(R.id.friends_nav);
             TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
             profile_id_view.setText("Profile Id: " + profile_lookup);
@@ -144,36 +169,7 @@ public class Profile extends AppCompatActivity {
         }
         else {
             profile_lookup2 = userId;
-            bottomNavigationView.setSelectedItemId(R.id.friends_nav);
-            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                                                                         @Override
-                                                                         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                                                                             switch (menuItem.getItemId()){
-                                                                                 case R.id.practice_nav:
-                                                                                     Intent practice_intent = new Intent(Profile.this, ChooseRoutineActivity.class);
-                                                                                     finish();
-                                                                                     startActivity(practice_intent);
-                                                                                     break;
-                                                                                 case R.id.perform_nav:
-                                                                                     Intent perform_intent = new Intent(Profile.this, MyPerform.class);
-                                                                                     finish();
-                                                                                     startActivity(perform_intent);
-                                                                                     break;
-                                                                                 case R.id.friends_nav:
-                                                                                     Intent collab_intent = new Intent(Profile.this, CollabHiFi2.class);
-                                                                                     finish();
-                                                                                     startActivity(collab_intent);
-                                                                                     break;
-                                                                                 case R.id.user_nav:
-                                                                                     Intent profile_intent = new Intent(Profile.this, Profile.class);
-                                                                                     finish();
-                                                                                     startActivity(profile_intent);
-                                                                                     break;
-                                                                             }
-                                                                             return true;
-                                                                         }
-                                                                     }
-            );
+
 
             TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
             profile_id_view.setText("Profile Id: " + userId);
@@ -232,7 +228,9 @@ public class Profile extends AppCompatActivity {
 
                 //Gets the Username and inserts it within textView
                 String t_username = dataSnapshot.child("username").getValue().toString().trim();
-                username.setText("Username: " + t_username);
+                TextView username2 = (TextView) findViewById(R.id.profile_username);
+
+                username2.setText("Username: " + t_username);
 
                 //Gets the Instruments to Populate the Instruments
                 String t_instruments = null;
@@ -243,9 +241,11 @@ public class Profile extends AppCompatActivity {
                         t_instruments += ", " + instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
                     }
                 }
-                instrument.setText("Instrument(s): " + t_instruments);
+
+                TextView instrument2 = (TextView) findViewById(R.id.profile_instruments);
+                instrument2.setText("Instrument(s): " + t_instruments);
                 if (t_instruments == "null" || t_instruments == null) {
-                    instrument.setVisibility(View.GONE);
+                    instrument2.setVisibility(View.GONE);
                 }
 
                 //Lastly we are going to populate the Genres Category
@@ -259,7 +259,8 @@ public class Profile extends AppCompatActivity {
                         }
                     }
                 }
-                genre.setText("Genre(s): " + t_genres);
+                TextView genre2 = (TextView) findViewById(R.id.profile_years);
+                genre2.setText("Genre(s): " + t_genres);
 
                 int friends_count = 0;
                 for (DataSnapshot friends : dataSnapshot.child("Collaborations").child("Matches").getChildren()){
@@ -456,10 +457,6 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        // Do Here what ever you want do on back press;
-    }
 
     public void goToStore(View view) {
         Intent practice_intent = new Intent(this, Store.class);

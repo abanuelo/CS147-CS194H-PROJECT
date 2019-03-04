@@ -109,7 +109,7 @@ public class Tab1Fragment extends Fragment {
 
 
                     if (dataSnapshot.child("username").getValue() != null){
-                        name = dataSnapshot.child("name").getValue().toString().trim();
+                        name = dataSnapshot.child("username").getValue().toString().trim();
                     }
                     if (dataSnapshot.child("profileImageURL").getValue() != null){
                         profileImageURL = dataSnapshot.child("profileImageURL").getValue().toString().trim();

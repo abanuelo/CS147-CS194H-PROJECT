@@ -152,7 +152,7 @@ public class SelectVideoOnProfile extends AppCompatActivity {
                     Intent sign_out_intent = new Intent(SelectVideoOnProfile.this, Profile.class);
                     sign_out_intent.putExtra("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
                     sign_out_intent.putExtra("videoUserId", videoUserId);
-                    finish();
+                    finishAffinity();
                     startActivity(sign_out_intent);
 
                 }

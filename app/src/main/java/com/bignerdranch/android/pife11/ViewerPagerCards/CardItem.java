@@ -10,8 +10,9 @@ public class CardItem {
     private String mGenreResourceText;
     private String mYearsResourceText;
     private String mInstrumentsResourceText;
+    private String userId;
 
-    public CardItem(String title, String genre, String years, String instruments, String genreText, String yearsText, String instrumentsText) {
+    public CardItem(String title, String genre, String years, String instruments, String genreText, String yearsText, String instrumentsText, String userId) {
         mTitleResource = title;
         //mTextResource = text;
         mGenreResource = genre;
@@ -20,6 +21,7 @@ public class CardItem {
         mGenreResourceText = genreText;
         mYearsResourceText = yearsText;
         mInstrumentsResourceText = instrumentsText;
+        this.userId = userId;
     }
 
     public String getGenreText(){
@@ -50,4 +52,6 @@ public class CardItem {
     public String getTitle() {
         return mTitleResource;
     }
+
+    public String getUserId() {return userId;}
 }

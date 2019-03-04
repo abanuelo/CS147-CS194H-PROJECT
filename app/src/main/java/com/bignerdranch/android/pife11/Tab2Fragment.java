@@ -140,7 +140,7 @@ public class Tab2Fragment extends Fragment   {
             populateCards();
             //We need to kinda get rid of Gerald...
 
-            start = new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing");
+            start = new CardItem("Gerald", "Genre", "Years", "Instrument", "pop", "2", "sing", "null");
             mCardAdapter.addCardItem(start);
             mCardAdapter.notifyDataSetChanged();
         } if (mCardAdapter.getCount() != 0) {
@@ -215,6 +215,9 @@ public class Tab2Fragment extends Fragment   {
                             String userKey = user.getKey();
                             if (shouldIncludeInNew(matches, userKey)) {
 
+                                Object obj = user.getRef().getKey();
+                                String userId = obj.toString();
+
                                 //Get user name from backend
                                 Object objectname = user.child("username").getValue();
                                 if (objectname == null) continue;
@@ -245,10 +248,10 @@ public class Tab2Fragment extends Fragment   {
                                     }
                                 }
                                 names.add(name);
-                                mCardAdapter.addCardItem(new CardItem(name, "Genre", "Years", "Instruments", genres, years, instruments));
+                                mCardAdapter.addCardItem(new CardItem(name, "Genre", "Years", "Instruments", genres, years, instruments, userId));
                                 mCardAdapter.notifyDataSetChanged();
 
-                                allPossibleFriends.addCardItem(new CardItem(name, "Genre", "Years", "Instruments", genres, years, instruments));
+                                allPossibleFriends.addCardItem(new CardItem(name, "Genre", "Years", "Instruments", genres, years, instruments, userId));
                             }
                         }
                         ds.setAllPossibleFriends(allPossibleFriends);
