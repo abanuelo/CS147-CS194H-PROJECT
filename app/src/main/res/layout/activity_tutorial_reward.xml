@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
-            android:text="You have received 15 coins for practicing your first time!"
+            android:text="You have received 15 coins for your first practice session."
             android:gravity="center"
             android:textColor="@color/black"/>
 
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:text="Practice for additional time to receive more coins!"
+        android:text="Practice more to receive more coins!"
         android:gravity="center"
         android:textColor="@color/black"/>
 
@@ -111,7 +111,7 @@
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:gravity="center"
-            android:text="This T-shirt commemerates that you've practiced for 15 seconds!"
+            android:text="This green T-shirt celebrates your first practice session!"
             android:layout_gravity="center"
             android:textColor="@color/black"/>
 
@@ -121,8 +121,9 @@
         android:layout_height="wrap_content"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:text="Now, let's spend your coins and obtain this commerative T-shirt in the store!"
+        android:text="Let's spend some coins to buy some hats!"
         android:layout_gravity="center"
         android:textColor="@color/black"/>
 
