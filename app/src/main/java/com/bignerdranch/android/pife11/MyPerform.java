@@ -167,9 +167,14 @@ public class MyPerform extends AppCompatActivity {
             videoUri = data.getData();
             video.setVideoURI(videoUri);
             video.start();
+            if (videoUri == null) {
+                Intent profile = new Intent(this, Profile.class);
+                startActivity(profile);
+            }
         } catch (Exception ex){
-
         }
+
+
     }
 
 //    public void download(View view){
