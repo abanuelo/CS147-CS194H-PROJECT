@@ -113,6 +113,7 @@ public class Tab2Fragment extends Fragment   {
         yearsAdapter = YearsFilter.getSelectedItem().toString().toLowerCase();
         if (yearsAdapter.contains("all")) yearsAdapter = "all";
 
+
         Button buttonOne = (Button) view.findViewById(R.id.applyFilter);
         buttonOne.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -215,7 +216,7 @@ public class Tab2Fragment extends Fragment   {
                             if (shouldIncludeInNew(matches, userKey)) {
 
                                 //Get user name from backend
-                                Object objectname = user.child("name").getValue();
+                                Object objectname = user.child("username").getValue();
                                 if (objectname == null) continue;
                                 String name = objectname.toString().trim();
                                 //Get user genre from backend

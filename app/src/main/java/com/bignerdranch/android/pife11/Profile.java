@@ -100,14 +100,6 @@ public class Profile extends AppCompatActivity {
 
         changeCoins();
 
-//        Button rewardShop = findViewById(R.id.shop_button);
-//        rewardShop.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent rewards_intent = new Intent(Profile.this, RewardsBoth.class);
-//                startActivity(rewards_intent);
-//            }
-//        });
 
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
@@ -152,6 +144,36 @@ public class Profile extends AppCompatActivity {
         }
         else {
             profile_lookup2 = userId;
+            bottomNavigationView.setSelectedItemId(R.id.friends_nav);
+            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                                                         @Override
+                                                                         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                                                             switch (menuItem.getItemId()){
+                                                                                 case R.id.practice_nav:
+                                                                                     Intent practice_intent = new Intent(Profile.this, ChooseRoutineActivity.class);
+                                                                                     finish();
+                                                                                     startActivity(practice_intent);
+                                                                                     break;
+                                                                                 case R.id.perform_nav:
+                                                                                     Intent perform_intent = new Intent(Profile.this, MyPerform.class);
+                                                                                     finish();
+                                                                                     startActivity(perform_intent);
+                                                                                     break;
+                                                                                 case R.id.friends_nav:
+                                                                                     Intent collab_intent = new Intent(Profile.this, CollabHiFi2.class);
+                                                                                     finish();
+                                                                                     startActivity(collab_intent);
+                                                                                     break;
+                                                                                 case R.id.user_nav:
+                                                                                     Intent profile_intent = new Intent(Profile.this, Profile.class);
+                                                                                     finish();
+                                                                                     startActivity(profile_intent);
+                                                                                     break;
+                                                                             }
+                                                                             return true;
+                                                                         }
+                                                                     }
+            );
 
             TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
             profile_id_view.setText("Profile Id: " + userId);
@@ -222,6 +244,9 @@ public class Profile extends AppCompatActivity {
                     }
                 }
                 instrument.setText("Instrument(s): " + t_instruments);
+                if (t_instruments == "null" || t_instruments == null) {
+                    instrument.setVisibility(View.GONE);
+                }
 
                 //Lastly we are going to populate the Genres Category
                 String t_genres = null;

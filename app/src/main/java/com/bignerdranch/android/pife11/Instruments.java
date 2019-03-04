@@ -225,12 +225,12 @@ public class Instruments extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //In the case the user has not selected any instruments
-                if ((boolean) userInstrumentInfo.get("bass") && (boolean) userInstrumentInfo.get("drum") && (boolean) userInstrumentInfo.get("flute") && (boolean) userInstrumentInfo.get("guitar") && (boolean) userInstrumentInfo.get("piano") && (boolean) userInstrumentInfo.get("sing") && (boolean) userInstrumentInfo.get("viola") && (boolean) userInstrumentInfo.get("violin")){
-                    Toast.makeText(Instruments.this, "Please select at least one instrument", Toast.LENGTH_SHORT).show();
-                } else {
+                if ((boolean) userInstrumentInfo.get("bass") || (boolean) userInstrumentInfo.get("drum") || (boolean) userInstrumentInfo.get("flute") || (boolean) userInstrumentInfo.get("guitar") || (boolean) userInstrumentInfo.get("piano") || (boolean) userInstrumentInfo.get("sing") || (boolean) userInstrumentInfo.get("viola") || (boolean) userInstrumentInfo.get("violin")){
                     registerInstruments();
                     Intent proceed_intent = new Intent(Instruments.this, Genres.class);
                     startActivity(proceed_intent);
+                } else {
+                    Toast.makeText(Instruments.this, "Please select at least one instrument", Toast.LENGTH_SHORT).show();
                 }
             }
         });
