@@ -22,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class GiveFeedback extends AppCompatActivity {
 
@@ -93,6 +94,7 @@ public class GiveFeedback extends AppCompatActivity {
                     storeInFirebase(ilikeItem, iwishItem, videoId, currentTime, currentTimeFormatted, username);
                     Log.d("TEXT", iliketext.getText().toString()); //returns text from textinput;
 
+                    saveToStats();
 
                     Intent sign_out_intent = new Intent(GiveFeedback.this, Profile.class);
                     finish();
@@ -103,6 +105,41 @@ public class GiveFeedback extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void saveToStats(){
+        userdb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+
+        userdb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean encountered = false;
+                for (DataSnapshot item : dataSnapshot.getChildren()){
+                    if(item.getKey().trim().equals("TutorialThree")){
+                        encountered = true;
+                        Long currentCommentsL = (Long) item.getValue();
+                        int currentComments = currentCommentsL.intValue();
+                        currentComments += 1;
+                        Log.d("Current Count", Integer.toString(currentComments));
+                        HashMap map = new HashMap();
+                        map.put("TutorialThree", currentComments);
+                        userdb.updateChildren(map);
+
+                    }
+                }
+                if (encountered == false){
+                    Log.d("Arrived here", "here");
+                    HashMap map = new HashMap();
+                    map.put("TutorialThree", 1);
+                    userdb.updateChildren(map);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void storeInFirebase(String ilike, String iwish, String videoId, String dateTim, String datetimeFormatted, String username){
