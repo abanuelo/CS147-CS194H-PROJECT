@@ -98,8 +98,8 @@ public class Store extends AppCompatActivity {
         yellowHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (yellowHatText.getText().equals("Purchased")){
-                    description.setText("Purchased");
+                if (yellowHatText.getText().equals("")){
+                    description.setText("");
                     buy.setVisibility(View.GONE);
                 } else {
                     description.setText("Press 'Buy Item' to purchase item");
@@ -117,8 +117,8 @@ public class Store extends AppCompatActivity {
         pinkHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pinkHatText.getText().equals("Purchased")){
-                    description.setText("Purchased");
+                if (pinkHatText.getText().equals("")){
+                    description.setText("");
                     buy.setVisibility(View.GONE);
                 } else {
                     description.setText("Press 'Buy Item' to purchase item");
@@ -136,8 +136,8 @@ public class Store extends AppCompatActivity {
         blueHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (blueHatText.getText().equals("Purchased")){
-                    description.setText("Purchased");
+                if (blueHatText.getText().equals("")){
+                    description.setText("");
                     buy.setVisibility(View.GONE);
                 } else {
                     description.setText("Press 'Buy Item' to purchase item");
@@ -156,8 +156,8 @@ public class Store extends AppCompatActivity {
         orangeHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (orangeHatText.getText().equals("Purchased")){
-                    description.setText("Purchased");
+                if (orangeHatText.getText().equals("")){
+                    description.setText("");
                     buy.setVisibility(View.GONE);
                 } else {
                     description.setText("Press 'Buy Item' to purchase item");
@@ -169,7 +169,6 @@ public class Store extends AppCompatActivity {
                 rewardType.getLayoutParams().width = 300;
                 price = 10;
                 items = "OrangeHat";
-                buy.setVisibility(View.VISIBLE);
                 top.setImageResource(R.drawable.orangetoptrans);
             }
         });
@@ -301,13 +300,13 @@ public class Store extends AppCompatActivity {
 
     private void changePriceTag(){
         if (items.equals("BlueHat")){
-            blueHatText.setText("Purchased");
+            blueHatText.setText("");
         } else if (items.equals("OrangeHat")){
-            orangeHatText.setText("Purchased");
+            orangeHatText.setText("");
         } else if (items.equals("PinkHat")){
-            pinkHatText.setText("Purchased");
+            pinkHatText.setText("");
         } else {
-            yellowHatText.setText("Purchased");
+            yellowHatText.setText("");
         }
     }
 
