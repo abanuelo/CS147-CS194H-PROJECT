@@ -1,15 +1,19 @@
 package com.bignerdranch.android.pife11.SelectVideoOnProfile;
 
 import android.content.Intent;
+import android.icu.text.IDNA;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DialogTitle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -35,6 +39,9 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
     private VideoView video;
     private StorageReference videoRef;
+    private DatabaseReference userDatabase;
+    private MediaController mediaController;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,29 +55,24 @@ public class SelectVideoOnProfile extends AppCompatActivity {
         final String currVideo = intent.getStringExtra("currentVideo");
         final String currentVideo = currVideo + ".3gp"; //test.3pg
 
-//        String[] splited = currentVideo.split("[.]");
-//        String prefix = splited[0]; //passed into createTempFile
-//        String suffix = splited[1]; //passed into createTempFile
-
         video = findViewById(R.id.videoView);
 
-        //find title of video under User/VideoInfo/VideoId/Title
-        DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(videoUserId).child(currVideo).child("Title");
-
-        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String title = (String) dataSnapshot.getValue();
-                TextView tv = findViewById(R.id.viewVideoTitle);
-                tv.setText(title);
-            }
+        video.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public boolean onTouch(View v, MotionEvent event) {
+                if (video.isPlaying()) {
+                    video.pause();
+                }
+                else {
+                    video.start();
+                }
+                return false;
             }
-        });
+        } );
 
+        TextView tv = (TextView) findViewById(R.id.viewVideoTitle);
+        tv.setText(intent.getStringExtra("title"));
         //Get the video from the database
         try{
             final File localFile = File.createTempFile(currentVideo, "3gp");
@@ -89,6 +91,20 @@ public class SelectVideoOnProfile extends AppCompatActivity {
         }
 
 
+        userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(videoUserId);
+        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String description = dataSnapshot.child("VideoInfo").child(currVideo).child("Info").getValue().toString();
+                EditText vd = (EditText) findViewById(R.id.VideoDescription);
+                vd.setText(description);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 
@@ -163,4 +179,12 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
 
     }
+
+
+//    public void playVideo(View v) {
+//        Log.d("PlayVideo", "PlayVideo is Working!!");
+//        if (video.isPlaying()) return;
+//        video.seekTo(0);
+//        video.start();
+//    }
 }

@@ -5,7 +5,8 @@
     app:cardUseCompatPadding="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:theme="@style/MyTheme">
 
     <FrameLayout
         android:id="@+id/frame"
@@ -23,16 +24,37 @@
 
             <TextView
                 android:id="@+id/name"
-                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Card title" />
+                android:text="Card title"
+                android:textColor="@color/black"/>
 
-            <ImageView
-                android:src="@drawable/ic_nerdy_monster_baby"
-                android:layout_width="150dp"
-                android:layout_marginTop="12dp"
-                android:layout_height="150dp" />
+            <LinearLayout
+                android:id="@+id/view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/jemiTop"
+                    android:layout_marginTop="-5dp"
+                    android:layout_width="90dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/undressedtoptrans"></ImageView>
+                <ImageView
+                    android:id="@+id/jemiBottom"
+                    android:layout_width="90dp"
+                    android:layout_marginTop="-20.5dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/undressedbottomtrans"></ImageView>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_gravity="center_horizontal"
@@ -48,8 +70,8 @@
                     android:layout_height="match_parent"
                     android:textAlignment="center"
                     android:layout_weight="1"
-                    android:text="Genre"
-                    android:textColor="@android:color/white" />
+                    android:text="Genres"
+                    />
 
                 <TextView
                     android:layout_gravity="center_horizontal"
@@ -58,7 +80,7 @@
                     android:textAlignment="center"
                     android:layout_weight="1"
                     android:text="Years"
-                    android:textColor="@android:color/white" />
+                    />
 
                 <TextView
                     android:layout_gravity="center_horizontal"
@@ -67,7 +89,7 @@
                     android:textAlignment="center"
                     android:layout_weight="1"
                     android:text="Instruments"
-                    android:textColor="@android:color/white" />
+                    />
             </LinearLayout>
 
             <!--here is where firebase data gets populated-->
@@ -86,8 +108,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:text="Genre"
-                    android:textColor="@android:color/white" />
+                    android:text="Genre" />
 
                 <TextView
                     android:layout_gravity="center_horizontal"
@@ -96,8 +117,7 @@
                     android:layout_height="match_parent"
                     android:textAlignment="center"
                     android:layout_weight="1"
-                    android:text="Years"
-                    android:textColor="@android:color/white" />
+                    android:text="Years" />
 
                 <TextView
                     android:layout_gravity="center_horizontal"
@@ -106,8 +126,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Instruments"
-                    android:textColor="@android:color/white" />
+                    android:text="Instruments" />
             </LinearLayout>
 
             <!--<TextView-->
@@ -122,6 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:theme="@style/AppTheme.RoundedCornerMaterialButton"
                 android:text="Collab" />
             <!--android:background="@drawable/grey_buttonoval"-->
         </LinearLayout>

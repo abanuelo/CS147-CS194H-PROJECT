@@ -9,7 +9,7 @@
     <color name="boxStrokeColor">#000000</color>
     <color name="background">#FFFAFA</color>
     <color name="textColor">#000000</color>
-    <color name="cardbackground">@color/btn2</color> <!--Analogous1-->
+    <color name="cardbackground">#DCDCDC</color> <!--Analogous1-->
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#990D94</color>
     <color name="colorAccent2">#4426A3</color>

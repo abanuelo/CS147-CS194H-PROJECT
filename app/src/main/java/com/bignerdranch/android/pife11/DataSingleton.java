@@ -1,6 +1,7 @@
 package com.bignerdranch.android.pife11;
 
 import android.support.annotation.NonNull;
+import android.util.Pair;
 
 import com.bignerdranch.android.pife11.ViewerPagerCards.CardPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +22,7 @@ public class DataSingleton {
     private static DatabaseReference userDatabase;
     private static FirebaseAuth auth;
 
-    private static CardPagerAdapter allPossibleFriends;
+    private static CardPagerAdapter allPossibleFriends = null;
 
 
     private static DataSingleton instance = new DataSingleton();
@@ -34,7 +35,7 @@ public class DataSingleton {
         allPossibleFriends = new CardPagerAdapter();
         //The info of the actual user
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-
+        if (avatarClothes == null) avatarClothes = new Pair(0, 0);
         return instance;
     }
 
@@ -48,6 +49,31 @@ public class DataSingleton {
 
     //variables
     private ArrayList<ArrayList<String>> myListOfRoutines;
+
+    public Pair getAvatarClothes() {
+        return avatarClothes;
+    }
+
+    public void setAvatarClothes(Pair avatarClothes) {
+
+
+
+        Map avatarInfo = new HashMap();
+        avatarInfo.put("hat", avatarClothes.first);
+        avatarInfo.put("shirt", avatarClothes.second);
+
+
+        System.out.println("Debugging the avatarInfo: " + avatarInfo.toString());
+
+
+        //Adding to firebase
+        DatabaseReference routinesDB = userDatabase.child("AvatarClothes");
+        routinesDB.updateChildren(avatarInfo);
+
+        this.avatarClothes = avatarClothes;
+    }
+
+    private static Pair avatarClothes = null;
 
     public long getPracticeLength() {
         return practiceLength;

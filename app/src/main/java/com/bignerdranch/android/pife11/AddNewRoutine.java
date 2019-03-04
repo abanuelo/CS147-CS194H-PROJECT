@@ -24,6 +24,7 @@ public class AddNewRoutine extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_routine);
         lv = (ListView) findViewById(R.id.listOfGoals);
         listOfGoals = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, routine);
+
         lv.setAdapter(listOfGoals);
     }
 
