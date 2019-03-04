@@ -32,7 +32,7 @@ public class DataSingleton {
     public static DataSingleton getInstance() {
         auth = FirebaseAuth.getInstance();
         String userId = auth.getCurrentUser().getUid();
-        if (allPossibleFriends == null) allPossibleFriends = new CardPagerAdapter();
+        allPossibleFriends = new CardPagerAdapter();
         //The info of the actual user
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
         if (avatarClothes == null) avatarClothes = new Pair(0, 0);
