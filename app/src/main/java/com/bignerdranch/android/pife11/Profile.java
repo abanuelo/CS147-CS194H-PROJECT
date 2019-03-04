@@ -354,6 +354,11 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+    }
+
     public void goToStore(View view) {
         Intent practice_intent = new Intent(this, Store.class);
         startActivity(practice_intent);

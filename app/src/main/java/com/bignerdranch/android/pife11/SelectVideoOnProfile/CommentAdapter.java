@@ -33,6 +33,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         username.setText(comment.user);
         likes.setText(comment.likes);
         wishes.setText(comment.wishes);
+
         // Return the completed view to render on screen
         return convertView;
     }

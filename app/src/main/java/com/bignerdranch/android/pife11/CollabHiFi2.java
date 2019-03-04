@@ -65,6 +65,12 @@ public class CollabHiFi2 extends AppCompatActivity {
         );
 
     }
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+    }
+
     private void checkIfTaskComplete(){
         final String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
