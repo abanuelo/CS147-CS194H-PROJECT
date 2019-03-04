@@ -3,6 +3,7 @@ package com.bignerdranch.android.pife11;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -47,6 +48,20 @@ public class AddNewRoutine extends AppCompatActivity {
         EditText titleView = (EditText) findViewById(R.id.inputTitle);
         String title = titleView.getText().toString();
         //System.out.println("Old Add:" + routine.toString());
+
+        boolean missingData = false;
+
+        if (TextUtils.isEmpty(title)) {
+            titleView.setError("Please add a routine title.");
+            missingData = true;
+        }
+        if (routine.isEmpty()) {
+            EditText input = (EditText) findViewById(R.id.newGoal);
+            input.setError("Please add at least 1 goal to your routine.");
+            missingData = true;
+        }
+        if (missingData) return;
+
 
         DataSingleton ds = DataSingleton.getInstance();
         ArrayList<ArrayList<String>> myRoutines = ds.getRoutinesList();

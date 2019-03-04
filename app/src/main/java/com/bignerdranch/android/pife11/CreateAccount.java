@@ -90,19 +90,19 @@ public class CreateAccount extends AppCompatActivity {
 
                 Boolean errorFree = true;
                 if (TextUtils.isEmpty(name.getText().toString())) {
-                    name.setError("I like comment is required");
+                    name.setError("Please input your name.");
                     errorFree = false;
                 }
                 if (TextUtils.isEmpty(username.getText().toString())) {
-                    username.setError("I wish comment is required");
+                    username.setError("Please input an username.");
                     errorFree = false;
                 }
                 if (TextUtils.isEmpty(email.getText().toString())) {
-                    email.setError("I wish comment is required");
+                    email.setError("Please input an email address.");
                     errorFree = false;
                 }
                 if (TextUtils.isEmpty(password.getText().toString())) {
-                    password.setError("I wish comment is required");
+                    password.setError("Please set a password. Passwords must be at least 6 characters.");
                     errorFree = false;
                 }
                 if (!errorFree) {return;}
