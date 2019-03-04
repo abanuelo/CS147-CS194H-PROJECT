@@ -146,6 +146,8 @@ public class MyPerform extends AppCompatActivity {
                 startActivity(profile);
             }
         } catch (Exception ex){
+            Intent profile = new Intent(this, Profile.class);
+            startActivity(profile);
         }
     }
 }

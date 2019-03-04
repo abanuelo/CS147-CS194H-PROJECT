@@ -1,16 +1,19 @@
 package com.bignerdranch.android.pife11.ViewerPagerCards;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.DataSingleton;
@@ -95,7 +98,7 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
             @Override
             public void onClick(View view) {
 
-                usersDb.addListenerForSingleValueEvent(new ValueEventListener() {
+                usersDb.addValueEventListener(new ValueEventListener() {
                     boolean hasChanged = false;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -159,6 +162,80 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         GenreText.setText(item.getGenreText());
         YearsText.setText(item.getYearsText());
         InstrumentText.setText(item.getInstrumentsText());
+
+
+        changeAvatarClothes(item, view);
     }
 
+
+
+    private void changeAvatarClothes(CardItem item, View view){
+        final View viewForAvatar = view;
+        String currentUserId = item.getUserId();
+        DatabaseReference avatarDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("AvatarClothes");
+        avatarDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    System.out.println("Datasnapshot:" + dataSnapshot.getValue().toString());
+
+                    Long hatL = (Long) dataSnapshot.child("hat").getValue();
+                    int hat = hatL.intValue();
+                    System.out.println("What do we have here: hat OG: " + hat);
+                    Long shirtL = (Long) dataSnapshot.child("shirt").getValue();
+                    int shirt = shirtL.intValue();
+                    System.out.println("What do we have here: shirt OG: " + shirt);
+
+                    DataSingleton ds = DataSingleton.getInstance();
+                    ds.setAvatarClothes(new Pair(hat, shirt));
+
+                    changeHat(hat, viewForAvatar);
+                    changeShirt(shirt, viewForAvatar);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void changeHat(int hat, View view){
+        System.out.println("What do we have here: hat: " + hat);
+        // Table of contents: 0 - no hat, 1 - blue, 2 - orange, 3 - pink, 4 - yellow
+        ImageView hatImg = (ImageView) view.findViewById(R.id.jemiTop);
+        Drawable myDraw = view.getResources().getDrawable(R.drawable.yellowtoptrans);
+
+        if (hat == 0) {
+            myDraw = view.getResources().getDrawable(R.drawable.undressedtoptrans);
+        } else if (hat == 1) {
+            myDraw = view.getResources().getDrawable(R.drawable.bluetoptrans);
+        } else if (hat == 2) {
+            myDraw = view.getResources().getDrawable(R.drawable.orangetoptrans);
+        } else if (hat == 3) {
+            myDraw = view.getResources().getDrawable(R.drawable.pinktoptrans);
+        }
+        hatImg.setImageDrawable(myDraw);
+    }
+
+    private void changeShirt(int shirt, View view) {
+        System.out.println("What do we have here: shirt: " + shirt);
+        // Table of contents: 0 - no shirt, 1 - green, 2 - pink, 3 - yellow, 4 - brown
+        ImageView shirtImg = (ImageView) view.findViewById(R.id.jemiBottom);
+
+        Drawable myDraw = view.getResources().getDrawable(R.drawable.brownbottomtrans);
+
+        if (shirt == 0) {
+            myDraw = view.getResources().getDrawable(R.drawable.undressedbottomtrans);
+        } else if (shirt == 1) {
+            myDraw = view.getResources().getDrawable(R.drawable.greenbottomtrans);
+        } else if (shirt == 2) {
+            myDraw = view.getResources().getDrawable(R.drawable.pinkbottomtrans);
+        } else if (shirt == 3) {
+            myDraw = view.getResources().getDrawable(R.drawable.yellowbottomtrans);
+        }
+        shirtImg.setImageDrawable(myDraw);
+
+    }
 }
