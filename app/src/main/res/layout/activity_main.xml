@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:theme="@style/MyTheme"
+    android:background="@drawable/renew_background"
     >
 
 
@@ -102,7 +102,7 @@
             android:layout_weight="1"
             android:hint="Don't have an account?   "
             android:textAlignment="textEnd"
-            android:textColor="@color/black"
+            android:textColor="@color/bodyTextColor"
             android:textSize="16sp" />
 
         <TextView
@@ -112,8 +112,8 @@
             android:layout_weight="1"
             android:hint="Register Here!"
             android:textAlignment="textStart"
+            android:textColor="@color/bodyTextColor"
             android:textSize="16sp"
-            android:textColor="@color/black"
             android:textStyle="bold" />
 
     </LinearLayout>
