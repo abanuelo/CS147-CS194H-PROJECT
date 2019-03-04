@@ -16,12 +16,12 @@
             android:id="@+id/ShopTitle"
             android:paddingTop="10dp"
             android:text="Shop"
+            android:layout_weight="3"
             android:fontFamily="@font/opensans_semibold"
             android:gravity="right"
             android:textColor="@color/black"
             android:textSize="30dp"
-            android:layout_weight="3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
         <ImageView
@@ -30,17 +30,19 @@
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
+            android:paddingLeft="40dp"
             android:src="@drawable/ic_coins" />
 
         <TextView
             android:id="@+id/user_coins"
             android:textSize="20dp"
             android:paddingLeft="10dp"
+            android:layout_weight="1"
             android:text="Coins"
             android:fontFamily="@font/opensans_semibold"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
@@ -394,7 +396,7 @@
 
     <LinearLayout
         android:id="@+id/ItemDetail"
-        android:weightSum="2"
+        android:weightSum="1"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -402,8 +404,9 @@
         <ImageView
             android:id="@+id/type_unlock"
             android:src="@drawable/clock_trophy"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:layout_height="wrap_content" />
 
         <LinearLayout
@@ -438,6 +441,10 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationViewPerform"
