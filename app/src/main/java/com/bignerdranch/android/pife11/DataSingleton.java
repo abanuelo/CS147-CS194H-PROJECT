@@ -56,7 +56,7 @@ public class DataSingleton {
 
     public void setAvatarClothes(Pair avatarClothes) {
 
-
+        System.out.println("NOW CHANGING STUFF:" + avatarClothes.toString());
 
         Map avatarInfo = new HashMap();
         avatarInfo.put("hat", avatarClothes.first);
