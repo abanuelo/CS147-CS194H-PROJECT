@@ -97,7 +97,7 @@ public class GiveFeedback extends AppCompatActivity {
                     saveToStats();
 
                     Intent sign_out_intent = new Intent(GiveFeedback.this, Profile.class);
-                    finish();
+                    finishAffinity();
                     startActivity(sign_out_intent);
                 }
 

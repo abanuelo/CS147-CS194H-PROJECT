@@ -208,7 +208,7 @@ public class Genres extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ((boolean) userGenreInfo.get("blues") && (boolean) userGenreInfo.get("classical") && (boolean) userGenreInfo.get("country") && (boolean) userGenreInfo.get("edm") && (boolean) userGenreInfo.get("hiphop") && (boolean) userGenreInfo.get("jazz")  && (boolean) userGenreInfo.get("pop") && (boolean) userGenreInfo.get("rock")){
+                if ((boolean) userGenreInfo.get("blues") || (boolean) userGenreInfo.get("classical") || (boolean) userGenreInfo.get("country") || (boolean) userGenreInfo.get("edm") || (boolean) userGenreInfo.get("hiphop") || (boolean) userGenreInfo.get("jazz")  || (boolean) userGenreInfo.get("pop") || (boolean) userGenreInfo.get("rock")){
                     Toast.makeText(Genres.this, "Please select at least one genre!", Toast.LENGTH_SHORT).show();
                 } else {
                     registerGenres();
