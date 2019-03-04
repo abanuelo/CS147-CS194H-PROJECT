@@ -84,7 +84,7 @@
                     <ImageButton
                         android:background="@drawable/jemi_tiny_blue_hat"
                         android:id="@+id/first_item"
-                        android:src="#aaffffff"
+                        android:src="#00ffffff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -109,7 +109,7 @@
                     <ImageButton
                         android:id="@+id/second_item"
                         android:background="@drawable/jemi_tiny_orange_hat"
-                        android:src="#aaffffff"
+                        android:src="#00ffffff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -133,7 +133,7 @@
                     <ImageButton
                         android:background="@drawable/pinkhattrans"
                         android:id="@+id/third_item"
-                        android:src="#aaffffff"
+                        android:src="#00ffffff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -156,7 +156,7 @@
                     <ImageButton
                         android:id="@+id/fourth_item"
                         android:background="@drawable/yellowhattrans"
-                        android:src="#aaffffff"
+                        android:src="#00ffffff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -248,7 +248,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/jemi_shirt_pink"
-                        android:src="#aaffffff" />
+                        android:src="#00ffffff" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -272,7 +272,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/yellowshirttrans"
-                        android:src="#aaffffff" />
+                        android:src="#00ffffff" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -295,7 +295,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/brownshirttrans"
-                        android:src="#aaffffff" />
+                        android:src="#00ffffff" />
 
                     <TextView
                         android:layout_width="wrap_content"
