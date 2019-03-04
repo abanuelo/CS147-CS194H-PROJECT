@@ -39,7 +39,7 @@ public class DeclarePerform extends AppCompatActivity {
     private Button Finish;
     private AppCompatEditText title, info, genre, instrument;
     private String uid, videoId;
-    private DatabaseReference userDatabase;
+    private DatabaseReference userDatabase0, userDatabase;
 
 
     @Override
@@ -52,8 +52,11 @@ public class DeclarePerform extends AppCompatActivity {
         genre = findViewById(R.id.GenreText);
         instrument = findViewById(R.id.InstrumentText);
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("VideoInfo").child(videoId);
         videoId = getIntent().getStringExtra("videoId");
+        userDatabase0 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("VideoInfo");
+        System.out.println("MOOOOO: " + videoId);
+        userDatabase = userDatabase0.child(videoId);
+
 
         //Need to grab the text files from these EditTexts and insert them into Firebase?
 
