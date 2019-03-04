@@ -227,7 +227,9 @@ public class Profile extends AppCompatActivity {
 //                name.setText(t_name);
 
                 //Gets the Username and inserts it within textView
-                String t_username = dataSnapshot.child("username").getValue().toString().trim();
+                Object obj = dataSnapshot.child("username").getValue();
+                if (obj == null) return;
+                String t_username = obj.toString().trim();
                 TextView username2 = (TextView) findViewById(R.id.profile_username);
 
                 username2.setText("Username: " + t_username);

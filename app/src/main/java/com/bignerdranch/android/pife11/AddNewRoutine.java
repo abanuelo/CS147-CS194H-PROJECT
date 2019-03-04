@@ -37,8 +37,7 @@ public class AddNewRoutine extends AppCompatActivity {
         lv.setAdapter(listOfGoals);
         input.setHint("");
         input.setText("");
-        //Toast t = Toast.makeText(getApplicationContext(), newestGoal + " has been added to your routine", Toast.LENGTH_SHORT);
-        //t.show();
+
     }
 
     public void finishRoutine(View view){

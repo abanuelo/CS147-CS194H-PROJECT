@@ -147,12 +147,12 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
     private void bind(CardItem item, View view) {
         TextView titleTextView = (TextView) view.findViewById(R.id.name);
-        TextView Genre = (TextView) view.findViewById(R.id.GenreTitle);
-        TextView Years = (TextView) view.findViewById(R.id.YearsTitle);
-        TextView Instruments = (TextView) view.findViewById(R.id.InstrumentTitle);
-        TextView GenreText = (TextView) view.findViewById(R.id.genre);
-        TextView YearsText = (TextView) view.findViewById(R.id.years);
-        TextView InstrumentText = (TextView) view.findViewById(R.id.instruments);
+        TextView Genre = (TextView) view.findViewById(R.id.genre);
+        TextView Years = (TextView) view.findViewById(R.id.years);
+        TextView Instruments = (TextView) view.findViewById(R.id.instruments);
+        TextView GenreText = (TextView) view.findViewById(R.id.GenreTitle);
+        TextView YearsText = (TextView) view.findViewById(R.id.YearsTitle);
+        TextView InstrumentText = (TextView) view.findViewById(R.id.InstrumentTitle);
 
 
         titleTextView.setText(item.getTitle());

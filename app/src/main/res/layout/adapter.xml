@@ -137,8 +137,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:theme="@style/AppTheme.RoundedCornerMaterialButton"
                 android:textColor="@color/white"
+                android:background="@color/colorPrimary"
                 android:text="Collab" />
             <!--android:background="@drawable/grey_buttonoval"-->
         </LinearLayout>
@@ -150,7 +150,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="-5dp" />
-        <!--android:src="@drawable/ic_bookmark_24dp" />-->
 
     </FrameLayout>
 
