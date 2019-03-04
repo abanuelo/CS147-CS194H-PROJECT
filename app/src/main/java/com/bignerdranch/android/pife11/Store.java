@@ -73,10 +73,6 @@ public class Store extends AppCompatActivity {
         yellowHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                yellowHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
-                pinkHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                blueHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                orangeHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 top.setImageResource(R.drawable.yellowtoptrans);
             }
         });
@@ -84,10 +80,6 @@ public class Store extends AppCompatActivity {
         pinkHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pinkHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
-                yellowHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                blueHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                orangeHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 top.setImageResource(R.drawable.pinktoptrans);
             }
         });
@@ -95,10 +87,6 @@ public class Store extends AppCompatActivity {
         blueHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                blueHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
-                yellowHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                orangeHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                pinkHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 top.setImageResource(R.drawable.bluetoptrans);
             }
         });
@@ -106,10 +94,6 @@ public class Store extends AppCompatActivity {
         orangeHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                orangeHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
-                yellowHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                pinkHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                blueHat.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 top.setImageResource(R.drawable.orangetoptrans);
             }
         });
@@ -118,10 +102,6 @@ public class Store extends AppCompatActivity {
         greenShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                greenShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
-                pinkShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                yellowShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                brownShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 bottom.setImageResource(R.drawable.greenbottomtrans);
             }
         });
@@ -129,10 +109,6 @@ public class Store extends AppCompatActivity {
         pinkShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pinkShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
-                yellowShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                brownShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                greenShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 bottom.setImageResource(R.drawable.pinkbottomtrans);
             }
         });
@@ -140,10 +116,6 @@ public class Store extends AppCompatActivity {
         yellowShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                yellowShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
-                brownShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                greenShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                pinkShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 bottom.setImageResource(R.drawable.yellowbottomtrans);
             }
         });
@@ -151,10 +123,6 @@ public class Store extends AppCompatActivity {
         brownShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                brownShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
-                greenShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                pinkShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                yellowShirt.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 bottom.setImageResource(R.drawable.brownbottomtrans);
             }
         });

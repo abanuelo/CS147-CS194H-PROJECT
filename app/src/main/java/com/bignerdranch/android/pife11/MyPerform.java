@@ -109,6 +109,12 @@ public class MyPerform extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent profile = new Intent(this, Profile.class);
+        startActivity(profile);
+    }
+
     public void upload(){
         UploadTask uploadTask = videoRef.putFile(videoUri);
         uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
