@@ -57,6 +57,7 @@ public class UploadThumbnail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent fillOutPerformanceInfo = new Intent(UploadThumbnail.this, DeclarePerform.class);
+                fillOutPerformanceInfo.putExtra("videoId", videoId);
                 uploadToBackend();
                 startActivity(fillOutPerformanceInfo);
             }

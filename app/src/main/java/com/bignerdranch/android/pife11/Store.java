@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,12 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Store extends AppCompatActivity {
 
-    private ImageView top, bottom;
+    private TextView description;
+    private ImageView top, bottom, rewardType;
     private String currentUserId;
     private Handler handler;
     private DatabaseReference userDb;
-    private Button yellowHat, pinkHat, blueHat, orangeHat;
-    private Button greenShirt, pinkShirt, yellowShirt, brownShirt;
+    private ImageButton yellowHat, pinkHat, blueHat, orangeHat;
+    private ImageButton greenShirt, pinkShirt, yellowShirt, brownShirt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,12 @@ public class Store extends AppCompatActivity {
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed");
         handler = new Handler();
 
+        //Description
+        description = findViewById(R.id.rewardDescription);
+
+        //Reward Type ImageView
+        rewardType = findViewById(R.id.type_unlock);
+
         //Find the Avatar Portions to Change
         top = findViewById(R.id.avatarTop);
         bottom = findViewById(R.id.avatarBottom);
@@ -47,12 +57,10 @@ public class Store extends AppCompatActivity {
         yellowHat = findViewById(R.id.fourth_item);
         pinkHat = findViewById(R.id.third_item);
         blueHat = findViewById(R.id.first_item);
-        blueHat.setBackgroundColor(Color.parseColor("#D3D3D3"));
         orangeHat = findViewById(R.id.second_item);
 
         //Find the shirts in the XML File
         greenShirt = findViewById(R.id.first_item_shirt);
-        greenShirt.setBackgroundColor(Color.parseColor("#D3D3D3"));
         pinkShirt = findViewById(R.id.second_item_shirt);
         yellowShirt = findViewById(R.id.third_item_shirt);
         brownShirt = findViewById(R.id.fourth_item_shirt);
@@ -146,6 +154,37 @@ public class Store extends AppCompatActivity {
                 bottom.setImageResource(R.drawable.brownbottomtrans);
             }
         });
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
+        bottomNavigationView.setSelectedItemId(R.id.user_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                                                     @Override
+                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                                                         switch (menuItem.getItemId()){
+                                                                             case R.id.friends_nav:
+                                                                                 Intent collab = new Intent(Store.this, CollabHiFi2.class);
+                                                                                 finish();
+                                                                                 startActivity(collab);
+                                                                             case R.id.practice_nav:
+                                                                                 Intent practice_intent = new Intent(Store.this, ChooseRoutineActivity.class);
+                                                                                 finish();
+                                                                                 startActivity(practice_intent);
+                                                                                 break;
+                                                                             case R.id.perform_nav:
+                                                                                 Intent perform_intent = new Intent(Store.this, MyPerform.class);
+                                                                                 finish();
+                                                                                 startActivity(perform_intent);
+                                                                                 break;
+                                                                             case R.id.user_nav:
+                                                                                 Intent profile_intent = new Intent(Store.this, Profile.class);
+                                                                                 finish();
+                                                                                 startActivity(profile_intent);
+                                                                                 break;
+                                                                         }
+                                                                         return true;
+                                                                     }
+                                                                 }
+        );
     }
 }
 

@@ -11,6 +11,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,9 +33,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+
 public class DeclarePerform extends AppCompatActivity {
     private Button Finish;
-    private EditText title, info, genre, instrument;
+    private AppCompatEditText title, info, genre, instrument;
+    private String uid, videoId;
+    private DatabaseReference userDatabase;
 
 
     @Override
@@ -45,43 +51,51 @@ public class DeclarePerform extends AppCompatActivity {
         info = findViewById(R.id.InfoText);
         genre = findViewById(R.id.GenreText);
         instrument = findViewById(R.id.InstrumentText);
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("VideoInfo").child(videoId);
+        videoId = getIntent().getStringExtra("videoId");
 
         //Need to grab the text files from these EditTexts and insert them into Firebase?
 
         Finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (TextUtils.isEmpty(title.getText().toString())){
+                    title.setError("Please insert title for your performance.");
+                    return;
+                }
+                if (TextUtils.isEmpty(info.getText().toString())){
+                    info.setError("Please insert info about your performance.");
+                    return;
+                }
+                if (TextUtils.isEmpty(genre.getText().toString())){
+                    genre.setError("Please insert genre of your performance");
+                    return;
+                }
+                if (TextUtils.isEmpty(instrument.getText().toString())){
+                    instrument.setError("Please specify the instrument you used during your performance.");
+                    return;
+                }
+
+                insertDataToFirebase();
+
                 Intent sendToFriends = new Intent(DeclarePerform.this, SendPerform.class);
+
+                finish();
                 startActivity(sendToFriends);
             }
         });
 
+    }
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
-        bottomNavigationView.setSelectedItemId(R.id.perform_nav);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                                                                     @Override
-                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                 switch (menuItem.getItemId()){
-                     case R.id.practice_nav:
-                         Intent practice_intent = new Intent(DeclarePerform.this, ChooseRoutineActivity.class);
-                         startActivity(practice_intent);
-                         break;
-                     case R.id.friends_nav:
-                         Intent collab_intent = new Intent(DeclarePerform.this, CollabHiFi2.class);
-                         startActivity(collab_intent);
-                         break;
-                     case R.id.user_nav:
-                         Intent profile_intent = new Intent(DeclarePerform.this, Profile.class);
-                         startActivity(profile_intent);
-                         break;
-                 }
-                 return true;
-             }
-         }
-        );
-
-        changeCoins();
+    private void insertDataToFirebase(){
+        HashMap map = new HashMap();
+        map.put("Title", title.getText().toString());
+        map.put("Info", info.getText().toString());
+        map.put("Genre", genre.getText().toString());
+        map.put("Instrument", instrument.getText().toString());
+        userDatabase.updateChildren(map);
     }
 
 
