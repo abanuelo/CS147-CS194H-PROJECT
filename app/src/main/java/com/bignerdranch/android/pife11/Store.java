@@ -99,7 +99,7 @@ public class Store extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (yellowHatText.getText().equals("")){
-                    description.setText("");
+                    description.setText("Purchased item");
                     buy.setVisibility(View.GONE);
                 } else {
                     description.setText("Press 'Buy Item' to purchase item");
@@ -118,7 +118,7 @@ public class Store extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (pinkHatText.getText().equals("")){
-                    description.setText("");
+                    description.setText("Purchased item");
                     buy.setVisibility(View.GONE);
                 } else {
                     description.setText("Press 'Buy Item' to purchase item");
@@ -137,7 +137,7 @@ public class Store extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (blueHatText.getText().equals("")){
-                    description.setText("");
+                    description.setText("Purchased item");
                     buy.setVisibility(View.GONE);
                 } else {
                     description.setText("Press 'Buy Item' to purchase item");
@@ -157,7 +157,7 @@ public class Store extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (orangeHatText.getText().equals("")){
-                    description.setText("");
+                    description.setText("Purchased item");
                     buy.setVisibility(View.GONE);
                 } else {
                     description.setText("Press 'Buy Item' to purchase item");
