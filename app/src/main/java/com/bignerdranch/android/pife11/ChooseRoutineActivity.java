@@ -116,6 +116,11 @@ public class ChooseRoutineActivity extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+    }
+
     private void populateRoutinesList() {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();

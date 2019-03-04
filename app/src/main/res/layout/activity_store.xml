@@ -384,6 +384,7 @@
                 android:id="@+id/buy"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/opensans_semibold"
+                android:theme="@style/AppTheme.RoundedCornerMaterialButton"
                 android:text="Buy Item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

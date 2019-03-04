@@ -64,14 +64,6 @@ public class UploadThumbnail extends AppCompatActivity {
         });
     }
 
-    private Uri getImageUri(Context context, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "test.3gp", null);
-        return Uri.parse(path);
-    }
-
-
     private void uploadToBackend(){
         //Firebase Storage Variables
         System.out.println("MOOOO DO we get here?");

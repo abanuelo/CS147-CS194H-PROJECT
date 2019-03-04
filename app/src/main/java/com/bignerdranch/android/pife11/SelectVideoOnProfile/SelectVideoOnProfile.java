@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DialogTitle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -52,6 +54,22 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
         video = findViewById(R.id.videoView);
 
+        //find title of video under User/VideoInfo/VideoId/Title
+        DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(videoUserId).child(currVideo).child("Title");
+
+        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String title = (String) dataSnapshot.getValue();
+                TextView tv = findViewById(R.id.viewVideoTitle);
+                tv.setText(title);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         //Get the video from the database
         try{
@@ -99,7 +117,7 @@ public class SelectVideoOnProfile extends AppCompatActivity {
                         String user = comment.child("user").getValue().toString().trim();
                         String userName = comment.child("username").getValue().toString().trim();
 
-                        adapter.add(new Comment(userName, date, like, wish));
+                        adapter.add(new Comment(userName, date, like, wish, user));
 
                     }
 
@@ -111,16 +129,12 @@ public class SelectVideoOnProfile extends AppCompatActivity {
                 }
             });
 
-//            Comment newComment2 = new Comment("Ab", "December 12th, 2019", "I like your fart lol", "I wish you looked at the camera");
-//            adapter.add(newComment2);
-
 
             exit_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent sign_out_intent = new Intent(SelectVideoOnProfile.this, Profile.class);
                     sign_out_intent.putExtra("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                    sign_out_intent.putExtra("videoId", currentVideo);
                     sign_out_intent.putExtra("videoUserId", videoUserId);
                     finish();
                     startActivity(sign_out_intent);

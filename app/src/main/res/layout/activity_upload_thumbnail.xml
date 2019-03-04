@@ -21,7 +21,6 @@
     <TextView
         android:paddingTop="20dp"
         android:textSize="25dp"
-        android:textColor="@color/black"
         android:text="Thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -30,6 +29,7 @@
     android:layout_marginTop="70dp"
     android:text="Upload"
     android:id="@+id/upload_thumb"
+        android:theme="@style/AppTheme.RoundedCornerMaterialButton"
     android:layout_width="120dp"
     android:layout_height="wrap_content" />
 
@@ -38,6 +38,7 @@
         android:layout_marginTop="90dp"
         android:text="Next"
         android:id="@+id/next"
+        android:theme="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content" />
 

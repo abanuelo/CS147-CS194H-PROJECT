@@ -117,11 +117,5 @@ public class GiveFeedback extends AppCompatActivity {
         matchDb.child("iwish").setValue(iwish);
         matchDb.child("date").setValue(datetimeFormatted);
         matchDb.child("username").setValue(username);
-
-
-
-
-
-
     }
 }

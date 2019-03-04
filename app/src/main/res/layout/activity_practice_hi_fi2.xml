@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PracticeHiFi2"
-    android:background="@drawable/practice_2"
     android:orientation="vertical">
 
     <TextView
@@ -59,7 +58,7 @@
         android:layout_gravity="center"
         android:text="Done"
         android:onClick="backHome"
-        android:background="@drawable/buttonoval"
+        android:theme="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_margin="20dp"
         />
 

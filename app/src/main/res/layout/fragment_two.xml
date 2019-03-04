@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Filter"
+            android:theme="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/applyFilter"/>
 
         <HorizontalScrollView
@@ -23,9 +24,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Spinner
+                android:paddingTop="12dp"
                 android:spinnerMode="dialog"
                 android:id="@+id/InstrumentFilter"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:textAlignment="center"
                 android:entries="@array/instrument_arrays"
                 android:prompt="@string/instrument_prompt"
@@ -33,19 +35,21 @@
                 android:layout_height="match_parent"></Spinner>
 
             <Spinner
+                android:paddingTop="12dp"
                 android:spinnerMode="dialog"
                 android:id="@+id/GenreFilter"
                 android:textAlignment="center"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:layout_width="wrap_content"
                 android:entries="@array/genre_arrays"
                 android:prompt="@string/genre_prompt"
                 android:layout_height="match_parent"></Spinner>
 
             <Spinner
+                android:paddingTop="12dp"
                 android:spinnerMode="dialog"
                 android:id="@+id/YearsFilter"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:textAlignment="center"
                 android:layout_width="wrap_content"
                 android:entries="@array/years_arrays"
@@ -88,4 +92,15 @@
         android:paddingRight="@dimen/card_padding"
         android:paddingBottom="30dp" />
 
-</android.support.design.widget.CoordinatorLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="175dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:text="Sorry, no users match these criteria."
+        android:id="@+id/noMatches"
+        android:visibility="gone"/>
+
+</LinearLayout>

@@ -7,7 +7,7 @@
     tools:context=".SelectVideoOnProfile.SelectVideoOnProfile">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/viewVideoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -21,21 +21,34 @@
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="wrap_content"
-        android:layout_height="550dp"
+        android:layout_height="450dp"
         android:minHeight="400dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@id/viewVideoTitle"
+        />
+
+    <View
+        android:id="@+id/DividerBetweenVideoAndComments"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/videoView"
+        app:layout_constraintBottom_toTopOf="@id/videoComments"
+        ></View>
 
     <ListView
+        android:paddingTop="10dp"
         android:id="@+id/videoComments"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/videoView"
+        app:layout_constraintTop_toBottomOf="@id/DividerBetweenVideoAndComments"
         app:layout_constraintBottom_toBottomOf="parent"
 
         >
