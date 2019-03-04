@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -77,8 +78,7 @@ public class CreateAccount extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         register = (Button) findViewById(R.id.register);
 
-        //Image View Profile Image from Create Account Activity
-        profile_image = (ImageView) findViewById(R.id.profile_image);
+
 
         //Register User Inserted information to Firebase, if possible
         register.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +86,26 @@ public class CreateAccount extends AppCompatActivity {
             public void onClick(View view) {
                 final String f_email = email.getText().toString().trim();
                 final String f_password = password.getText().toString().trim();
+
+
+                Boolean errorFree = true;
+                if (TextUtils.isEmpty(name.getText().toString())) {
+                    name.setError("I like comment is required");
+                    errorFree = false;
+                }
+                if (TextUtils.isEmpty(username.getText().toString())) {
+                    username.setError("I wish comment is required");
+                    errorFree = false;
+                }
+                if (TextUtils.isEmpty(email.getText().toString())) {
+                    email.setError("I wish comment is required");
+                    errorFree = false;
+                }
+                if (TextUtils.isEmpty(password.getText().toString())) {
+                    password.setError("I wish comment is required");
+                    errorFree = false;
+                }
+                if (!errorFree) {return;}
 
                 auth.createUserWithEmailAndPassword(f_email, f_password).addOnCompleteListener(CreateAccount.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -101,15 +121,6 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
-        profile_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent getPic = new Intent(Intent.ACTION_PICK);
-                getPic.setType("image/*");
-                startActivityForResult(getPic, 1);
-            }
-        });
-
     }
     private void saveUserInfo(){
         String userId = auth.getCurrentUser().getUid();
@@ -117,6 +128,10 @@ public class CreateAccount extends AppCompatActivity {
         String t_username = username.getText().toString().trim();
         String t_email = email.getText().toString().trim();
         String t_password = password.getText().toString().trim();
+
+
+
+
 
         //Sets the Firebase Database for user
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
@@ -126,6 +141,7 @@ public class CreateAccount extends AppCompatActivity {
         userInfo.put("username", t_username);
         userInfo.put("email", t_email);
         userInfo.put("password", t_password);
+
 
         userDatabase.updateChildren(userInfo);
 

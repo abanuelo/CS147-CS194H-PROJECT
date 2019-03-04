@@ -70,18 +70,19 @@ public class GiveFeedback extends AppCompatActivity {
                 EditText iwishtext = iWish.getEditText();
 
 
-
-
                 String ilikeItem = iliketext.getText().toString();
                 String iwishItem = iwishtext.getText().toString();
 
+                Boolean errorFree = true;
                 if (TextUtils.isEmpty(ilikeItem)) {
                     iliketext.setError("I like comment is required");
+                    errorFree = false;
                 }
-                else if (TextUtils.isEmpty(iwishItem)) {
+                if (TextUtils.isEmpty(iwishItem)) {
                     iwishtext.setError("I wish comment is required");
+                    errorFree = false;
                 }
-                else {
+                if (errorFree) {
 
                     String currentTimeFormatted = Calendar.getInstance().getTime().toString();
                     String currentTime = currentTimeFormatted.replaceAll(":","");

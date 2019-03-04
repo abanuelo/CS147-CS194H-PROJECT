@@ -123,6 +123,7 @@ public class Profile extends AppCompatActivity {
         Intent intent = getIntent();
         final String profile_lookup = intent.getStringExtra("profileId");
         if (profile_lookup != null) {
+//            bottomNavigationView.setSelectedItemId(R.id.friends_nav);
             TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
             profile_id_view.setText("Profile Id: " + profile_lookup);
             profile_id_view.setVisibility(View.GONE);
@@ -184,9 +185,10 @@ public class Profile extends AppCompatActivity {
                 //Create intent
                 Intent intent = new Intent(Profile.this, SelectVideoOnProfile.class);
                 intent.putExtra("currentUserId", profile_lookup2);
-                intent.putExtra("currentVideo", item.getTitle());
+                intent.putExtra("currentVideo", item.getVideoTitle());
+                intent.putExtra("title", item.getTitle());
 //                intent.putExtra("image", item.getImage());
-                finish();
+//                finish();
                 //Start details activity
                 startActivity(intent);
             }
@@ -265,7 +267,7 @@ public class Profile extends AppCompatActivity {
                                 String filePath = localImageFile.getPath();
                                 Bitmap bitmap = BitmapFactory.decodeFile(filePath);
                                 //downloads bitmap finder
-                                arr.add(new ImageItem(bitmap, title));
+                                arr.add(new ImageItem(bitmap, title, videoId));
 
                                 gridAdapter.notifyDataSetChanged();
 

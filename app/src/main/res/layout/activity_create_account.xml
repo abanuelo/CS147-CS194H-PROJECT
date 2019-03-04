@@ -8,32 +8,12 @@
     android:background="@drawable/renew_background"
     tools:context=".CreateAccount">
 
-    <LinearLayout
-        android:layout_marginTop="75sp"
-        android:layout_width="200sp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
-
-        <ImageView
-            android:id="@+id/plus_incon"
-            android:src="@drawable/ic_iconmonstr_plus_circle_thin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="130sp"
-            android:layout_gravity="center_horizontal"/>
-
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="150sp"
-            android:layout_height="150sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="20sp"
-            android:src="@drawable/user_profile" />
-
-    </LinearLayout>
-
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/pife_logo"/>
 
     <EditText
         android:id="@+id/name"
