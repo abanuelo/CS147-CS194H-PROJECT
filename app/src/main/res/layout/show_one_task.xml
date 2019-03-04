@@ -13,5 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/isTaskDone"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:buttonTint="@color/colorPrimary"/>
 </LinearLayout>

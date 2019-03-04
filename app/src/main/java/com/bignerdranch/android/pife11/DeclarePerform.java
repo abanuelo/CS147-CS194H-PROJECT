@@ -64,22 +64,25 @@ public class DeclarePerform extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                boolean hasError = false;
+
                 if (TextUtils.isEmpty(title.getText().toString())){
                     title.setError("Please insert title for your performance.");
-                    return;
+                    hasError = true;
                 }
                 if (TextUtils.isEmpty(info.getText().toString())){
                     info.setError("Please insert info about your performance.");
-                    return;
+                    hasError = true;
                 }
                 if (TextUtils.isEmpty(genre.getText().toString())){
                     genre.setError("Please insert genre of your performance");
-                    return;
+                    hasError = true;
                 }
                 if (TextUtils.isEmpty(instrument.getText().toString())){
                     instrument.setError("Please specify the instrument you used during your performance.");
-                    return;
+                    hasError = true;
                 }
+                if (hasError) return;
 
                 insertDataToFirebase();
 
