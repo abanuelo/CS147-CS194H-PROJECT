@@ -16,7 +16,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="430dp"
         android:fontFamily="@font/proxima_novona_bold"
-        android:text="Select Your Creature"
+        android:text="Select Your Avatar"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +65,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:textColor="@color/white"
-        android:text="Your creature's happiness\ndepends on how much you practice"
+        android:text="Practice, perform, and collaborate with others to obtain accessories for your avatar."
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,8 @@
         app:layout_constraintBottom_toTopOf="@+id/derpy_creature"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/name"

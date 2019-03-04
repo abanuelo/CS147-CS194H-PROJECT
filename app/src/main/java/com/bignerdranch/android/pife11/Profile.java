@@ -370,6 +370,7 @@ public class Profile extends AppCompatActivity {
 //    }
 
     private void changeAvatarClothes(){
+        System.out.println("Mooooing here: change Avatar Clothes");
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference avatarDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("AvatarClothes");
         avatarDb.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -385,8 +386,8 @@ public class Profile extends AppCompatActivity {
                     int shirt = shirtL.intValue();
                     System.out.println("What do we have here: shirt OG: " + shirt);
 
-                    DataSingleton ds = DataSingleton.getInstance();
-                    ds.setAvatarClothes(new Pair(hat, shirt));
+                    //DataSingleton ds = DataSingleton.getInstance();
+                    //ds.setAvatarClothes(new Pair(hat, shirt));
 
                     changeHat(hat);
                     changeShirt(shirt);

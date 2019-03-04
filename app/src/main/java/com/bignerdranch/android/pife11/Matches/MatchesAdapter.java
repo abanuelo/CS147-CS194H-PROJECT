@@ -91,8 +91,8 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
                     int shirt = shirtL.intValue();
                     System.out.println("What do we have here: shirt OG: " + shirt);
 
-                    DataSingleton ds = DataSingleton.getInstance();
-                    ds.setAvatarClothes(new Pair(hat, shirt));
+                    //DataSingleton ds = DataSingleton.getInstance();
+                    //ds.setAvatarClothes(new Pair(hat, shirt));
 
 
                     changeHat(hat, holders.context);
