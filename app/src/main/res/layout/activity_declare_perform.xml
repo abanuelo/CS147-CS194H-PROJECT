@@ -8,39 +8,39 @@
     android:background="@android:color/white"
     tools:context=".DeclarePerform">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent">
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/my_toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="0dp"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--app:layout_constraintTop_toTopOf="parent">-->
 
-        <ImageView
-            android:id="@+id/coin_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_coins" />
+        <!--<ImageView-->
+            <!--android:id="@+id/coin_image"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:src="@drawable/ic_coins" />-->
 
-        <TextView
-            android:id="@+id/coins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Your coins" />
+        <!--<TextView-->
+            <!--android:id="@+id/coins"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:text="Your coins" />-->
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:layoutDirection="rtl"
-            android:paddingRight="30dp"
-            android:src="@drawable/shopping_cart"
-            android:onClick="goToStore"/>
-    </android.support.v7.widget.Toolbar>
+        <!--<ImageView-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:layoutDirection="rtl"-->
+            <!--android:paddingRight="30dp"-->
+            <!--android:src="@drawable/shopping_cart"-->
+            <!--android:onClick="goToStore"/>-->
+    <!--</android.support.v7.widget.Toolbar>-->
 
     <LinearLayout
         android:layout_marginTop="40dp"
@@ -135,23 +135,23 @@
         android:layout_marginStart="8dp"
         android:gravity="right"
         android:text="Submit Performance"
-        app:layout_constraintBottom_toTopOf="@id/navigationViewPerform"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigationViewPerform"
-        style="@style/Widget.Design.BottomNavigationView"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom"
-        android:background="@color/colorPrimary"
-        android:paddingBottom="0dp"
-        app:itemIconTint="@drawable/menu_state_list"
-        app:itemTextColor="@drawable/menu_state_list"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav" />
+    <!--<android.support.design.widget.BottomNavigationView-->
+        <!--android:id="@+id/navigationViewPerform"-->
+        <!--style="@style/Widget.Design.BottomNavigationView"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="70dp"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:paddingBottom="0dp"-->
+        <!--app:itemIconTint="@drawable/menu_state_list"-->
+        <!--app:itemTextColor="@drawable/menu_state_list"-->
+        <!--app:labelVisibilityMode="labeled"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:menu="@menu/bottom_nav" />-->
 
 </android.support.constraint.ConstraintLayout>

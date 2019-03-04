@@ -56,8 +56,9 @@ public class UploadThumbnail extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent fillOutPerformanceInfo = new Intent(UploadThumbnail.this, DeclarePerform.class);
                 uploadToBackend();
+                Intent fillOutPerformanceInfo = new Intent(UploadThumbnail.this, DeclarePerform.class);
+                fillOutPerformanceInfo.putExtra("videoId", videoId);
                 startActivity(fillOutPerformanceInfo);
             }
         });
@@ -65,6 +66,7 @@ public class UploadThumbnail extends AppCompatActivity {
 
     private void uploadToBackend(){
         //Firebase Storage Variables
+        System.out.println("MOOOO DO we get here?");
         videoId = getIntent().getStringExtra("videoId");
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();

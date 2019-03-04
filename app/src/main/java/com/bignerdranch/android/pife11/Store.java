@@ -1,14 +1,18 @@
 package com.bignerdranch.android.pife11;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,44 +26,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Store extends AppCompatActivity {
-    private String myAvatar;
-    private String currentUserId;
-    private String pifePoints;
-    private Button hat, shirt;
-    private LinearLayout constraint;
-    private LinearLayout constraint2;
-    private View view;
 
-    private TextView pifePointsLocation, PriceTag1, PriceTag2;
-
+    private TextView description, userCoins;
+    private ImageView top, bottom, rewardType;
+    private String currentUserId, pifePoints;
     private Handler handler;
-    private ImageView shirt_placement, hat_placement;
     private DatabaseReference userDb;
-    private HorizontalScrollView scrollViewHats;
-    private HorizontalScrollView scrollViewHats2;
-
-    private Button button1;
-    private Button button3;
-    private Button button2;
-    private Button button4;
-
-    int constrainedX;
-    int constrainedY;
-    int button1X;
-    int button1Y;
-    int button2X;
-    int button2Y;
-    int button3X;
-    int button3Y;
-
-    int constrainedX2;
-    int constrainedY2;
-    int button1X2;
-    int button1Y2;
-    int button2X2;
-    int button2Y2;
-    int button3X2;
-    int button3Y2;
+    private ImageButton yellowHat, pinkHat, blueHat, orangeHat;
+    private ImageButton greenShirt, pinkShirt, yellowShirt, brownShirt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +41,143 @@ public class Store extends AppCompatActivity {
         setContentView(R.layout.activity_store);
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed");
-//        getUserAvatar();
-//        getUserPifePoints();
         handler = new Handler();
+
+        //Current Coin Levels to Buy Objects
+        userCoins = findViewById(R.id.user_coins);
+        pifePoints = userCoins.getText().toString();
+
+        //Description
+        description = findViewById(R.id.rewardDescription);
+
+        //Reward Type ImageView
+        rewardType = findViewById(R.id.type_unlock);
+
+        //Find the Avatar Portions to Change
+        top = findViewById(R.id.avatarTop);
+        bottom = findViewById(R.id.avatarBottom);
+
+        //Find the hats in the XML File
+        yellowHat = findViewById(R.id.fourth_item);
+        pinkHat = findViewById(R.id.third_item);
+        blueHat = findViewById(R.id.first_item);
+        orangeHat = findViewById(R.id.second_item);
+
+        //Find the shirts in the XML File
+        greenShirt = findViewById(R.id.first_item_shirt);
+        pinkShirt = findViewById(R.id.second_item_shirt);
+        yellowShirt = findViewById(R.id.third_item_shirt);
+        brownShirt = findViewById(R.id.fourth_item_shirt);
+
+        //Set the hats to clickable
+        yellowHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                top.setImageResource(R.drawable.yellowtoptrans);
+            }
+        });
+
+        pinkHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                top.setImageResource(R.drawable.pinktoptrans);
+            }
+        });
+
+        blueHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                top.setImageResource(R.drawable.bluetoptrans);
+            }
+        });
+
+        orangeHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                top.setImageResource(R.drawable.orangetoptrans);
+            }
+        });
+
+        //Set the shirts to clickable
+        greenShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottom.setImageResource(R.drawable.greenbottomtrans);
+            }
+        });
+
+        pinkShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottom.setImageResource(R.drawable.pinkbottomtrans);
+            }
+        });
+
+        yellowShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottom.setImageResource(R.drawable.yellowbottomtrans);
+            }
+        });
+
+        brownShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottom.setImageResource(R.drawable.brownbottomtrans);
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationViewPerform);
+        bottomNavigationView.setSelectedItemId(R.id.user_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                                                                     @Override
+                                                                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                                                                         switch (menuItem.getItemId()){
+                                                                             case R.id.friends_nav:
+                                                                                 Intent collab = new Intent(Store.this, CollabHiFi2.class);
+                                                                                 finish();
+                                                                                 startActivity(collab);
+                                                                                 break;
+                                                                             case R.id.practice_nav:
+                                                                                 Intent practice_intent = new Intent(Store.this, ChooseRoutineActivity.class);
+                                                                                 finish();
+                                                                                 startActivity(practice_intent);
+                                                                                 break;
+                                                                             case R.id.perform_nav:
+                                                                                 Intent perform_intent = new Intent(Store.this, MyPerform.class);
+                                                                                 finish();
+                                                                                 startActivity(perform_intent);
+                                                                                 break;
+                                                                             case R.id.user_nav:
+                                                                                 Intent profile_intent = new Intent(Store.this, Profile.class);
+                                                                                 finish();
+                                                                                 startActivity(profile_intent);
+                                                                                 break;
+                                                                         }
+                                                                         return true;
+                                                                     }
+                                                                 }
+        );
+
+        getUserPifePoints();
+    }
+
+    private void getUserPifePoints() {
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    pifePoints = dataSnapshot.getValue().toString().trim();
+                    userCoins.setText(pifePoints);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
 
@@ -262,23 +370,5 @@ public class Store extends AppCompatActivity {
 //        });
 //    }
 //
-//    private void getUserPifePoints() {
-//        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
-//        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()){
-//                    pifePoints = dataSnapshot.getValue().toString().trim();
-//                    TextView pointsDisplay = (TextView) findViewById(R.id.pifepoints);
-//                    pointsDisplay.setText(pifePoints);
 //
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
 
