@@ -419,6 +419,9 @@ public class Store extends AppCompatActivity {
                         ds.setAvatarClothes(new Pair(hatIndex, enumer));
 
                     }
+                    Toast.makeText(getApplicationContext(), "Clothing change successful!", Toast.LENGTH_SHORT).show();
+                    buy.setVisibility(View.GONE);
+
 
                 }
             }
