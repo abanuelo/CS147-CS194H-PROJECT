@@ -21,8 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_regular"
-        android:hint="Input Routine Name (e.g., Weekend-practice)"
-        android:textSize="24sp" />
+        android:textColorHint="#808080"
+        android:textColor="@color/black"
+        android:hint="Input Routine Title (e.g., Weekend-practice)"
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -60,7 +62,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Add some musical goals in your routine!\n(e.g., Warm-up, Practice Arpeggios)" />
+            android:textColorHint="#808080"
+            android:textColor="@color/black"
+            android:hint="Add some musical goals in your routine!\n(e.g., Warm-up, Practice Arpeggios)"
+            android:textSize="16dp"/>
         <Button
 
             android:layout_width="wrap_content"

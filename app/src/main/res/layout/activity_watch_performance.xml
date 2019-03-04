@@ -41,7 +41,7 @@
                 android:id="@+id/button1"
                 android:layout_gravity="center_vertical"
                 android:text="See Performance"
-                android:background="@drawable/buttonoval"
+                android:theme="@style/AppTheme.RoundedCornerMaterialButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -75,7 +75,7 @@
                 android:id="@+id/button2"
                 android:layout_gravity="center_vertical"
                 android:text="See Performance"
-                android:background="@drawable/buttonoval"
+                android:theme="@style/AppTheme.RoundedCornerMaterialButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
