@@ -110,7 +110,7 @@ public class Store extends AppCompatActivity {
                 description.setVisibility(View.GONE);
                 buy.setVisibility(View.VISIBLE);
                 buy.setText("Unequip hat");
-                changeToDefault();
+                //changeToDefault();
                 top.setImageResource(R.drawable.undressedtoptrans);
                 items="NoHat";
             }
@@ -136,7 +136,7 @@ public class Store extends AppCompatActivity {
                 rewardType.getLayoutParams().width = 300;
                 price = 20;
                 items = "YellowHat";
-                changeToDefault();
+                //changeToDefault();
                 //avatarDefault();
                 top.setImageResource(R.drawable.yellowtoptrans);
             }
@@ -162,7 +162,7 @@ public class Store extends AppCompatActivity {
                 rewardType.getLayoutParams().width = 300;
                 price = 15;
                 items = "PinkHat";
-                changeToDefault();
+                //changeToDefault();
                 top.setImageResource(R.drawable.pinktoptrans);
             }
         });
@@ -187,7 +187,7 @@ public class Store extends AppCompatActivity {
                 rewardType.getLayoutParams().width = 300;
                 price = 5;
                 items = "BlueHat";
-                changeToDefault();
+                //changeToDefault();
                 top.setImageResource(R.drawable.bluetoptrans);
             }
         });
@@ -212,7 +212,7 @@ public class Store extends AppCompatActivity {
                 rewardType.getLayoutParams().width = 300;
                 price = 10;
                 items = "OrangeHat";
-                changeToDefault();
+                //changeToDefault();
                 top.setImageResource(R.drawable.orangetoptrans);
             }
         });
@@ -226,7 +226,7 @@ public class Store extends AppCompatActivity {
                 buy.setVisibility(View.VISIBLE);
                 buy.setText("Unequip shirt");
                 items = "NoShirt";
-                changeToDefault();
+                //changeToDefault();
                 bottom.setImageResource(R.drawable.undressedbottomtrans);
 
             }
@@ -235,25 +235,13 @@ public class Store extends AppCompatActivity {
         greenShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Some odd: " + FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("FirstTutorial"));
-
-                /*if (FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("FirstTutorial") == null){
-                    description.setText("Complete one practice session!");
-                    buy.setVisibility(View.GONE);
-                } else {
-                    description.setText("Congrats! You completed one practice session!");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Equip Shirt");
-
-                }*/
                 description.setVisibility(View.VISIBLE);
                 rewardType.setVisibility(View.VISIBLE);
                 rewardType.setImageResource(R.drawable.star_trophy);
                 items = "GreenShirt";
-                changeToDefault();
+                //changeToDefault();
                 checkFirstTutorialCompleted();
-
-                //bottom.setImageResource(R.drawable.greenbottomtrans);
+                bottom.setImageResource(R.drawable.greenbottomtrans);
 
             }
         });
@@ -263,8 +251,11 @@ public class Store extends AppCompatActivity {
             public void onClick(View view) {
                 description.setVisibility(View.VISIBLE);
                 rewardType.setVisibility(View.VISIBLE);
-                changeToDefault();
+                rewardType.setImageResource(R.drawable.smiley_trophy);
+                items = "PinkShirt";
+                //changeToDefault();
                 checkSecondTutorialCompleted();
+                bottom.setImageResource(R.drawable.pinkbottomtrans);
             }
         });
 
@@ -273,8 +264,11 @@ public class Store extends AppCompatActivity {
             public void onClick(View view) {
                 description.setVisibility(View.VISIBLE);
                 rewardType.setVisibility(View.VISIBLE);
-                changeToDefault();
+                rewardType.setImageResource(R.drawable.sun_trophy);
+                items = "YellowShirt";
+                //changeToDefault();
                 checkThirdTutorialCompleted();
+                bottom.setImageResource(R.drawable.yellowbottomtrans);
             }
         });
 
@@ -286,7 +280,7 @@ public class Store extends AppCompatActivity {
                 description.setText("Practice for a total of 3 hours!");
                 rewardType.setImageResource(R.drawable.clock_trophy);
                 items = "BrownShirt";
-                changeToDefault();
+                //changeToDefault();
                 bottom.setImageResource(R.drawable.brownbottomtrans);
                 buy.setVisibility(View.GONE);
             }
@@ -355,7 +349,8 @@ public class Store extends AppCompatActivity {
                     int enumer = 0;
                     DataSingleton ds = DataSingleton.getInstance();
                     if (buy.getText().equals("Equip Hat") || buy.getText().equals("Unequip hat") ) {
-                        System.out.print("Maybe: hats?");
+                        System.out.println("Arrived at Buying Hats");
+
                         //We got hats here
                         if (items.equals("YellowHat")) {
                             enumer = 4;
@@ -367,9 +362,30 @@ public class Store extends AppCompatActivity {
                             enumer = 3;
                         }
                         changeHat(enumer);
-                        ds.setAvatarClothes(new Pair(enumer, currHatShirt.second));
+                        System.out.println("We currently have " + Integer.toString(enumer) + " as hat num.");
+                        System.out.println("Output is " + currHatShirt.second);
+                        String tuple = currHatShirt.toString();
+                        System.out.println(tuple);
+                        boolean startExtraction = false;
+                        String result = "";
+                        for (int i = 0; i < tuple.length(); i++){
+                            char c = tuple.charAt(i);
+                            if (c == '}'){
+                                break;
+                            }
+                            if (c == ' '){
+                                startExtraction = true;
+                            } else {
+                                if (startExtraction){
+                                    result += c;
+                                }
+                            }
+                        }
+                        int shirtIndex = Integer.parseInt(result);
+                        currHatShirt = new Pair(enumer, shirtIndex);
+                        ds.setAvatarClothes(new Pair(enumer, shirtIndex));
                     } else {
-                        System.out.print("Maybe: shirts?");
+                        System.out.println("Arriving at Buying Shirts");
                         if (items.equals("YellowShirt")) {
                             enumer = 3;
                         } else if (items.equals("GreenShirt")) {
@@ -380,7 +396,26 @@ public class Store extends AppCompatActivity {
                             enumer = 2;
                         }
                         changeShirt(enumer);
-                        ds.setAvatarClothes(new Pair(currHatShirt.first, enumer));
+                        String tuple = currHatShirt.toString();
+                        System.out.println(tuple);
+                        boolean startExtraction = false;
+                        String result = "";
+                        for (int i = 0; i < tuple.length(); i++){
+                            char c = tuple.charAt(i);
+                            if (c == ' '){
+                                break;
+                            }
+                            if (c == '{'){
+                                startExtraction = true;
+                            } else {
+                                if (startExtraction){
+                                    result += c;
+                                }
+                            }
+                        }
+                        int hatIndex = Integer.parseInt(result);
+                        currHatShirt = new Pair(hatIndex, enumer);
+                        ds.setAvatarClothes(new Pair(hatIndex, enumer));
 
                     }
 
@@ -429,23 +464,18 @@ public class Store extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null){
                     if (((Long) dataSnapshot.getValue()).intValue() >= 3){
-                        yellowShirt.setImageResource(R.drawable.yellowshirttrans);
                         description.setText("Congrats! You have commented on a total of three videos!");
+                        yellowShirt.setImageResource(R.drawable.yellowshirttrans);
                         buy.setVisibility(View.VISIBLE);
                         buy.setText("Equip Shirt");
                     } else {
                         description.setText("Comment on a total of three videos!");
                         buy.setVisibility(View.GONE);
                     }
-                    rewardType.setImageResource(R.drawable.sun_trophy);
-                    bottom.setImageResource(R.drawable.yellowbottomtrans);
-                    items = "YellowShirt";
+
                 } else {
                     buy.setVisibility(View.GONE);
                     description.setText("Comment on a total of three videos!");
-                    rewardType.setImageResource(R.drawable.sun_trophy);
-                    bottom.setImageResource(R.drawable.yellowbottomtrans);
-                    items = "YellowShirt";
                 }
 
 
@@ -465,17 +495,14 @@ public class Store extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int num_friends = (int) dataSnapshot.getChildrenCount();
                 if (num_friends >= 5){
-                    pinkShirt.setImageResource(R.drawable.pinkshirttrans);
                     description.setText("Congrats! You have made at least 5 friends!");
+                    pinkShirt.setImageResource(R.drawable.pinkshirttrans);
                     buy.setVisibility(View.VISIBLE);
                     buy.setText("Equip Shirt");
                 } else {
                     description.setText("Make a total of five friends!");
                     buy.setVisibility(View.GONE);
                 }
-                rewardType.setImageResource(R.drawable.smiley_trophy);
-                bottom.setImageResource(R.drawable.pinkbottomtrans);
-                items = "PinkShirt";
 
             }
 
@@ -492,8 +519,6 @@ public class Store extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
-
-
                     System.out.println("Some odd reason..." + dataSnapshot.getValue().toString());
                     greenShirt.setImageResource(R.drawable.jemi_shirt_green);
                     description.setText("Congrats! You completed one practice session!");
@@ -505,7 +530,6 @@ public class Store extends AppCompatActivity {
                     description.setText("Complete one practice session!");
                     buy.setVisibility(View.GONE);
                 }
-                System.out.println("Some odd weird reason...");
 
             }
 
