@@ -106,6 +106,7 @@ public class Profile extends AppCompatActivity {
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
         sign_out = (Button) findViewById(R.id.sign_out);
         edit_profile = findViewById(R.id.edit_profile);
+        edit_profile.setVisibility(View.GONE);
         posts = findViewById(R.id.posts);
         friends = findViewById(R.id.friends);
 
