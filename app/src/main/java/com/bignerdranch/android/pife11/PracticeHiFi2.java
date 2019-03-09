@@ -137,7 +137,7 @@ public class PracticeHiFi2 extends AppCompatActivity {
 
     private void createTaskList(ArrayList<String> justTasks) {
 
-        TaskList adapter = new TaskList(this, justTasks);
+        TaskList adapter = new TaskList(this, justTasks, false);
         ListView tasksView = (ListView) findViewById(R.id.tasks);
 
         tasksView.setAdapter(adapter);
@@ -261,6 +261,11 @@ public class PracticeHiFi2 extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onBackPressed() {
+        //Do nothing
+    }
 
     public void goToStore(View view) {
         Intent practice_intent = new Intent(this, Store.class);

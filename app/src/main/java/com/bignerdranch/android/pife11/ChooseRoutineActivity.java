@@ -164,7 +164,13 @@ public class ChooseRoutineActivity extends Activity {
                     items.add(curr.get(0));
                 }*/
 
-                ArrayAdapter<String> routines = new ArrayAdapter<String>(ChooseRoutineActivity.this, android.R.layout.simple_list_item_1, items);
+
+
+
+                //ArrayAdapter<String> routinesStrs = new ArrayAdapter<String>(ChooseRoutineActivity.this, android.R.layout.simple_list_item_1, items);
+
+                TaskList routines = new TaskList(ChooseRoutineActivity.this, items, true);
+
                 final ListView routinesList = (ListView) findViewById(R.id.routinesList);
                 routinesList.setAdapter(routines);
                 routinesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

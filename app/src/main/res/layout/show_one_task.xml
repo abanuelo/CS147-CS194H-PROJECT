@@ -31,9 +31,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/chooseRoutineButton"
-            android:text="Start Routine >"
-            android:paddingLeft="@dimen/practice_gap"
-            android:visibility="gone"/>
+            android:background="@drawable/button_transparent"
+            android:textColor="@color/colorPrimary"
+            android:text="Start"
+            android:layout_marginRight="@dimen/practice_gap" />
         <CheckBox
         android:paddingLeft="@dimen/practice_gap"
         android:layout_width="wrap_content"
