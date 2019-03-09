@@ -25,5 +25,6 @@
     <color name="button">#696969</color>
     <color name="button2">#C0C0C0</color>
     <color name="my_spinner_text_color">#ff0000</color>
+    <color name="grayBckgrd">#f2f2f2</color>
 
 </resources>
