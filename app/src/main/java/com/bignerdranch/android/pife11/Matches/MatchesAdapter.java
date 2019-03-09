@@ -64,10 +64,10 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
 
         changeAvatarClothes(nameId, holder);
 
-        holder.check.setVisibility(View.GONE);
-        if (holder.check.getVisibility() == View.VISIBLE){
-            matchesList.get(position).setCheckVisibility(1);
-        }
+//        holder.check.setVisibility(View.GONE);
+//        if (holder.check.getVisibility() == View.VISIBLE){
+//            matchesList.get(position).setCheckVisibility(1);
+//        }
 
 //        if (!matchesList.get(position).getProfileImageURL().equals("default")){
 //            Glide.with(context).load(matchesList.get(position).getProfileImageURL()).into(holder.myMatchImage);
