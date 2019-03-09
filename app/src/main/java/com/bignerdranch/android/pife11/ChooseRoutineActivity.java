@@ -240,7 +240,7 @@ public class ChooseRoutineActivity extends Activity {
     public void goToOpenPractice(View view) {
         Intent practice_intent = new Intent(ChooseRoutineActivity.this, PracticeHiFi2.class);
         practice_intent.putExtra("SOURCE", "CHOOSE");
-        practice_intent.putExtra("ROUTINE_NAME", "Open Practice");
+        practice_intent.putExtra("ROUTINE_NAME", "Free Practice");
         startActivity(practice_intent);
     }
 

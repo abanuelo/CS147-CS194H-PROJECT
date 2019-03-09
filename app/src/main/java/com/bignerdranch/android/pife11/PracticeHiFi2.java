@@ -52,7 +52,7 @@ public class PracticeHiFi2 extends AppCompatActivity {
 
         ArrayList<String> justTasks = null;
 
-        if (!routineName.contentEquals("Open Practice")) {
+        if (!routineName.contentEquals("Free Practice")) {
 
             //Yes, I understand that the routineName is the ID....
             int currRoutineIndex = getRoutineIndex(routineLists, routineName);
@@ -82,7 +82,7 @@ public class PracticeHiFi2 extends AppCompatActivity {
         stopwatch.start();
 
 
-        if (!routineName.contentEquals("Open Practice")) {
+        if (!routineName.contentEquals("Free Practice")) {
             //ListView lv = (ListView) findViewById(R.id.tasks);
             //lv.setAdapter(tasksAdapter);
             System.out.println("MOOOOO");
