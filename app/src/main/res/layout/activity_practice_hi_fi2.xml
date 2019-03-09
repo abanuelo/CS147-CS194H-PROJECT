@@ -13,8 +13,7 @@
         android:background="@color/colorPrimary"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        >
+        app:layout_constraintLeft_toLeftOf="parent" >
 
         <ImageView
             android:id="@+id/coin_image"
@@ -53,12 +52,13 @@
 
     <TextView
         android:id="@+id/TimeElasped"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/opensans_bold"
         android:text="Time Elapsed:"
-        android:textSize="18sp" />
+        android:textSize="30sp"
+        android:background="@color/grayBckgrd"
+        android:gravity="center_horizontal"/>
 
     <Chronometer
         android:id="@+id/PracticeStopwatch"
@@ -81,12 +81,13 @@
 
     <TextView
         android:id="@+id/musicGoalsLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/opensans_bold"
         android:text="Music Goals"
-        android:textSize="18sp" />
+        android:textSize="30sp"
+        android:background="@color/grayBckgrd"
+        android:gravity="center_horizontal"/>
     <ListView
         android:layout_width="350dp"
         android:layout_height="0dp"

@@ -71,6 +71,8 @@ public class PracticeHiFi2 extends AppCompatActivity {
         //You need to set the content view before you can set the listview.... yeah....
         setContentView(R.layout.activity_practice_hi_fi2);
 
+        changeCoins();
+
         //Setting the title in the UI
         TextView routineTitle = (TextView) findViewById(R.id.routineTitle);
         routineTitle.setText(routineName);
@@ -238,5 +240,31 @@ public class PracticeHiFi2 extends AppCompatActivity {
         return -1;
     }
 
+
+    public void changeCoins(){
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String pifePoints = dataSnapshot.getValue().toString().trim();
+                    TextView pointsDisplay = (TextView) findViewById(R.id.coins);
+                    pointsDisplay.setText(pifePoints);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    public void goToStore(View view) {
+        Intent practice_intent = new Intent(this, Store.class);
+        startActivity(practice_intent);
+    }
 
 }
