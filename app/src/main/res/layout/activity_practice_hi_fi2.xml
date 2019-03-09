@@ -20,15 +20,24 @@
             android:id="@+id/coin_image"
             android:src="@drawable/ic_coins"
             android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/sideGaps"/>
 
         <TextView
             android:paddingLeft="20dp"
             android:id="@+id/coins"
-            android:text="Your coins"
+            android:text="-1"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:text="INSERT ROUTINE HERE"
+            android:textColor="@color/white"
+            android:id="@+id/routineTitle"
+            android:gravity="center_horizontal"/>
 
         <ImageView
             android:layoutDirection="rtl"
@@ -37,7 +46,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
-            android:paddingRight="30dp"
+            android:paddingRight="@dimen/sideGaps"
             android:layout_width="60dp"
             android:layout_height="30dp" />
     </android.support.v7.widget.Toolbar>
@@ -64,11 +73,11 @@
         android:textSize="36sp"
         tools:text="@tools:sample/date/hhmmss" />
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/routineTitle"/>
+        android:id="@+id/routineTitle"/>-->
 
     <TextView
         android:id="@+id/musicGoalsLabel"
