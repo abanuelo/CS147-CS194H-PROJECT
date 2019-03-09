@@ -11,6 +11,7 @@
     <color name="grayHint">#808080</color>
     <color name="background">#FFFAFA</color>
     <color name="textColor">#000000</color>
+    <color name="lightGrey">#F5F5F5</color>
     <color name="cardbackground">#DCDCDC</color> <!--Analogous1-->
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#990D94</color>

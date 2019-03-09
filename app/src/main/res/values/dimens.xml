@@ -7,4 +7,9 @@
     <dimen name="card_padding">45dp</dimen>
     <dimen name="profilepostpadding">20dp</dimen>
     <dimen name="buttonTextSize">14sp</dimen>
+    <dimen name="design_bottom_navigation_icon_size">24dp</dimen>
+    <dimen name="design_bottom_navigation_elevation">8dp</dimen>
+    <dimen name="practice_gap">15dp</dimen>
+    <dimen name="sideGaps">15dp</dimen>
+
 </resources>

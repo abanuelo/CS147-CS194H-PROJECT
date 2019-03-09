@@ -81,5 +81,13 @@
         <item name="android:textColor">@color/my_spinner_text_color</item>
     </style>
 
+    <style name="Widget.Design.BottomNavigationView12" parent="">
+        <item name="elevation">@dimen/design_bottom_navigation_elevation</item>
+        <item name="itemBackground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="itemHorizontalTranslationEnabled">true</item>
+        <item name="itemIconSize">@dimen/design_bottom_navigation_icon_size</item>
+        <item name="labelVisibilityMode">auto</item>
+        <item name="android:fontFamily">@font/opensans_extrabold</item>
+    </style>
 
 </resources>

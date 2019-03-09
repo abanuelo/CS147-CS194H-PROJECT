@@ -34,6 +34,7 @@
                 android:id="@+id/iliketext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:hint="I like..." />
         </android.support.design.widget.TextInputLayout>
 
@@ -52,6 +53,7 @@
                 android:id="@+id/iwishtext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:hint="I wish" />
         </android.support.design.widget.TextInputLayout>
 

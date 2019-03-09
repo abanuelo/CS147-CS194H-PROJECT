@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:id="@+id/musicalGoal"/>
-    <CheckBox
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp">
+
+        <!--<TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>-->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/musicalGoal"
+            android:text="Moo"
+            android:paddingLeft="@dimen/sideGaps"
+            android:paddingRight="@dimen/sideGaps"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chooseRoutineButton"
+            android:text="Start Routine >"
+            android:paddingLeft="@dimen/practice_gap"
+            android:visibility="gone"/>
+        <CheckBox
+        android:paddingLeft="@dimen/practice_gap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/isTaskDone"
         android:layout_gravity="right"
-        android:buttonTint="@color/colorPrimary"/>
+        android:buttonTint="@color/colorPrimary"
+        />
+    <!--<TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>-->
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grayHint"
+        android:layout_marginTop="0dp"
+        ></View>
 </LinearLayout>

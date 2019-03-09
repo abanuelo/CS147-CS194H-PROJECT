@@ -49,6 +49,7 @@ public class Tab1Fragment extends Fragment {
 
         myMatchesLayoutManager = new LinearLayoutManager(getContext());
         myRecyclerView.setLayoutManager(myMatchesLayoutManager);
+
         DividerItemDecoration divider = new DividerItemDecoration(myRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
         Drawable verticalDivider = ContextCompat.getDrawable(getActivity(), R.drawable.vertical_divider);
         divider.setDrawable(verticalDivider);
