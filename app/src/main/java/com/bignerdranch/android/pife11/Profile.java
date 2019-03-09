@@ -51,7 +51,7 @@ public class Profile extends AppCompatActivity {
     private TextView name, username, genre, instrument, posts, friends, days;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
-    private Button sign_out, edit_profile;
+//    private Button sign_out;
     private boolean practiceBool, performBool, collabBool,dressed;
     private GifImageView animation;
     private GifDrawable drawable;
@@ -104,9 +104,8 @@ public class Profile extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-        sign_out = (Button) findViewById(R.id.sign_out);
-        edit_profile = findViewById(R.id.edit_profile);
-        edit_profile.setVisibility(View.GONE);
+//        sign_out = (Button) findViewById(R.id.sign_out);
+//        edit_profile = findViewById(R.id.edit_profile);
         posts = findViewById(R.id.posts);
         friends = findViewById(R.id.friends);
 
@@ -141,30 +140,23 @@ public class Profile extends AppCompatActivity {
                                                                      }
             );
             bottomNavigationView.setSelectedItemId(R.id.friends_nav);
-//            bottomNavigationView.setSelectedItemId(R.id.friends_nav);
-            TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
-            profile_id_view.setText("Profile Id: " + profile_lookup);
-            profile_id_view.setVisibility(View.GONE);
 
-//                        String toasty = "Profile is: " + profile_lookup;
-//            Toast.makeText(this, toasty, Toast.LENGTH_LONG).show();
 
             userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(profile_lookup);
 
-            sign_out.setText("Message");
-            edit_profile.setVisibility(View.GONE);
-            sign_out.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
-                    Bundle b = new Bundle();
-                    b.putString("matchId", profile_lookup);
-                    sign_out_intent.putExtras(b);
-                    finish();
-                    startActivity(sign_out_intent);
-
-                }
-            });
+//            sign_out.setText("Message");
+//            sign_out.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
+//                    Bundle b = new Bundle();
+//                    b.putString("matchId", profile_lookup);
+//                    sign_out_intent.putExtras(b);
+//                    finish();
+//                    startActivity(sign_out_intent);
+//
+//                }
+//            });
             profile_lookup2 = profile_lookup;
 
         }
@@ -172,23 +164,19 @@ public class Profile extends AppCompatActivity {
             profile_lookup2 = userId;
 
 
-            TextView profile_id_view = (TextView) findViewById(R.id.profile_id);
-            profile_id_view.setText("Profile Id: " + userId);
-            profile_id_view.setVisibility(View.GONE);
 
-
-            sign_out.setText("Sign Out");
-            //Event that Initiates the Sign Out Process for the Profile Image
-            sign_out.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    auth.signOut();
-                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
-                    finish();
-                    startActivity(sign_out_intent);
-
-                }
-            });
+//            sign_out.setText("Sign Out");
+//            //Event that Initiates the Sign Out Process for the Profile Image
+//            sign_out.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    auth.signOut();
+//                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
+//                    finish();
+//                    startActivity(sign_out_intent);
+//
+//                }
+//            });
             //set on click listener default
         }
 
@@ -206,18 +194,16 @@ public class Profile extends AppCompatActivity {
                 intent.putExtra("currentUserId", profile_lookup2);
                 intent.putExtra("currentVideo", item.getVideoTitle());
                 intent.putExtra("title", item.getTitle());
-//                intent.putExtra("image", item.getImage());
-//                finish();
-                //Start details activity
+
                 startActivity(intent);
             }
         });
 
 
-//        Initalize the Text Views
-        username = (TextView) findViewById(R.id.profile_username);
-        genre = (TextView) findViewById(R.id.profile_years);
-        instrument = (TextView) findViewById(R.id.profile_instruments);
+////        Initalize the Text Views
+//        username = (TextView) findViewById(R.id.profile_username);
+//        genre = (TextView) findViewById(R.id.profile_years);
+//        instrument = (TextView) findViewById(R.id.profile_instruments);
 
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
         listener = new ValueEventListener() {
@@ -228,42 +214,42 @@ public class Profile extends AppCompatActivity {
 //                name.setText(t_name);
 
                 //Gets the Username and inserts it within textView
-                Object obj = dataSnapshot.child("username").getValue();
-                if (obj == null) return;
-                String t_username = obj.toString().trim();
-                TextView username2 = (TextView) findViewById(R.id.profile_username);
-
-                username2.setText("Username: " + t_username);
-
-                //Gets the Instruments to Populate the Instruments
-                String t_instruments = null;
-                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
-                    if (t_instruments == null){
-                        t_instruments = instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
-                    } else {
-                        t_instruments += ", " + instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
-                    }
-                }
-
-                TextView instrument2 = (TextView) findViewById(R.id.profile_instruments);
-                instrument2.setText("Instrument(s): " + t_instruments);
-                if (t_instruments == "null" || t_instruments == null) {
-                    instrument2.setVisibility(View.GONE);
-                }
-
-                //Lastly we are going to populate the Genres Category
-                String t_genres = null;
-                for (DataSnapshot genre : dataSnapshot.child("Genres").getChildren()){
-                    if ((boolean) genre.getValue() == true){
-                        if (t_genres == null){
-                            t_genres = genre.getKey();
-                        } else {
-                            t_genres += ", " + genre.getKey();
-                        }
-                    }
-                }
-                TextView genre2 = (TextView) findViewById(R.id.profile_years);
-                genre2.setText("Genre(s): " + t_genres);
+//                Object obj = dataSnapshot.child("username").getValue();
+//                if (obj == null) return;
+//                String t_username = obj.toString().trim();
+//                TextView username2 = (TextView) findViewById(R.id.profile_username);
+//
+//                username2.setText("Username: " + t_username);
+//
+//                //Gets the Instruments to Populate the Instruments
+//                String t_instruments = null;
+//                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
+//                    if (t_instruments == null){
+//                        t_instruments = instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
+//                    } else {
+//                        t_instruments += ", " + instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
+//                    }
+//                }
+//
+//                TextView instrument2 = (TextView) findViewById(R.id.profile_instruments);
+//                instrument2.setText("Instrument(s): " + t_instruments);
+//                if (t_instruments == "null" || t_instruments == null) {
+//                    instrument2.setVisibility(View.GONE);
+//                }
+//
+//                //Lastly we are going to populate the Genres Category
+//                String t_genres = null;
+//                for (DataSnapshot genre : dataSnapshot.child("Genres").getChildren()){
+//                    if ((boolean) genre.getValue() == true){
+//                        if (t_genres == null){
+//                            t_genres = genre.getKey();
+//                        } else {
+//                            t_genres += ", " + genre.getKey();
+//                        }
+//                    }
+//                }
+//                TextView genre2 = (TextView) findViewById(R.id.profile_years);
+//                genre2.setText("Genre(s): " + t_genres);
 
                 int friends_count = 0;
                 for (DataSnapshot friends : dataSnapshot.child("Collaborations").child("Matches").getChildren()){
