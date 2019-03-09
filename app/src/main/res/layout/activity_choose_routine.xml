@@ -128,7 +128,7 @@
             android:layout_height="match_parent"
             android:text="Add Routine"
             android:fontFamily="@font/opensans_semibold"
-            android:theme="@style/AppTheme.RoundedCornerMaterialButton"
+            android:background="@drawable/button_oval_green"
             android:textColor="@color/white"
             android:padding="10dp"
             android:onClick="addRoutine"/>
@@ -143,7 +143,7 @@
             android:textColor="@color/white"
             android:padding="10dp"
             android:fontFamily="@font/opensans_semibold"
-            android:theme="@style/AppTheme.RoundedCornerMaterialButton"
+            android:background="@drawable/button_oval_green"
             android:onClick="goToOpenPractice"/>
         <Space
             android:layout_width="0dp"

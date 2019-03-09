@@ -148,7 +148,7 @@
         android:layout_gravity="center"
         android:text="Done"
         android:onClick="backHome"
-        android:theme="@style/AppTheme.RoundedCornerMaterialButton"
+        android:background="@drawable/button_oval_green"
         android:layout_margin="20dp"
         />
 

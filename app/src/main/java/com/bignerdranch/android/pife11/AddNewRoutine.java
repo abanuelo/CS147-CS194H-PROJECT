@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,6 +30,20 @@ public class AddNewRoutine extends AppCompatActivity {
         listOfGoals = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, routine);
 
         lv.setAdapter(listOfGoals);
+
+
+        EditText edit_txt = (EditText) findViewById(R.id.inputTitle);
+
+        edit_txt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    addGoal(v);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void addGoal(View view){
