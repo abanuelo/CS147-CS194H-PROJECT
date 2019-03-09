@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -48,6 +47,45 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="35dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/avatarTop"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bluetoptrans" />
+
+            <ImageView
+                android:id="@+id/avatarBottom"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/greenbottomtrans" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
         android:paddingTop="10dp"
         android:layout_gravity="center"
         android:gravity="center"
@@ -64,47 +102,31 @@
             android:layout_height="30dp" />
 
         <HorizontalScrollView
-            android:layout_gravity="center_horizontal"
-            android:layout_width="340dp"
-            android:layout_height="75dp">
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
 
             <LinearLayout
-                android:layout_gravity="left"
-                android:gravity="left"
                 android:id="@+id/HatView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="left"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/zero_container"
-                    android:orientation="vertical"
-                    android:layout_marginRight="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageButton
-                        android:background="@drawable/none_icon"
-                        android:id="@+id/zero_item"
-                        android:src="#00ffffff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/first_container"
-                    android:orientation="vertical"
-                    android:layout_marginRight="15dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
 
                     <ImageButton
-                        android:background="@drawable/jemi_tiny_blue_hat"
                         android:id="@+id/first_item"
-                        android:src="#00ffffff"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/jemi_tiny_blue_hat"
+                        android:src="#00ffffff" />
 
                     <TextView
                         android:id="@+id/first_item_text"
@@ -120,17 +142,17 @@
 
                 <LinearLayout
                     android:id="@+id/second_container"
-                    android:orientation="vertical"
-                    android:layout_marginRight="15dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/second_item"
-                        android:background="@drawable/jemi_tiny_orange_hat"
-                        android:src="#00ffffff"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/jemi_tiny_orange_hat"
+                        android:src="#00ffffff" />
 
                     <TextView
                         android:id="@+id/second_item_text"
@@ -145,17 +167,17 @@
 
                 <LinearLayout
                     android:id="@+id/third_container"
-                    android:orientation="vertical"
-                    android:layout_marginRight="15dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
 
                     <ImageButton
-                        android:background="@drawable/pinkhattrans"
                         android:id="@+id/third_item"
-                        android:src="#00ffffff"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/pinkhattrans"
+                        android:src="#00ffffff" />
 
                     <TextView
                         android:id="@+id/third_item_text"
@@ -170,16 +192,16 @@
 
                 <LinearLayout
                     android:id="@+id/fourth_container"
-                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/fourth_item"
-                        android:background="@drawable/yellowhattrans"
-                        android:src="#00ffffff"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/yellowhattrans"
+                        android:src="#00ffffff" />
 
                     <TextView
                         android:id="@+id/fourth_item_text"
@@ -189,6 +211,22 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="$20"
                         android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/zero_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/zero_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/none_icon"
+                        android:src="#00ffffff" />
 
                 </LinearLayout>
 
@@ -223,8 +261,8 @@
             android:src="@drawable/ic_arrow_point_to_right" />
 
         <HorizontalScrollView
-            android:layout_width="340dp"
-            android:layout_height="75dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
             <LinearLayout
@@ -234,22 +272,6 @@
                 android:layout_gravity="left"
                 android:gravity="left"
                 android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/zero_container_shirts"
-                    android:layout_marginRight="15dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageButton
-                        android:background="@drawable/none_icon"
-                        android:src="#00ffffff"
-                        android:id="@+id/zero_item_shirt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/first_container_shirts"
@@ -351,6 +373,22 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/zero_container_shirts"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:background="@drawable/none_icon"
+                        android:src="#00ffffff"
+                        android:id="@+id/zero_item_shirt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -366,30 +404,68 @@
 
     </LinearLayout>
 
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="35dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/avatarTop"
+        <TextView
+            android:text="Current Apparel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/bluetoptrans" />
+            android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/avatarBottom"
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:weightSum="2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/greenbottomtrans" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="Hat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:src="@drawable/pinkhattrans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:layout_weight="1"
+                    android:text="Buy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:text="INPUT DESCRIPTION HERE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
