@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
     public ImageView check;
+    public Button viewProfile;
     public ImageView notification;
     public TextView myMatchId, myMatchName;
     public  ImageView myJemiTopImage, myJemiBottom;
@@ -40,6 +42,7 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
         myMatchName = (TextView) itemView.findViewById(R.id.MatchName);
         myJemiTopImage = (ImageView) itemView.findViewById(R.id.jemiTop);
         myJemiBottom = (ImageView) itemView.findViewById(R.id.jemiBottom);
+        viewProfile = (Button) itemView.findViewById(R.id.SeeProfile);
         //check = (ImageView) itemView.findViewById(R.id.check);
         //notification = (ImageView) itemView.findViewById(R.id.new_song);
         context = itemView;
@@ -69,9 +72,16 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
 //                checkDb.updateChildren(info);
 //            }
 //        } else {
+            viewProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), Profile.class);
+                    intent.putExtra("profileId", myMatchId.getText().toString());
+                    view.getContext().startActivity(intent);
+                }
+            });
             Intent intent = new Intent(view.getContext(), Profile.class);
             intent.putExtra("profileId", myMatchId.getText().toString());
             view.getContext().startActivity(intent);
-//        }
     }
 }

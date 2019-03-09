@@ -7,49 +7,92 @@
     tools:context=".PracticeHiFi2"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:weightSum="3"
         android:background="@color/colorPrimary"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        >
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
-        <ImageView
-            android:id="@+id/coin_image"
-            android:src="@drawable/ic_coins"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="@dimen/sideGaps"/>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:paddingLeft="20dp"
-            android:id="@+id/coins"
-            android:text="-1"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/coin_image"
+                    android:src="@drawable/ic_coins"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/sideGaps"/>
 
-        <TextView
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:text="INSERT ROUTINE HERE"
-            android:textColor="@color/white"
-            android:id="@+id/routineTitle"
-            android:gravity="center_horizontal"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:paddingLeft="20dp"
+                    android:id="@+id/coins"
+                    android:text="-1"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-        <ImageView
-            android:layoutDirection="rtl"
-            android:onClick="goToStore"
-            android:src="@drawable/shop"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:paddingRight="@dimen/sideGaps"
-            android:layout_width="60dp"
-            android:layout_height="30dp" />
-    </android.support.v7.widget.Toolbar>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INSERT ROUTINE HERE"
+                    android:textColor="@color/white"
+                    android:id="@+id/routineTitle"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:onClick="goToStore"
+                    android:src="@drawable/shop"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:paddingRight="@dimen/sideGaps"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp" />
+
+            </LinearLayout>
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/TimeElasped"

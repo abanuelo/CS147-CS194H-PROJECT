@@ -93,7 +93,7 @@
         android:fontFamily="@font/opensans_semibold"
         android:background="@drawable/button_transparent"
         android:textColor="@color/colorPrimary"
-        android:id="@+id/SeePerformance"
+        android:id="@+id/SeeProfile"
         android:layout_marginRight="5dp"
         android:layout_height="35dp" />
 
