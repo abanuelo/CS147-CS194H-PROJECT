@@ -31,11 +31,18 @@
         android:gravity="center"
         >
 
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="39dp"
             android:layout_height="31dp"
             android:src="@drawable/user" />
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white">
+
         <EditText
             android:id="@+id/email"
             android:layout_width="wrap_content"
@@ -43,6 +50,7 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:hint="Email Address" />
+        </android.support.design.widget.TextInputLayout>
 
 
 
@@ -60,6 +68,11 @@
             android:layout_height="31dp"
             android:src="@drawable/lock" />
 
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/white">
         <EditText
             android:id="@+id/password"
             android:layout_width="wrap_content"
@@ -67,6 +80,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:hint="Password" />
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
