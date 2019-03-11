@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Store extends AppCompatActivity {
 
@@ -245,6 +246,76 @@ public class Store extends AppCompatActivity {
         );
 
         getUserPifePoints();
+
+        purchaseItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int item_price = 0;
+                if(currXHat == SCROLLCOUNT*0){
+                    item_price = 5;
+                } else if (currXHat == SCROLLCOUNT * 1){
+                    item_price = 10;
+                } else if (currXHat == SCROLLCOUNT *2){
+                    item_price = 15;
+                } else if (currXHat == SCROLLCOUNT * 3){
+                    item_price = 20;
+                } else {
+                    item_price = 0;
+                }
+                if (Integer.parseInt(pifePoints) >= item_price && item_price!= 0){
+                    //Places the item in the Backend For Future Use
+                    DatabaseReference itemDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Store");
+                    HashMap map = new HashMap();
+                    if (item_price == 5){
+                        map.put("BlueHat", true);
+                        blueHatText.setText("");
+                    } else if (item_price == 10){
+                        map.put("OrangeHat", true);
+                        orangeHatText.setText("");
+                    } else if (item_price == 15){
+                        map.put("PinkHat", true);
+                        pinkHatText.setText("");
+                    } else if (item_price == 20){
+                        map.put("YellowHat", true);
+                        yellowHatText.setText("");
+                    }
+                    itemDb.updateChildren(map);
+
+                    purchaseItem.setVisibility(View.GONE);
+                    itemDescription.setText("Item purchased!");
+                    changeUserPoints(item_price);
+                    Toast.makeText(Store.this, "Item purchased!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Store.this, "Insufficient Funds! Practice More!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+    }
+
+    private void changeUserPoints(final int item_price){
+        final DatabaseReference itemDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+        itemDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot stat: dataSnapshot.getChildren()){
+                    if (stat.getKey().equals("xp")){
+                        long amount = (long) stat.getValue();
+                        long new_amount = amount - item_price;
+                        HashMap map = new HashMap();
+                        map.put("xp", new_amount);
+                        itemDb.updateChildren(map);
+                        userCoins.setText(Long.toString(new_amount));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

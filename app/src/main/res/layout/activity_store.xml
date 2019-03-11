@@ -431,7 +431,7 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -439,41 +439,46 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:text="Hat"
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content" />
 
 
             <LinearLayout
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_weight="1"
                     android:id="@+id/hat_description"
+                    android:layout_weight="1"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/jemi_tiny_blue_hat"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content" />
 
                 <Button
-                    android:layout_weight="1"
                     android:id="@+id/itemPurchaseButton"
-                    android:text="Buy"
-                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="Buy"
+                    android:visibility="visible" />
 
             </LinearLayout>
 
             <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:id="@+id/description"
                 android:text="INPUT DESCRIPTION HERE"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
 
@@ -486,7 +491,7 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -494,40 +499,37 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="Shirt"
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content" />
 
 
             <LinearLayout
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/shirt_description"
                     android:layout_weight="1"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
                     android:src="@drawable/jemi_shirt_green"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:visibility="gone"
-                    android:layout_weight="1"
-                    android:text="Buy"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
 
             <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:id="@+id/shirt_des"
                 android:text="INPUT DESCRIPTION HERE"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content" />
 
 
