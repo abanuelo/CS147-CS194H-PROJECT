@@ -51,7 +51,7 @@ public class Profile extends AppCompatActivity {
     private TextView name, username, genre, instrument, posts, friends, days;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
-//    private Button sign_out;
+    private Button sign_out;
     private boolean practiceBool, performBool, collabBool,dressed;
     private GifImageView animation;
     private GifDrawable drawable;
@@ -104,7 +104,7 @@ public class Profile extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-//        sign_out = (Button) findViewById(R.id.sign_out);
+        sign_out = (Button) findViewById(R.id.sign_out);
 //        edit_profile = findViewById(R.id.edit_profile);
         posts = findViewById(R.id.posts);
         friends = findViewById(R.id.friends);
@@ -144,19 +144,19 @@ public class Profile extends AppCompatActivity {
 
             userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(profile_lookup);
 
-//            sign_out.setText("Message");
-//            sign_out.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
-//                    Bundle b = new Bundle();
-//                    b.putString("matchId", profile_lookup);
-//                    sign_out_intent.putExtras(b);
-//                    finish();
-//                    startActivity(sign_out_intent);
-//
-//                }
-//            });
+            sign_out.setText("Message");
+            sign_out.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
+                    Bundle b = new Bundle();
+                    b.putString("matchId", profile_lookup);
+                    sign_out_intent.putExtras(b);
+                    finish();
+                    startActivity(sign_out_intent);
+
+                }
+            });
             profile_lookup2 = profile_lookup;
 
         }
@@ -165,18 +165,18 @@ public class Profile extends AppCompatActivity {
 
 
 
-//            sign_out.setText("Sign Out");
-//            //Event that Initiates the Sign Out Process for the Profile Image
-//            sign_out.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    auth.signOut();
-//                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
-//                    finish();
-//                    startActivity(sign_out_intent);
-//
-//                }
-//            });
+            sign_out.setText("Sign Out");
+            //Event that Initiates the Sign Out Process for the Profile Image
+            sign_out.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    auth.signOut();
+                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
+                    finish();
+                    startActivity(sign_out_intent);
+
+                }
+            });
             //set on click listener default
         }
 

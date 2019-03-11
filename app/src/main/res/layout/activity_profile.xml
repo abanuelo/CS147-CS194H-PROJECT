@@ -44,164 +44,203 @@
             android:contentDescription="Shop Button" />
     </android.support.v7.widget.Toolbar>
 
-    <GridLayout
+    <LinearLayout
         android:id="@+id/profile_top_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:rowCount="3"
-        android:columnCount="3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/view2"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:orientation="vertical"
-            android:paddingTop="0dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_rowSpan="2"
-            android:layout_rowWeight="2"
-            android:layout_columnWeight="2"
+            android:layout_height="wrap_content"
             android:background="@drawable/border"
-            >
+            android:orientation="vertical"
+            android:layout_marginTop="3dp"
+            android:layout_width="180dp">
 
             <ImageView
                 android:id="@+id/profile_img_post"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="-15dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/undressedtoptrans"/>
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/undressedtoptrans" />
 
             <ImageView
                 android:id="@+id/profile_img_post2"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_img_post"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="-0.5dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/undressedbottomtrans"/>
-        </LinearLayout>
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-30.5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/undressedbottomtrans" />
 
-        <LinearLayout
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:background="@drawable/border"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/posts"
-                android:layout_width="65dp"
-                android:layout_height="40dp"
-                android:fontFamily="@font/opensans_semibold"
-                android:text="19"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
-
-            <TextView
+            <Button
+                android:id="@+id/sign_out"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/opensans_light"
-                android:text="hrs practiced"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
+                android:layout_height="30dp"
+                android:layout_below="@id/profile_img_post2"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="-5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_transparent"
+                android:text="sign out"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:visibility="visible" />
 
-        <LinearLayout
-            android:layout_width="70dp"
+
+        </RelativeLayout>
+
+        <GridLayout
+            android:layout_width="140dp"
             android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:background="@drawable/border"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:columnCount="2"
+            android:rowCount="2">
 
-            <TextView
-                android:id="@+id/friends"
-                android:layout_width="65dp"
-                android:layout_height="40dp"
-                android:fontFamily="@font/opensans_semibold"
-                android:text="20"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:background="@drawable/border"
+                android:weightSum="2"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/opensans_light"
-                android:text="coins earned"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/posts"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="19"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
 
-        <LinearLayout
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:background="@drawable/border"
-            android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/opensans_light"
+                    android:layout_weight="1"
+                    android:text="hours\npracticed"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/posts2"
-                android:layout_width="65dp"
-                android:layout_height="40dp"
-                android:fontFamily="@font/opensans_semibold"
-                android:text="19"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:weightSum="2"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:background="@drawable/border"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/opensans_light"
-                android:text="videos uploaded"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/friends"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="20"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
 
-        <LinearLayout
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:background="@drawable/border"
-            android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/opensans_light"
+                    android:text="coins\nearned"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/friends2"
-                android:layout_width="65dp"
-                android:layout_height="40dp"
-                android:fontFamily="@font/opensans_semibold"
-                android:text="20"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_row="1"
+                android:layout_rowWeight="1"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:background="@drawable/border"
+                android:weightSum="2"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/opensans_light"
-                android:text="feedback given"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/posts2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="19"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
 
-    </GridLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/opensans_light"
+                    android:text="videos\nuploaded"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:weightSum="2"
+                android:layout_row="1"
+                android:layout_rowWeight="1"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/friends2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="20"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/opensans_light"
+                    android:text="feedback\ngiven"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </GridLayout>
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/profile_user_info"
@@ -223,7 +262,6 @@
 
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/VideoLabel"
         android:layout_width="match_parent"
@@ -238,6 +276,7 @@
         app:layout_constraintTop_toBottomOf="@id/profile_user_info"
         app:layout_constraintBottom_toTopOf="@id/gridView"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <GridView
         android:id="@+id/gridView"
