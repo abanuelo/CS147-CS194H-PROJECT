@@ -45,7 +45,7 @@ public class Store extends AppCompatActivity {
     private int price, currXHat, currXShirt, currItem;
     private boolean result;
     private Handler handler;
-    private Button buy, purchaseItem;
+    private Button buy, purchaseItem, saveOutfit;
     private DatabaseReference userDb;
     private ImageButton noHat, yellowHat, pinkHat, blueHat, orangeHat;
     private ImageButton noShirt, greenShirt, pinkShirt, yellowShirt, brownShirt;
@@ -64,6 +64,7 @@ public class Store extends AppCompatActivity {
         rightArrowHat = findViewById(R.id.right_arrow_hat);
         leftArrowShirt = findViewById(R.id.left_arrow_shirt);
         rightArrowShirt = findViewById(R.id.right_arrow_shirt);
+        saveOutfit = findViewById(R.id.save_outfit);
 
         //Import the Hat Image in the Description Section of the Store
         hatsInDescription = findViewById(R.id.hat_description);
@@ -87,6 +88,7 @@ public class Store extends AppCompatActivity {
                 hatScrollView.scrollTo(currXHat + SCROLLCOUNT, 0);
                 if(currXHat < SCROLLCOUNT*4){
                     currXHat += SCROLLCOUNT;
+                    Log.d("currXHat", Integer.toString(currXHat));
                 }
 
                 //This next part will implement the fact that after you click the right arrow to look at another item
@@ -103,6 +105,7 @@ public class Store extends AppCompatActivity {
                 hatScrollView.scrollTo(currXHat - SCROLLCOUNT, 0);
                 if (currXHat > 0) {
                     currXHat -= SCROLLCOUNT;
+                    Log.d("currXHat", Integer.toString(currXHat));
                 }
 
                 changeJemisHat();
@@ -167,10 +170,44 @@ public class Store extends AppCompatActivity {
         yellowShirt = findViewById(R.id.third_item_shirt);
         brownShirt = findViewById(R.id.fourth_item_shirt);
 
+        //avatarDefaultLoad();
+        //changeToDefault();
 
-        avatarDefaultLoad();
-        changeToDefault();
+        saveOutfit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int shirtNum = 0;
+                int hatNum = 0;
 
+                //Sets the shirt number 0 - naked, 1- green, 2-pink, 3-yellow, 4-brown
+                if (currXShirt == SCROLLCOUNTSHIRT * 0){
+                    shirtNum = 1;
+                } else if (currXShirt == SCROLLCOUNTSHIRT *1){
+                    shirtNum = 2;
+                } else if (currXShirt == SCROLLCOUNTSHIRT*2){
+                    shirtNum = 3;
+                } else if (currXShirt == SCROLLCOUNTSHIRT *3){
+                    shirtNum = 4;
+                } else {
+                    shirtNum = 0;
+                }
+
+                //Sets the hats number 0-naked, 1-blue, 2-orange, 3-pink, 4-yellow
+                Log.d("currXHat", Integer.toString(currXHat));
+                if(currXHat == SCROLLCOUNT*0){
+                    hatNum = 1;
+                } else if (currXHat == SCROLLCOUNT * 1){
+                    hatNum = 2;
+                } else if (currXHat == SCROLLCOUNT *2){
+                    hatNum = 3;
+                } else if (currXHat == SCROLLCOUNT * 3){
+                    hatNum = 4;
+                } else {
+                    hatNum = 0;
+                }
+                saveOutfitInBackend(hatNum, shirtNum);
+            }
+        });
 
 
         //initializeFireBase();
@@ -209,110 +246,6 @@ public class Store extends AppCompatActivity {
 
         getUserPifePoints();
 
-//        buy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (buy.getText().equals("Buy Item")) {
-//                    if (Integer.parseInt(pifePoints) >= price) {
-//                        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Store");
-//                        HashMap map = new HashMap();
-//                        map.put(items, true);
-//                        matchDb.updateChildren(map);
-//                        DatabaseReference userCoinsData = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
-//                        userCoinsData.setValue(Integer.parseInt(pifePoints) - price);
-//                        pifePoints = Integer.toString(Integer.parseInt(pifePoints) - price);
-//                        userCoins.setText(pifePoints);
-//
-//                        changePriceTag();
-//                        description.setText("Purchased item!");
-//                        buy.setVisibility(View.GONE);
-//
-//                        Toast.makeText(Store.this, "Successfully bought!", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(Store.this, "Insufficient funds! Practice some more!", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    //Where we equip and make changes to the DataSingleton/Firebase
-//                    int enumer = 0;
-//                    DataSingleton ds = DataSingleton.getInstance();
-//                    if (buy.getText().equals("Equip Hat") || buy.getText().equals("Unequip hat") ) {
-//                        System.out.println("Arrived at Buying Hats");
-//
-//                        //We got hats here
-//                        if (items.equals("YellowHat")) {
-//                            enumer = 4;
-//                        } else if (items.equals("BlueHat")) {
-//                            enumer = 1;
-//                        } else if (items.equals("OrangeHat")) {
-//                            enumer = 2;
-//                        } else if (items.equals("PinkHat")) {
-//                            enumer = 3;
-//                        }
-//                        changeHat(enumer);
-//                        System.out.println("We currently have " + Integer.toString(enumer) + " as hat num.");
-//                        System.out.println("Output is " + currHatShirt.second);
-//                        String tuple = currHatShirt.toString();
-//                        System.out.println(tuple);
-//                        boolean startExtraction = false;
-//                        String result = "";
-//                        for (int i = 0; i < tuple.length(); i++){
-//                            char c = tuple.charAt(i);
-//                            if (c == '}'){
-//                                break;
-//                            }
-//                            if (c == ' '){
-//                                startExtraction = true;
-//                            } else {
-//                                if (startExtraction){
-//                                    result += c;
-//                                }
-//                            }
-//                        }
-//                        int shirtIndex = Integer.parseInt(result);
-//                        currHatShirt = new Pair(enumer, shirtIndex);
-//                        ds.setAvatarClothes(new Pair(enumer, shirtIndex));
-//                    } else {
-//                        System.out.println("Arriving at Buying Shirts");
-//                        if (items.equals("YellowShirt")) {
-//                            enumer = 3;
-//                        } else if (items.equals("GreenShirt")) {
-//                            enumer = 1;
-//                        } else if (items.equals("BrownShirt")) {
-//                            enumer = 4;
-//                        } else if (items.equals("PinkShirt")) {
-//                            enumer = 2;
-//                        }
-//                        changeShirt(enumer);
-//                        String tuple = currHatShirt.toString();
-//                        System.out.println(tuple);
-//                        boolean startExtraction = false;
-//                        String result = "";
-//                        for (int i = 0; i < tuple.length(); i++){
-//                            char c = tuple.charAt(i);
-//                            if (c == ' '){
-//                                break;
-//                            }
-//                            if (c == '{'){
-//                                startExtraction = true;
-//                            } else {
-//                                if (startExtraction){
-//                                    result += c;
-//                                }
-//                            }
-//                        }
-//                        int hatIndex = Integer.parseInt(result);
-//                        currHatShirt = new Pair(hatIndex, enumer);
-//                        ds.setAvatarClothes(new Pair(hatIndex, enumer));
-//
-//                    }
-//                    Toast.makeText(getApplicationContext(), "Clothing change successful!", Toast.LENGTH_SHORT).show();
-//                    buy.setVisibility(View.GONE);
-//
-//
-//                }
-//            }
-//        });
-
     }
 
 
@@ -338,6 +271,17 @@ public class Store extends AppCompatActivity {
                         itemDescription.setText("Item purchased!");
                         purchaseItem.setVisibility(View.GONE);
                         updatedTextField = true;
+
+                        //Clears the price off items that you already have purchased the item
+                        if (currItem == 0){
+                            blueHatText.setText("");
+                        } else if (currItem == 1){
+                            orangeHatText.setText("");
+                        } else if (currItem ==2){
+                            pinkHatText.setText("");
+                        } else {
+                            yellowHatText.setText("");
+                        }
                     }
                 }
                 if (updatedTextField == false){
@@ -426,17 +370,17 @@ public class Store extends AppCompatActivity {
                 if (dataSnapshot.getValue() != null){
                     if (((Long) dataSnapshot.getValue()).intValue() >= 3){
                         shirtItemDescription.setText("Congrats! You have commented on a total of three videos!");
-                        yellowShirt.setImageResource(R.drawable.yellowshirttrans);
+                        yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
                         shirtsInDescription.setImageResource(R.drawable.yellowshirttrans);
                     } else {
                         shirtItemDescription.setText("Comment on a total of three videos!");
-                        yellowShirt.setImageResource(R.drawable.yellowshirtlockedtrans);
+                        yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
                         shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
                     }
 
                 } else {
                     shirtItemDescription.setText("Comment on a total of three videos!");
-                    yellowShirt.setImageResource(R.drawable.yellowshirtlockedtrans);
+                    yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
                     shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
                 }
 
@@ -458,11 +402,11 @@ public class Store extends AppCompatActivity {
                 int num_friends = (int) dataSnapshot.getChildrenCount();
                 if (num_friends >= 5){
                     shirtItemDescription.setText("Congrats! You have made at least 5 friends!");
-                    pinkShirt.setImageResource(R.drawable.pinkshirttrans);
+                    pinkShirt.setBackground(getDrawable(R.drawable.pinkshirttrans));
                     shirtsInDescription.setImageResource(R.drawable.pinkshirttrans);
                 } else {
                     shirtItemDescription.setText("Make a total of five friends!");
-                    pinkShirt.setImageResource(R.drawable.pinkshirtlockedtrans);
+                    pinkShirt.setBackground(getDrawable(R.drawable.pinkshirtlockedtrans));
                     shirtsInDescription.setImageResource(R.drawable.pinkshirtlockedtrans);
                 }
 
@@ -482,12 +426,12 @@ public class Store extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
                     System.out.println("Some odd reason..." + dataSnapshot.getValue().toString());
-                    greenShirt.setImageResource(R.drawable.jemi_shirt_green);
+                    greenShirt.setBackground(getDrawable(R.drawable.jemi_shirt_green));
                     shirtsInDescription.setImageResource(R.drawable.jemi_shirt_green);
                     shirtItemDescription.setText("Congrats! You completed one practice session!");
 
                 } else {
-                    greenShirt.setImageResource(R.drawable.greenshirtlockedtrans);
+                    greenShirt.setBackground(getDrawable(R.drawable.greenshirtlockedtrans));
                     shirtItemDescription.setText("Complete one practice session!");
                     shirtsInDescription.setImageResource(R.drawable.greenshirtlockedtrans);
                 }
@@ -519,81 +463,24 @@ public class Store extends AppCompatActivity {
         });
     }
 
-    private void avatarDefaultLoad(){
+
+    private void saveOutfitInBackend(int hatNum, int shirtNum){
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference avatarDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("AvatarClothes");
-        avatarDb.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    System.out.println("Datasnapshot:" + dataSnapshot.getValue().toString());
-
-                    Long hatL = (Long) dataSnapshot.child("hat").getValue();
-                    int hat = hatL.intValue();
-                    System.out.println("What do we have here: hat OG: " + hat);
-                    Long shirtL = (Long) dataSnapshot.child("shirt").getValue();
-                    int shirt = shirtL.intValue();
-                    System.out.println("What do we have here: shirt OG: " + shirt);
-
-                    DataSingleton ds = DataSingleton.getInstance();
-                    ds.setAvatarClothes(new Pair(hat, shirt));
-
-                    currHatShirt = new Pair(hat, shirt);
-
-                    changeHat(hat);
-                    changeShirt(shirt);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void changeToDefault() {
-        changeHat((int) currHatShirt.first);
-        changeShirt((int) currHatShirt.second);
-    }
-
-    private void changeHat(int hat){
-        System.out.println("What do we have here: hat: " + hat);
-        // Table of contents: 0 - no hat, 1 - blue, 2 - orange, 3 - pink, 4 - yellow
-        ImageView hatImg = (ImageView) findViewById(R.id.avatarTop);
-        Drawable myDraw = getResources().getDrawable(R.drawable.yellowtoptrans);
-
-        if (hat == 0) {
-            myDraw = getResources().getDrawable(R.drawable.undressedtoptrans);
-        } else if (hat == 1) {
-            myDraw = getResources().getDrawable(R.drawable.bluetoptrans);
-        } else if (hat == 2) {
-            myDraw = getResources().getDrawable(R.drawable.orangetoptrans);
-        } else if (hat == 3) {
-            myDraw = getResources().getDrawable(R.drawable.pinktoptrans);
+        HashMap map = new HashMap();
+        if (purchaseItem.getVisibility() != View.GONE) {
+            Toast.makeText(this, "You have not purchased the hat! Outfit cannot be saved!", Toast.LENGTH_LONG).show();
+        }else if (!shirtItemDescription.getText().toString().toLowerCase().contains("congrats") && !shirtItemDescription.getText().toString().equals("Be naked!")){
+            Toast.makeText(this, "You have not unlocked this shirt! Outfit cannot be saved!", Toast.LENGTH_LONG).show();
+        } else {
+            map.put("hat", hatNum);
+            map.put("shirt", shirtNum);
+            avatarDb.updateChildren(map);
+            Toast.makeText(this, "Outfit Saved", Toast.LENGTH_SHORT).show();
         }
-        hatImg.setImageDrawable(myDraw);
-    }
-
-    private void changeShirt(int shirt) {
-        System.out.println("What do we have here: shirt: " + shirt);
-        // Table of contents: 0 - no shirt, 1 - green, 2 - pink, 3 - yellow, 4 - brown
-        ImageView shirtImg = (ImageView) findViewById(R.id.avatarBottom);
-
-        Drawable myDraw = getResources().getDrawable(R.drawable.brownbottomtrans);
-
-        if (shirt == 0) {
-            myDraw = getResources().getDrawable(R.drawable.undressedbottomtrans);
-        } else if (shirt == 1) {
-            myDraw = getResources().getDrawable(R.drawable.greenbottomtrans);
-        } else if (shirt == 2) {
-            myDraw = getResources().getDrawable(R.drawable.pinkbottomtrans);
-        } else if (shirt == 3) {
-            myDraw = getResources().getDrawable(R.drawable.yellowbottomtrans);
-        }
-        shirtImg.setImageDrawable(myDraw);
 
     }
+
 }
 
 
