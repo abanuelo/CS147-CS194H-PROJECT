@@ -94,7 +94,7 @@
 
         <ImageView
             android:layout_gravity="center"
-            android:id="@+id/left_arrow"
+            android:id="@+id/left_arrow_hat"
             android:visibility="visible"
             android:scaleX="-1"
             android:src="@drawable/ic_arrow_point_to_right"
@@ -102,6 +102,7 @@
             android:layout_height="30dp" />
 
         <HorizontalScrollView
+            android:id="@+id/hatScrollView"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
@@ -193,6 +194,7 @@
                 <LinearLayout
                     android:id="@+id/fourth_container"
                     android:layout_width="wrap_content"
+                    android:layout_marginRight="15dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -218,7 +220,6 @@
                     android:id="@+id/zero_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
                     android:orientation="vertical">
 
                     <ImageButton
@@ -237,7 +238,7 @@
         <ImageView
             android:visibility="visible"
             android:layout_gravity="center"
-            android:id="@+id/right_arrow"
+            android:id="@+id/right_arrow_hat"
             android:src="@drawable/ic_arrow_point_to_right"
             android:layout_width="30dp"
             android:layout_height="30dp" />
@@ -252,7 +253,7 @@
         android:paddingTop="10dp">
 
         <ImageView
-            android:id="@+id/left_arrow_2"
+            android:id="@+id/left_arrow_shirt"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:visibility="visible"
@@ -261,7 +262,8 @@
             android:src="@drawable/ic_arrow_point_to_right" />
 
         <HorizontalScrollView
-            android:layout_width="70dp"
+            android:id="@+id/shirtScrollView"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
@@ -353,6 +355,7 @@
                     android:id="@+id/fourth_container_shirts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
                     android:orientation="vertical">
 
                     <ImageButton
@@ -375,12 +378,13 @@
 
                 <LinearLayout
                     android:id="@+id/zero_container_shirts"
-                    android:layout_marginRight="15dp"
                     android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <ImageButton
+                        android:layout_gravity="center_horizontal"
                         android:background="@drawable/none_icon"
                         android:src="#00ffffff"
                         android:id="@+id/zero_item_shirt"
@@ -395,7 +399,7 @@
         </HorizontalScrollView>
 
         <ImageView
-            android:id="@+id/right_arrow_2"
+            android:id="@+id/right_arrow_shirt"
             android:layout_width="30dp"
             android:visibility="visible"
             android:layout_height="30dp"
@@ -423,35 +427,95 @@
 
 
     <LinearLayout
+        android:weightSum="3"
+        android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:weightSum="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
                 android:layout_weight="1"
                 android:text="Hat"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
 
             <LinearLayout
+                android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:layout_weight="1"
-                    android:src="@drawable/pinkhattrans"
+                    android:id="@+id/hat_description"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/jemi_tiny_blue_hat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <Button
+                    android:layout_weight="1"
+                    android:id="@+id/itemPurchaseButton"
+                    android:text="Buy"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/description"
+                android:text="INPUT DESCRIPTION HERE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:weightSum="3"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:text="Shirt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/shirt_description"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/jemi_shirt_green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:visibility="gone"
                     android:layout_weight="1"
                     android:text="Buy"
                     android:layout_width="wrap_content"
@@ -460,8 +524,10 @@
             </LinearLayout>
 
             <TextView
+                android:layout_weight="1"
+                android:id="@+id/shirt_des"
                 android:text="INPUT DESCRIPTION HERE"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
 
@@ -470,57 +536,24 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/ItemDetail"
-        android:weightSum="1"
-        android:paddingBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/type_unlock"
-            android:src="@drawable/clock_trophy"
-            android:layout_width="150dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_marginRight="25dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/rewardDescription"
-                android:textAlignment="center"
-                android:text="Place Description of Item Here"
-                android:textColor="@color/black"
-                android:fontFamily="@font/opensans_semibold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/buy"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/opensans_semibold"
-                android:theme="@style/AppTheme.RoundedCornerMaterialButton"
-                android:text="Buy Item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/save_outfit"
+            android:text="Save Outfit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationViewPerform"

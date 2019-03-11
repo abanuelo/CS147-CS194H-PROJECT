@@ -34,14 +34,18 @@ import java.util.HashMap;
 
 public class Store extends AppCompatActivity {
 
-    private TextView description, userCoins;
+    private static int SCROLLCOUNT = 217;
+    private static int SCROLLCOUNTSHIRT = 223;
+
+    private HorizontalScrollView hatScrollView, shirtScrollView;
+    private TextView description, userCoins, itemDescription, shirtItemDescription;
     private TextView blueHatText, orangeHatText, pinkHatText, yellowHatText;
-    private ImageView top, bottom, rewardType;
+    private ImageView top, bottom, rewardType, leftArrowHat, rightArrowHat, leftArrowShirt, rightArrowShirt, hatsInDescription, shirtsInDescription;
     private String currentUserId, pifePoints, items;
-    private int price;
+    private int price, currXHat, currXShirt, currItem;
     private boolean result;
     private Handler handler;
-    private Button buy;
+    private Button buy, purchaseItem, saveOutfit;
     private DatabaseReference userDb;
     private ImageButton noHat, yellowHat, pinkHat, blueHat, orangeHat;
     private ImageButton noShirt, greenShirt, pinkShirt, yellowShirt, brownShirt;
@@ -55,18 +59,89 @@ public class Store extends AppCompatActivity {
         userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("dressed");
         handler = new Handler();
 
-        //Button
-        buy = findViewById(R.id.buy);
+        //Importing the side buttons for functionality of the store
+        leftArrowHat = findViewById(R.id.left_arrow_hat);
+        rightArrowHat = findViewById(R.id.right_arrow_hat);
+        leftArrowShirt = findViewById(R.id.left_arrow_shirt);
+        rightArrowShirt = findViewById(R.id.right_arrow_shirt);
+        saveOutfit = findViewById(R.id.save_outfit);
+
+        //Import the Hat Image in the Description Section of the Store
+        hatsInDescription = findViewById(R.id.hat_description);
+        shirtsInDescription = findViewById(R.id.shirt_description);
+        itemDescription = findViewById(R.id.description);
+        shirtItemDescription = findViewById(R.id.shirt_des);
+        purchaseItem = findViewById(R.id.itemPurchaseButton);
+        currItem = 0;
+        checkIfItemBought(); //autopopulates the view for the first time;
+        checkFirstTutorialCompleted(); //autopopulates the view for the first time;
+
+        //Importing the horizontal scroll views
+        hatScrollView = findViewById(R.id.hatScrollView);
+        shirtScrollView = findViewById(R.id.shirtScrollView);
+
+        //This will implement functionality when trying to iterate through the horizontal scroll view
+        //As a test we will first be attempting to move around the horizontal scroll view via rightArrow for Hats
+        rightArrowHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hatScrollView.scrollTo(currXHat + SCROLLCOUNT, 0);
+                if(currXHat < SCROLLCOUNT*4){
+                    currXHat += SCROLLCOUNT;
+                    Log.d("currXHat", Integer.toString(currXHat));
+                }
+
+                //This next part will implement the fact that after you click the right arrow to look at another item
+                //Jemi's attire will chage
+                changeJemisHat();
+
+            }
+        });
+
+        //testing to return back to previous item using similar code to above
+        leftArrowHat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hatScrollView.scrollTo(currXHat - SCROLLCOUNT, 0);
+                if (currXHat > 0) {
+                    currXHat -= SCROLLCOUNT;
+                    Log.d("currXHat", Integer.toString(currXHat));
+                }
+
+                changeJemisHat();
+            }
+        });
+
+        //We will now begin the implementation of the right and left arrows for the shirt in our Store
+        rightArrowShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shirtScrollView.scrollTo(currXShirt + SCROLLCOUNTSHIRT, 0);
+                if (currXShirt < SCROLLCOUNTSHIRT*4){
+                    currXShirt += SCROLLCOUNTSHIRT;
+                }
+
+                changeJemisShirt();
+            }
+        });
+
+        leftArrowShirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shirtScrollView.scrollTo(currXShirt - SCROLLCOUNTSHIRT, 0);
+                if (currXShirt > 0){
+                    currXShirt -= SCROLLCOUNTSHIRT;
+                }
+
+                changeJemisShirt();
+            }
+        });
+
 
         //Current Coin Levels to Buy Objects
         userCoins = findViewById(R.id.user_coins);
         pifePoints = userCoins.getText().toString();
 
-        //Description
-        description = findViewById(R.id.rewardDescription);
-
-        //Reward Type ImageView
-        rewardType = findViewById(R.id.type_unlock);
 
         //Find the Avatar Portions to Change
         top = findViewById(R.id.avatarTop);
@@ -87,7 +162,7 @@ public class Store extends AppCompatActivity {
         yellowHatText = findViewById(R.id.fourth_item_text);
 
         //Method to update from firebase based on if you bought an item or not
-        checkIfItemBought();
+        //checkIfItemBought();
 
         //Find the shirts in the XML File
         greenShirt = findViewById(R.id.first_item_shirt);
@@ -95,197 +170,45 @@ public class Store extends AppCompatActivity {
         yellowShirt = findViewById(R.id.third_item_shirt);
         brownShirt = findViewById(R.id.fourth_item_shirt);
 
-        checkFirstTutorialCompleted();
-        checkSecondTutorialCompleted();
-        checkThirdTutorialCompleted();
+        //avatarDefaultLoad();
+        //changeToDefault();
 
-        avatarDefaultLoad();
-        changeToDefault();
-
-        //Set the hats to clickable
-
-        noHat.setOnClickListener(new View.OnClickListener() {
+        saveOutfit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rewardType.setVisibility(View.GONE);
-                description.setVisibility(View.GONE);
-                buy.setVisibility(View.VISIBLE);
-                buy.setText("Unequip hat");
-                //changeToDefault();
-                top.setImageResource(R.drawable.undressedtoptrans);
-                items="NoHat";
-            }
-        });
+                int shirtNum = 0;
+                int hatNum = 0;
 
-        yellowHat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (yellowHatText.getText().equals("")){
-                    description.setText("Purchased item");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Equip Hat");
-                    rewardType.setVisibility(View.GONE);
+                //Sets the shirt number 0 - naked, 1- green, 2-pink, 3-yellow, 4-brown
+                if (currXShirt == SCROLLCOUNTSHIRT * 0){
+                    shirtNum = 1;
+                } else if (currXShirt == SCROLLCOUNTSHIRT *1){
+                    shirtNum = 2;
+                } else if (currXShirt == SCROLLCOUNTSHIRT*2){
+                    shirtNum = 3;
+                } else if (currXShirt == SCROLLCOUNTSHIRT *3){
+                    shirtNum = 4;
                 } else {
-                    description.setText("Press 'Buy Item' to purchase item");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Buy Item");
-                    rewardType.setVisibility(View.VISIBLE);
+                    shirtNum = 0;
                 }
-                description.setVisibility(View.VISIBLE);
-                rewardType.setImageResource(R.drawable.money_bag);
-                rewardType.getLayoutParams().height = 300;
-                rewardType.getLayoutParams().width = 300;
-                price = 20;
-                items = "YellowHat";
-                //changeToDefault();
-                //avatarDefault();
-                top.setImageResource(R.drawable.yellowtoptrans);
-            }
-        });
 
-        pinkHat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (pinkHatText.getText().equals("")){
-                    description.setText("Purchased item");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Equip Hat");
-                    rewardType.setVisibility(View.GONE);
+                //Sets the hats number 0-naked, 1-blue, 2-orange, 3-pink, 4-yellow
+                Log.d("currXHat", Integer.toString(currXHat));
+                if(currXHat == SCROLLCOUNT*0){
+                    hatNum = 1;
+                } else if (currXHat == SCROLLCOUNT * 1){
+                    hatNum = 2;
+                } else if (currXHat == SCROLLCOUNT *2){
+                    hatNum = 3;
+                } else if (currXHat == SCROLLCOUNT * 3){
+                    hatNum = 4;
                 } else {
-                    description.setText("Press 'Buy Item' to purchase item");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Buy Item");
-                    rewardType.setVisibility(View.VISIBLE);
+                    hatNum = 0;
                 }
-                description.setVisibility(View.VISIBLE);
-                rewardType.setImageResource(R.drawable.money_bag);
-                rewardType.getLayoutParams().height = 300;
-                rewardType.getLayoutParams().width = 300;
-                price = 15;
-                items = "PinkHat";
-                //changeToDefault();
-                top.setImageResource(R.drawable.pinktoptrans);
+                saveOutfitInBackend(hatNum, shirtNum);
             }
         });
 
-        blueHat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (blueHatText.getText().equals("")){
-                    description.setText("Purchased item");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Equip Hat");
-                    rewardType.setVisibility(View.GONE);
-                } else {
-                    description.setText("Press 'Buy Item' to purchase item");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Buy Item");
-                    rewardType.setVisibility(View.VISIBLE);
-                }
-                description.setVisibility(View.VISIBLE);
-                rewardType.setImageResource(R.drawable.money_bag);
-                rewardType.getLayoutParams().height = 300;
-                rewardType.getLayoutParams().width = 300;
-                price = 5;
-                items = "BlueHat";
-                //changeToDefault();
-                top.setImageResource(R.drawable.bluetoptrans);
-            }
-        });
-
-        orangeHat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (orangeHatText.getText().equals("")){
-                    description.setText("Purchased item");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Equip Hat");
-                    rewardType.setVisibility(View.GONE);
-                } else {
-                    description.setText("Press 'Buy Item' to purchase item");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Buy Item");
-                    rewardType.setVisibility(View.VISIBLE);
-                }
-                description.setVisibility(View.VISIBLE);
-                rewardType.setImageResource(R.drawable.money_bag);
-                rewardType.getLayoutParams().height = 300;
-                rewardType.getLayoutParams().width = 300;
-                price = 10;
-                items = "OrangeHat";
-                //changeToDefault();
-                top.setImageResource(R.drawable.orangetoptrans);
-            }
-        });
-
-        //Set the shirts to clickable
-        noShirt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rewardType.setVisibility(View.GONE);
-                description.setVisibility(View.GONE);
-                buy.setVisibility(View.VISIBLE);
-                buy.setText("Unequip shirt");
-                items = "NoShirt";
-                //changeToDefault();
-                bottom.setImageResource(R.drawable.undressedbottomtrans);
-
-            }
-        });
-
-        greenShirt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                description.setVisibility(View.VISIBLE);
-                rewardType.setVisibility(View.VISIBLE);
-                rewardType.setImageResource(R.drawable.star_trophy);
-                items = "GreenShirt";
-                //changeToDefault();
-                checkFirstTutorialCompleted();
-                bottom.setImageResource(R.drawable.greenbottomtrans);
-
-            }
-        });
-
-        pinkShirt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                description.setVisibility(View.VISIBLE);
-                rewardType.setVisibility(View.VISIBLE);
-                rewardType.setImageResource(R.drawable.smiley_trophy);
-                items = "PinkShirt";
-                //changeToDefault();
-                checkSecondTutorialCompleted();
-                bottom.setImageResource(R.drawable.pinkbottomtrans);
-            }
-        });
-
-        yellowShirt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                description.setVisibility(View.VISIBLE);
-                rewardType.setVisibility(View.VISIBLE);
-                rewardType.setImageResource(R.drawable.sun_trophy);
-                items = "YellowShirt";
-                //changeToDefault();
-                checkThirdTutorialCompleted();
-                bottom.setImageResource(R.drawable.yellowbottomtrans);
-            }
-        });
-
-        brownShirt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                description.setVisibility(View.VISIBLE);
-                rewardType.setVisibility(View.VISIBLE);
-                description.setText("Practice for a total of 3 hours!");
-                rewardType.setImageResource(R.drawable.clock_trophy);
-                items = "BrownShirt";
-                //changeToDefault();
-                bottom.setImageResource(R.drawable.brownbottomtrans);
-                buy.setVisibility(View.GONE);
-            }
-        });
 
         //initializeFireBase();
 
@@ -323,110 +246,6 @@ public class Store extends AppCompatActivity {
 
         getUserPifePoints();
 
-        buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (buy.getText().equals("Buy Item")) {
-                    if (Integer.parseInt(pifePoints) >= price) {
-                        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Store");
-                        HashMap map = new HashMap();
-                        map.put(items, true);
-                        matchDb.updateChildren(map);
-                        DatabaseReference userCoinsData = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
-                        userCoinsData.setValue(Integer.parseInt(pifePoints) - price);
-                        pifePoints = Integer.toString(Integer.parseInt(pifePoints) - price);
-                        userCoins.setText(pifePoints);
-
-                        changePriceTag();
-                        description.setText("Purchased item!");
-                        buy.setVisibility(View.GONE);
-
-                        Toast.makeText(Store.this, "Successfully bought!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(Store.this, "Insufficient funds! Practice some more!", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    //Where we equip and make changes to the DataSingleton/Firebase
-                    int enumer = 0;
-                    DataSingleton ds = DataSingleton.getInstance();
-                    if (buy.getText().equals("Equip Hat") || buy.getText().equals("Unequip hat") ) {
-                        System.out.println("Arrived at Buying Hats");
-
-                        //We got hats here
-                        if (items.equals("YellowHat")) {
-                            enumer = 4;
-                        } else if (items.equals("BlueHat")) {
-                            enumer = 1;
-                        } else if (items.equals("OrangeHat")) {
-                            enumer = 2;
-                        } else if (items.equals("PinkHat")) {
-                            enumer = 3;
-                        }
-                        changeHat(enumer);
-                        System.out.println("We currently have " + Integer.toString(enumer) + " as hat num.");
-                        System.out.println("Output is " + currHatShirt.second);
-                        String tuple = currHatShirt.toString();
-                        System.out.println(tuple);
-                        boolean startExtraction = false;
-                        String result = "";
-                        for (int i = 0; i < tuple.length(); i++){
-                            char c = tuple.charAt(i);
-                            if (c == '}'){
-                                break;
-                            }
-                            if (c == ' '){
-                                startExtraction = true;
-                            } else {
-                                if (startExtraction){
-                                    result += c;
-                                }
-                            }
-                        }
-                        int shirtIndex = Integer.parseInt(result);
-                        currHatShirt = new Pair(enumer, shirtIndex);
-                        ds.setAvatarClothes(new Pair(enumer, shirtIndex));
-                    } else {
-                        System.out.println("Arriving at Buying Shirts");
-                        if (items.equals("YellowShirt")) {
-                            enumer = 3;
-                        } else if (items.equals("GreenShirt")) {
-                            enumer = 1;
-                        } else if (items.equals("BrownShirt")) {
-                            enumer = 4;
-                        } else if (items.equals("PinkShirt")) {
-                            enumer = 2;
-                        }
-                        changeShirt(enumer);
-                        String tuple = currHatShirt.toString();
-                        System.out.println(tuple);
-                        boolean startExtraction = false;
-                        String result = "";
-                        for (int i = 0; i < tuple.length(); i++){
-                            char c = tuple.charAt(i);
-                            if (c == ' '){
-                                break;
-                            }
-                            if (c == '{'){
-                                startExtraction = true;
-                            } else {
-                                if (startExtraction){
-                                    result += c;
-                                }
-                            }
-                        }
-                        int hatIndex = Integer.parseInt(result);
-                        currHatShirt = new Pair(hatIndex, enumer);
-                        ds.setAvatarClothes(new Pair(hatIndex, enumer));
-
-                    }
-                    Toast.makeText(getApplicationContext(), "Clothing change successful!", Toast.LENGTH_SHORT).show();
-                    buy.setVisibility(View.GONE);
-
-
-                }
-            }
-        });
-
     }
 
 
@@ -435,11 +254,41 @@ public class Store extends AppCompatActivity {
         itemDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean updatedTextField = false;
                 for(DataSnapshot item : dataSnapshot.getChildren()){
                     String purchased_item = item.getKey();
                     items = purchased_item;
-                    changePriceTag();
+                    int item_index = getCurrItemIndex();
+
+                    //Special case when you scroll to the view where Jemi has no shirt or hat
+                    if(currItem == 4 && updatedTextField == false){
+                        itemDescription.setText("Be naked!");
+                        purchaseItem.setVisibility(View.GONE);
+                        updatedTextField = true;
+                    }
+
+                    if (currItem == item_index && updatedTextField == false){
+                        itemDescription.setText("Item purchased!");
+                        purchaseItem.setVisibility(View.GONE);
+                        updatedTextField = true;
+
+                        //Clears the price off items that you already have purchased the item
+                        if (currItem == 0){
+                            blueHatText.setText("");
+                        } else if (currItem == 1){
+                            orangeHatText.setText("");
+                        } else if (currItem ==2){
+                            pinkHatText.setText("");
+                        } else {
+                            yellowHatText.setText("");
+                        }
+                    }
                 }
+                if (updatedTextField == false){
+                    itemDescription.setText("Buy item?");
+                    purchaseItem.setVisibility(View.VISIBLE);
+                }
+
             }
 
             @Override
@@ -449,16 +298,68 @@ public class Store extends AppCompatActivity {
         });
     }
 
-    private void changePriceTag(){
-        if (items.equals("BlueHat")){
-            blueHatText.setText("");
-        } else if (items.equals("OrangeHat")){
-            orangeHatText.setText("");
-        } else if (items.equals("PinkHat")){
-            pinkHatText.setText("");
+    //This method will change Jemis Shirt Across All parts of the screen
+    private void changeJemisShirt(){
+        if(currXShirt == SCROLLCOUNTSHIRT*0){
+            bottom.setImageResource(R.drawable.greenbottomtrans);
+            checkFirstTutorialCompleted();
+        } else if (currXShirt == SCROLLCOUNTSHIRT*1){
+            bottom.setImageResource(R.drawable.pinkbottomtrans);
+            checkSecondTutorialCompleted();
+        } else if (currXShirt == SCROLLCOUNTSHIRT*2){
+            bottom.setImageResource(R.drawable.yellowbottomtrans);
+            checkThirdTutorialCompleted();
+        } else if (currXShirt == SCROLLCOUNTSHIRT*3){
+            bottom.setImageResource(R.drawable.brownbottomtrans);
+            shirtsInDescription.setImageResource(R.drawable.brownshirtlockedtrans);
+            shirtItemDescription.setText("You must practice for 2 hours to unlock this item");
         } else {
-            yellowHatText.setText("");
+            bottom.setImageResource(R.drawable.undressedbottomtrans);
+            shirtsInDescription.setImageResource(R.drawable.none_icon);
+            shirtItemDescription.setText("Be naked!");
         }
+    }
+
+    //This will change Jemis Hat Across All Parts of the Screen
+    private void changeJemisHat(){
+        if (currXHat == SCROLLCOUNT*0){
+            top.setImageResource(R.drawable.bluetoptrans);
+            hatsInDescription.setImageResource(R.drawable.jemi_tiny_blue_hat);
+            currItem = 0;
+        } else if (currXHat == SCROLLCOUNT*1){
+            top.setImageResource(R.drawable.orangetoptrans);
+            hatsInDescription.setImageResource(R.drawable.jemi_tiny_orange_hat);
+            currItem = 1;
+        } else if (currXHat == SCROLLCOUNT*2){
+            top.setImageResource(R.drawable.pinktoptrans);
+            hatsInDescription.setImageResource(R.drawable.pinkhattrans);
+            currItem = 2;
+        } else if (currXHat == SCROLLCOUNT*3){
+            top.setImageResource(R.drawable.yellowtoptrans);
+            hatsInDescription.setImageResource(R.drawable.yellowhattrans);
+            currItem = 3;
+        } else {
+            top.setImageResource(R.drawable.undressedtoptrans);
+            hatsInDescription.setImageResource(R.drawable.none_icon);
+            currItem = 4;
+        }
+        checkIfItemBought();
+    }
+
+    private int getCurrItemIndex(){
+        int item_index = 0;
+        if (items.equals("BlueHat")){
+            item_index = 0;
+        } else if (items.equals("OrangeHat")){
+           item_index = 1;
+        } else if (items.equals("PinkHat")){
+            item_index = 2;
+        } else if (items.equals("YellowHat")){
+           item_index = 3;
+        } else {
+            item_index = 4;
+        }
+        return item_index;
     }
 
     private void checkThirdTutorialCompleted(){
@@ -468,18 +369,19 @@ public class Store extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null){
                     if (((Long) dataSnapshot.getValue()).intValue() >= 3){
-                        description.setText("Congrats! You have commented on a total of three videos!");
-                        yellowShirt.setImageResource(R.drawable.yellowshirttrans);
-                        buy.setVisibility(View.VISIBLE);
-                        buy.setText("Equip Shirt");
+                        shirtItemDescription.setText("Congrats! You have commented on a total of three videos!");
+                        yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
+                        shirtsInDescription.setImageResource(R.drawable.yellowshirttrans);
                     } else {
-                        description.setText("Comment on a total of three videos!");
-                        buy.setVisibility(View.GONE);
+                        shirtItemDescription.setText("Comment on a total of three videos!");
+                        yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
+                        shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
                     }
 
                 } else {
-                    buy.setVisibility(View.GONE);
-                    description.setText("Comment on a total of three videos!");
+                    shirtItemDescription.setText("Comment on a total of three videos!");
+                    yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
+                    shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
                 }
 
 
@@ -499,13 +401,13 @@ public class Store extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int num_friends = (int) dataSnapshot.getChildrenCount();
                 if (num_friends >= 5){
-                    description.setText("Congrats! You have made at least 5 friends!");
-                    pinkShirt.setImageResource(R.drawable.pinkshirttrans);
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Equip Shirt");
+                    shirtItemDescription.setText("Congrats! You have made at least 5 friends!");
+                    pinkShirt.setBackground(getDrawable(R.drawable.pinkshirttrans));
+                    shirtsInDescription.setImageResource(R.drawable.pinkshirttrans);
                 } else {
-                    description.setText("Make a total of five friends!");
-                    buy.setVisibility(View.GONE);
+                    shirtItemDescription.setText("Make a total of five friends!");
+                    pinkShirt.setBackground(getDrawable(R.drawable.pinkshirtlockedtrans));
+                    shirtsInDescription.setImageResource(R.drawable.pinkshirtlockedtrans);
                 }
 
             }
@@ -524,15 +426,14 @@ public class Store extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
                     System.out.println("Some odd reason..." + dataSnapshot.getValue().toString());
-                    greenShirt.setImageResource(R.drawable.jemi_shirt_green);
-                    description.setText("Congrats! You completed one practice session!");
-                    buy.setVisibility(View.VISIBLE);
-                    buy.setText("Equip Shirt");
-                    //bottom.setImageResource(R.drawable.greenbottomtrans);
-                    //rewardType.setImageResource(R.drawable.star_trophy);
+                    greenShirt.setBackground(getDrawable(R.drawable.jemi_shirt_green));
+                    shirtsInDescription.setImageResource(R.drawable.jemi_shirt_green);
+                    shirtItemDescription.setText("Congrats! You completed one practice session!");
+
                 } else {
-                    description.setText("Complete one practice session!");
-                    buy.setVisibility(View.GONE);
+                    greenShirt.setBackground(getDrawable(R.drawable.greenshirtlockedtrans));
+                    shirtItemDescription.setText("Complete one practice session!");
+                    shirtsInDescription.setImageResource(R.drawable.greenshirtlockedtrans);
                 }
 
             }
@@ -562,81 +463,24 @@ public class Store extends AppCompatActivity {
         });
     }
 
-    private void avatarDefaultLoad(){
+
+    private void saveOutfitInBackend(int hatNum, int shirtNum){
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference avatarDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("AvatarClothes");
-        avatarDb.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    System.out.println("Datasnapshot:" + dataSnapshot.getValue().toString());
-
-                    Long hatL = (Long) dataSnapshot.child("hat").getValue();
-                    int hat = hatL.intValue();
-                    System.out.println("What do we have here: hat OG: " + hat);
-                    Long shirtL = (Long) dataSnapshot.child("shirt").getValue();
-                    int shirt = shirtL.intValue();
-                    System.out.println("What do we have here: shirt OG: " + shirt);
-
-                    DataSingleton ds = DataSingleton.getInstance();
-                    ds.setAvatarClothes(new Pair(hat, shirt));
-
-                    currHatShirt = new Pair(hat, shirt);
-
-                    changeHat(hat);
-                    changeShirt(shirt);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void changeToDefault() {
-        changeHat((int) currHatShirt.first);
-        changeShirt((int) currHatShirt.second);
-    }
-
-    private void changeHat(int hat){
-        System.out.println("What do we have here: hat: " + hat);
-        // Table of contents: 0 - no hat, 1 - blue, 2 - orange, 3 - pink, 4 - yellow
-        ImageView hatImg = (ImageView) findViewById(R.id.avatarTop);
-        Drawable myDraw = getResources().getDrawable(R.drawable.yellowtoptrans);
-
-        if (hat == 0) {
-            myDraw = getResources().getDrawable(R.drawable.undressedtoptrans);
-        } else if (hat == 1) {
-            myDraw = getResources().getDrawable(R.drawable.bluetoptrans);
-        } else if (hat == 2) {
-            myDraw = getResources().getDrawable(R.drawable.orangetoptrans);
-        } else if (hat == 3) {
-            myDraw = getResources().getDrawable(R.drawable.pinktoptrans);
+        HashMap map = new HashMap();
+        if (purchaseItem.getVisibility() != View.GONE) {
+            Toast.makeText(this, "You have not purchased the hat! Outfit cannot be saved!", Toast.LENGTH_LONG).show();
+        }else if (!shirtItemDescription.getText().toString().toLowerCase().contains("congrats") && !shirtItemDescription.getText().toString().equals("Be naked!")){
+            Toast.makeText(this, "You have not unlocked this shirt! Outfit cannot be saved!", Toast.LENGTH_LONG).show();
+        } else {
+            map.put("hat", hatNum);
+            map.put("shirt", shirtNum);
+            avatarDb.updateChildren(map);
+            Toast.makeText(this, "Outfit Saved", Toast.LENGTH_SHORT).show();
         }
-        hatImg.setImageDrawable(myDraw);
-    }
-
-    private void changeShirt(int shirt) {
-        System.out.println("What do we have here: shirt: " + shirt);
-        // Table of contents: 0 - no shirt, 1 - green, 2 - pink, 3 - yellow, 4 - brown
-        ImageView shirtImg = (ImageView) findViewById(R.id.avatarBottom);
-
-        Drawable myDraw = getResources().getDrawable(R.drawable.brownbottomtrans);
-
-        if (shirt == 0) {
-            myDraw = getResources().getDrawable(R.drawable.undressedbottomtrans);
-        } else if (shirt == 1) {
-            myDraw = getResources().getDrawable(R.drawable.greenbottomtrans);
-        } else if (shirt == 2) {
-            myDraw = getResources().getDrawable(R.drawable.pinkbottomtrans);
-        } else if (shirt == 3) {
-            myDraw = getResources().getDrawable(R.drawable.yellowbottomtrans);
-        }
-        shirtImg.setImageDrawable(myDraw);
 
     }
+
 }
 
 
