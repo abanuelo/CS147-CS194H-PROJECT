@@ -24,7 +24,7 @@
             <ImageView
                 android:layout_weight="1"
                 android:id="@+id/coin_image"
-                android:src="@drawable/ic_coins"
+                android:src="@drawable/coins_white"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/sideGaps"/>
