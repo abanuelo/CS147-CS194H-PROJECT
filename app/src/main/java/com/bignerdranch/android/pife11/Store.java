@@ -35,8 +35,8 @@ import java.util.Map;
 
 public class Store extends AppCompatActivity {
 
-    private static int SCROLLCOUNT = 217;
-    private static int SCROLLCOUNTSHIRT = 223;
+    private static int SCROLLCOUNT = 290;
+    private static int SCROLLCOUNTSHIRT = 300;
 
     private HorizontalScrollView hatScrollView, shirtScrollView;
     private TextView description, userCoins, itemDescription, shirtItemDescription;

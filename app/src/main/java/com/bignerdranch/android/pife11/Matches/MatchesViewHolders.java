@@ -43,43 +43,24 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
         myJemiTopImage = (ImageView) itemView.findViewById(R.id.jemiTop);
         myJemiBottom = (ImageView) itemView.findViewById(R.id.jemiBottom);
         viewProfile = (Button) itemView.findViewById(R.id.SeeProfile);
-        //check = (ImageView) itemView.findViewById(R.id.check);
-        //notification = (ImageView) itemView.findViewById(R.id.new_song);
+        viewProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Location", "clicked Button");
+                Intent intent = new Intent(view.getContext(), Profile.class);
+                intent.putExtra("profileId", myMatchId.getText().toString());
+                view.getContext().startActivity(intent);
+            }
+        });
+
         context = itemView;
 
 
     }
-
-
+    
 
     @Override
     public void onClick(View view){
-        //redirect this to see my matches and decide whether or not a collaboration wants to be set
-//        if (view.getContext().toString().contains("SendPerform")) {
-//            //Log.d("Located!", "Yes");
-//            if (check.getVisibility() == view.GONE) {
-//                check.setVisibility(view.VISIBLE);
-//                DatabaseReference checkDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Checked");
-//                HashMap info = new HashMap();
-//                info.put(myMatchId.getText().toString(), 1);
-//                checkDb.updateChildren(info);
-//            } else {
-//                Log.d("Returned back to normal", "here");
-//                check.setVisibility(view.GONE);
-//                DatabaseReference checkDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Checked");
-//                HashMap info = new HashMap();
-//                info.put(myMatchId.getText().toString(), 0);
-//                checkDb.updateChildren(info);
-//            }
-//        } else {
-            viewProfile.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), Profile.class);
-                    intent.putExtra("profileId", myMatchId.getText().toString());
-                    view.getContext().startActivity(intent);
-                }
-            });
             Intent intent = new Intent(view.getContext(), Profile.class);
             intent.putExtra("profileId", myMatchId.getText().toString());
             view.getContext().startActivity(intent);
