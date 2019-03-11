@@ -7,44 +7,103 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:weightSum="3"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp">
 
-        <TextView
-            android:id="@+id/ShopTitle"
-            android:paddingTop="10dp"
-            android:text="Shop"
-            android:layout_weight="3"
-            android:fontFamily="@font/opensans_semibold"
-            android:gravity="right"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/coin_image"
-            android:paddingTop="10dp"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:paddingLeft="40dp"
-            android:src="@drawable/ic_coins" />
-
-        <TextView
-            android:id="@+id/user_coins"
-            android:textSize="20dp"
-            android:paddingLeft="10dp"
+        <LinearLayout
             android:layout_weight="1"
-            android:text="Coins"
-            android:fontFamily="@font/opensans_semibold"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/black"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_weight="1"
+                android:id="@+id/coin_image"
+                android:src="@drawable/ic_coins"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/sideGaps"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:id="@+id/user_coins"
+                android:text="-1"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shop"
+                android:textColor="@color/white"
+                android:id="@+id/routineTitle"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_weight="1"
+                android:layoutDirection="rtl"
+                android:src="@drawable/shop"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:paddingRight="@dimen/sideGaps"
+                android:layout_width="60dp"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+        <!--<TextView-->
+            <!--android:id="@+id/user_coins"-->
+            <!--android:textSize="20dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Coins"-->
+            <!--android:fontFamily="@font/opensans_semibold"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content" />-->
+
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_gravity="center_horizontal"
@@ -85,386 +144,252 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-        <LinearLayout
-        android:paddingTop="10dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_gravity="center"
-            android:id="@+id/left_arrow_hat"
-            android:visibility="visible"
-            android:scaleX="-1"
-            android:src="@drawable/ic_arrow_point_to_right"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
-
-        <HorizontalScrollView
-            android:id="@+id/hatScrollView"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <LinearLayout
-                android:id="@+id/HatView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:gravity="left"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/first_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/first_item"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/jemi_tiny_blue_hat"
-                        android:src="#00ffffff" />
-
-                    <TextView
-                        android:id="@+id/first_item_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$5"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/second_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/second_item"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/jemi_tiny_orange_hat"
-                        android:src="#00ffffff" />
-
-                    <TextView
-                        android:id="@+id/second_item_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$10"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/third_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/third_item"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/pinkhattrans"
-                        android:src="#00ffffff" />
-
-                    <TextView
-                        android:id="@+id/third_item_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$15"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/fourth_container"
-                    android:layout_width="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/fourth_item"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/yellowhattrans"
-                        android:src="#00ffffff" />
-
-                    <TextView
-                        android:id="@+id/fourth_item_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$20"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/zero_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/zero_item"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/none_icon"
-                        android:src="#00ffffff" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
-
-        <ImageView
-            android:visibility="visible"
-            android:layout_gravity="center"
-            android:id="@+id/right_arrow_hat"
-            android:src="@drawable/ic_arrow_point_to_right"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:paddingTop="10dp">
-
-        <ImageView
-            android:id="@+id/left_arrow_shirt"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:visibility="visible"
-            android:layout_gravity="center"
-            android:scaleX="-1"
-            android:src="@drawable/ic_arrow_point_to_right" />
-
-        <HorizontalScrollView
-            android:id="@+id/shirtScrollView"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <LinearLayout
-                android:id="@+id/ShirtView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:gravity="left"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/first_container_shirts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/first_item_shirt"
-                        android:layout_width="70dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/greenshirtlockedtrans"
-                        android:src="#00ffffff" />
-
-                    <TextView
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$500"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/second_container_shirts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/second_item_shirt"
-                        android:layout_width="70dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/pinkshirtlockedtrans"
-                        android:src="#00ffffff" />
-
-                    <TextView
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$1000"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/third_container_shirts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/third_item_shirt"
-                        android:layout_width="70dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/yellowshirtlockedtrans"
-                        android:src="#00ffffff" />
-
-                    <TextView
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$1500"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/fourth_container_shirts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/fourth_item_shirt"
-                        android:layout_width="70dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/brownshirtlockedtrans"
-                        android:src="#00ffffff" />
-
-                    <TextView
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="$2000"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/zero_container_shirts"
-                    android:orientation="vertical"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageButton
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/none_icon"
-                        android:src="#00ffffff"
-                        android:id="@+id/zero_item_shirt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
-
-        <ImageView
-            android:id="@+id/right_arrow_shirt"
-            android:layout_width="30dp"
-            android:visibility="visible"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_arrow_point_to_right" />
-
-    </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grayHint"
+        android:layout_marginTop="0dp"
+        ></View>
+
     <LinearLayout
         android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:background="@color/grayBckgrd"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:text="Current Apparel"
+            android:textSize="18sp"
+            android:fontFamily="@font/opensans_bold"
+            android:text="Avatar Outfit"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grayHint"
+        android:layout_marginTop="0dp"
+        ></View>
 
     <LinearLayout
-        android:weightSum="3"
+        android:weightSum="2"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="100dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:text="Hat"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
-
 
             <LinearLayout
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:orientation="vertical"
-                android:layout_width="120dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/hat_description"
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/left_arrow_hat"
+                        android:visibility="visible"
+                        android:scaleX="-1"
+                        android:src="@drawable/ic_arrow_point_to_right"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/hatScrollView"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/HatView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/first_container"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/first_item"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/jemi_tiny_blue_hat"
+                                    android:src="#00ffffff" />
+
+                                <TextView
+                                    android:id="@+id/first_item_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/opensans_semibold"
+                                    android:text="$5"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/second_container"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/second_item"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/jemi_tiny_orange_hat"
+                                    android:src="#00ffffff" />
+
+                                <TextView
+                                    android:id="@+id/second_item_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/opensans_semibold"
+                                    android:text="$10"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/third_container"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/third_item"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/pinkhattrans"
+                                    android:src="#00ffffff" />
+
+                                <TextView
+                                    android:id="@+id/third_item_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/opensans_semibold"
+                                    android:text="$15"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/fourth_container"
+                                android:layout_width="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/fourth_item"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/yellowhattrans"
+                                    android:src="#00ffffff" />
+
+                                <TextView
+                                    android:id="@+id/fourth_item_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/opensans_semibold"
+                                    android:text="$20"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/zero_container"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/zero_item"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/none_icon"
+                                    android:src="#00ffffff" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <ImageView
+                        android:visibility="visible"
+                        android:layout_gravity="center"
+                        android:id="@+id/right_arrow_hat"
+                        android:src="@drawable/ic_arrow_point_to_right"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:layout_weight="1"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/jemi_tiny_blue_hat"
-                    android:layout_width="120dp"
+                    android:fontFamily="@font/open_sans"
+                    android:id="@+id/description"
+                    android:text="INPUT DESCRIPTION HERE"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
 
                 <Button
+                    android:fontFamily="@font/opensans_semibold"
+                    android:background="@drawable/button_transparent"
+                    android:textColor="@color/colorPrimary"
                     android:id="@+id/itemPurchaseButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="1"
                     android:text="Buy"
@@ -472,90 +397,251 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:id="@+id/description"
-                android:text="INPUT DESCRIPTION HERE"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content" />
-
-
         </LinearLayout>
 
     </LinearLayout>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grayHint"
+        android:layout_marginTop="0dp"
+        ></View>
+
     <LinearLayout
-        android:weightSum="3"
+        android:weightSum="2"
         android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="90dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="Shirt"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
-
-
             <LinearLayout
+                android:gravity="center_horizontal"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_width="120dp"
+                android:layout_width="125dp"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/shirt_description"
-                    android:layout_weight="1"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/jemi_shirt_green"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content" />
+                    android:gravity="center"
+                    android:paddingTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/left_arrow_shirt"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:visibility="visible"
+                        android:layout_gravity="center"
+                        android:scaleX="-1"
+                        android:src="@drawable/ic_arrow_point_to_right" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/shirtScrollView"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ShirtView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/first_container_shirts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/first_item_shirt"
+                                    android:layout_width="70dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/greenshirtlockedtrans"
+                                    android:src="#00ffffff" />
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/opensans_semibold"
+                                    android:text="$500"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:id="@+id/second_container_shirts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/second_item_shirt"
+                                    android:layout_width="70dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/pinkshirtlockedtrans"
+                                    android:src="#00ffffff" />
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/opensans_semibold"
+                                    android:text="$1000"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/third_container_shirts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/third_item_shirt"
+                                    android:layout_width="70dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/yellowshirtlockedtrans"
+                                    android:src="#00ffffff" />
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/opensans_semibold"
+                                    android:text="$1500"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/fourth_container_shirts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:orientation="vertical">
+
+                                <ImageButton
+                                    android:id="@+id/fourth_item_shirt"
+                                    android:layout_width="70dp"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/brownshirtlockedtrans"
+                                    android:src="#00ffffff" />
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/opensans_semibold"
+                                    android:text="$2000"
+                                    android:textColor="@color/black" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/zero_container_shirts"
+                                android:orientation="vertical"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageButton
+                                    android:layout_gravity="center_horizontal"
+                                    android:background="@drawable/none_icon"
+                                    android:src="#00ffffff"
+                                    android:id="@+id/zero_item_shirt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <ImageView
+                        android:id="@+id/right_arrow_shirt"
+                        android:layout_width="30dp"
+                        android:visibility="visible"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_arrow_point_to_right" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <TextView
-                android:layout_gravity="center"
-                android:gravity="center"
+            <LinearLayout
                 android:layout_weight="1"
-                android:id="@+id/shirt_des"
-                android:text="INPUT DESCRIPTION HERE"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/shirt_des"
+                    android:fontFamily="@font/open_sans"
+                    android:text="INPUT DESCRIPTION HERE"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/grayHint"
+        android:layout_marginTop="0dp"
+        ></View>
 
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
 
     <LinearLayout
-        android:layout_gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/save_outfit"
+            android:textColor="@color/white"
             android:text="Save Outfit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:background="@drawable/grey_buttonoval"
+            android:layout_width="120dp"
+            android:layout_height="40dp" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationViewPerform"

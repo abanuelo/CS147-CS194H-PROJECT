@@ -68,8 +68,8 @@ public class Store extends AppCompatActivity {
         saveOutfit = findViewById(R.id.save_outfit);
 
         //Import the Hat Image in the Description Section of the Store
-        hatsInDescription = findViewById(R.id.hat_description);
-        shirtsInDescription = findViewById(R.id.shirt_description);
+        //hatsInDescription = findViewById(R.id.hat_description);
+        //shirtsInDescription = findViewById(R.id.shirt_description);
         itemDescription = findViewById(R.id.description);
         shirtItemDescription = findViewById(R.id.shirt_des);
         purchaseItem = findViewById(R.id.itemPurchaseButton);
@@ -281,7 +281,7 @@ public class Store extends AppCompatActivity {
                     }
                     itemDb.updateChildren(map);
 
-                    purchaseItem.setVisibility(View.GONE);
+                    purchaseItem.setVisibility(View.INVISIBLE);
                     itemDescription.setText("Item purchased!");
                     changeUserPoints(item_price);
                     Toast.makeText(Store.this, "Item purchased!", Toast.LENGTH_SHORT).show();
@@ -334,13 +334,13 @@ public class Store extends AppCompatActivity {
                     //Special case when you scroll to the view where Jemi has no shirt or hat
                     if(currItem == 4 && updatedTextField == false){
                         itemDescription.setText("Be naked!");
-                        purchaseItem.setVisibility(View.GONE);
+                        purchaseItem.setVisibility(View.INVISIBLE);
                         updatedTextField = true;
                     }
 
                     if (currItem == item_index && updatedTextField == false){
                         itemDescription.setText("Item purchased!");
-                        purchaseItem.setVisibility(View.GONE);
+                        purchaseItem.setVisibility(View.INVISIBLE);
                         updatedTextField = true;
 
                         //Clears the price off items that you already have purchased the item
@@ -382,11 +382,11 @@ public class Store extends AppCompatActivity {
             checkThirdTutorialCompleted();
         } else if (currXShirt == SCROLLCOUNTSHIRT*3){
             bottom.setImageResource(R.drawable.brownbottomtrans);
-            shirtsInDescription.setImageResource(R.drawable.brownshirtlockedtrans);
-            shirtItemDescription.setText("You must practice for 2 hours to unlock this item");
+            //shirtsInDescription.setImageResource(R.drawable.brownshirtlockedtrans);
+            shirtItemDescription.setText("You must practice for 2 hours!");
         } else {
             bottom.setImageResource(R.drawable.undressedbottomtrans);
-            shirtsInDescription.setImageResource(R.drawable.none_icon);
+            //shirtsInDescription.setImageResource(R.drawable.none_icon);
             shirtItemDescription.setText("Be naked!");
         }
     }
@@ -395,23 +395,23 @@ public class Store extends AppCompatActivity {
     private void changeJemisHat(){
         if (currXHat == SCROLLCOUNT*0){
             top.setImageResource(R.drawable.bluetoptrans);
-            hatsInDescription.setImageResource(R.drawable.jemi_tiny_blue_hat);
+            //hatsInDescription.setImageResource(R.drawable.jemi_tiny_blue_hat);
             currItem = 0;
         } else if (currXHat == SCROLLCOUNT*1){
             top.setImageResource(R.drawable.orangetoptrans);
-            hatsInDescription.setImageResource(R.drawable.jemi_tiny_orange_hat);
+            //hatsInDescription.setImageResource(R.drawable.jemi_tiny_orange_hat);
             currItem = 1;
         } else if (currXHat == SCROLLCOUNT*2){
             top.setImageResource(R.drawable.pinktoptrans);
-            hatsInDescription.setImageResource(R.drawable.pinkhattrans);
+            //hatsInDescription.setImageResource(R.drawable.pinkhattrans);
             currItem = 2;
         } else if (currXHat == SCROLLCOUNT*3){
             top.setImageResource(R.drawable.yellowtoptrans);
-            hatsInDescription.setImageResource(R.drawable.yellowhattrans);
+            //hatsInDescription.setImageResource(R.drawable.yellowhattrans);
             currItem = 3;
         } else {
             top.setImageResource(R.drawable.undressedtoptrans);
-            hatsInDescription.setImageResource(R.drawable.none_icon);
+            //hatsInDescription.setImageResource(R.drawable.none_icon);
             currItem = 4;
         }
         checkIfItemBought();
@@ -442,17 +442,17 @@ public class Store extends AppCompatActivity {
                     if (((Long) dataSnapshot.getValue()).intValue() >= 3){
                         shirtItemDescription.setText("Congrats! You have commented on a total of three videos!");
                         yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
-                        shirtsInDescription.setImageResource(R.drawable.yellowshirttrans);
+                        //shirtsInDescription.setImageResource(R.drawable.yellowshirttrans);
                     } else {
                         shirtItemDescription.setText("Comment on a total of three videos!");
                         yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
-                        shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
+                        //shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
                     }
 
                 } else {
                     shirtItemDescription.setText("Comment on a total of three videos!");
                     yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
-                    shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
+                    //shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
                 }
 
 
@@ -474,11 +474,11 @@ public class Store extends AppCompatActivity {
                 if (num_friends >= 5){
                     shirtItemDescription.setText("Congrats! You have made at least 5 friends!");
                     pinkShirt.setBackground(getDrawable(R.drawable.pinkshirttrans));
-                    shirtsInDescription.setImageResource(R.drawable.pinkshirttrans);
+                    //shirtsInDescription.setImageResource(R.drawable.pinkshirttrans);
                 } else {
                     shirtItemDescription.setText("Make a total of five friends!");
                     pinkShirt.setBackground(getDrawable(R.drawable.pinkshirtlockedtrans));
-                    shirtsInDescription.setImageResource(R.drawable.pinkshirtlockedtrans);
+                    //shirtsInDescription.setImageResource(R.drawable.pinkshirtlockedtrans);
                 }
 
             }
@@ -498,13 +498,13 @@ public class Store extends AppCompatActivity {
                 if (dataSnapshot.getValue() != null) {
                     System.out.println("Some odd reason..." + dataSnapshot.getValue().toString());
                     greenShirt.setBackground(getDrawable(R.drawable.jemi_shirt_green));
-                    shirtsInDescription.setImageResource(R.drawable.jemi_shirt_green);
+                    //shirtsInDescription.setImageResource(R.drawable.jemi_shirt_green);
                     shirtItemDescription.setText("Congrats! You completed one practice session!");
 
                 } else {
                     greenShirt.setBackground(getDrawable(R.drawable.greenshirtlockedtrans));
                     shirtItemDescription.setText("Complete one practice session!");
-                    shirtsInDescription.setImageResource(R.drawable.greenshirtlockedtrans);
+                    //shirtsInDescription.setImageResource(R.drawable.greenshirtlockedtrans);
                 }
 
             }
@@ -539,7 +539,7 @@ public class Store extends AppCompatActivity {
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference avatarDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("AvatarClothes");
         HashMap map = new HashMap();
-        if (purchaseItem.getVisibility() != View.GONE) {
+        if (purchaseItem.getVisibility() != View.INVISIBLE) {
             Toast.makeText(this, "You have not purchased the hat! Outfit cannot be saved!", Toast.LENGTH_LONG).show();
         }else if (!shirtItemDescription.getText().toString().toLowerCase().contains("congrats") && !shirtItemDescription.getText().toString().equals("Be naked!")){
             Toast.makeText(this, "You have not unlocked this shirt! Outfit cannot be saved!", Toast.LENGTH_LONG).show();
