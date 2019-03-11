@@ -51,14 +51,14 @@ public class AddNewRoutine extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_DONE) {
                     Log.d("location", "arrived here");
-                    addGoal();
+                    addGoal(null);
                 }
                 return false;
             }
         });
     }
 
-    public void addGoal(){
+    public void addGoal(View v){
         String newestGoal;
         EditText input = (EditText) findViewById(R.id.newGoal);
         newestGoal = input.getText().toString();
