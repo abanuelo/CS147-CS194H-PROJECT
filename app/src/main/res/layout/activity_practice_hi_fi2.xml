@@ -59,7 +59,7 @@
             android:layout_gravity="center_vertical"
             android:text="Free Practice"
             android:fontFamily="@font/opensans_bold"
-            android:textSize="32sp"
+            android:textSize="@dimen/titleTextSz"
             android:textColor="@color/white"
             android:id="@+id/routineTitle"
             android:layout_marginTop="15dp"
