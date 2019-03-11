@@ -45,8 +45,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/shopping-cart.svg" />
-                                      <entry key="outputName" value="shop" />
+                                      <entry key="imageAsset" value="C:\Users\Christina Pan\Downloads\outline-shopping_cart-24px.svg" />
+                                      <entry key="outputName" value="shopping_cart" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
@@ -143,8 +143,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_music_player" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/music-player.svg" />
+                            <entry key="outputName" value="ic_hand" />
+                            <entry key="sourceFile" value="C:\Users\Christina Pan\Downloads\hand.svg" />
                           </map>
                         </option>
                       </PersistentState>
