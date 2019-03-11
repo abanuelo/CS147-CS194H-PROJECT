@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -28,6 +30,7 @@ public class AddNewRoutine extends AppCompatActivity {
     ArrayList<String> routine;
     ListView lv;
     ArrayAdapter<String> listOfGoals;
+    private AppCompatEditText newGoal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +45,20 @@ public class AddNewRoutine extends AppCompatActivity {
 
 
         EditText edit_txt = (EditText) findViewById(R.id.newGoal);
-
-        edit_txt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        newGoal = findViewById(R.id.newGoal);
+        newGoal.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    addGoal(v);
-                    return true;
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    Log.d("location", "arrived here");
+                    addGoal();
                 }
                 return false;
             }
         });
     }
 
-    public void addGoal(View view){
+    public void addGoal(){
         String newestGoal;
         EditText input = (EditText) findViewById(R.id.newGoal);
         newestGoal = input.getText().toString();

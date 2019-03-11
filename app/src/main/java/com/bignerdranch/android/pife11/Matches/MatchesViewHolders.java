@@ -57,7 +57,7 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
 
 
     }
-    
+
 
     @Override
     public void onClick(View view){

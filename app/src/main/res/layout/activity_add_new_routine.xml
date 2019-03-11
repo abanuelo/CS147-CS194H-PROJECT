@@ -99,14 +99,16 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:imeOptions="actionNext"
         android:textColorHint="@color/grayHint">
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/inputTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
             android:textColor="@color/black"
-            android:imeOptions="actionSend"
+            android:singleLine="true"
             android:hint="Input Routine Title*"
             />
     </android.support.design.widget.TextInputLayout>
@@ -209,8 +211,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:hint="Add Goal (min 1)"
-                android:imeOptions="actionSend"
                 />
         </android.support.design.widget.TextInputLayout>
         <Button
