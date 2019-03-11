@@ -324,9 +324,9 @@ public class Profile extends AppCompatActivity {
             Log.d("Clear", "clearing userdatabase!");
             userDatabase.removeEventListener(listener);
         }
-//        if(gridView != null){
-//            gridView = null;
-//        }
+        if(gridView != null){
+            gridView = null;
+        }
         if (auth != null){
             auth = null;
         }
@@ -335,7 +335,7 @@ public class Profile extends AppCompatActivity {
         username = null;
         genre = null;
         instrument = null;
-//        bitmap.recycle();
+        //bitmap.recycle();
         gridAdapter.clear();
         //finish();
     }
