@@ -29,6 +29,8 @@
                 android:id="@+id/InstrumentFilter"
                 android:background="@color/white"
                 android:popupBackground="@color/white"
+                android:backgroundTint="@color/white"
+                
                 android:textAlignment="center"
                 android:entries="@array/instrument_arrays"
                 android:prompt="@string/instrument_prompt"
