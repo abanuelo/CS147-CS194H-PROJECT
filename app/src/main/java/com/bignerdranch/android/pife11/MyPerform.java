@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -52,7 +53,7 @@ public class MyPerform extends AppCompatActivity {
     private String uid, videoId;
     private DatabaseReference userDatabase0, userDatabase;
     private ImageView pic;
-    private Button upload;
+    private Button upload, cancel;
     private Button rerecord;
     private ProgressBar pbar;
     private VideoView video;
@@ -100,10 +101,23 @@ public class MyPerform extends AppCompatActivity {
         upload = findViewById(R.id.upload_thumb);
         //next = findViewById(R.id.next);
         thumbnail = findViewById(R.id.thumbnail);
+        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.play);
+        thumbnail.setImageBitmap(icon);
+        thumbnail.setVisibility(View.VISIBLE);
+        cancel = findViewById(R.id.cancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToProfile = new Intent(MyPerform.this, Profile.class);
+                startActivity(goToProfile);
+            }
+        });
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                thumbnail.setBackground(null);
                 galleryIntent();
             }
         });
@@ -148,6 +162,7 @@ public class MyPerform extends AppCompatActivity {
 
 
         record(getCurrentFocus());
+        changeCoins();
 
         // THIS IS THE CODE CORRESPONDING WITH THE OLD STUFF!
         /*pbar = (ProgressBar) findViewById(R.id.pbar);
@@ -232,7 +247,6 @@ public class MyPerform extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
         thumbnail.setImageBitmap(bm);
     }
 

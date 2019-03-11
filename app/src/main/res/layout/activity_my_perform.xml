@@ -8,14 +8,10 @@
     android:background="@color/white"
     tools:context=".MyPerform">
 
-
-
     <LinearLayout
         android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,12 +114,12 @@
             android:textSize="25dp" />-->
 
         <ImageView
-            android:paddingTop="10dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_music_player"
+            android:background="@drawable/play"
             android:id="@+id/thumbnail"
-            android:layout_width="250dp"
-            android:layout_height="250dp" />
+            android:layout_width="240dp"
+            android:layout_height="240dp" />
 
         <!--<TextView
             android:paddingTop="5dp"
@@ -155,10 +151,13 @@
                 android:id="@+id/TitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
                 android:hint="Title*"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black" />
         </android.support.design.widget.TextInputLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/Info"
@@ -177,6 +176,8 @@
                 android:hint="Description*"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:layout_gravity="top"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -223,6 +224,8 @@
             android:layout_weight="1"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
 
 
     <!-- THIS IS THE OLD ACTIVITY FOR MY PERFORM-->
@@ -278,6 +281,3 @@
         android:theme="@style/AppTheme.RoundedCornerMaterialButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />-->
-
-
-</android.support.constraint.ConstraintLayout>
