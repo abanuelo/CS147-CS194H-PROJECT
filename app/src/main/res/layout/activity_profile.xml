@@ -57,7 +57,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/border"
             android:orientation="vertical"
-            android:layout_marginTop="3dp"
             android:layout_width="180dp">
 
             <ImageView
@@ -150,7 +149,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/friends"
+                    android:id="@+id/coinsEarned"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -183,10 +182,10 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/posts2"
+                    android:id="@+id/videoCount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/opensans_semibold"
+                    android:fontFamily="@font/opensans_light"
                     android:text="19"
                     android:layout_weight="1"
                     android:textAlignment="center"
@@ -216,10 +215,10 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/friends2"
+                    android:id="@+id/feedback"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/opensans_semibold"
+                    android:fontFamily="@font/opensans_light"
                     android:text="20"
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -253,11 +252,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_top_part"
         tools:layout_editor_absoluteY="260dp">
-
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_bass" />
 
 
     </LinearLayout>

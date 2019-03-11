@@ -4,24 +4,23 @@ public class CardItem {
 
     //private String mTextResource;
     private String mTitleResource;
-    private String mGenreResource;
-    private String mYearsResource;
-    private String mInstrumentsResource;
     private String mGenreResourceText;
     private String mYearsResourceText;
     private String mInstrumentsResourceText;
     private String userId;
+    private String hrsPractice, Coins, Performances, Feedback;
 
-    public CardItem(String title, String genre, String years, String instruments, String genreText, String yearsText, String instrumentsText, String userId) {
+    public CardItem(String title, String genreText, String yearsText, String instrumentsText, String userId, String hrsPractice, String Coins, String Performances, String Feedback) {
         mTitleResource = title;
-        //mTextResource = text;
-        mGenreResource = genre;
-        mYearsResource = years;
-        mInstrumentsResource = instruments;
         mGenreResourceText = genreText;
         mYearsResourceText = yearsText;
         mInstrumentsResourceText = instrumentsText;
         this.userId = userId;
+        this.hrsPractice = hrsPractice;
+        this.Coins = Coins;
+        this.Performances = Performances;
+        this.Feedback = Feedback;
+
     }
 
     public String getGenreText(){
@@ -37,16 +36,20 @@ public class CardItem {
     }
 
     //Make this method more general
-    public String getGenre(){
-        return mGenreResource;
+    public String getHrsPractice(){
+        return hrsPractice;
     }
 
-    public String getYears(){
-        return mYearsResource;
+    public String getFeedback(){
+        return Feedback;
     }
 
-    public String getInstruments(){
-        return mInstrumentsResource;
+    public String getCoins(){
+        return Coins;
+    }
+
+    public String getPerformances(){
+        return Performances;
     }
 
     public String getTitle() {

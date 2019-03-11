@@ -14,7 +14,281 @@
         android:layout_width="match_parent"
         android:layout_height="450dp">
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardbackground"
+            >
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="User Name"
+                android:id="@+id/friend_name"
+                android:gravity="center"
+                android:background="@color/cardbackground"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+            <RelativeLayout
+                android:id="@+id/profile_top_part"
+                android:layout_width="match_parent"
+                android:gravity="fill_horizontal"
+                android:layout_height="150dp"
+                android:orientation="horizontal"
+                android:background="@color/cardbackground"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/friend_name"
+
+                >
+
+                <RelativeLayout
+                    android:id="@+id/view2"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border"
+                    android:orientation="vertical"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="100dp">
+
+                    <ImageView
+                        android:id="@+id/jemiTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="-5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/undressedtoptrans" />
+
+                    <ImageView
+                        android:id="@+id/jemiBottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/jemiTop"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="-68.5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/undressedbottomtrans" />
+
+                </RelativeLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="fill"
+                    android:layout_toEndOf="@id/view2"
+                    android:alignmentMode="alignMargins"
+                    android:columnCount="2"
+                    android:rowCount="2">
+
+                    <LinearLayout
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/border"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/friends1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_light"
+                            android:gravity="center"
+                            android:text="20"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_light"
+                            android:text="coins earned"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_gravity="fill"
+                        android:background="@drawable/border"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/friends"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_light"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="20"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="30sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_light"
+                            android:text="coins earned"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:background="@drawable/border"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/friends3"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:layout_height="0dp"
+                            android:fontFamily="@font/opensans_light"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="20"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="30sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:fontFamily="@font/opensans_light"
+                            android:layout_weight="1"
+                            android:text="coins earned"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:background="@drawable/border"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/friends4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_light"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="20"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="30sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_light"
+                            android:text="coins earned 4"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </GridLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/card_instruments_matching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_top_part"
+                >
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_bass" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_genre_matching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_instruments_matching"
+                >
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_blues_icon" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/collab_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Add Friend"
+                android:textColor="@color/white"
+                android:background="@drawable/button_oval_green"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_genre_matching" />
+        </android.support.constraint.ConstraintLayout>
+
+
+
+        <!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,7 +366,6 @@
                     />
             </LinearLayout>
 
-            <!--here is where firebase data gets populated-->
             <LinearLayout
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="12dp"
@@ -137,17 +410,9 @@
                 android:theme="@style/AppTheme.RoundedCornerMaterialButton"
                 android:textColor="@color/white"
                 android:text="Collab" />
-            <!--android:background="@drawable/grey_buttonoval"-->
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|start"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="-5dp" />
-            <!--android:src="@drawable/ic_bookmark_24dp" />-->
+        -->
 
     </FrameLayout>
 
