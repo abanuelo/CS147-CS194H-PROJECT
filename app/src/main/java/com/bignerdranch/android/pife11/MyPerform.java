@@ -1,5 +1,6 @@
 package com.bignerdranch.android.pife11;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,11 +10,14 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -33,15 +37,20 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class MyPerform extends AppCompatActivity {
-
+    private Button Finish;
+    private AppCompatEditText title, info;
+    private String uid, videoId;
+    private DatabaseReference userDatabase0, userDatabase;
     private ImageView pic;
     private Button upload;
     private Button rerecord;
@@ -50,9 +59,15 @@ public class MyPerform extends AppCompatActivity {
     private Uri videoUri;
     private FirebaseAuth auth;
     private StorageReference videoRef;
-    private String videoId;
-    private String uid;
-    private static final int REQUEST_CODE = 101;
+    //private Button upload, next;
+    private ImageView thumbnail;
+    private int SELECT_FILE = 1;
+    //private String videoId, uid;
+    private Bitmap bm = null;
+    private Uri thumbnailURI = null;
+    //private String videoId;
+    //private String uid;
+    private static int REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +86,71 @@ public class MyPerform extends AppCompatActivity {
         //WE WANT TO BE ABLE TO RANDOMIZE THESE LINKS TO GET MULTIPLE LINKS
         videoRef = storageRef.child("/videos/" + uid + "/" + currentTime+ ".3gp");
 
-        pbar = (ProgressBar) findViewById(R.id.pbar);
+
+        Finish = (Button) findViewById(R.id.submitPerform);
+        title = findViewById(R.id.TitleText);
+        info = findViewById(R.id.InfoText);
+
+        /*uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //videoId = getIntent().getStringExtra("videoId");
+        userDatabase0 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("VideoInfo");
+        System.out.println("MOOOOO: " + videoId);
+        userDatabase = userDatabase0.child(videoId);*/
+
+        upload = findViewById(R.id.upload_thumb);
+        //next = findViewById(R.id.next);
+        thumbnail = findViewById(R.id.thumbnail);
+
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                galleryIntent();
+            }
+        });
+
+        /*next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });*/
+
+
+        //Need to grab the text files from these EditTexts and insert them into Firebase?
+
+        Finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean hasError = false;
+
+                if (TextUtils.isEmpty(title.getText().toString())){
+                    title.setError("Please insert title for your performance.");
+                    hasError = true;
+                }
+                if (TextUtils.isEmpty(info.getText().toString())){
+                    info.setError("Please insert info about your performance.");
+                    hasError = true;
+                }
+                if (hasError) return;
+
+                uploadToBackend();
+
+                insertDataToFirebase();
+
+                Intent sendToFriends = new Intent(MyPerform.this, Profile.class);
+
+                //uploadToBackend();
+
+                finish();
+                startActivity(sendToFriends);
+            }
+        });
+
+
+        record(getCurrentFocus());
+
+        // THIS IS THE CODE CORRESPONDING WITH THE OLD STUFF!
+        /*pbar = (ProgressBar) findViewById(R.id.pbar);
         video = (VideoView) findViewById(R.id.video);
         rerecord = (Button) findViewById(R.id.record);
         upload = (Button) findViewById(R.id.upload);
@@ -96,8 +175,113 @@ public class MyPerform extends AppCompatActivity {
             public void onClick(View view) {
                 record(view);
             }
-        });
+        });*/
 
+    }
+
+    private void uploadToBackend(){
+        //Firebase Storage Variables
+        System.out.println("MOOOO DO we get here?");
+        //videoId = getIntent().getStringExtra("videoId");
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + videoId + ".jpg");
+
+
+        Uri file = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.play);
+        if (thumbnailURI != null) {
+            file = thumbnailURI;
+        }
+        UploadTask uploadTask = imageRef.putFile(file);
+
+
+        //upload connection btn two
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Videos");
+        matchDb.child(videoId).setValue(videoId);
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK){
+            onSelectFromGalleryResult(data);
+        } else {
+            try {
+                videoUri = data.getData();
+                video.setVideoURI(videoUri);
+                video.start();
+                if (videoUri == null) {
+                    Intent profile = new Intent(this, Profile.class);
+                    startActivity(profile);
+                }
+            } catch (Exception ex){
+                Intent profile = new Intent(this, Profile.class);
+                startActivity(profile);
+            }
+        }
+    }
+
+    private void onSelectFromGalleryResult(Intent data){
+        bm = null;
+        if (data != null){
+            try{
+                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                thumbnailURI = data.getData();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        thumbnail.setImageBitmap(bm);
+    }
+
+    private void galleryIntent(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select File "), SELECT_FILE);
+    }
+
+    private void insertDataToFirebase(){
+
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //videoId = getIntent().getStringExtra("videoId");
+        userDatabase0 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("VideoInfo");
+        System.out.println("MOOOOO: " + videoId);
+        userDatabase = userDatabase0.child(videoId);
+
+        HashMap map = new HashMap();
+        map.put("Title", title.getText().toString());
+        map.put("Info", info.getText().toString());
+        userDatabase.updateChildren(map);
+    }
+
+
+
+    public void changeCoins(){
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String pifePoints = dataSnapshot.getValue().toString().trim();
+                    TextView pointsDisplay = (TextView) findViewById(R.id.coins);
+                    pointsDisplay.setText(pifePoints);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void goToStore(View view) {
+        Intent practice_intent = new Intent(this, Store.class);
+        startActivity(practice_intent);
     }
 
     @Override
@@ -136,7 +320,8 @@ public class MyPerform extends AppCompatActivity {
         startActivityForResult(cameraIntent, REQUEST_CODE);
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    /*protected void onActivityResult(int requestCode, int resultCode, Intent data){
+
         try {
             videoUri = data.getData();
             video.setVideoURI(videoUri);
@@ -149,5 +334,5 @@ public class MyPerform extends AppCompatActivity {
             Intent profile = new Intent(this, Profile.class);
             startActivity(profile);
         }
-    }
+    }*/
 }

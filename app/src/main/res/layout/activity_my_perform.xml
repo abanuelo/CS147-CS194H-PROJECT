@@ -9,7 +9,101 @@
     tools:context=".MyPerform">
 
 
+
     <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp"
+            android:text="My Performance"
+            android:textColor="@android:color/black"
+            android:textSize="25dp" />
+
+        <ImageView
+            android:paddingTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_music_player"
+            android:id="@+id/thumbnail"
+            android:layout_width="250dp"
+            android:layout_height="250dp" />
+
+        <!--<TextView
+            android:paddingTop="5dp"
+            android:textSize="25dp"
+            android:text="Thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />-->
+
+        <Button
+            android:layout_marginTop="5dp"
+            android:text="Change Thumbnail"
+            android:id="@+id/upload_thumb"
+            android:theme="@style/AppTheme.RoundedCornerMaterialButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Title"
+            android:paddingVertical="5dp"
+            style="@style/TextLabel"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Info"
+            android:paddingVertical="5dp"
+            style="@style/TextLabel"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/InfoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Info about Performance"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submitPerform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="right"
+        android:theme="@style/AppTheme.RoundedCornerMaterialButton"
+        android:text="Submit Performance"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- THIS IS THE OLD ACTIVITY FOR MY PERFORM-->
+    <!--<LinearLayout
         android:layout_width="382dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -60,7 +154,7 @@
         android:text="Re-Record"
         android:theme="@style/AppTheme.RoundedCornerMaterialButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />-->
 
 
 </android.support.constraint.ConstraintLayout>
