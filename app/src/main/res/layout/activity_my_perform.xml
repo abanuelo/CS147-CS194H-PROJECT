@@ -8,8 +8,228 @@
     android:background="@color/white"
     tools:context=".MyPerform">
 
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <LinearLayout
+            android:weightSum="3"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:id="@+id/coin_image"
+                    android:src="@drawable/hand"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/sideGaps"/>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:paddingLeft="20dp"
+                    android:id="@+id/coins"
+                    android:text="-1"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Performance"
+                    android:textColor="@color/white"
+                    android:id="@+id/routineTitle"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_weight="1"
+                    android:layoutDirection="rtl"
+                    android:onClick="goToStore"
+                    android:src="@drawable/shop"
+                    android:id="@+id/shop"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:paddingRight="@dimen/sideGaps"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp"
+            android:text="My Performance"
+            android:textColor="@android:color/black"
+            android:textSize="25dp" />-->
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/play"
+            android:id="@+id/thumbnail"
+            android:layout_width="240dp"
+            android:layout_height="240dp" />
+
+        <!--<TextView
+            android:paddingTop="5dp"
+            android:textSize="25dp"
+            android:text="Thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />-->
+
+        <Button
+            android:layout_marginTop="5dp"
+            android:text="Change Thumbnail"
+            android:id="@+id/upload_thumb"
+            android:background="@drawable/button_transparent"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Title"
+            android:paddingVertical="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/grayHint">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:hint="Title*"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Info"
+            android:paddingVertical="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:textColorHint="@color/grayHint">
+
+            <android.support.v7.widget.AppCompatEditText
+                app:layout_constraintTop_toTopOf="@id/Info"
+                android:id="@+id/InfoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="200dp"
+                android:hint="Description*"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:layout_gravity="top"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+    </LinearLayout>
+
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/button_oval_green"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/sideGaps"
+            android:text="Cancel" />
+
+        <Button
+            android:layout_marginLeft="@dimen/sideGaps"
+            android:id="@+id/submitPerform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/button_oval_green"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/sideGaps"
+            android:text="Upload" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
+
+
+    <!-- THIS IS THE OLD ACTIVITY FOR MY PERFORM-->
+    <!--<LinearLayout
         android:layout_width="382dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -60,7 +280,4 @@
         android:text="Re-Record"
         android:theme="@style/AppTheme.RoundedCornerMaterialButton"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent" />-->
