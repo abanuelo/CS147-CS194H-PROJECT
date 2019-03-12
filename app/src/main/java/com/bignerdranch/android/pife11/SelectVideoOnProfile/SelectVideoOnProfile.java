@@ -21,6 +21,7 @@ import android.widget.VideoView;
 import com.bignerdranch.android.pife11.GiveFeedback;
 import com.bignerdranch.android.pife11.Profile;
 import com.bignerdranch.android.pife11.R;
+import com.bignerdranch.android.pife11.Store;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -55,6 +56,7 @@ public class SelectVideoOnProfile extends AppCompatActivity {
         final String currVideo = intent.getStringExtra("currentVideo");
         final String currentVideo = currVideo + ".3gp"; //test.3pg
 
+        changeCoins();
         video = findViewById(R.id.videoView);
 
         video.setOnTouchListener(new View.OnTouchListener() {
@@ -167,6 +169,31 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
 
 
+    }
+
+    public void changeCoins(){
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String pifePoints = dataSnapshot.getValue().toString().trim();
+                    TextView pointsDisplay = (TextView) findViewById(R.id.coins);
+                    pointsDisplay.setText(pifePoints);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void goToStore(View view) {
+        Intent practice_intent = new Intent(this, Store.class);
+        startActivity(practice_intent);
     }
 
 
