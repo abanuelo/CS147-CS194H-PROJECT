@@ -7,8 +7,8 @@
     <solid android:color="@color/colorPrimary"/> <!-- this one is ths color of the Rounded Button -->
     <!--<solid android:color="#C0C0C0"/> &lt;!&ndash; this one is ths color of the Rounded Button &ndash;&gt;-->
     <corners
-        android:bottomRightRadius="10dp"
-        android:bottomLeftRadius="10dp"
-        android:topLeftRadius="10dp"
-        android:topRightRadius="10dp"/>
+        android:bottomRightRadius="@dimen/buttonCorner"
+        android:bottomLeftRadius="@dimen/buttonCorner"
+        android:topLeftRadius="@dimen/buttonCorner"
+        android:topRightRadius="@dimen/buttonCorner"/>
 </shape>

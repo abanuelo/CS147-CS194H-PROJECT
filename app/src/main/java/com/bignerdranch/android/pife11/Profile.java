@@ -13,12 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,10 +51,10 @@ import profile_grid_layout.ImageItem;
 public class Profile extends AppCompatActivity {
     private String userId;
     private String profile_lookup2;
-    private TextView name, username, genre, instrument, posts, friends, days;
+    private TextView name, username, genre, instrument, posts, feedback, coinsEarned;
     private FirebaseAuth auth;
     private DatabaseReference userDatabase;
-//    private Button sign_out;
+    private Button sign_out;
     private boolean practiceBool, performBool, collabBool,dressed;
     private GifImageView animation;
     private GifDrawable drawable;
@@ -104,10 +107,11 @@ public class Profile extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-//        sign_out = (Button) findViewById(R.id.sign_out);
+        sign_out = (Button) findViewById(R.id.sign_out);
 //        edit_profile = findViewById(R.id.edit_profile);
-        posts = findViewById(R.id.posts);
-        friends = findViewById(R.id.friends);
+        posts = findViewById(R.id.videoCount);
+        feedback = findViewById(R.id.feedback);
+        coinsEarned = findViewById(R.id.coinsEarned);
 
         /// UserID is the person signed in
         /// Profile_Lookup is the person you are viewing
@@ -144,19 +148,19 @@ public class Profile extends AppCompatActivity {
 
             userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(profile_lookup);
 
-//            sign_out.setText("Message");
-//            sign_out.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
-//                    Bundle b = new Bundle();
-//                    b.putString("matchId", profile_lookup);
-//                    sign_out_intent.putExtras(b);
-//                    finish();
-//                    startActivity(sign_out_intent);
-//
-//                }
-//            });
+            sign_out.setText("Message");
+            sign_out.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
+                    Bundle b = new Bundle();
+                    b.putString("matchId", profile_lookup);
+                    sign_out_intent.putExtras(b);
+                    finish();
+                    startActivity(sign_out_intent);
+
+                }
+            });
             profile_lookup2 = profile_lookup;
 
         }
@@ -165,18 +169,18 @@ public class Profile extends AppCompatActivity {
 
 
 
-//            sign_out.setText("Sign Out");
-//            //Event that Initiates the Sign Out Process for the Profile Image
-//            sign_out.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    auth.signOut();
-//                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
-//                    finish();
-//                    startActivity(sign_out_intent);
-//
-//                }
-//            });
+            sign_out.setText("Sign Out");
+            //Event that Initiates the Sign Out Process for the Profile Image
+            sign_out.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    auth.signOut();
+                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
+                    finish();
+                    startActivity(sign_out_intent);
+
+                }
+            });
             //set on click listener default
         }
 
@@ -221,44 +225,28 @@ public class Profile extends AppCompatActivity {
 //
 //                username2.setText("Username: " + t_username);
 //
-//                //Gets the Instruments to Populate the Instruments
-//                String t_instruments = null;
-//                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
-//                    if (t_instruments == null){
-//                        t_instruments = instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
-//                    } else {
-//                        t_instruments += ", " + instrument.getKey() + " (" + instrument.getValue().toString().trim() + " yrs)";
-//                    }
-//                }
-//
-//                TextView instrument2 = (TextView) findViewById(R.id.profile_instruments);
-//                instrument2.setText("Instrument(s): " + t_instruments);
-//                if (t_instruments == "null" || t_instruments == null) {
-//                    instrument2.setVisibility(View.GONE);
-//                }
-//
-//                //Lastly we are going to populate the Genres Category
-//                String t_genres = null;
-//                for (DataSnapshot genre : dataSnapshot.child("Genres").getChildren()){
-//                    if ((boolean) genre.getValue() == true){
-//                        if (t_genres == null){
-//                            t_genres = genre.getKey();
-//                        } else {
-//                            t_genres += ", " + genre.getKey();
-//                        }
-//                    }
-//                }
-//                TextView genre2 = (TextView) findViewById(R.id.profile_years);
-//                genre2.setText("Genre(s): " + t_genres);
-
-                int friends_count = 0;
-                for (DataSnapshot friends : dataSnapshot.child("Collaborations").child("Matches").getChildren()){
-                    friends_count+=1;
+                //Gets the Instruments to Populate the Instruments
+                String t_instruments = "";
+                for (DataSnapshot instrument : dataSnapshot.child("Years").getChildren()){
+                    if (instrument != null){
+                        LinearLayout ly = (LinearLayout) findViewById(R.id.profile_user_info);
+                        addImageToLinearLayout(ly, instrument.getKey());
+                    }
                 }
-                HashMap friendsMap = new HashMap();
-                friendsMap.put("friends", friends_count);
-                userDatabase.updateChildren(friendsMap);
-                friends.setText(Integer.toString(friends_count));
+
+
+                Object feedbackcount = (dataSnapshot.child("Stats").child("TutorialThree").getValue());
+                if (feedbackcount != null) {
+                    feedback.setText(feedbackcount.toString());
+                }
+
+                Object koinsEarned = (dataSnapshot.child("Stats").child("lifetimeCoins").getValue());
+                if (koinsEarned != null) {
+                    coinsEarned.setText(koinsEarned.toString());
+                }
+                else {
+                    coinsEarned.setText("0");
+                }
 
 
                 int count = 0;
@@ -336,7 +324,7 @@ public class Profile extends AppCompatActivity {
         genre = null;
         instrument = null;
         //bitmap.recycle();
-        //gridAdapter.clear();
+        gridAdapter.clear();
         //finish();
     }
 
@@ -457,6 +445,69 @@ public class Profile extends AppCompatActivity {
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId){
         final BitmapFactory.Options options = new BitmapFactory.Options();
         return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+
+    private void addImageToLinearLayout(LinearLayout ly, String image, int len, int wid){
+        TextView desc = new TextView(this);
+        LinearLayout verticalLY = new LinearLayout(this);
+        verticalLY.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams container = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        desc.setLayoutParams(container);
+
+        container.leftMargin = 5;
+        container.rightMargin = 5;
+        verticalLY.setLayoutParams(container);
+
+
+
+
+
+        final  ImageView imageToAdd = new ImageView(this);
+        int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, len, getResources().getDisplayMetrics());
+        int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, wid, getResources().getDisplayMetrics());
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height, width);
+
+        imageToAdd.setLayoutParams(params);
+
+        switch (image) {
+            case ("guitar"):
+                imageToAdd.setImageResource(R.drawable.ic_rock_pic);
+                break;
+            case "bass":
+                imageToAdd.setImageResource(R.drawable.ic_bass);
+                break;
+            case "drum":
+                imageToAdd.setImageResource(R.drawable.ic_drum);
+                break;
+            case "flute":
+                imageToAdd.setImageResource(R.drawable.ic_flute);
+                break;
+            case "piano":
+                imageToAdd.setImageResource(R.drawable.ic_piano);
+                break;
+            case "sing":
+                imageToAdd.setImageResource(R.drawable.ic_pop_pic);
+                break;
+            case "viola":
+                imageToAdd.setImageResource(R.drawable.ic_viola);
+                break;
+            case "violin":
+                imageToAdd.setImageResource(R.drawable.ic_violin);
+                break;
+            default:
+                return;
+        }
+
+        image = image.substring(0, 1).toUpperCase() + image.substring(1);
+        desc.setText(image);
+
+        verticalLY.addView(imageToAdd);
+        verticalLY.addView(desc);
+        ly.addView(verticalLY);    }
+    private void addImageToLinearLayout(LinearLayout ly, String image){
+        addImageToLinearLayout(ly, image, 50, 50);
     }
 
 

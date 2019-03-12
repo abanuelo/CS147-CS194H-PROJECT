@@ -27,15 +27,15 @@ public class TutorialReward extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-        DatabaseReference statsDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
-        statsDb.setValue(pifePoints + 15);
+//        DatabaseReference statsDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+//        statsDb.setValue(pifePoints + 15);
         DatabaseReference firstTutorialSuccess = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
         HashMap map = new HashMap();
         map.put("FirstTutorial", true);
         firstTutorialSuccess.updateChildren(map);
 
 
-        //getUserPifePoints();
+        getUserPifePoints();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_reward);
@@ -48,12 +48,19 @@ public class TutorialReward extends AppCompatActivity {
     }
 
     private void getUserPifePoints() {
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    pifePoints = (int) dataSnapshot.getValue();
+                    pifePoints = Integer.parseInt(dataSnapshot.child("xp").getValue().toString()) + 15;
+                    int lifetimecoins = Integer.parseInt(dataSnapshot.child("lifetimeCoins").getValue().toString()) + 15;
+
+                    DatabaseReference statsDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
+                    HashMap map = new HashMap();
+                    map.put("xp", pifePoints);
+                    map.put("lifetimeCoins", lifetimecoins);
+                    statsDb.updateChildren(map);
 
                 }
             }

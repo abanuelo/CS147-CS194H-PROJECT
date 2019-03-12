@@ -12,5 +12,8 @@
     <dimen name="practice_gap">15dp</dimen>
     <dimen name="sideGaps">15dp</dimen>
     <dimen name="titleTextSz">32sp</dimen>
+    <dimen name="profilesize">35dp</dimen>
+    <dimen name="buttonCorner">10dp</dimen>
+
 
 </resources>

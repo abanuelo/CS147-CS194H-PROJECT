@@ -30,7 +30,7 @@
                 android:spinnerMode="dialog"
                 android:id="@+id/InstrumentFilter"
                 android:background="@drawable/button_transparent"
-                android:popupBackground="#ffffff"
+                android:popupBackground="@color/white"
                 android:textAlignment="center"
                 android:entries="@array/instrument_arrays"
                 android:prompt="@string/instrument_prompt"
