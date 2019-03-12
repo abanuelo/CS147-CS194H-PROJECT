@@ -116,9 +116,9 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@drawable/border">
             <ImageView
-                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/play"
                 android:id="@+id/thumbnail"
