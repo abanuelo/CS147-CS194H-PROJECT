@@ -11,7 +11,7 @@
         android:background="@color/colorPrimary"
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:id="@+id/viewVideoTitle"
+        android:id="@+id/viewVideoTitle0"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
             android:text="View Video"
             android:textSize="@dimen/titleTextSz"
             android:textColor="@color/white"
-            android:id="@+id/routineTitle"
+            android:id="@+id/viewVideoTitle"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:gravity="center_horizontal"/>
@@ -119,7 +119,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewVideoTitle"
+        app:layout_constraintTop_toBottomOf="@id/viewVideoTitle0"
         app:layout_constraintBottom_toTopOf="@id/videoDescriptionsLayout"
         />
 

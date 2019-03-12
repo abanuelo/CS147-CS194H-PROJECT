@@ -13,7 +13,7 @@
     <dimen name="sideGaps">15dp</dimen>
     <dimen name="vertiGaps">12dp</dimen>
 
-    <dimen name="titleTextSz">28sp</dimen>
+    <dimen name="titleTextSz">26sp</dimen>
     <dimen name="subTitle1Sz">20sp</dimen>
     <dimen name="profilesize">35dp</dimen>
     <dimen name="buttonCorner">10dp</dimen>

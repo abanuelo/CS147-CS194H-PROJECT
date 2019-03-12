@@ -271,6 +271,7 @@
                 android:maxHeight="200dp"
                 android:hint="Description*"
                 android:lineHeight="100dp"
+                android:minLines="2"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:layout_gravity="top"/>
