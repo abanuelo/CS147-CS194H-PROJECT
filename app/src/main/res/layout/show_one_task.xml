@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp">
+        android:paddingTop="@dimen/vertiGaps"
+        android:paddingBottom="@dimen/vertiGaps">
 
         <!--<TextView
             android:layout_width="0dp"
@@ -20,10 +20,11 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:id="@+id/musicalGoal"
             android:text="Moo"
+            android:fontFamily="@font/open_sans"
             android:paddingLeft="@dimen/sideGaps"
             android:paddingRight="@dimen/sideGaps"
             />
@@ -34,7 +35,8 @@
             android:background="@drawable/button_transparent"
             android:textColor="@color/colorPrimary"
             android:text="Start"
-            android:layout_marginRight="@dimen/practice_gap" />
+            android:layout_marginRight="@dimen/practice_gap"
+            android:fontFamily="@font/open_sans"/>
         <CheckBox
         android:paddingLeft="@dimen/practice_gap"
         android:layout_width="wrap_content"
