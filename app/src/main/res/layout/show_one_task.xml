@@ -24,7 +24,7 @@
             android:layout_gravity="center_vertical"
             android:id="@+id/musicalGoal"
             android:text="Moo"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/opensans_light"
             android:paddingLeft="@dimen/sideGaps"
             android:paddingRight="@dimen/sideGaps"
             />

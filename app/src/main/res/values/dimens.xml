@@ -17,6 +17,7 @@
     <dimen name="subTitle1Sz">20sp</dimen>
     <dimen name="profilesize">35dp</dimen>
     <dimen name="buttonCorner">10dp</dimen>
-
+    <dimen name="InstrumentGenreSize">50dp</dimen>
+    <dimen name="InstrumentGenreMargin">5dp</dimen>
 
 </resources>
