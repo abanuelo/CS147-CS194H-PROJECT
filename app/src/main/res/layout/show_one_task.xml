@@ -36,7 +36,7 @@
             android:textColor="@color/colorPrimary"
             android:text="Start"
             android:layout_marginRight="@dimen/practice_gap"
-            android:fontFamily="@font/open_sans"/>
+            android:fontFamily="@font/opensans_light"/>
         <CheckBox
         android:paddingLeft="@dimen/practice_gap"
         android:layout_width="wrap_content"
