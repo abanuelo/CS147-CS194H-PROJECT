@@ -97,8 +97,8 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
         }
 
         final Button button = view.findViewById(R.id.collab_button);
+        button.setBackground(ContextCompat.getDrawable(context, R.drawable.button_oval_green));
         //final TextView name = view.findViewById(R.id.name);
-        button.setBackgroundColor(Color.parseColor("#00574B"));
         final String name = mData.get(position).getTitle();
         button.setOnClickListener(new View.OnClickListener() {
             @Override

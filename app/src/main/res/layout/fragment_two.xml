@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <Button
@@ -24,17 +25,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <Spinner
                 android:paddingTop="12dp"
-                android:spinnerMode="dialog"
-                android:id="@+id/InstrumentFilter"
-                android:background="@drawable/button_transparent"
+                android:spinnerMode="dropdown"
+                android:popupElevation="2dp"
                 android:popupBackground="@color/white"
+                android:id="@+id/InstrumentFilter"
                 android:backgroundTint="@color/white"
-                
+                android:background="@color/white"
+                android:popupTheme="@style/mySpinnerItemStyle"
+                android:theme="@style/mySpinnerItemStyle"
                 android:textAlignment="center"
                 android:entries="@array/instrument_arrays"
                 android:prompt="@string/instrument_prompt"
+                style="@style/mySpinnerItemStyle"
+
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_height="match_parent"></Spinner>
@@ -49,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:entries="@array/genre_arrays"
                 android:prompt="@string/genre_prompt"
+                style="@style/mySpinnerItemStyle"
                 android:layout_height="match_parent"></Spinner>
 
             <Spinner
@@ -89,7 +96,7 @@
         android:id="@+id/viewPager"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="500dp"
         android:layout_gravity="center"
         android:clipToPadding="false"
         android:overScrollMode="never"

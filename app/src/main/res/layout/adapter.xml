@@ -274,6 +274,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:background="@drawable/button_oval_green2"
+                style="AppTheme.RoundedCornerMaterialButton"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

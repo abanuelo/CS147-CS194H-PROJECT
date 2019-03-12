@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/grey_buttonoval</item>
+        <item name="android:background">@drawable/button_oval_green</item>
         <item name="android:fontFamily">@font/opensans_semibold</item>
         <item name="android:textColor">@color/white</item>
     </style>
@@ -28,7 +28,9 @@
 
     <style name="AppBarOverlay" parent="Theme.Design.Light" />
 
-    <style name="PopupOverlay" parent="Theme.Design.Light" />
+    <style name="PopupOverlay" parent="Theme.Design.Light">
+        <item name="android:popupBackground">@color/white</item>
+    </style>
 
     <style name="MyToolbarTheme"
         parent="@style/ThemeOverlay.AppCompat.Dark">
@@ -78,7 +80,11 @@
     </style>
 
     <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
-        <item name="android:textColor">@color/my_spinner_text_color</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:popupBackground">@color/white</item>
+        <item name="android:popupElevation">2dp</item>
+        <item name="android:background">@color/white</item>
+
     </style>
 
     <style name="Widget.Design.BottomNavigationView12" parent="">
@@ -89,5 +95,17 @@
         <item name="labelVisibilityMode">auto</item>
         <item name="android:fontFamily">@font/opensans_extrabold</item>
     </style>
+
+    <style name="PrimaryColorOverlay" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:shape">rectangle</item>
+        <item name="android:background">@drawable/green_button</item>
+    </style>
+
+
+
+
+
+    
 
 </resources>
