@@ -429,6 +429,7 @@ public class Profile extends AppCompatActivity {
     }
 
 
+
     private void addImageToLinearLayout(LinearLayout ly, String image, int len, int wid){
         TextView desc = new TextView(this);
         LinearLayout verticalLY = new LinearLayout(this);
@@ -436,12 +437,9 @@ public class Profile extends AppCompatActivity {
         LinearLayout.LayoutParams container = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         desc.setLayoutParams(container);
 
-        container.leftMargin = 5;
-        container.rightMargin = 5;
+        container.leftMargin = R.dimen.InstrumentGenreMargin;
+        container.rightMargin = R.dimen.InstrumentGenreMargin;
         verticalLY.setLayoutParams(container);
-
-
-
 
 
         final  ImageView imageToAdd = new ImageView(this);
@@ -487,8 +485,9 @@ public class Profile extends AppCompatActivity {
         verticalLY.addView(imageToAdd);
         verticalLY.addView(desc);
         ly.addView(verticalLY);    }
+
     private void addImageToLinearLayout(LinearLayout ly, String image){
-        addImageToLinearLayout(ly, image, 50, 50);
+        addImageToLinearLayout(ly, image, R.dimen.InstrumentGenreSize, R.dimen.InstrumentGenreSize);
     }
 
 

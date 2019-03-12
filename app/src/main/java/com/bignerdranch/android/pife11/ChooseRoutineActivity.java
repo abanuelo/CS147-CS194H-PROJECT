@@ -29,36 +29,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 
-// EXAMPLE FOR READING THINGS FROM FIREBASE
-//
-//   private void FetchHeartLevel(){
-////        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats");
-////
-////        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
-////            @Override
-////            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-////                if (dataSnapshot.exists()){
-////                    for (DataSnapshot match: dataSnapshot.getChildren()){
-////                        Log.i("Ab-matchkey", match.getKey());
-////                        Log.i("Ab-matchVal", match.getValue().toString().trim());
-////                        if (match.getKey().equals("heartlevel")) {
-////                            int hl = Integer.parseInt(match.getValue().toString().trim());
-////                            heartlevel = findViewById(R.id.PracticeHeartLevel);
-////                            heartlevel.setProgress(hl);
-////                        }
-////                    }
-////                }
-////            }
-////
-////            @Override
-////            public void onCancelled(@NonNull DatabaseError databaseError) {
-////
-////            }
-////        });
-//
-//    }
-
-
 public class ChooseRoutineActivity extends Activity {
     private ImageView store;
     private DatabaseReference userDatabase;
@@ -140,39 +110,21 @@ public class ChooseRoutineActivity extends Activity {
 
                 //Getting the info from Firebase
                 for (DataSnapshot curr: dataSnapshot.child("Routines").getChildren()) {
-                    System.out.println("Trying this out: " + curr.getValue().toString());
 
-                    ArrayList<String> toBeAdded = new ArrayList<String>();
-                    //System.out.println("Debugging the routines reading:" + curr.toString());
-                    /*ArrayList currRoutine = (ArrayList) curr.getValue();
-                    Iterator<Map.Entry<String, String>> itr = currRoutine.entrySet().iterator();
-                    while(itr.hasNext()) {
-                        Map.Entry<String, String> entry = itr.next();
-                        toBeAdded.add(Integer.parseInt(entry.getKey()), entry.getValue());
-                    }*/
+//                    ArrayList<String> toBeAdded = new ArrayList<String>();
+
                     items.add((String) curr.getKey());
                     dsRoutines.add((ArrayList<String>) curr.getValue());
                 }
-                System.out.println("Debugging the routines total:" + dsRoutines.toString());
                 DataSingleton.getInstance().setRoutinesList(dsRoutines);
-
-
-
-                //Populate the list of routines with the names of the routines (the first string in each routine list)
-                /*for (ArrayList<String> curr: dsRoutines){
-                    System.out.println("Make List Add:" + curr.toString());
-                    items.add(curr.get(0));
-                }*/
-
-
-
-
-                //ArrayAdapter<String> routinesStrs = new ArrayAdapter<String>(ChooseRoutineActivity.this, android.R.layout.simple_list_item_1, items);
 
                 TaskList routines = new TaskList(ChooseRoutineActivity.this, items, true);
 
+
                 final ListView routinesList = (ListView) findViewById(R.id.routinesList);
                 routinesList.setAdapter(routines);
+
+
                 routinesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -195,40 +147,7 @@ public class ChooseRoutineActivity extends Activity {
 
             }
         };
-        //Get the routines from the database?
 
-        //System.out.println("Debugging the routines... finishing before the callback?");
-
-
-        /*DataSingleton ds = DataSingleton.getInstance();
-        ArrayList<ArrayList<String>> dsRoutines = ds.getRoutinesList();
-
-        ArrayList<String> items = new ArrayList<>();
-
-        //Populate the list of routines with the names of the routines (the first string in each routine list)
-        for (ArrayList<String> curr: dsRoutines){
-            System.out.println("Make List Add:" + curr.toString());
-            items.add(curr.get(0));
-        }
-
-
-
-        ArrayAdapter<String> routines = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        final ListView routinesList = (ListView) findViewById(R.id.routinesList);
-        routinesList.setAdapter(routines);
-        routinesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = routinesList.getItemAtPosition(position);
-                System.out.println(o.toString());
-
-                Intent practice_intent = new Intent(ChooseRoutineActivity.this, PracticeHiFi2.class);
-                practice_intent.putExtra("SOURCE", "CHOOSE");
-                practice_intent.putExtra("ROUTINE_NAME", o.toString());
-                startActivity(practice_intent);
-
-            }
-        });*/
         userDatabase.addValueEventListener(listener);
     }
 
