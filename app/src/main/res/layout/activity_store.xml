@@ -108,6 +108,7 @@
     <LinearLayout
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -655,6 +656,7 @@
         app:itemTextColor="@drawable/menu_state_list"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:theme="@style/Widget.BottomNavigationView"
         app:menu="@menu/bottom_nav" />
 
 

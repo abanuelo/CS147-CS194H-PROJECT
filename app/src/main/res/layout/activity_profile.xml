@@ -343,6 +343,8 @@
         app:itemTextColor="@drawable/menu_state_list"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav" />
+        app:menu="@menu/bottom_nav"
+        android:theme="@style/Widget.BottomNavigationView"
+        />
 
 </android.support.constraint.ConstraintLayout>

@@ -159,6 +159,7 @@
         app:itemIconTint="@drawable/menu_state_list"
         app:itemTextColor="@drawable/menu_state_list"
         app:labelVisibilityMode="labeled"
+        android:theme="@style/Widget.BottomNavigationView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav" />
 

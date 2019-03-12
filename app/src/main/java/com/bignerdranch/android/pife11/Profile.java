@@ -148,27 +148,13 @@ public class Profile extends AppCompatActivity {
 
             userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(profile_lookup);
 
-
-//            sign_out.setText("Message");
-//            sign_out.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
-//                    Bundle b = new Bundle();
-//                    b.putString("matchId", profile_lookup);
-//                    sign_out_intent.putExtras(b);
-//                    finish();
-//                    startActivity(sign_out_intent);
-//
-//                }
-//            });
             sign_out.setVisibility(View.INVISIBLE);
             profile_lookup2 = profile_lookup;
 
         }
         else {
             profile_lookup2 = userId;
-            
+
             sign_out.setText("Sign Out");
             //Event that Initiates the Sign Out Process for the Profile Image
             sign_out.setOnClickListener(new View.OnClickListener() {
