@@ -63,6 +63,8 @@ public class Profile extends AppCompatActivity {
     private ValueEventListener listener;
     private Bitmap bitmap;
     final ArrayList<ImageItem> arr = new ArrayList<>();
+    final int left_right_ImageMargin = 5;
+    final int InstrumentSize = 50;
 
 
     @Override
@@ -437,8 +439,8 @@ public class Profile extends AppCompatActivity {
         LinearLayout.LayoutParams container = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         desc.setLayoutParams(container);
 
-        container.leftMargin = R.dimen.InstrumentGenreMargin;
-        container.rightMargin = R.dimen.InstrumentGenreMargin;
+        container.leftMargin = left_right_ImageMargin;
+        container.rightMargin = left_right_ImageMargin;
         verticalLY.setLayoutParams(container);
 
 
@@ -487,7 +489,7 @@ public class Profile extends AppCompatActivity {
         ly.addView(verticalLY);    }
 
     private void addImageToLinearLayout(LinearLayout ly, String image){
-        addImageToLinearLayout(ly, image, R.dimen.InstrumentGenreSize, R.dimen.InstrumentGenreSize);
+        addImageToLinearLayout(ly, image, InstrumentSize, InstrumentSize);
     }
 
 
