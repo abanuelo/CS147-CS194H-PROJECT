@@ -63,6 +63,8 @@ public class Profile extends AppCompatActivity {
     private ValueEventListener listener;
     private Bitmap bitmap;
     final ArrayList<ImageItem> arr = new ArrayList<>();
+    final int left_right_ImageMargin = 5;
+    final int InstrumentSize = 50;
 
 
     @Override
@@ -148,26 +150,12 @@ public class Profile extends AppCompatActivity {
 
             userDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(profile_lookup);
 
-            sign_out.setText("Message");
-            sign_out.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent sign_out_intent = new Intent(Profile.this, Chat.class);
-                    Bundle b = new Bundle();
-                    b.putString("matchId", profile_lookup);
-                    sign_out_intent.putExtras(b);
-                    finish();
-                    startActivity(sign_out_intent);
-
-                }
-            });
+            sign_out.setVisibility(View.INVISIBLE);
             profile_lookup2 = profile_lookup;
 
         }
         else {
             profile_lookup2 = userId;
-
-
 
             sign_out.setText("Sign Out");
             //Event that Initiates the Sign Out Process for the Profile Image
@@ -204,26 +192,21 @@ public class Profile extends AppCompatActivity {
         });
 
 
-////        Initalize the Text Views
-//        username = (TextView) findViewById(R.id.profile_username);
-//        genre = (TextView) findViewById(R.id.profile_years);
-//        instrument = (TextView) findViewById(R.id.profile_instruments);
-
         //Now we are going to iterate over FirebaseDatabase to populate TextViews
         listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //Gets the Name and Inserts it within TextView
-//                String t_name = dataSnapshot.child("name").getValue().toString().trim();
-//                name.setText(t_name);
-
                 //Gets the Username and inserts it within textView
-//                Object obj = dataSnapshot.child("username").getValue();
-//                if (obj == null) return;
-//                String t_username = obj.toString().trim();
-//                TextView username2 = (TextView) findViewById(R.id.profile_username);
-//
-//                username2.setText("Username: " + t_username);
+
+                if (profile_lookup2 != userId) {
+                    Object obj = dataSnapshot.child("username").getValue();
+                    if (obj == null) return;
+                    String t_username = obj.toString().trim();
+                    TextView tv = findViewById(R.id.profileTitle);
+                    tv.setText( t_username + "'s Profile");
+                }
+
 //
                 //Gets the Instruments to Populate the Instruments
                 String t_instruments = "";
@@ -448,6 +431,7 @@ public class Profile extends AppCompatActivity {
     }
 
 
+
     private void addImageToLinearLayout(LinearLayout ly, String image, int len, int wid){
         TextView desc = new TextView(this);
         LinearLayout verticalLY = new LinearLayout(this);
@@ -455,12 +439,9 @@ public class Profile extends AppCompatActivity {
         LinearLayout.LayoutParams container = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         desc.setLayoutParams(container);
 
-        container.leftMargin = 5;
-        container.rightMargin = 5;
+        container.leftMargin = left_right_ImageMargin;
+        container.rightMargin = left_right_ImageMargin;
         verticalLY.setLayoutParams(container);
-
-
-
 
 
         final  ImageView imageToAdd = new ImageView(this);
@@ -506,8 +487,9 @@ public class Profile extends AppCompatActivity {
         verticalLY.addView(imageToAdd);
         verticalLY.addView(desc);
         ly.addView(verticalLY);    }
+
     private void addImageToLinearLayout(LinearLayout ly, String image){
-        addImageToLinearLayout(ly, image, 50, 50);
+        addImageToLinearLayout(ly, image, InstrumentSize, InstrumentSize);
     }
 
 

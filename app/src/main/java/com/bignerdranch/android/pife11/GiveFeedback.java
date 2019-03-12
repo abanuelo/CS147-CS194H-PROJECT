@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.bignerdranch.android.pife11.SelectVideoOnProfile.SelectVideoOnProfile;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +43,8 @@ public class GiveFeedback extends AppCompatActivity {
         Intent intent = getIntent();
         final String videoId = intent.getStringExtra("videoId");
         currentUserId = intent.getStringExtra("userId");
+
+        changeCoins();
 
         final DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
 
@@ -155,5 +158,30 @@ public class GiveFeedback extends AppCompatActivity {
         matchDb.child("iwish").setValue(iwish);
         matchDb.child("date").setValue(datetimeFormatted);
         matchDb.child("username").setValue(username);
+    }
+
+    public void changeCoins(){
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Stats").child("xp");
+        matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    String pifePoints = dataSnapshot.getValue().toString().trim();
+                    TextView pointsDisplay = (TextView) findViewById(R.id.coins);
+                    pointsDisplay.setText(pifePoints);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void goToStore(View view) {
+        Intent practice_intent = new Intent(this, Store.class);
+        startActivity(practice_intent);
     }
 }

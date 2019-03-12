@@ -72,5 +72,9 @@
         <item>10+ years</item>
     </string-array>
 
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/opensans_regular</item>
+    </style>
 
 </resources>

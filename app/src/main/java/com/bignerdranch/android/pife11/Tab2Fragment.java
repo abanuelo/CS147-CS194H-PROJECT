@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -84,14 +85,7 @@ public class Tab2Fragment extends Fragment   {
     //@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_two, container, false);
-        //View viewCard = inflater.inflate(R.layout.adapter, container, false);
         mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
-        //mButton = (Button) viewCard.findViewById(R.id.collab_button);
-        //name_text = (TextView) viewCard.findViewById(R.id.name);
-        //mButton =(Button) mViewPager.findViewById(R.id.collab_button);
-        //mButton = (Button) view.findViewById(R.id.cardTypeBtn);
-        //box = (CheckBox) view.findViewById(R.id.checkBox);
-        //mButton.setOnClickListener(this);
 
         ds = DataSingleton.getInstance();
 
@@ -106,6 +100,13 @@ public class Tab2Fragment extends Fragment   {
         InstrumentsFilter = view.findViewById(R.id.InstrumentFilter);
         GenreFilter = view.findViewById(R.id.GenreFilter);
         YearsFilter = view.findViewById(R.id.YearsFilter);
+
+        InstrumentsFilter.setEnabled(true);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(myContext,
+                R.array.instrument_arrays, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        InstrumentsFilter.setAdapter(adapter);
+
         instrumentAdapter = InstrumentsFilter.getSelectedItem().toString().toLowerCase();
         if (instrumentAdapter.contains("all")) instrumentAdapter = "all";
         genreAdapter = GenreFilter.getSelectedItem().toString().toLowerCase();
@@ -128,7 +129,6 @@ public class Tab2Fragment extends Fragment   {
                 yearsAdapter = YearsFilter.getSelectedItem().toString().toLowerCase();
                 if (yearsAdapter.contains("all")) yearsAdapter = "all";
 
-                System.out.println("Let's see if this is happening!");
                 populateCards();
             }
         });

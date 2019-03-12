@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChooseRoutineActivity"
-    android:background="@color/background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -59,20 +58,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Choose Routine"
-            android:fontFamily="@font/opensans_bold"
             android:textSize="@dimen/titleTextSz"
             android:textColor="@color/white"
             android:id="@+id/routineTitle"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:gravity="center_horizontal"/>
-
-        <!--</LinearLayout>-->
-
-        <!--<TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />-->
 
         <LinearLayout
             android:layout_width="0dp"
@@ -88,14 +79,14 @@
 
             <ImageView
                 android:id="@+id/shop"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
+                android:layout_width="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/sideGaps"
+                android:layout_marginRight="16dp"
                 android:onClick="goToStore"
-                android:src="@drawable/shopping_cart" />
+                android:src="@drawable/shop" />
         </LinearLayout>
 
 
@@ -133,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Add Routine"
-            android:fontFamily="@font/opensans_semibold"
+            android:fontFamily="@font/opensans_light"
             android:background="@drawable/button_oval_green"
             android:textColor="@color/white"
             android:padding="10dp"
@@ -148,7 +139,7 @@
             android:text="Free Practice"
             android:textColor="@color/white"
             android:padding="10dp"
-            android:fontFamily="@font/opensans_semibold"
+            android:fontFamily="@font/opensans_light"
             android:background="@drawable/button_oval_green"
             android:onClick="goToOpenPractice"/>
         <Space
@@ -168,6 +159,7 @@
         app:itemIconTint="@drawable/menu_state_list"
         app:itemTextColor="@drawable/menu_state_list"
         app:labelVisibilityMode="labeled"
+        android:theme="@style/Widget.BottomNavigationView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav" />
 

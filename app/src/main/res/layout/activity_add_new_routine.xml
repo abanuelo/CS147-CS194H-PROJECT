@@ -58,20 +58,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="Add Routine"
-            android:fontFamily="@font/opensans_bold"
             android:textSize="@dimen/titleTextSz"
             android:textColor="@color/white"
             android:id="@+id/routineTitle"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:gravity="center_horizontal"/>
-
-        <!--</LinearLayout>-->
-
-        <!--<TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />-->
 
         <LinearLayout
             android:layout_width="0dp"
@@ -87,15 +79,16 @@
 
             <ImageView
                 android:id="@+id/shop"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
+                android:layout_width="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="@dimen/sideGaps"
+                android:layout_marginRight="16dp"
                 android:onClick="goToStore"
-                android:src="@drawable/shopping_cart" />
+                android:src="@drawable/shop" />
         </LinearLayout>
+
 
 
     </LinearLayout>
@@ -106,7 +99,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:imeOptions="actionNext"
-        android:textColorHint="@color/grayHint">
+        app:hintTextAppearance="@style/TextInputLayoutHintText"
+        android:textColorHint="@color/grayHint"
+        android:theme="@style/EditTextOverall">
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/inputTitle"
@@ -115,6 +110,7 @@
             android:imeOptions="actionNext"
             android:textColor="@color/black"
             android:singleLine="true"
+            android:textAppearance="@style/EditText"
             android:hint="Input Routine Title*"
             />
     </android.support.design.widget.TextInputLayout>
@@ -166,7 +162,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Music Goals"
-        android:textSize="30sp"
+        android:textSize="@dimen/subTitle1Sz"
+        android:paddingBottom="@dimen/vertiGaps"
+        android:paddingTop="@dimen/vertiGaps"
         android:background="@color/grayBckgrd"
         android:gravity="center_horizontal"/>
 
@@ -190,19 +188,6 @@
         android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
-        <!--<EditText
-            android:id="@+id/newGoal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/opensans_bold"
-            android:textColorHint="#808080"
-            android:textColor="@color/black"
-            android:cursorVisible="true"
-            android:textCursorDrawable="@null"
-            android:hint="Musical goals (e.g., Practice Arpeggios)"
-            android:textSize="16dp"/>-->
-
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/newGoalish"
@@ -210,7 +195,9 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/grayHint">
+            android:textColorHint="@color/grayHint"
+            app:hintTextAppearance="@style/TextInputLayoutHintText"
+            android:theme="@style/EditTextOverall">
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/newGoal"
@@ -219,18 +206,21 @@
                 android:textColor="@color/black"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
-                android:hint="Add Goal (min 1)"
+                android:textAppearance="@style/EditText"
+                android:hint="Add Goal* (min 1)"
                 />
         </android.support.design.widget.TextInputLayout>
-        <Button
 
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Goal"
-            android:layout_gravity="fill_vertical|end"
+            android:layout_height="match_parent"
             android:background="@drawable/button_oval_green"
-            android:textColor="@color/white"
-            android:onClick="addGoal"/>
+            android:onClick="addGoal"
+            android:text="Add Goal"
+            android:gravity="center_vertical |center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -239,7 +229,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Create"
-        android:layout_marginBottom="@dimen/sideGaps"
+        android:layout_marginTop="@dimen/vertiGaps"
+        android:layout_marginBottom="@dimen/vertiGaps"
         android:textColor="@color/white"
         android:background="@drawable/button_oval_green"
         android:onClick="finishRoutine"/>

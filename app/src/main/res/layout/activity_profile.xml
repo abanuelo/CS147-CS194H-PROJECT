@@ -8,41 +8,94 @@
     android:orientation="vertical"
     tools:context=".Profile">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:weightSum="2"
         android:background="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/my_toolbar"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/coin_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/coin_image"
+                android:src="@drawable/coins_white"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/sideGaps"/>
 
-            android:src="@drawable/coins_white"
-            android:contentDescription="Coin Image" />
+            <TextView
+                android:paddingLeft="5dp"
+                android:id="@+id/coins"
+                android:text="-1"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+
+
+
+        <!--<TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>-->
+
+        <!--<LinearLayout
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">-->
 
         <TextView
-            android:id="@+id/coins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:text="Your coins"
-            android:textColor="@color/white" />
+            android:layout_gravity="center_vertical"
+            android:text="My Profile"
+            android:textSize="@dimen/titleTextSz"
+            android:textColor="@color/white"
+            android:id="@+id/profileTitle"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_horizontal"/>
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="end"
-            android:layoutDirection="rtl"
-            android:onClick="goToStore"
-            android:layout_marginEnd="30dp"
-            android:src="@drawable/shop"
-            android:contentDescription="Shop Button" />
-    </android.support.v7.widget.Toolbar>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/shop"
+                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="16dp"
+                android:onClick="goToStore"
+                android:src="@drawable/shop" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/profile_top_part"
@@ -82,12 +135,14 @@
 
             <Button
                 android:id="@+id/sign_out"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/profile_img_post2"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/sideGaps"
+                android:layout_marginRight="@dimen/sideGaps"
                 android:layout_marginTop="-5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_gravity="center_horizontal"
                 android:background="@drawable/button_transparent"
                 android:text="sign out"
                 android:textColor="@color/colorPrimary"
@@ -106,7 +161,7 @@
 
             <LinearLayout
                 android:layout_width="70dp"
-                android:layout_row="0"
+                android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
@@ -120,7 +175,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:fontFamily="@font/opensans_semibold"
+                    android:fontFamily="@font/opensans_light"
                     android:text="19"
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -131,7 +186,7 @@
                     android:layout_height="0dp"
                     android:fontFamily="@font/opensans_light"
                     android:layout_weight="1"
-                    android:text="hours\npracticed"
+                    android:text="practiced\nhrs "
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -153,7 +208,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/opensans_semibold"
+                    android:fontFamily="@font/opensans_light"
                     android:text="20"
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -163,7 +218,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:fontFamily="@font/opensans_light"
-                    android:text="coins\nearned"
+                    android:text="coins"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:layout_weight="1"
@@ -172,7 +227,7 @@
 
             <LinearLayout
                 android:layout_width="70dp"
-                android:layout_row="1"
+                android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
@@ -196,7 +251,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/opensans_light"
-                    android:text="videos\nuploaded"
+                    android:text="videos"
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -229,7 +284,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/opensans_light"
-                    android:text="feedback\ngiven"
+                    android:text="comments\ngiven"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:layout_weight="1"
@@ -251,33 +306,44 @@
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_top_part"
-        tools:layout_editor_absoluteY="260dp">
-
-
+        app:layout_constraintBottom_toTopOf="@id/VideoLabel"
+        >
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/VideoLabel"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center"
-        android:gravity="center"
-        android:fontFamily="@font/opensans_bold"
-        android:text="Videos"
-        android:background="@drawable/border"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:id="@+id/VideoLabel"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/profile_user_info"
-        app:layout_constraintBottom_toTopOf="@id/gridView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center"
+            android:gravity="center"
+            android:fontFamily="@font/opensans_bold"
+            android:text="Videos"
+            android:textSize="@dimen/subTitle1Sz"
+            android:paddingBottom="@dimen/vertiGaps"
+            android:paddingTop="@dimen/vertiGaps"
+
+            android:background="@color/grayBckgrd"
+            android:textColor="@color/black" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/grayHint"
+            android:layout_marginTop="0dp"
+            ></View>
+    </LinearLayout>
 
     <GridView
         android:id="@+id/gridView"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
-        android:background="@color/lightGrey"
+        android:background="@color/white"
         android:clickable="true"
         android:columnWidth="100dp"
         android:drawSelectorOnTop="true"
@@ -286,10 +352,10 @@
         android:horizontalSpacing="1dp"
         android:numColumns="3"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="1dp"
-        app:layout_constraintTop_toBottomOf="@id/VideoLabel"
+        android:verticalSpacing="3dp"
         app:layout_constraintBottom_toTopOf="@id/navigationViewPerform"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/VideoLabel"
         app:layout_constraintVertical_bias="1.0" />
 
 
@@ -304,6 +370,8 @@
         app:itemTextColor="@drawable/menu_state_list"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav" />
+        app:menu="@menu/bottom_nav"
+        android:theme="@style/Widget.BottomNavigationView"
+        />
 
 </android.support.constraint.ConstraintLayout>

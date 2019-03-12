@@ -6,35 +6,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <!--<android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="?attr/actionBarSize">
-
-        <ImageView
-            android:id="@+id/coin_image"
-            android:src="@drawable/ic_coins"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
-
-        <TextView
-            android:paddingLeft="20dp"
-            android:id="@+id/coins"
-            android:text="Your coins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:layoutDirection="rtl"
-            android:src="@drawable/shopping_cart"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:paddingRight="30dp"
-            android:layout_width="60dp"
-            android:layout_height="30dp" />
-    </android.support.v7.widget.Toolbar>-->
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
@@ -65,6 +36,7 @@
         app:itemTextColor="@drawable/menu_state_list"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:theme="@style/Widget.BottomNavigationView"
         app:menu="@menu/bottom_nav" />
 
 </LinearLayout>
