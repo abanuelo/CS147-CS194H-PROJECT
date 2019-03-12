@@ -39,39 +39,17 @@
 
         </LinearLayout>
 
-
-
-        <!--<TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>-->
-
-        <!--<LinearLayout
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">-->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Free Practice"
-            android:fontFamily="@font/opensans_bold"
+            android:text="Practice Routine Title"
             android:textSize="@dimen/titleTextSz"
             android:textColor="@color/white"
             android:id="@+id/routineTitle"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:gravity="center_horizontal"/>
-
-        <!--</LinearLayout>-->
-
-        <!--<TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />-->
 
         <LinearLayout
             android:layout_width="0dp"
@@ -85,20 +63,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-        <ImageView
-            android:id="@+id/shop"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="@dimen/sideGaps"
-            android:onClick="goToStore"
-            android:src="@drawable/shopping_cart" />
+            <ImageView
+                android:id="@+id/shop"
+                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="16dp"
+                android:onClick="goToStore"
+                android:src="@drawable/shop" />
         </LinearLayout>
 
 
     </LinearLayout>
+
 
 
     <TextView
@@ -107,7 +86,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Time Elapsed:"
-        android:textSize="30sp"
+        android:textSize="@dimen/subTitle1Sz"
+        android:paddingBottom="@dimen/vertiGaps"
+        android:paddingTop="@dimen/vertiGaps"
         android:background="@color/grayBckgrd"
         android:gravity="center_horizontal"/>
 
@@ -136,7 +117,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Music Goals"
-        android:textSize="30sp"
+        android:textSize="@dimen/subTitle1Sz"
+        android:paddingBottom="@dimen/vertiGaps"
+        android:paddingTop="@dimen/vertiGaps"
         android:background="@color/grayBckgrd"
         android:gravity="center_horizontal"/>
     <ListView
