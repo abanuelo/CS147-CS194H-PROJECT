@@ -7,87 +7,87 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:weightSum="3"
+        android:weightSum="2"
         android:background="@color/colorPrimary"
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
+            android:layout_weight="1">
             <ImageView
-                android:layout_weight="1"
                 android:id="@+id/coin_image"
                 android:src="@drawable/coins_white"
                 android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/sideGaps"/>
 
             <TextView
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
+                android:paddingLeft="5dp"
                 android:id="@+id/user_coins"
                 android:text="-1"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:gravity="center_vertical" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
         </LinearLayout>
 
-        <LinearLayout
+
+
+        <!--<TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>-->
+
+        <!--<LinearLayout
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content">-->
 
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Shop"
-                android:textColor="@color/white"
-                android:id="@+id/routineTitle"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center_horizontal"/>
-
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Store"
+            android:textSize="@dimen/titleTextSz"
+            android:textColor="@color/white"
+            android:id="@+id/routineTitle"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_horizontal"/>
 
         <LinearLayout
-            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <ImageView
-                android:layout_weight="1"
-                android:layoutDirection="rtl"
-                android:src="@drawable/shop"
+                android:id="@+id/shop"
+                android:layout_height="35dp"
+                android:layout_width="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_gravity="right"
-                android:paddingRight="@dimen/sideGaps"
-                android:layout_width="60dp"
-                android:layout_height="30dp" />
-
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="16dp"
+                android:onClick="goToStore"
+                android:src="@drawable/shop" />
         </LinearLayout>
+
 
     </LinearLayout>
 
@@ -109,7 +109,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertiGaps">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,24 +158,38 @@
         android:layout_marginTop="0dp"
         ></View>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:orientation="horizontal"
         android:gravity="center_horizontal"
         android:background="@color/grayBckgrd"
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content">-->
 
-        <TextView
+    <TextView
+        android:id="@+id/musicGoalsLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Avatar Outfit"
+        android:textSize="@dimen/subTitle1Sz"
+        android:paddingBottom="@dimen/vertiGaps"
+        android:paddingTop="@dimen/vertiGaps"
+        android:background="@color/grayBckgrd"
+        android:gravity="center_horizontal"/>
+
+        <!--<TextView
+
+
             android:textSize="18sp"
             android:fontFamily="@font/opensans_bold"
             android:text="Avatar Outfit"
             android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <View
         android:layout_width="wrap_content"
@@ -201,7 +216,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:orientation="vertical"
-                android:layout_width="80dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
@@ -624,6 +639,11 @@
         ></View>
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
     <LinearLayout
         android:paddingTop="5dp"
         android:layout_gravity="center"
@@ -634,15 +654,14 @@
             android:id="@+id/save_outfit"
             android:textColor="@color/white"
             android:text="Save Outfit"
-            android:background="@drawable/grey_buttonoval"
+            android:background="@drawable/button_oval_green"
             android:layout_width="120dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:layout_marginBottom="@dimen/vertiGaps"
+            android:layout_marginTop="@dimen/vertiGaps"/>
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationViewPerform"
