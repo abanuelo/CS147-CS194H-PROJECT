@@ -307,7 +307,7 @@ public class Profile extends AppCompatActivity {
         genre = null;
         instrument = null;
         //bitmap.recycle();
-        gridAdapter.clear();
+        //gridAdapter.clear();
         //finish();
     }
 

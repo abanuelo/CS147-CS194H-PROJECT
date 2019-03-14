@@ -137,6 +137,10 @@ public class MyPerform extends AppCompatActivity {
             public void onClick(View view) {
                 boolean hasError = false;
 
+                if (thumbnail.getBackground() != null){
+                    thumbnail.setImageResource(R.drawable.play);
+                }
+
                 if (TextUtils.isEmpty(title.getText().toString())){
                     title.setError("Please insert title for your performance.");
                     hasError = true;
