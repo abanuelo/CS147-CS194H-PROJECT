@@ -228,7 +228,7 @@ public class Profile extends AppCompatActivity {
                     coinsEarned.setText(koinsEarned.toString());
                 }
                 else {
-                    coinsEarned.setText("0");
+                    coinsEarned.setText("20");
                 }
 
 
