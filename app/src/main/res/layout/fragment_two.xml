@@ -33,7 +33,7 @@
                 android:popupBackground="@color/white"
                 android:id="@+id/InstrumentFilter"
                 android:backgroundTint="@color/white"
-                android:background="@color/white"
+                android:background="@drawable/button_transparent"
                 android:popupTheme="@style/mySpinnerItemStyle"
                 android:theme="@style/mySpinnerItemStyle"
                 android:textAlignment="center"
