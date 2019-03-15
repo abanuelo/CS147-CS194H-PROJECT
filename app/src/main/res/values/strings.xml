@@ -37,6 +37,9 @@
     <string name="genre_prompt">Genres: All</string>
     <string name="years_prompt">Years Playing: All</string>
 
+    <string name="iwish_nocomments">No Comments to be displayed!</string>
+    <string name="ilike_nocomments"></string>
+
     <string-array name="instrument_arrays">
         <item>Instruments:All</item>
         <item>Bass</item>

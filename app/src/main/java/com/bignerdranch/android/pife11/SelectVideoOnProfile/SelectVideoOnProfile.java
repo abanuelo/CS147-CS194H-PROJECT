@@ -113,13 +113,16 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
 
         Button exit_btn = findViewById(R.id.select_video_exit);
-        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        TextView commentsDivider = (TextView) findViewById(R.id.DividerBetweenVideoAndComments);
         ListView listView = (ListView) findViewById(R.id.videoComments);
 
         if (userid.equals(videoUserId)){
             ArrayList<Comment> arrayOfComments = new ArrayList<Comment>();
             final CommentAdapter adapter = new CommentAdapter(this, arrayOfComments);
 
+            commentsDivider.setVisibility(View.VISIBLE);
             listView.setVisibility(View.VISIBLE);
             listView.setAdapter(adapter);
 
@@ -132,13 +135,19 @@ public class SelectVideoOnProfile extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot comment : dataSnapshot.getChildren()){
                         String date = comment.child("date").getValue().toString().trim();
-                        String like = comment.child("ilike").getValue().toString().trim();
-                        String wish = comment.child("iwish").getValue().toString().trim();
+                        String like = "I like " + comment.child("ilike").getValue().toString().trim();
+                        String wish = "I wish " +comment.child("iwish").getValue().toString().trim();
                         String user = comment.child("user").getValue().toString().trim();
                         String userName = comment.child("username").getValue().toString().trim();
 
                         adapter.add(new Comment(userName, date, like, wish, user));
+                    }
 
+                    TextView tv = (TextView) findViewById(R.id.noComment);
+                    if (adapter.isEmpty()) {
+                        tv.setVisibility(View.VISIBLE);
+                    }else {
+                        tv.setVisibility(View.GONE);
                     }
 
                 }
@@ -153,6 +162,8 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
         } else {
             listView.setVisibility(View.GONE);
+            commentsDivider.setVisibility(View.GONE);
+
             exit_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -162,7 +173,6 @@ public class SelectVideoOnProfile extends AppCompatActivity {
                     sign_out_intent.putExtra("videoUserId", videoUserId);
                     finish();
                     startActivity(sign_out_intent);
-
                 }
             });
         }

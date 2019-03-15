@@ -34,19 +34,25 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         TextView likes = (TextView) convertView.findViewById(R.id.Comment_likes);
         TextView wishes = (TextView) convertView.findViewById(R.id.Comment_wishes);
         // Populate the data into the template view using the data object
-        username.setText(comment.user);
-        likes.setText("I like " + comment.likes);
-        wishes.setText("I wish " + comment.wishes);
+        if (comment.user != null) {
+            username.setText(comment.user);
+            username.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent seeProfile = new Intent(context, Profile.class);
+                    seeProfile.putExtra("profileId", comment.userID);
+                    context.startActivity(seeProfile);
+                }
+            });
+
+        } else{
+            username.setVisibility(View.GONE);
+
+        }
+        likes.setText( comment.likes);
+        wishes.setText( comment.wishes);
 
 
-        username.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent seeProfile = new Intent(context, Profile.class);
-                seeProfile.putExtra("profileId", comment.userID);
-                context.startActivity(seeProfile);
-            }
-        });
 
         // Return the completed view to render on screen
         return convertView;
