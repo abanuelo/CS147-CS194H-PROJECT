@@ -18,23 +18,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
-        <activity android:name=".UploadThumbnail"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Store"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SelectVideoOnProfile.SelectVideoOnProfile"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TutorialReward"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".GiveFeedback"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Video"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PracticeHiFi2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddNewRoutine"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
+        <activity android:name=".IntroduceAvatar"></activity>
+        <activity
+            android:name=".UploadThumbnail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Store"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectVideoOnProfile.SelectVideoOnProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TutorialReward"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GiveFeedback"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Video"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PracticeHiFi2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddNewRoutine"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +61,7 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true"
@@ -65,43 +75,50 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateAccount"
-            android:screenOrientation="portrait"/> <!-- <activity android:name=".peform" /> -->
-
-        <activity android:name=".Profile"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Instruments"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Genres"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Matches.Matches"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Chat.Chat"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".SelectAvatar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ChooseRoutineActivity"
-            android:screenOrientation="portrait"/>
-
-
-        <activity android:name=".watch_performance"
-            android:screenOrientation="portrait"/>
-
-
-        <activity android:name=".CollabHiFi2"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".CreateAccount"
+            android:screenOrientation="portrait" /> <!-- <activity android:name=".peform" /> -->
+        <activity
+            android:name=".Profile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Instruments"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Genres"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Matches.Matches"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Chat.Chat"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectAvatar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChooseRoutineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".watch_performance"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CollabHiFi2"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a9c73533139ab62e421711b95cc12dea63a4de75" />
 
-        <activity android:name=".MyPerform"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeclarePerform"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SendPerform"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MyPerform"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeclarePerform"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SendPerform"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

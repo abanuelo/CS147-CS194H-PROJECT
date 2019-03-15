@@ -210,7 +210,7 @@ public class Genres extends AppCompatActivity {
             public void onClick(View view) {
                 if ((boolean) userGenreInfo.get("blues") || (boolean) userGenreInfo.get("classical") || (boolean) userGenreInfo.get("country") || (boolean) userGenreInfo.get("edm") || (boolean) userGenreInfo.get("hiphop") || (boolean) userGenreInfo.get("jazz")  || (boolean) userGenreInfo.get("pop") || (boolean) userGenreInfo.get("rock")){
                     registerGenres();
-                    Intent proceed_intent = new Intent(Genres.this, SelectAvatar.class);
+                    Intent proceed_intent = new Intent(Genres.this, IntroduceAvatar.class); //change this to a new xml and class
                     startActivity(proceed_intent);
                 } else {
                     Toast.makeText(Genres.this, "Please select at least one genre!", Toast.LENGTH_SHORT).show();

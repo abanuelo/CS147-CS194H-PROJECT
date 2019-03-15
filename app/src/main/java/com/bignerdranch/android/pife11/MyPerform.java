@@ -210,7 +210,7 @@ public class MyPerform extends AppCompatActivity {
         //videoId = getIntent().getStringExtra("videoId");
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference videoRef = storageRef.child("/videos/" + uid + "/" + videoId + ".3pg");
+        StorageReference videoRef = storageRef.child("/videos/" + uid + "/" + videoId + ".mp4");
         StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + videoId + ".jpg");
 
         Uri video_file = videoUri;
