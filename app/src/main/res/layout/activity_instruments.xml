@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Select Instruments Played"
-            android:fontFamily="@font/proxima_novona_bold"
             android:textColor="@android:color/white"
             android:textSize="25sp" />
 
@@ -63,7 +62,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Bass"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -107,8 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/proxima_novona_bold"
-                    android:text="Drums / Precussion"
+                    android:text="Drums / Percussion"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="14sp"
@@ -152,7 +149,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Flute"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -196,7 +192,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Guitar"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -241,7 +236,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Piano"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -285,7 +279,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Sing"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -330,7 +323,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/proxima_novona_bold"
+
                     android:text="Viola"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -374,7 +367,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/proxima_novona_bold"
                     android:text="Violin"
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
@@ -395,7 +387,7 @@
     </GridLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
@@ -403,15 +395,15 @@
             android:id="@+id/proceed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="280dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/vertiGaps"
             android:text="Proceed"
-            android:background="@drawable/buttonoval"
+            android:textColor="@color/white"
+            android:background="@drawable/button_oval_gray"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
