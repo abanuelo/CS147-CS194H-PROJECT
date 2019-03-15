@@ -32,7 +32,6 @@
                 android:popupElevation="2dp"
                 android:popupBackground="@color/white"
                 android:id="@+id/InstrumentFilter"
-                android:backgroundTint="@color/white"
                 android:background="@drawable/button_transparent"
                 android:popupTheme="@style/mySpinnerItemStyle"
                 android:theme="@style/mySpinnerItemStyle"
