@@ -163,7 +163,7 @@ public class Profile extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     auth.signOut();
-                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class);
+                    Intent sign_out_intent = new Intent(Profile.this, MainActivity.class); //change this to MainActivity.class
                     finish();
                     startActivity(sign_out_intent);
 
