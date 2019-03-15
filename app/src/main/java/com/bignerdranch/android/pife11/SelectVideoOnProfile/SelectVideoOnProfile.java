@@ -54,7 +54,7 @@ public class SelectVideoOnProfile extends AppCompatActivity {
         final String videoUserId = intent.getStringExtra("currentUserId");
         //6X6Eok5NaRNWYSArcoX4Q7qpoMv2
         final String currVideo = intent.getStringExtra("currentVideo");
-        final String currentVideo = currVideo + ".3gp"; //test.3pg
+        final String currentVideo = currVideo + ".mp4"; //test.3pg
 
         changeCoins();
         video = findViewById(R.id.videoView);
@@ -77,7 +77,7 @@ public class SelectVideoOnProfile extends AppCompatActivity {
         tv.setText(intent.getStringExtra("title"));
         //Get the video from the database
         try{
-            final File localFile = File.createTempFile(currentVideo, "3gp");
+            final File localFile = File.createTempFile(currentVideo, "mp4");
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
             videoRef = storageRef.child("/videos/" + videoUserId + "/" + currentVideo);
             Toast t = Toast.makeText(this, "Video is loading...", Toast.LENGTH_LONG);
