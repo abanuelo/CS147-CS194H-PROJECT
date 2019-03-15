@@ -205,8 +205,8 @@
             android:layout_marginBottom="@dimen/vertiGaps"
             android:background="@drawable/border">
             <ImageView
-                android:layout_gravity="center_horizontal"
                 android:background="@drawable/play"
+                android:layout_gravity="center_horizontal"
                 android:id="@+id/thumbnail"
                 android:layout_width="240dp"
                 android:layout_height="240dp" />

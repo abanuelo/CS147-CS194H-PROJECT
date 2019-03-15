@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -66,9 +67,11 @@ public class MyPerform extends AppCompatActivity {
     //private String videoId, uid;
     private Bitmap bm = null;
     private Uri thumbnailURI = null;
+    private Uri imageUri = null;
     //private String videoId;
     //private String uid;
     private static int REQUEST_CODE = 101;
+    private static int REQUEST_PHOTO = 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +88,7 @@ public class MyPerform extends AppCompatActivity {
         videoId = currentTime;
 
         //WE WANT TO BE ABLE TO RANDOMIZE THESE LINKS TO GET MULTIPLE LINKS
-        videoRef = storageRef.child("/videos/" + uid + "/" + currentTime+ ".3gp");
+        videoRef = storageRef.child("/videos/" + uid + "/" + currentTime + ".3gp");
 
 
         Finish = (Button) findViewById(R.id.submitPerform);
@@ -101,9 +104,12 @@ public class MyPerform extends AppCompatActivity {
         upload = findViewById(R.id.upload_thumb);
         //next = findViewById(R.id.next);
         thumbnail = findViewById(R.id.thumbnail);
-        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.play);
-        thumbnail.setImageBitmap(icon);
-        thumbnail.setVisibility(View.VISIBLE);
+//        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.play);
+//        thumbnail.setImageBitmap(icon);
+//        thumbnail.setImageResource(R.drawable.play);
+//        Bitmap bmToInsert = ((BitmapDrawable)thumbnail.getDrawable()).getBitmap();
+//        thumbnail.setImageBitmap(bmToInsert);
+//        imageUri = getImageUri(getApplicationContext(), bmToInsert);
         cancel = findViewById(R.id.cancel);
 
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +123,7 @@ public class MyPerform extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                thumbnail.setBackground(null);
+                //thumbnail.setBackground(null);
                 galleryIntent();
             }
         });
@@ -137,9 +143,9 @@ public class MyPerform extends AppCompatActivity {
             public void onClick(View view) {
                 boolean hasError = false;
 
-                if (thumbnail.getBackground() != null){
-                    thumbnail.setImageResource(R.drawable.play);
-                }
+//                if (thumbnail.getBackground() != null){
+//                    thumbnail.setImageResource(R.drawable.play);
+//                }
 
                 if (TextUtils.isEmpty(title.getText().toString())){
                     title.setError("Please insert title for your performance.");
@@ -204,14 +210,27 @@ public class MyPerform extends AppCompatActivity {
         //videoId = getIntent().getStringExtra("videoId");
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference videoRef = storageRef.child("/videos/" + uid + "/" + videoId + ".3pg");
         StorageReference imageRef = storageRef.child("/videoThumbnails/" + uid + "/" + videoId + ".jpg");
 
+        Uri video_file = videoUri;
 
-        Uri file = Uri.parse("android.resource://" + this.getPackageName() + "/" + R.drawable.play);
-        if (thumbnailURI != null) {
-            file = thumbnailURI;
+        Uri img_file = null;
+        if (thumbnailURI == null){
+            img_file = Uri.parse("android.resource://com.bignerdranch.android.pife11/drawable/play");
+        } else {
+            img_file = thumbnailURI;
         }
-        UploadTask uploadTask = imageRef.putFile(file);
+
+        UploadTask uploadTask = videoRef.putFile(video_file);
+        UploadTask uploadTask2 = imageRef.putFile(img_file);
+
+        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+            }
+        });
 
 
         //upload connection btn two
@@ -223,14 +242,15 @@ public class MyPerform extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK){
+        if (requestCode == REQUEST_PHOTO){
             onSelectFromGalleryResult(data);
-        } else {
+            Log.d("Arrived at this activity!", "here");
+        }else {
             try {
                 videoUri = data.getData();
-                video.setVideoURI(videoUri);
-                video.start();
-                if (videoUri == null) {
+                Log.d("CURRENT VIDEO URI", videoUri.toString());
+
+                if (videoUri.toString() == null) {
                     Intent profile = new Intent(this, Profile.class);
                     startActivity(profile);
                 }
@@ -251,14 +271,19 @@ public class MyPerform extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        thumbnail.setImageBitmap(bm);
+        if (bm != null){
+            thumbnail.setBackgroundResource(android.R.color.transparent);
+            thumbnail.setImageBitmap(bm);
+            //imageUri = getImageUri(getApplicationContext(), bm);
+        }
+
     }
 
     private void galleryIntent(){
-        Intent intent = new Intent();
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select File "), SELECT_FILE);
+        //startActivityForResult(Intent.createChooser(intent, "Select File"), REQUEST_PHOTO);
+        startActivityForResult(intent, REQUEST_PHOTO);
     }
 
     private void insertDataToFirebase(){
@@ -274,7 +299,6 @@ public class MyPerform extends AppCompatActivity {
         map.put("Info", info.getText().toString());
         userDatabase.updateChildren(map);
     }
-
 
 
     public void changeCoins(){
@@ -308,27 +332,11 @@ public class MyPerform extends AppCompatActivity {
         startActivity(profile);
     }
 
-    public void upload(){
-        UploadTask uploadTask = videoRef.putFile(videoUri);
-        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                updateProgress(taskSnapshot);
-            }
-        });
-    }
-
-    public void updateProgress(UploadTask.TaskSnapshot taskSnapshot){
-        long fileSize = taskSnapshot.getTotalByteCount();
-        long uploadBytes = taskSnapshot.getBytesTransferred();
-        long progress = (100 * uploadBytes) / fileSize;
-        pbar.setProgress((int) progress);
-    }
 
     private Uri getImageUri(Context context, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "test.3gp", null);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, videoId + ".jpg", null);
         return Uri.parse(path);
     }
 
