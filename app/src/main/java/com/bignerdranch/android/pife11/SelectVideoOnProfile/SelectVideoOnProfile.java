@@ -117,6 +117,8 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
         TextView commentsDivider = (TextView) findViewById(R.id.DividerBetweenVideoAndComments);
         ListView listView = (ListView) findViewById(R.id.videoComments);
+        final TextView nocomment = (TextView) findViewById(R.id.noComment);
+
 
         if (userid.equals(videoUserId)){
             ArrayList<Comment> arrayOfComments = new ArrayList<Comment>();
@@ -143,11 +145,10 @@ public class SelectVideoOnProfile extends AppCompatActivity {
                         adapter.add(new Comment(userName, date, like, wish, user));
                     }
 
-                    TextView tv = (TextView) findViewById(R.id.noComment);
                     if (adapter.isEmpty()) {
-                        tv.setVisibility(View.VISIBLE);
+                        nocomment.setVisibility(View.VISIBLE);
                     }else {
-                        tv.setVisibility(View.GONE);
+                        nocomment.setVisibility(View.GONE);
                     }
 
                 }
@@ -163,6 +164,8 @@ public class SelectVideoOnProfile extends AppCompatActivity {
         } else {
             listView.setVisibility(View.GONE);
             commentsDivider.setVisibility(View.GONE);
+            nocomment.setVisibility(View.GONE);
+
 
             exit_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
