@@ -75,7 +75,7 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
         TextView tv = (TextView) findViewById(R.id.viewVideoTitle);
         tv.setText(intent.getStringExtra("title"));
-       
+
         try{
             final File localFile = File.createTempFile(currentVideo, "mp4");
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
