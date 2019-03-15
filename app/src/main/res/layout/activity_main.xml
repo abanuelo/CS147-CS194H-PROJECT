@@ -41,7 +41,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/white"
+            >
 
         <EditText
             android:id="@+id/email"
@@ -94,10 +95,11 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="Log In"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_bar"
-        android:background="@color/grayHint"/>
+        android:background="@drawable/button_oval_gray"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -117,7 +119,7 @@
             android:layout_weight="1"
             android:hint="Don't have an account?   "
             android:textAlignment="textEnd"
-            android:textColor="@color/bodyTextColor"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
         <TextView
@@ -126,8 +128,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Register Here!"
+            android:fontFamily="@font/opensans_semibold"
             android:textAlignment="textStart"
-            android:textColor="@color/bodyTextColor"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
