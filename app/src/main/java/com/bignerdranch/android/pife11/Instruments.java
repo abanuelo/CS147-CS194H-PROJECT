@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -254,6 +255,7 @@ public class Instruments extends AppCompatActivity {
                     }
                 });
         Dialog dialog = alertBuilder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         dialog.show();
     }
 
