@@ -114,12 +114,15 @@ public class SelectVideoOnProfile extends AppCompatActivity {
 
         Button exit_btn = findViewById(R.id.select_video_exit);
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        TextView commentsDiv = (TextView) findViewById(R.id.DividerBetweenVideoAndComments);
+
         ListView listView = (ListView) findViewById(R.id.videoComments);
 
         if (userid.equals(videoUserId)){
             ArrayList<Comment> arrayOfComments = new ArrayList<Comment>();
             final CommentAdapter adapter = new CommentAdapter(this, arrayOfComments);
 
+            commentsDiv.setVisibility(View.VISIBLE);
             listView.setVisibility(View.VISIBLE);
             listView.setAdapter(adapter);
 
