@@ -235,36 +235,33 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp" />
 
-                    <HorizontalScrollView
-                        android:id="@+id/hatScrollView"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal">
-
                         <LinearLayout
                             android:id="@+id/HatView"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="left"
-                            android:gravity="left"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center_horizontal"
                                 android:id="@+id/first_container"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
                                 android:orientation="vertical">
 
                                 <ImageButton
-                                    android:id="@+id/first_item"
+                                    android:id="@+id/hat_item"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:background="@drawable/jemi_tiny_blue_hat"
-                                    android:src="#00ffffff" />
+                                    android:layout_gravity="center_horizontal"
+                                    android:background="#00ffffff"
+                                    android:src="@drawable/jemi_tiny_blue_hat" />
 
                                 <TextView
-                                    android:id="@+id/first_item_text"
+                                    android:gravity="center_horizontal"
+                                    android:id="@+id/hat_price"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -274,100 +271,8 @@
 
                             </LinearLayout>
 
-
-                            <LinearLayout
-                                android:id="@+id/second_container"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageButton
-                                    android:id="@+id/second_item"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/jemi_tiny_orange_hat"
-                                    android:src="#00ffffff" />
-
-                                <TextView
-                                    android:id="@+id/second_item_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/opensans_semibold"
-                                    android:text="$10"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/third_container"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageButton
-                                    android:id="@+id/third_item"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/pinkhattrans"
-                                    android:src="#00ffffff" />
-
-                                <TextView
-                                    android:id="@+id/third_item_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/opensans_semibold"
-                                    android:text="$15"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/fourth_container"
-                                android:layout_width="wrap_content"
-                                android:layout_marginRight="15dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageButton
-                                    android:id="@+id/fourth_item"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/yellowhattrans"
-                                    android:src="#00ffffff" />
-
-                                <TextView
-                                    android:id="@+id/fourth_item_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/opensans_semibold"
-                                    android:text="$20"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/zero_container"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <ImageButton
-                                    android:id="@+id/zero_item"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/none_icon"
-                                    android:src="#00ffffff" />
-
-                            </LinearLayout>
-
                         </LinearLayout>
 
-                    </HorizontalScrollView>
 
                     <ImageView
                         android:visibility="visible"
@@ -460,11 +365,6 @@
                         android:scaleX="-1"
                         android:src="@drawable/ic_arrow_point_to_right" />
 
-                    <HorizontalScrollView
-                        android:id="@+id/shirtScrollView"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal">
 
                         <LinearLayout
                             android:id="@+id/ShirtView"
@@ -475,20 +375,23 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:gravity="center_horizontal"
+                                android:layout_gravity="center_horizontal"
                                 android:id="@+id/first_container_shirts"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
                                 android:orientation="vertical">
 
                                 <ImageButton
-                                    android:id="@+id/first_item_shirt"
-                                    android:layout_width="70dp"
-                                    android:layout_height="50dp"
-                                    android:background="@drawable/greenshirtlockedtrans"
-                                    android:src="#00ffffff" />
+                                    android:layout_gravity="center_horizontal"
+                                    android:id="@+id/shirt_item"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="#00ffffff"
+                                    android:src="@drawable/greenshirtlockedtrans" />
 
                                 <TextView
+                                    android:gravity="center_horizontal"
                                     android:visibility="gone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -499,103 +402,7 @@
 
                             </LinearLayout>
 
-
-                            <LinearLayout
-                                android:id="@+id/second_container_shirts"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageButton
-                                    android:id="@+id/second_item_shirt"
-                                    android:layout_width="70dp"
-                                    android:layout_height="50dp"
-                                    android:background="@drawable/pinkshirtlockedtrans"
-                                    android:src="#00ffffff" />
-
-                                <TextView
-                                    android:visibility="gone"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/opensans_semibold"
-                                    android:text="$1000"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/third_container_shirts"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageButton
-                                    android:id="@+id/third_item_shirt"
-                                    android:layout_width="70dp"
-                                    android:layout_height="50dp"
-                                    android:background="@drawable/yellowshirtlockedtrans"
-                                    android:src="#00ffffff" />
-
-                                <TextView
-                                    android:visibility="gone"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/opensans_semibold"
-                                    android:text="$1500"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/fourth_container_shirts"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="15dp"
-                                android:orientation="vertical">
-
-                                <ImageButton
-                                    android:id="@+id/fourth_item_shirt"
-                                    android:layout_width="70dp"
-                                    android:layout_height="50dp"
-                                    android:background="@drawable/brownshirtlockedtrans"
-                                    android:src="#00ffffff" />
-
-                                <TextView
-                                    android:visibility="gone"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/opensans_semibold"
-                                    android:text="$2000"
-                                    android:textColor="@color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/zero_container_shirts"
-                                android:orientation="vertical"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <ImageButton
-                                    android:layout_gravity="center_horizontal"
-                                    android:background="@drawable/none_icon"
-                                    android:src="#00ffffff"
-                                    android:id="@+id/zero_item_shirt"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                            </LinearLayout>
-
-
                         </LinearLayout>
-
-                    </HorizontalScrollView>
 
                     <ImageView
                         android:id="@+id/right_arrow_shirt"
