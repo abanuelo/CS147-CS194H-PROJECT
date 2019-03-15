@@ -137,6 +137,7 @@
         android:textColor="@color/black"
         android:fontFamily="@font/opensans_light"
         android:text="Comments"
+        android:visibility="gone"
         android:textSize="@dimen/subTitle1Sz"
         android:paddingBottom="@dimen/vertiGaps"
         android:paddingTop="@dimen/vertiGaps"

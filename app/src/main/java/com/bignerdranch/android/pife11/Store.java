@@ -34,11 +34,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Store extends AppCompatActivity {
-
-    private static int SCROLLCOUNT = 290;
-    private static int SCROLLCOUNTSHIRT = 300;
-
-    private HorizontalScrollView hatScrollView, shirtScrollView;
     private TextView description, userCoins, itemDescription, shirtItemDescription;
     private TextView blueHatText, orangeHatText, pinkHatText, yellowHatText;
     private ImageView top, bottom, rewardType, leftArrowHat, rightArrowHat, leftArrowShirt, rightArrowShirt, hatsInDescription, shirtsInDescription;
@@ -46,6 +41,8 @@ public class Store extends AppCompatActivity {
     private int price, currXHat, currXShirt, currItem;
     private boolean result;
     private Handler handler;
+    private TextView hatPrice;
+    private ImageView hatItem, shirtItem;
     private Button buy, purchaseItem, saveOutfit;
     private DatabaseReference userDb;
     private ImageButton noHat, yellowHat, pinkHat, blueHat, orangeHat;
@@ -67,29 +64,34 @@ public class Store extends AppCompatActivity {
         rightArrowShirt = findViewById(R.id.right_arrow_shirt);
         saveOutfit = findViewById(R.id.save_outfit);
 
+        //Importing the hat items
+        hatItem = findViewById(R.id.hat_item);
+        hatPrice = findViewById(R.id.hat_price);
+        shirtItem = findViewById(R.id.shirt_item);
+
+
         //Import the Hat Image in the Description Section of the Store
         //hatsInDescription = findViewById(R.id.hat_description);
         //shirtsInDescription = findViewById(R.id.shirt_description);
         itemDescription = findViewById(R.id.description);
         shirtItemDescription = findViewById(R.id.shirt_des);
         purchaseItem = findViewById(R.id.itemPurchaseButton);
+        currXHat = 0;
+        currXShirt = 0;
         currItem = 0;
         checkIfItemBought(); //autopopulates the view for the first time;
         checkFirstTutorialCompleted(); //autopopulates the view for the first time;
 
-        //Importing the horizontal scroll views
-        hatScrollView = findViewById(R.id.hatScrollView);
-        shirtScrollView = findViewById(R.id.shirtScrollView);
 
         //This will implement functionality when trying to iterate through the horizontal scroll view
         //As a test we will first be attempting to move around the horizontal scroll view via rightArrow for Hats
         rightArrowHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hatScrollView.scrollTo(currXHat + SCROLLCOUNT, 0);
-                if(currXHat < SCROLLCOUNT*4){
-                    currXHat += SCROLLCOUNT;
-                    Log.d("currXHat", Integer.toString(currXHat));
+                if(currXHat == 4) {
+                    currXHat = 0;
+                } else {
+                    currXHat += 1;
                 }
 
                 //This next part will implement the fact that after you click the right arrow to look at another item
@@ -103,10 +105,10 @@ public class Store extends AppCompatActivity {
         leftArrowHat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hatScrollView.scrollTo(currXHat - SCROLLCOUNT, 0);
-                if (currXHat > 0) {
-                    currXHat -= SCROLLCOUNT;
-                    Log.d("currXHat", Integer.toString(currXHat));
+                if (currXHat == 0) {
+                    currXHat = 4;
+                } else {
+                    currXHat -= 1;
                 }
 
                 changeJemisHat();
@@ -117,9 +119,10 @@ public class Store extends AppCompatActivity {
         rightArrowShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shirtScrollView.scrollTo(currXShirt + SCROLLCOUNTSHIRT, 0);
-                if (currXShirt < SCROLLCOUNTSHIRT*4){
-                    currXShirt += SCROLLCOUNTSHIRT;
+                if (currXShirt == 4){
+                    currXShirt = 0;
+                } else {
+                    currXShirt += 1;
                 }
 
                 changeJemisShirt();
@@ -129,9 +132,10 @@ public class Store extends AppCompatActivity {
         leftArrowShirt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shirtScrollView.scrollTo(currXShirt - SCROLLCOUNTSHIRT, 0);
-                if (currXShirt > 0){
-                    currXShirt -= SCROLLCOUNTSHIRT;
+                if (currXShirt == 0){
+                    currXShirt = 4;
+                } else{
+                    currXShirt -= 1;
                 }
 
                 changeJemisShirt();
@@ -148,31 +152,6 @@ public class Store extends AppCompatActivity {
         top = findViewById(R.id.avatarTop);
         bottom = findViewById(R.id.avatarBottom);
 
-        //Find the hats in the XML File
-        noHat = findViewById(R.id.zero_item);
-        yellowHat = findViewById(R.id.fourth_item);
-        pinkHat = findViewById(R.id.third_item);
-        blueHat = findViewById(R.id.first_item);
-        orangeHat = findViewById(R.id.second_item);
-
-        //Find the price tags for each hat
-        noShirt = findViewById(R.id.zero_item_shirt);
-        blueHatText = findViewById(R.id.first_item_text);
-        orangeHatText = findViewById(R.id.second_item_text);
-        pinkHatText = findViewById(R.id.third_item_text);
-        yellowHatText = findViewById(R.id.fourth_item_text);
-
-        //Method to update from firebase based on if you bought an item or not
-        //checkIfItemBought();
-
-        //Find the shirts in the XML File
-        greenShirt = findViewById(R.id.first_item_shirt);
-        pinkShirt = findViewById(R.id.second_item_shirt);
-        yellowShirt = findViewById(R.id.third_item_shirt);
-        brownShirt = findViewById(R.id.fourth_item_shirt);
-
-        //avatarDefaultLoad();
-        //changeToDefault();
 
         saveOutfit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,13 +160,13 @@ public class Store extends AppCompatActivity {
                 int hatNum = 0;
 
                 //Sets the shirt number 0 - naked, 1- green, 2-pink, 3-yellow, 4-brown
-                if (currXShirt == SCROLLCOUNTSHIRT * 0){
+                if (currXShirt == 0){
                     shirtNum = 1;
-                } else if (currXShirt == SCROLLCOUNTSHIRT *1){
+                } else if (currXShirt == 1){
                     shirtNum = 2;
-                } else if (currXShirt == SCROLLCOUNTSHIRT*2){
+                } else if (currXShirt == 2){
                     shirtNum = 3;
-                } else if (currXShirt == SCROLLCOUNTSHIRT *3){
+                } else if (currXShirt == 3){
                     shirtNum = 4;
                 } else {
                     shirtNum = 0;
@@ -195,13 +174,13 @@ public class Store extends AppCompatActivity {
 
                 //Sets the hats number 0-naked, 1-blue, 2-orange, 3-pink, 4-yellow
                 Log.d("currXHat", Integer.toString(currXHat));
-                if(currXHat == SCROLLCOUNT*0){
+                if(currXHat == 0){
                     hatNum = 1;
-                } else if (currXHat == SCROLLCOUNT * 1){
+                } else if (currXHat == 1){
                     hatNum = 2;
-                } else if (currXHat == SCROLLCOUNT *2){
+                } else if (currXHat == 2){
                     hatNum = 3;
-                } else if (currXHat == SCROLLCOUNT * 3){
+                } else if (currXHat == 3){
                     hatNum = 4;
                 } else {
                     hatNum = 0;
@@ -250,34 +229,34 @@ public class Store extends AppCompatActivity {
         purchaseItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int item_price = 0;
-                if(currXHat == SCROLLCOUNT*0){
+                int item_price = 1;
+                if(currXHat == 0){
                     item_price = 5;
-                } else if (currXHat == SCROLLCOUNT * 1){
+                } else if (currXHat == 1){
                     item_price = 10;
-                } else if (currXHat == SCROLLCOUNT *2){
+                } else if (currXHat == 2){
                     item_price = 15;
-                } else if (currXHat == SCROLLCOUNT * 3){
+                } else if (currXHat == 3){
                     item_price = 20;
                 } else {
                     item_price = 0;
                 }
-                if (Integer.parseInt(pifePoints) >= item_price && item_price!= 0){
+                if (Integer.parseInt(userCoins.getText().toString()) >= item_price && item_price!= 0){
                     //Places the item in the Backend For Future Use
                     DatabaseReference itemDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId).child("Store");
                     HashMap map = new HashMap();
                     if (item_price == 5){
                         map.put("BlueHat", true);
-                        blueHatText.setText("");
+                        itemDescription.setText("");
                     } else if (item_price == 10){
                         map.put("OrangeHat", true);
-                        orangeHatText.setText("");
+                        itemDescription.setText("");
                     } else if (item_price == 15){
                         map.put("PinkHat", true);
-                        pinkHatText.setText("");
+                        itemDescription.setText("");
                     } else if (item_price == 20){
                         map.put("YellowHat", true);
-                        yellowHatText.setText("");
+                        itemDescription.setText("");
                     }
                     itemDb.updateChildren(map);
 
@@ -345,19 +324,33 @@ public class Store extends AppCompatActivity {
 
                         //Clears the price off items that you already have purchased the item
                         if (currItem == 0){
-                            blueHatText.setText("");
+                            hatPrice.setText("");
                         } else if (currItem == 1){
-                            orangeHatText.setText("");
-                        } else if (currItem ==2){
-                            pinkHatText.setText("");
+                            hatPrice.setText("");
+                        } else if (currItem == 2){
+                            hatPrice.setText("");
                         } else {
-                            yellowHatText.setText("");
+                            hatPrice.setText("");
                         }
                     }
                 }
                 if (updatedTextField == false){
                     itemDescription.setText("Buy item?");
                     purchaseItem.setVisibility(View.VISIBLE);
+                    hatPrice.setVisibility(View.VISIBLE);
+
+                    if (currItem == 0){
+                        hatPrice.setText("5");
+                    } else if (currItem == 1){
+                        hatPrice.setText("10");
+                    } else if (currItem == 2){
+                        hatPrice.setText("15");
+                    } else if (currItem == 3){
+                        hatPrice.setText("20");
+                    } else if (currItem == 4){
+                        hatPrice.setText("");
+                    }
+
                 }
 
             }
@@ -371,47 +364,51 @@ public class Store extends AppCompatActivity {
 
     //This method will change Jemis Shirt Across All parts of the screen
     private void changeJemisShirt(){
-        if(currXShirt == SCROLLCOUNTSHIRT*0){
+        if(currXShirt == 0){
             bottom.setImageResource(R.drawable.greenbottomtrans);
+            //shirtItem.setImageResource(R.drawable.jemi_shirt_green);
             checkFirstTutorialCompleted();
-        } else if (currXShirt == SCROLLCOUNTSHIRT*1){
+        } else if (currXShirt == 1){
             bottom.setImageResource(R.drawable.pinkbottomtrans);
+            //shirtItem.setImageResource(R.drawable.pinkshirttrans);
             checkSecondTutorialCompleted();
-        } else if (currXShirt == SCROLLCOUNTSHIRT*2){
+        } else if (currXShirt == 2){
             bottom.setImageResource(R.drawable.yellowbottomtrans);
+            //shirtItem.setImageResource(R.drawable.yellowshirttrans);
             checkThirdTutorialCompleted();
-        } else if (currXShirt == SCROLLCOUNTSHIRT*3){
+        } else if (currXShirt == 3){
             bottom.setImageResource(R.drawable.brownbottomtrans);
-            //shirtsInDescription.setImageResource(R.drawable.brownshirtlockedtrans);
+            shirtItem.setImageResource(R.drawable.brownshirtlockedtrans);
             shirtItemDescription.setText("You must practice for 2 hours!");
         } else {
             bottom.setImageResource(R.drawable.undressedbottomtrans);
-            //shirtsInDescription.setImageResource(R.drawable.none_icon);
+            shirtItem.setImageResource(R.drawable.none_icon);
             shirtItemDescription.setText("Be naked!");
         }
     }
 
     //This will change Jemis Hat Across All Parts of the Screen
     private void changeJemisHat(){
-        if (currXHat == SCROLLCOUNT*0){
+        if (currXHat == 0){
             top.setImageResource(R.drawable.bluetoptrans);
-            //hatsInDescription.setImageResource(R.drawable.jemi_tiny_blue_hat);
+            hatItem.setImageResource(R.drawable.jemi_tiny_blue_hat);
             currItem = 0;
-        } else if (currXHat == SCROLLCOUNT*1){
+        } else if (currXHat == 1){
             top.setImageResource(R.drawable.orangetoptrans);
-            //hatsInDescription.setImageResource(R.drawable.jemi_tiny_orange_hat);
+            hatItem.setImageResource(R.drawable.jemi_tiny_orange_hat);
             currItem = 1;
-        } else if (currXHat == SCROLLCOUNT*2){
+        } else if (currXHat == 2){
             top.setImageResource(R.drawable.pinktoptrans);
-            //hatsInDescription.setImageResource(R.drawable.pinkhattrans);
+            hatItem.setImageResource(R.drawable.pinkhattrans);
             currItem = 2;
-        } else if (currXHat == SCROLLCOUNT*3){
+        } else if (currXHat == 3){
             top.setImageResource(R.drawable.yellowtoptrans);
-            //hatsInDescription.setImageResource(R.drawable.yellowhattrans);
+            hatItem.setImageResource(R.drawable.yellowhattrans);
             currItem = 3;
-        } else {
+        } else if (currXHat == 4){
             top.setImageResource(R.drawable.undressedtoptrans);
-            //hatsInDescription.setImageResource(R.drawable.none_icon);
+            hatItem.setImageResource(R.drawable.none_icon);
+            hatPrice.setText("");
             currItem = 4;
         }
         checkIfItemBought();
@@ -441,17 +438,17 @@ public class Store extends AppCompatActivity {
                 if (dataSnapshot.getValue() != null){
                     if (((Long) dataSnapshot.getValue()).intValue() >= 3){
                         shirtItemDescription.setText("Congrats! You have commented on a total of three videos!");
-                        yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
+                        shirtItem.setImageResource(R.drawable.yellowshirttrans);
                         //shirtsInDescription.setImageResource(R.drawable.yellowshirttrans);
                     } else {
                         shirtItemDescription.setText("Comment on a total of three videos!");
-                        yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
+                        shirtItem.setImageResource(R.drawable.yellowshirtlockedtrans);
                         //shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
                     }
 
                 } else {
                     shirtItemDescription.setText("Comment on a total of three videos!");
-                    yellowShirt.setBackground(getDrawable(R.drawable.yellowshirtlockedtrans));
+                    shirtItem.setImageResource(R.drawable.yellowshirtlockedtrans);
                     //shirtsInDescription.setImageResource(R.drawable.yellowshirtlockedtrans);
                 }
 
@@ -473,11 +470,13 @@ public class Store extends AppCompatActivity {
                 int num_friends = (int) dataSnapshot.getChildrenCount();
                 if (num_friends >= 5){
                     shirtItemDescription.setText("Congrats! You have made at least 5 friends!");
-                    pinkShirt.setBackground(getDrawable(R.drawable.pinkshirttrans));
+                    shirtItem.setImageResource(R.drawable.pinkshirttrans);
+                    //pinkShirt.setBackground(getDrawable(R.drawable.pinkshirttrans));
                     //shirtsInDescription.setImageResource(R.drawable.pinkshirttrans);
                 } else {
                     shirtItemDescription.setText("Make a total of five friends!");
-                    pinkShirt.setBackground(getDrawable(R.drawable.pinkshirtlockedtrans));
+                    shirtItem.setImageResource(R.drawable.pinkshirtlockedtrans);
+                    //pinkShirt.setBackground(getDrawable(R.drawable.pinkshirtlockedtrans));
                     //shirtsInDescription.setImageResource(R.drawable.pinkshirtlockedtrans);
                 }
 
@@ -497,13 +496,15 @@ public class Store extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
                     System.out.println("Some odd reason..." + dataSnapshot.getValue().toString());
-                    greenShirt.setBackground(getDrawable(R.drawable.jemi_shirt_green));
+                    //greenShirt.setBackground(getDrawable(R.drawable.jemi_shirt_green));
                     //shirtsInDescription.setImageResource(R.drawable.jemi_shirt_green);
                     shirtItemDescription.setText("Congrats! You completed one practice session!");
+                    shirtItem.setImageResource(R.drawable.jemi_shirt_green);
 
                 } else {
-                    greenShirt.setBackground(getDrawable(R.drawable.greenshirtlockedtrans));
+                    //greenShirt.setBackground(getDrawable(R.drawable.greenshirtlockedtrans));
                     shirtItemDescription.setText("Complete one practice session!");
+                    shirtItem.setImageResource(R.drawable.greenshirtlockedtrans);
                     //shirtsInDescription.setImageResource(R.drawable.greenshirtlockedtrans);
                 }
 
