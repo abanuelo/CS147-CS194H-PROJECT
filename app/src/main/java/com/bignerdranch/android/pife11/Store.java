@@ -340,15 +340,16 @@ public class Store extends AppCompatActivity {
                     hatPrice.setVisibility(View.VISIBLE);
 
                     if (currItem == 0){
-                        hatPrice.setText("5");
+                        hatPrice.setText("$5");
                     } else if (currItem == 1){
-                        hatPrice.setText("10");
+                        hatPrice.setText("$10");
                     } else if (currItem == 2){
-                        hatPrice.setText("15");
+                        hatPrice.setText("$15");
                     } else if (currItem == 3){
-                        hatPrice.setText("20");
+                        hatPrice.setText("$20");
                     } else if (currItem == 4){
                         hatPrice.setText("");
+                        purchaseItem.setVisibility(View.INVISIBLE);
                     }
 
                 }
