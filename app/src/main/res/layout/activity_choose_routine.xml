@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Add Routine"
-            android:fontFamily="@font/opensans_semibold"
+            android:fontFamily="@font/opensans_light"
             android:background="@drawable/button_oval_green"
             android:textColor="@color/white"
             android:padding="10dp"
@@ -139,7 +139,7 @@
             android:text="Free Practice"
             android:textColor="@color/white"
             android:padding="10dp"
-            android:fontFamily="@font/opensans_semibold"
+            android:fontFamily="@font/opensans_light"
             android:background="@drawable/button_oval_green"
             android:onClick="goToOpenPractice"/>
         <Space

@@ -85,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Time Elapsed:"
+        android:text="Time Elapsed"
         android:textSize="@dimen/subTitle1Sz"
         android:paddingBottom="@dimen/vertiGaps"
         android:paddingTop="@dimen/vertiGaps"

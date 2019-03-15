@@ -95,6 +95,91 @@
 
     </LinearLayout>
 
+    <!--<VerticalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/viewVideoTitle0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:minHeight="400dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/videoDescriptionsLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/opensans_bold"
+                android:text="Description: "
+                />
+
+            <EditText
+                android:id="@+id/VideoDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/opensans_light"
+                android:text=""
+                />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/DividerBetweenVideoAndComments"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="5dp"
+            ></View>
+
+        <ListView
+            android:paddingTop="10dp"
+            android:id="@+id/videoComments"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+
+            >
+        </ListView>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_oval_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="@color/white"
+            android:text="Add Comment"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:visibility="invisible"
+
+            />
+        </LinearLayout>
+    </VerticalScrollView>-->
+
+
     <!--<TextView
         android:id="@+id/viewVideoTitle"
         android:layout_width="wrap_content"
@@ -109,14 +194,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />-->
 
+
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:minHeight="400dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="300dp"
+        android:minHeight="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewVideoTitle0"
@@ -127,21 +210,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:id="@+id/videoDescriptionsLayout"
         app:layout_constraintBottom_toTopOf="@id/DividerBetweenVideoAndComments"
         app:layout_constraintTop_toBottomOf="@id/videoView">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:textColor="@color/black"
-            android:fontFamily="@font/opensans_bold"
-            android:text="Description: "
+            android:fontFamily="@font/opensans_light"
+            android:text="Description "
+            android:textSize="@dimen/subTitle1Sz"
+            android:paddingBottom="@dimen/vertiGaps"
+            android:paddingTop="@dimen/vertiGaps"
+            android:background="@color/grayBckgrd"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/vertiGaps"
             />
 
-        <EditText
+        <TextView
             android:id="@+id/VideoDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -149,9 +237,12 @@
             android:textColor="@color/black"
             android:fontFamily="@font/opensans_light"
             android:text=""
-            />
+            android:layout_marginLeft="@dimen/sideGaps"
+            android:layout_marginRight="@dimen/sideGaps"
+            android:layout_marginBottom="@dimen/vertiGaps"/>
     </LinearLayout>
-    <View
+
+    <!--<View
         android:id="@+id/DividerBetweenVideoAndComments"
         android:layout_width="wrap_content"
         android:layout_height="2dp"
@@ -160,10 +251,28 @@
         android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@id/videoDescriptionsLayout"
         app:layout_constraintBottom_toTopOf="@id/videoComments"
-        ></View>
+        ></View>-->
+
+    <TextView
+        android:id="@+id/DividerBetweenVideoAndComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/opensans_light"
+        android:text="Comments"
+        android:textSize="@dimen/subTitle1Sz"
+        android:paddingBottom="@dimen/vertiGaps"
+        android:paddingTop="@dimen/vertiGaps"
+        android:background="@color/grayBckgrd"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/videoDescriptionsLayout"
+        app:layout_constraintBottom_toTopOf="@id/videoComments"
+        />
 
     <ListView
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/vertiGaps"
         android:id="@+id/videoComments"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -184,8 +293,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:textColor="@color/white"
-        android:text="Add Comment"
-        android:layout_marginBottom="10dp"
+        android:text=" Add Comment "
+        android:layout_marginBottom="@dimen/vertiGaps"
         android:layout_marginRight="5dp"
 
         />

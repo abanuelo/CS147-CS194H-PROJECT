@@ -121,7 +121,7 @@
                 <ImageView
                     android:layout_weight="1"
                     android:id="@+id/coin_image"
-                    android:src="@drawable/hand"
+                    android:src="@drawable/coins_white"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="@dimen/sideGaps"/>
@@ -205,8 +205,8 @@
             android:layout_marginBottom="@dimen/vertiGaps"
             android:background="@drawable/border">
             <ImageView
-                android:layout_gravity="center_horizontal"
                 android:background="@drawable/play"
+                android:layout_gravity="center_horizontal"
                 android:id="@+id/thumbnail"
                 android:layout_width="240dp"
                 android:layout_height="240dp" />
@@ -257,7 +257,7 @@
             android:id="@+id/Info"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="300dp"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/vertiGaps"
             app:hintTextAppearance="@style/TextInputLayoutHintText"
             android:textColorHint="@color/grayHint"
@@ -270,7 +270,6 @@
                 android:layout_height="wrap_content"
                 android:maxHeight="200dp"
                 android:hint="Description*"
-                android:lineHeight="100dp"
                 android:minLines="2"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"

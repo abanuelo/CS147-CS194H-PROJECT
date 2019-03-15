@@ -80,6 +80,8 @@ public class SelectVideoOnProfile extends AppCompatActivity {
             final File localFile = File.createTempFile(currentVideo, "3gp");
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
             videoRef = storageRef.child("/videos/" + videoUserId + "/" + currentVideo);
+            Toast t = Toast.makeText(this, "Video is loading...", Toast.LENGTH_LONG);
+            t.show();
             videoRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
@@ -98,7 +100,7 @@ public class SelectVideoOnProfile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String description = dataSnapshot.child("VideoInfo").child(currVideo).child("Info").getValue().toString();
-                EditText vd = (EditText) findViewById(R.id.VideoDescription);
+                TextView vd = (TextView) findViewById(R.id.VideoDescription);
                 vd.setText(description);
             }
 

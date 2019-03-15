@@ -228,7 +228,7 @@ public class Profile extends AppCompatActivity {
                     coinsEarned.setText(koinsEarned.toString());
                 }
                 else {
-                    coinsEarned.setText("0");
+                    coinsEarned.setText("20");
                 }
 
 
@@ -295,9 +295,9 @@ public class Profile extends AppCompatActivity {
             Log.d("Clear", "clearing userdatabase!");
             userDatabase.removeEventListener(listener);
         }
-        if(gridView != null){
-            gridView = null;
-        }
+//        if(gridView != null){
+//            gridView = null;
+//        }
         if (auth != null){
             auth = null;
         }
@@ -306,8 +306,8 @@ public class Profile extends AppCompatActivity {
         username = null;
         genre = null;
         instrument = null;
-//        bitmap.recycle();
-//        gridAdapter.clear();
+        //bitmap.recycle();
+        //gridAdapter.clear();
         //finish();
     }
 
@@ -451,7 +451,7 @@ public class Profile extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height, width);
 
         imageToAdd.setLayoutParams(params);
-        
+
         switch (image) {
             case ("guitar"):
                 imageToAdd.setImageResource(R.drawable.ic_rock_pic);
