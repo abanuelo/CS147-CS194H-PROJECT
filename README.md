@@ -9,3 +9,4 @@ Our prototype was built using Android Studio Code and Firebase was used for back
 ## Website
 For more of the story behind the creation of Pife, please refer to our website: 
 http://web.stanford.edu/class/cs194h/projects/Pife/
+https://hci.stanford.edu/courses/cs194h/2019/wi/projects/Pife/CS194HFinalReport.pdf
